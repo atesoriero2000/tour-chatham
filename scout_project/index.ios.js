@@ -7,47 +7,71 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
-  View
+  TabBarIOS,
+  View,
+  Text
 } from 'react-native';
 
+var Welcome = require('./app/ios/welcome');
+var Tour = require('./app/ios/tour');
+var About = require('./app/ios/about');
+
 class scout_project extends Component {
+
+   constructor(props){
+    super(props);
+    this.state = {
+      selectedTab: 'welcome'
+    };
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+    return(
+      <TabBarIOS selectedTab={this.state.selectedTab}>
+
+        <TabBarIOS.Item //Welcome Tab
+          selected = {this.state.selectedTab === 'welcome'}
+          systemIcon = {'featured'}
+
+          onPress= {() => {
+              this.setState({
+                selectedTab: 'welcome'
+              });
+            }}>
+          <Welcome />
+        </TabBarIOS.Item>
+
+
+        <TabBarIOS.Item //Tour Tab
+          selected = {this.state.selectedTab === 'tour'}
+          systemIcon = {'featured'}
+
+          onPress= {() => {
+              this.setState({
+                selectedTab: 'tour'
+              });
+            }}>
+          <Tour />
+        </TabBarIOS.Item>
+
+
+        <TabBarIOS.Item //About Tab
+          selected = {this.state.selectedTab === 'about'}
+          systemIcon = {'featured'}
+
+          onPress= {() => {
+              this.setState({
+                selectedTab: 'about'
+              });
+            }}>
+          <About />
+        </TabBarIOS.Item>
+
+
+      </TabBarIOS>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('scout_project', () => scout_project);

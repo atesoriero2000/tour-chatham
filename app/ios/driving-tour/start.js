@@ -8,9 +8,11 @@ import {
   TouchableHighlight,
   View,
   Text,
+  Alert,
 } from 'react-native'
 
 var Safety = require('./safety');
+var AudioPage = require('./audio-page');
 
 class Start extends Component {
 
@@ -23,7 +25,7 @@ class Start extends Component {
         </Text>
 
         <TouchableHighlight style = {styles.button}
-          onPress = {() => this.toSafety()}
+          onPress = {() => this.toAudio()}
           underlayColor = '#BBBBBB'>
 
             <Text style = {styles.buttonText}>
@@ -42,6 +44,18 @@ class Start extends Component {
     });
   }
 
+  toAudio(){
+    Alert.alert("SAFTEY", "SAFTEY INFO",[
+      { text: "Ok, Proceed", onPress: () => this.NavToAudio()},
+    ])
+  }
+
+  NavToAudio(){
+    this.props.navigator.push({
+      title: 'Audio Tour',
+      component: AudioPage,
+    });
+  }
 }
 
 const styles = StyleSheet.create({

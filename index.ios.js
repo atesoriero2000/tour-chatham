@@ -12,9 +12,9 @@ import {
   Text
 } from 'react-native';
 
-var Welcome = require('./app/ios/welcome');
-var Tour = require('./app/ios/tour');
-var About = require('./app/ios/about');
+var Welcome = require('./app/ios/components/welcome');
+var Tour = require('./app/ios/components/tour');
+var About = require('./app/ios/components/about');
 
 class scout_project extends Component {
 
@@ -66,6 +66,7 @@ class scout_project extends Component {
             }}>
           <About />
         </TabBarIOS.Item>
+
 
 
       </TabBarIOS>

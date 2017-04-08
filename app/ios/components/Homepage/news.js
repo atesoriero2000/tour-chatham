@@ -12,6 +12,10 @@ import {
 
 class News extends Component {
 
+  componentWillUnmount(){
+  this.props.navigator.popToTop();
+  }
+
   render() {
     return (
       <ScrollView>

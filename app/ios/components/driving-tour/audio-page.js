@@ -7,10 +7,32 @@ import {
   NavigatorIOS,
   Text,
   View,
+  Dimensions,
+  TouchableOpacity,
   VibrationIOS,
+  Image,
 } from 'react-native'
 
-const geoOpt = {enableHighAccuracy: true, timeout: 1000, maximumAge: 1000};
+var Sound = require('react-native-sound');
+var Turns = require('./turns');
+//var f1 = require('../../audio/Page 11 (Owen).mp3');
+
+
+const geoOpt = {enableHighAccuracy: true, timeout: 1000, maximumAge: 1000, distanceFilter: .5};
+
+// var file1 = new Sound(f1,'',(error)=>{
+//   if (error) {
+//       console.log('failed to load the sound', error);
+//     } else { // loaded successfully
+//       console.log(`duration in seconds:  ${file1.getDuration()} number of channels:  ${file1.getNumberOfChannels()}`);
+//   }
+// });
+
+var stage  = 0;
+var turn = 0;
+
+const radius = 5;
+
 
 class AudioPage extends Component {
 
@@ -20,22 +42,62 @@ class AudioPage extends Component {
     this.state ={
       initialPos: 'unknown',
       lastPos: 'unknown',
+      picture: Turns.stages[stage].loc[turn].picture,
+      directions: 'unknown',
+      title: 'hi',
     };
 
-    var intervalID = setInterval(() => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.setState({lastPos: position.coords});
-      }, (error) => alert(JSON.stringify(error)), geoOpt);
-    }, 1000);
+    var intervalID = setInterval(() => this.geolocation() , 500);
+
   }
 
 
-  IsNear(targetLat, targetLong, radius){
-
+  isNear(targetLat, targetLong, radius){
     let lastLat = this.state.lastPos.latitude;
     let lastLong =  this.state.lastPos.longitude;
+    return ( Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2) ) <= (radius/(364537+7/9)) );
 
-    return ( Math.sqrt((lastLong-targetLong)^2 + (lastLat-targetLat)^2) <= (radius/(364537+7/9)) )
+  }
+
+  geolocation(){
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({lastPos: position.coords});
+    }, (error) => alert(JSON.stringify(error)), geoOpt);
+
+
+    let currentTurn = Turns.stages[stage].loc[turn];
+    if(this.isNear(this.state.initialPos.latitude, this.state.initialPos.longitude, radius)){
+      //turn++;
+      console.log(turn);
+    }
+
+     this.setState({picture: Turns.stages[stage].loc[turn].picture});
+     this.setState({directions: Turns.stages[stage].loc[turn].directions});
+  }
+
+  triggerAudio(){
+
+    // file1.play((success) => {
+    //   if (success) {
+    //     console.log('successfully finished playing');
+    //   } else {
+    //     console.log('playback failed due to audio decoding errors');
+    //   }});
+  }
+
+  onPress(){
+
+
+      stage++;
+
+    //if(!this.state.playing){
+
+      this.triggerAudio();
+
+      //stage++;
+      console.log("Stage Up: " + stage);
+  //  }
 
   }
 
@@ -43,26 +105,12 @@ class AudioPage extends Component {
     //navigator.geolocation.clearWatch(this.watchID);
     clearInterval(this.intervalID);
     this.props.navigator.popToTop();
-    //TODO pop to top stack navigatorIos
-
   }
 
   componentWillUpdate(){
-
-
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     let lastLong = JSON.stringify(position.coords.longitude);
-    //     let lastLat = JSON.stringify(position.coords.latitude);
-    //     this.setState({lastLong: lastLong});
-    //     this.setState({lastLat: lastLat});
-    //   },
-    //     (error) => alert(JSON.stringify(error)), geoOpt);
-
-
-  //  _getLocation();
-  //  if(this.IsNear(-74.4243418426146, 40.71324971508301, 25)){
-  if(this.IsNear(this.state.initialPos.latitude, this.state.initialPos.longitude, 25)){
+//  if(!this.state.picture === Turns.stages[stage][turn].picture){
+  //}
+  if(this.isNear(this.state.initialPos.latitude, this.state.initialPos.longitude, radius)){
     //  this.setState({isNear: 'true'});
       VibrationIOS.vibrate();
      } else {
@@ -70,19 +118,14 @@ class AudioPage extends Component {
     }
   }
 
-
-  //watchID: ?number = null;
   componentDidMount(){
-
     navigator.geolocation.getCurrentPosition((position) => {
       this.setState({initialPos: position.coords});
     }, (error) => alert(JSON.stringify(error)), geoOpt);
 
-    // this.watchID = navigator.geolocation.watchPosition((position) => {
-    //   this.setState({lastLong: position.coords.longitude, lastLat: position.coords.latitude});
-    // }, (error) => alert(JSON.stringify(error)), geoOpt);
-
   }
+
+
 
   render() {
     return (
@@ -97,23 +140,24 @@ class AudioPage extends Component {
         <Text> Longitude: {this.state.initialPos.longitude}</Text>
         <Text> Latitude: {this.state.initialPos.latitude}</Text>
 
-
-        <Text style = {styles.location}>
-          TARGET
-        </Text>
-        <Text> Longitude: -74.4243418426146</Text>
-        <Text> Latitude: 40.71324971508301</Text>
-
-
         <Text style = {styles.location}>
           LAST
         </Text>
         <Text> Longitude: {this.state.lastPos.longitude}</Text>
         <Text> Latitude: {this.state.lastPos.latitude}</Text>
-        <Text> isNear: {JSON.stringify(this.IsNear(this.state.initialPos.latitude, this.state.initialPos.longitude, 25))} </Text>
+        <Text> isNear: {JSON.stringify(this.isNear(this.state.initialPos.latitude, this.state.initialPos.longitude, radius))} </Text>
 
+
+        <Image
+        style={styles.image}
+        source={this.state.picture}
+        />
+
+        <TouchableOpacity style = {styles.button} onPress = {() => this.onPress()}>
+          <Text style={styles.buttonText} >Click for audio</Text>
+        </TouchableOpacity>
       </View>
-    )
+    );
   }
 }
 
@@ -139,7 +183,26 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
-    padding: 50
+    //padding: 50,
+    marginBottom: 25,
+  },
+
+  button:{
+    width: Dimensions.get('window').width/2,
+    height: 36,
+    backgroundColor: 'gray',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    //opacity: 0.5,
+    bottom: 50,
+    transform: [{translateY:70}],
+  },
+
+  image:{
+    margin: 25,
+    height: 100,
+    width: 100,
   },
 
 });

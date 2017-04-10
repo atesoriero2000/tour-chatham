@@ -19,6 +19,7 @@ class Tour extends Component {
         initialRoute = {{
           title: 'Start Tour',
           component: Start,
+          passProps: {unmount: this.props.unmount},
         }}
         />
     );

@@ -9,10 +9,14 @@ import {
   View,
   Text,
   Alert,
+  Dimensions,
 } from 'react-native'
 
 var Safety = require('./safety');
 var AudioPage = require('./audio-page');
+
+
+
 
 class Start extends Component {
 
@@ -54,6 +58,7 @@ class Start extends Component {
     this.props.navigator.push({
       title: 'Audio Tour',
       component: AudioPage,
+      passProps: {unmount: this.props.unmount},
     });
   }
 }
@@ -69,10 +74,15 @@ const styles = StyleSheet.create({
   },
 
   button:{
-    height: 36,
-    backgroundColor: 'black',
+    width: Dimensions.get('window').width/1.25,
+    height: 48,
+    backgroundColor: 'gray',
     justifyContent: 'center',
-    padding: 100,
+    alignItems: 'center',
+    margin: 5,
+    //opacity: 0.5,
+    bottom: 50,
+    transform: [{translateY:50}],
   },
 
   text:{

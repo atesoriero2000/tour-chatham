@@ -18,7 +18,7 @@ var Turns = require('./turns');
 //var f1 = require('../../audio/Page 11 (Owen).mp3');
 
 
-const geoOpt = {enableHighAccuracy: true, timeout: 1000, maximumAge: 1000, distanceFilter: .5};
+const geoOpt = {enableHighAccuracy: true, timeout: 500, maximumAge: 500, distanceFilter: .5};
 
 // var file1 = new Sound(f1,'',(error)=>{
 //   if (error) {
@@ -42,21 +42,25 @@ class AudioPage extends Component {
     this.state ={
       initialPos: 'unknown',
       lastPos: 'unknown',
+      lastRadius: 0,
+      speed: 0,
       picture: Turns.stages[stage].loc[turn].picture,
       directions: 'unknown',
       title: 'hi',
+      intervalID: setInterval(() => this.geolocation() , 500),
     };
-
-    var intervalID = setInterval(() => this.geolocation() , 500);
 
   }
 
-
   isNear(targetLat, targetLong, radius){
+    return ( this.distTo(targetLat, targetLong) <= radius);
+  }
+
+
+  distTo(targetLat, targetLong){
     let lastLat = this.state.lastPos.latitude;
     let lastLong =  this.state.lastPos.longitude;
-    return ( Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2) ) <= (radius/(364537+7/9)) );
-
+    return (Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2)) * (364537+7/9) );
   }
 
   geolocation(){
@@ -72,8 +76,13 @@ class AudioPage extends Component {
       console.log(turn);
     }
 
-     this.setState({picture: Turns.stages[stage].loc[turn].picture});
-     this.setState({directions: Turns.stages[stage].loc[turn].directions});
+    let radius = this.distTo(this.state.initialPos.latitude, this.state.initialPos.longitude);
+    let speed = (radius - this.state.lastRadius)/(11/15);
+
+    this.setState({lastRadius: radius});
+    this.setState({speed: speed});
+    this.setState({picture: Turns.stages[stage].loc[turn].picture});
+    this.setState({directions: Turns.stages[stage].loc[turn].directions});
   }
 
   triggerAudio(){
@@ -101,9 +110,15 @@ class AudioPage extends Component {
 
   }
 
+  resetPos(){
+    this.setState({initialPos: this.state.lastPos});
+    this.setState({lastRadius: 0});
+    this.setState({speed: 0});
+  }
+
   componentWillUnmount(){
     //navigator.geolocation.clearWatch(this.watchID);
-    clearInterval(this.intervalID);
+    clearInterval(this.state.intervalID);
     this.props.navigator.popToTop();
   }
 
@@ -116,6 +131,11 @@ class AudioPage extends Component {
      } else {
     //  this.setState({isNear: 'false'});
     }
+
+    if(this.props.unmount().b){
+      this.props.navigator.popToTop();
+    }
+
   }
 
   componentDidMount(){
@@ -145,7 +165,11 @@ class AudioPage extends Component {
         </Text>
         <Text> Longitude: {this.state.lastPos.longitude}</Text>
         <Text> Latitude: {this.state.lastPos.latitude}</Text>
+        <Text/>
         <Text> isNear: {JSON.stringify(this.isNear(this.state.initialPos.latitude, this.state.initialPos.longitude, radius))} </Text>
+        <Text> Radius: {JSON.stringify(Math.round(this.state.lastRadius, 1))} FT</Text>
+        <Text> Speed: {JSON.stringify(Math.round(this.state.speed, 1))}  MPH</Text>
+
 
 
         <Image
@@ -153,9 +177,14 @@ class AudioPage extends Component {
         source={this.state.picture}
         />
 
+        <TouchableOpacity style = {styles.button} onPress = {() => this.resetPos()}>
+          <Text style={styles.buttonText} >Reset Position</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style = {styles.button} onPress = {() => this.onPress()}>
           <Text style={styles.buttonText} >Click for audio</Text>
         </TouchableOpacity>
+
       </View>
     );
   }
@@ -175,7 +204,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '500',
     textAlign: 'center',
-    paddingTop: 25
+    paddingTop: 20
   },
 
   text:{
@@ -183,26 +212,31 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
-    //padding: 50,
-    marginBottom: 25,
+    paddingTop: 30,
   },
 
   button:{
-    width: Dimensions.get('window').width/2,
+    width: Dimensions.get('window').width/1.5,
     height: 36,
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
+    margin: 5,
     //opacity: 0.5,
     bottom: 50,
-    transform: [{translateY:70}],
+    transform: [{translateY:50}],
   },
 
   image:{
     margin: 25,
     height: 100,
     width: 100,
+  },
+
+  buttonText:{
+    fontSize: 15,
+    color: 'white',
+    fontWeight: '100',
   },
 
 });

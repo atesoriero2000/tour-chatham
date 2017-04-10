@@ -13,6 +13,7 @@ const pic4 = require('../../images/boy-scout-emblem.jpg');
 
 
 
+
 const loc1 = [
   {
     direction: 'Turn left out of the Schoolhouse parking lot onto Fairmount Ave',

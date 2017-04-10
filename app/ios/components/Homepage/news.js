@@ -12,8 +12,22 @@ import {
 
 class News extends Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      intervalID: setInterval(()=>this.check(), 1000),
+    }
+  }
+
   componentWillUnmount(){
-  this.props.navigator.popToTop();
+    this.props.navigator.popToTop();
+    clearInterval(this.state.intervalID);
+  }
+
+  check(){
+    if(this.props.unmount().a){
+      this.props.navigator.popToTop();
+    }
   }
 
   render() {

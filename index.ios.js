@@ -22,8 +22,21 @@ class scout_project extends Component {
    constructor(props){
     super(props);
     this.state = {
-      selectedTab: 'welcome'
+      selectedTab: 'welcome',
+      unmount: {
+        a: false,
+        b: false,
+        c: false,
+      },
     };
+  }
+
+  componentWillUpdate(){
+    console.log(this.state.unmount);
+  }
+
+  getUnmount(){
+    return this.state.unmount
   }
 
   render() {
@@ -36,10 +49,15 @@ class scout_project extends Component {
 
           onPress= {() => {
               this.setState({
-                selectedTab: 'welcome'
+                selectedTab: 'welcome',
+                unmount: {
+                  a: false,
+                  b: true,
+                  c: true,
+                },
               });
             }}>
-          <Welcome />
+          <Welcome unmount = {() => this.getUnmount()}/>
         </TabBarIOS.Item>
 
 
@@ -49,10 +67,15 @@ class scout_project extends Component {
 
           onPress= {() => {
               this.setState({
-                selectedTab: 'tour'
+                selectedTab: 'tour',
+                unmount: {
+                  a: true,
+                  b: false,
+                  c: true,
+                },
               });
             }}>
-          <Tour />
+          <Tour unmount = {() => this.getUnmount()}/>
         </TabBarIOS.Item>
 
 
@@ -62,12 +85,16 @@ class scout_project extends Component {
 
           onPress= {() => {
               this.setState({
-                selectedTab: 'about'
+                selectedTab: 'about',
+                unmount: {
+                  a: true,
+                  b: true,
+                  c: false,
+                },
               });
             }}>
-          <About />
+          <About unmount ={() => this.state.getUnmount()}/>
         </TabBarIOS.Item>
-
 
 
       </TabBarIOS>

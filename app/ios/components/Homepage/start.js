@@ -46,7 +46,8 @@ class Welcome extends Component {
   toNews(){
     this.props.navigator.push({
       title: 'News',
-      component: News
+      component: News,
+      passProps: {unmount: this.props.unmount},
     });
   }
 }

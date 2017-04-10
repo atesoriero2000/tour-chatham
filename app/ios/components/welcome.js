@@ -18,7 +18,8 @@ class Welcome extends Component {
         style = {styles.container}
         initialRoute = {{
           title: 'Welcome',
-          component: Start
+          component: Start,
+          passProps: {unmount: this.props.unmount}
         }}
         />
     );

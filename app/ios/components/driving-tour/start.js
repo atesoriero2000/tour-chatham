@@ -14,11 +14,19 @@ import {
 
 var Safety = require('./safety');
 var AudioPage = require('./audio-page');
-
-
-
+var Turns = require('./turns');
 
 class Start extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+    };
+  }
+
+  componentWillUnmount(){
+    //clearInterval(this.state.intervalID);
+  }
 
   render() {
     return (

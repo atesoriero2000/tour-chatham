@@ -44,9 +44,9 @@ class AudioPage extends Component {
       lastPos: 'unknown',
       lastRadius: 0,
       speed: 0,
-      picture: Turns.stages[stage].loc[turn].picture,
+      picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
       directions: 'unknown',
-      title: 'hi',
+      title: Turns.stages[Turns.stage].title,
       intervalID: setInterval(() => this.geolocation() , 500),
     };
 
@@ -70,7 +70,7 @@ class AudioPage extends Component {
     }, (error) => alert(JSON.stringify(error)), geoOpt);
 
 
-    let currentTurn = Turns.stages[stage].loc[turn];
+    let currentTurn = Turns.stages[Turns.stage].loc[Turns.turn];
     if(this.isNear(this.state.initialPos.latitude, this.state.initialPos.longitude, radius)){
       //turn++;
       console.log(turn);
@@ -81,8 +81,8 @@ class AudioPage extends Component {
 
     this.setState({lastRadius: radius});
     this.setState({speed: speed});
-    this.setState({picture: Turns.stages[stage].loc[turn].picture});
-    this.setState({directions: Turns.stages[stage].loc[turn].directions});
+    this.setState({picture: Turns.stages[Turns.stage].loc[Turns.turn].picture});
+    this.setState({directions: Turns.stages[Turns.stage].loc[Turns.turn].directions});
   }
 
   triggerAudio(){
@@ -98,14 +98,14 @@ class AudioPage extends Component {
   onPress(){
 
 
-      stage++;
+      Turns.stage++;
 
     //if(!this.state.playing){
 
       this.triggerAudio();
 
       //stage++;
-      console.log("Stage Up: " + stage);
+      console.log("Stage Up: " + Turns.stage);
   //  }
 
   }
@@ -139,10 +139,14 @@ class AudioPage extends Component {
   }
 
   componentDidMount(){
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({initialPos: position.coords});
-    }, (error) => alert(JSON.stringify(error)), geoOpt);
+    // navigator.geolocation.getCurrentPosition((position) => {
+    //   this.setState({initialPos: position.coords});
+    // }, (error) => alert(JSON.stringify(error)), geoOpt);
 
+    this.setState({initialPos: {
+      longitude: -74.434586,
+      latitude: 40.697827,
+    }});
   }
 
 

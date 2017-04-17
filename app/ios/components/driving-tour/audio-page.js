@@ -28,8 +28,9 @@ const geoOpt = {enableHighAccuracy: true, timeout: 500, maximumAge: 500, distanc
 //   }
 // });
 
-var stage  = 0;
-var turn = 0;
+
+var start = true;
+var doneAtAudio = false;
 
 const radius = 5;
 
@@ -41,11 +42,12 @@ class AudioPage extends Component {
     super(props);
     this.state ={
       initialPos: 'unknown',
-      lastPos: 'unknown',
       lastRadius: 0,
       speed: 0,
+
+      lastPos: 'unknown',
       picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
-      directions: 'unknown',
+      directions: Turns.stages[Turns.stage].loc[Turns.turn].directions,
       title: Turns.stages[Turns.stage].title,
       intervalID: setInterval(() => this.geolocation() , 500),
     };
@@ -70,10 +72,21 @@ class AudioPage extends Component {
     }, (error) => alert(JSON.stringify(error)), geoOpt);
 
 
-    let currentTurn = Turns.stages[Turns.stage].loc[Turns.turn];
+    // let currentStage = Turns.stages[Turns.stage];
+    // let currentTurn = currentStage.loc[Turns.turn];
+    //
+    // //if not at location
+    // if(!(currentStage.length === Turns.turn+1){
+    //   let nextTurn = currentStage.loc[Turns.turn+1];
+    //   if(this.isNear(nextTurn.latitude, nextTurn.longitude, nextTurn.radius)){
+    //     Turns.turn++;
+    //   }
+    // }
+
+
     if(this.isNear(this.state.initialPos.latitude, this.state.initialPos.longitude, radius)){
-      //turn++;
       console.log(turn);
+      VibrationIOS.vibrate();
     }
 
     let radius = this.distTo(this.state.initialPos.latitude, this.state.initialPos.longitude);
@@ -97,16 +110,39 @@ class AudioPage extends Component {
 
   onPress(){
 
+    let currentStage = Turns.stages[Turns.stage];
 
-      Turns.stage++;
+    //Does nothing if audio is playing or if not at location
+    if(!audioPlaying && (currentStage.length === Turns.turn+1)){
+      if(!start){
 
+        if(currentStage.atAudio === null) TdoneAtAudio=true;
+
+        if(!doneAtAudio){ //Has done done the at location audio
+          //Play currentStage.atAudio
+
+        }else{
+          Turns.stage++;
+          doneAtAudio = false;
+          Turns.turn = 0;
+          //Play currentStage.toAudio
+        }
+
+      }else{
+        //Play currentStage.toAudio
+        start = false;
+      }
+    }
+
+
+
+
+    Turns.stage++;
     //if(!this.state.playing){
-
-      this.triggerAudio();
-
-      //stage++;
-      console.log("Stage Up: " + Turns.stage);
-  //  }
+    this.triggerAudio();
+    //stage++;
+    console.log("Stage Up: " + Turns.stage);
+    //}
 
   }
 
@@ -117,36 +153,26 @@ class AudioPage extends Component {
   }
 
   componentWillUnmount(){
-    //navigator.geolocation.clearWatch(this.watchID);
     clearInterval(this.state.intervalID);
     this.props.navigator.popToTop();
   }
 
   componentWillUpdate(){
-//  if(!this.state.picture === Turns.stages[stage][turn].picture){
-  //}
-  if(this.isNear(this.state.initialPos.latitude, this.state.initialPos.longitude, radius)){
-    //  this.setState({isNear: 'true'});
-      VibrationIOS.vibrate();
-     } else {
-    //  this.setState({isNear: 'false'});
-    }
-
     if(this.props.unmount().b){
       this.props.navigator.popToTop();
     }
-
   }
 
   componentDidMount(){
-    // navigator.geolocation.getCurrentPosition((position) => {
-    //   this.setState({initialPos: position.coords});
-    // }, (error) => alert(JSON.stringify(error)), geoOpt);
 
-    this.setState({initialPos: {
-      longitude: -74.434586,
-      latitude: 40.697827,
-    }});
+    //####### Play inital audio (At Mount Vernon School) ############
+
+    // this.setState({initialPos: {
+    //   longitude: -74.434586,
+    //   latitude: 40.697827,
+    // }});
+
+
   }
 
 

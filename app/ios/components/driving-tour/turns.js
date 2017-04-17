@@ -75,7 +75,7 @@ const loc1 = [
     radius: 200,
   },
   {
-    direction: 'Travel straight 2.03 miles past the Country Store Deli',
+    direction: 'Travel straight 2.03 miles past the Fairmount Country Store Deli',
     picture: pic1,
     latitude: 40.705910,
     longitude: -74.429376,
@@ -177,15 +177,15 @@ const loc5 = [
   {
     direction: 'Take the first left onto Spring St (approx 0.2 miles)',
     picture: f2,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.729022,
+    longitude: -74.407241,
     radius: 200,
   },
   {
     direction: 'Continue until you see the marker. You may park along the right side of Spring Street',
     picture: f3,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.730427,
+    longitude: -74.408672,
     radius: 200,
   },
 ];
@@ -203,29 +203,29 @@ const loc6 = [
   {
     direction: 'Drive to the end of School Ave and turn right onto Maple St',
     picture: g2,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.732468,
+    longitude: -74.406383,
     radius: 200,
   },
   {
     direction: 'Take another right onto Lafayette Ave and drive 0.4 miles',
     picture: g3,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.730598,
+    longitude: -74.404530,
     radius: 200,
   },
   {
     direction: 'Turn right onto Southern Blvd (0.2 miles)',
     picture: g4,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.727553,
+    longitude: -74.409742,
     radius: 200,
   },
   {
     direction: '184 Southern Blvd and the marker are on the right (If you reached Jay Road you have gone too far). Park in Southern Boulevard School to right just past the marker',
     picture: g5,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.729606,
+    longitude: -74.413354,
     radius: 200,
   },
 ];
@@ -244,8 +244,8 @@ const loc7 = [
   {
     direction: 'Turn left and park in 395 Southern Blvd (Noe Pond Club) (If you reach Hickory Pl you have gone too far). The marker is 100 ft before the entrance of Noe pond, you may walk to the marker',
     picture: h2,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.737275,
+    longitude: -74.425151,
     radius: 200,
   },
 ];
@@ -263,8 +263,8 @@ const loc8 = [
   {
     direction: '405 Southern Blvd is on the left. You marker may turn into and park in Nash Field (approx 0.14 mile)',
     picture: i2,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.741458,
+    longitude: -74.430853,
     radius: 200,
   },
 ];
@@ -282,15 +282,15 @@ const loc9 = [
   {
     direction: 'Turn left onto Green Village Road and drive about 0.8 miles',
     picture: j2,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.744404,
+    longitude: -74.434543,
     radius: 200,
   },
   {
     direction: 'The destination is on the left at 461 Green Village Road. You may park in the driveway to the left',
     picture: j3,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.738745,
+    longitude: -74.446597,
     radius: 200,
   },
 ];
@@ -308,8 +308,8 @@ const loc10 = [
   {
     direction: 'You may park along white fence to the right',
     picture: k2,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.738841,
+    longitude: -74.449521,
     radius: 200,
   },
 ];
@@ -327,8 +327,8 @@ const loc11 = [
   {
     direction: 'Stop at 520 Green Village Road and park in the Green Village Deli to the right',
     picture: l2,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.739029,
+    longitude: -74.453421,
     radius: 200,
   },
 ];
@@ -346,22 +346,22 @@ const loc12 = [
   {
     direction: 'Take the first right to stay on Spring Valley Road (0.9 miles)',
     picture: m2,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.740854,
+    longitude: -74.456702,
     radius: 200,
   },
   {
     direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the marron marker',
     picture: m3,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.753155,
+    longitude: -74.452436,
     radius: 200,
   },
   {
     direction: 'The destination is on the left at 340 Loantaka Way. You may park in gravel driveway to the right',
     picture: m4,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.752534,
+    longitude: -74.446877,
     radius: 200,
   },
 ];
@@ -379,8 +379,8 @@ const loc13 = [
   {
     direction: 'You may park along the wooden fence to the right',
     picture: n2,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.753724,
+    longitude: -74.440480,
     radius: 200,
   },
 ];
@@ -398,15 +398,15 @@ const loc14 = [
   {
     direction: 'Turn right onto Treadwell Ave (If you reach Nordling Lane you have gone too far)',
     picture: o2,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.765623,
+    longitude: -74.445828,
     radius: 200,
   },
   {
     direction: 'Park along fence to the left or right once you see the marker on the left',
     picture: o3,
-    latitude: 0,
-    longitude: 0,
+    latitude: 40.768086,
+    longitude: -74.442928,
     radius: 200,
   },
 ];
@@ -415,20 +415,21 @@ const loc14 = [
 class Turns {
 
   static stages = [
-    {loc: loc1, title: 'The Johnson House Marker'},
-    {loc: loc2, title: 'The Isaac Clark Farmstead Marker'},
-    {loc: loc3, title: 'The Bey’s Boxing Camp Marker'},
-    {loc: loc4, title: 'The Price-Baldwin House Marker'},
-    {loc: loc5, title: 'The Chatham Colony Association Marker'},
-    {loc: loc6, title: 'The Lewis Noe Farmstead Marker'},
-    {loc: loc7, title: 'The Noe Pond Marker'},
-    {loc: loc8, title: 'The Greenhouse Industry Marker'},
-    {loc: loc9, title: 'The Elias Boudinot House Marker'},
-    {loc: loc10, title: 'The Cockrem Farm Marker'},
-    {loc: loc11, title: 'The Green Village Marker'},
-    {loc: loc12, title: 'The Gibbons Horse Barn Marker'},
-    {loc: loc13, title: 'The Loantaka School – Spring Valley School Marker'},
-    {loc: loc14, title: 'The Boisaubin House Marker'},
+
+    {loc: loc1, title: 'The Johnson House Marker', toAudion: null, atAudio: null},
+    {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudion: null, atAudio: null},
+    {loc: loc3, title: 'The Bey’s Boxing Camp Marker', toAudion: null, atAudio: null},
+    {loc: loc4, title: 'The Price-Baldwin House Marker', toAudion: null, atAudio: null},
+    {loc: loc5, title: 'The Chatham Colony Association Marker', toAudion: null, atAudio: null},
+    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', toAudion: null, atAudio: null},
+    {loc: loc7, title: 'The Noe Pond Marker', toAudion: null, atAudio: null},
+    {loc: loc8, title: 'The Greenhouse Industry Marker', toAudion: null, atAudio: null},
+    {loc: loc9, title: 'The Elias Boudinot House Marker', toAudion: null, atAudio: null},
+    {loc: loc10, title: 'The Cockrem Farm Marker', toAudion: null, atAudio: null},
+    {loc: loc11, title: 'The Green Village Marker', toAudion: null, atAudio: null},
+    {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudion: null, atAudio: null},
+    {loc: loc13, title: 'The Loantaka School – Spring Valley School Marker', toAudion: null, atAudio: null},
+    {loc: loc14, title: 'The Boisaubin House Marker', toAudion: null, atAudio: null},
 
   ];
 
@@ -436,5 +437,4 @@ class Turns {
   static turn = 0;
 
 }
-
 module.exports = Turns;

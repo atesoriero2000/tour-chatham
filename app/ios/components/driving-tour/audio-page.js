@@ -98,7 +98,7 @@ class AudioPage extends Component {
     this.setState({directions: Turns.stages[Turns.stage].loc[Turns.turn].directions});
   }
 
-  triggerAudio(){
+  triggerAudio(audioFile){
 
     // file1.play((success) => {
     //   if (success) {
@@ -110,31 +110,29 @@ class AudioPage extends Component {
 
   onPress(){
 
-    let currentStage = Turns.stages[Turns.stage];
-
-    //Does nothing if audio is playing or if not at location
-    if(!audioPlaying && (currentStage.length === Turns.turn+1)){
-      if(!start){
-
-        if(currentStage.atAudio === null) TdoneAtAudio=true;
-
-        if(!doneAtAudio){ //Has done done the at location audio
-          //Play currentStage.atAudio
-
-        }else{
-          Turns.stage++;
-          doneAtAudio = false;
-          Turns.turn = 0;
-          //Play currentStage.toAudio
-        }
-
-      }else{
-        //Play currentStage.toAudio
-        start = false;
-      }
-    }
-
-
+    // let currentStage = Turns.stages[Turns.stage];
+    //
+    // //Does nothing if audio is playing or if not at location
+    // if(!audioPlaying && (currentStage.length === Turns.turn+1)){
+    //   if(!start){
+    //
+    //     if(currentStage.atAudio === null) doneAtAudio=true;
+    //
+    //     if(!doneAtAudio){ //Has done done the at location audio
+    //       //Play currentStage.atAudio
+    //
+    //     }else{
+    //       Turns.stage++;
+    //       doneAtAudio = false;
+    //       Turns.turn = 0;
+    //       //Play currentStage.toAudio
+    //     }
+    //
+    //   }else{
+    //     //Play currentStage.toAudio
+    //     start = false;
+    //   }
+    // }
 
 
     Turns.stage++;
@@ -167,10 +165,14 @@ class AudioPage extends Component {
 
     //####### Play inital audio (At Mount Vernon School) ############
 
-    // this.setState({initialPos: {
-    //   longitude: -74.434586,
-    //   latitude: 40.697827,
-    // }});
+    this.setState({initialPos: {
+      longitude: -74.434586,
+      latitude: 40.697827,
+    }});
+
+    // navigator.geolocation.getCurrentPosition((position) => {
+    //   this.setState({initialPos: position.coords});
+    // }, (error) => alert(JSON.stringify(error)), geoOpt);
 
 
   }

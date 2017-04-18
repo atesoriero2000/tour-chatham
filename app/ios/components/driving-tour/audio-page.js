@@ -15,11 +15,11 @@ import {
 
 var Sound = require('react-native-sound');
 var Turns = require('./turns');
-//var f1 = require('../../audio/Page 11 (Owen).mp3');
-
 
 const geoOpt = {enableHighAccuracy: true, timeout: 500, maximumAge: 500, distanceFilter: .5};
 
+
+//var f1 = require('../../audio/Page 11 (Owen).mp3');
 // var file1 = new Sound(f1,'',(error)=>{
 //   if (error) {
 //       console.log('failed to load the sound', error);
@@ -50,6 +50,7 @@ class AudioPage extends Component {
       directions: Turns.stages[Turns.stage].loc[Turns.turn].directions,
       title: Turns.stages[Turns.stage].title,
       intervalID: setInterval(() => this.geolocation() , 500),
+      audioIsPlaying: false,
     };
 
   }
@@ -99,13 +100,14 @@ class AudioPage extends Component {
   }
 
   triggerAudio(audioFile){
-
-    // file1.play((success) => {
+    // audioFile.play((success) => {
+    //  this.setState({audioIsPlaying: false});
     //   if (success) {
     //     console.log('successfully finished playing');
     //   } else {
     //     console.log('playback failed due to audio decoding errors');
     //   }});
+    //this.setState({audioIsPlaying: true});
   }
 
   onPress(){
@@ -113,23 +115,23 @@ class AudioPage extends Component {
     // let currentStage = Turns.stages[Turns.stage];
     //
     // //Does nothing if audio is playing or if not at location
-    // if(!audioPlaying && (currentStage.length === Turns.turn+1)){
+    // if(!this.state.audioIsPlaying && (currentStage.length === Turns.turn+1)){
     //   if(!start){
     //
     //     if(currentStage.atAudio === null) doneAtAudio=true;
     //
     //     if(!doneAtAudio){ //Has done done the at location audio
-    //       //Play currentStage.atAudio
+    //       this.triggerAudio(currentStage.atAudio);
     //
     //     }else{
     //       Turns.stage++;
     //       doneAtAudio = false;
     //       Turns.turn = 0;
-    //       //Play currentStage.toAudio
+    //       this.triggerAudio(currentStage.toAudio);
     //     }
     //
     //   }else{
-    //     //Play currentStage.toAudio
+    //     this.triggerAudio(currentStage.toAudio);
     //     start = false;
     //   }
     // }
@@ -150,20 +152,21 @@ class AudioPage extends Component {
     this.setState({speed: 0});
   }
 
-  componentWillUnmount(){
-    clearInterval(this.state.intervalID);
-    this.props.navigator.popToTop();
-  }
-
   componentWillUpdate(){
     if(this.props.unmount().b){
       this.props.navigator.popToTop();
     }
   }
 
+  componentWillUnmount(){
+    clearInterval(this.state.intervalID);
+    this.props.navigator.popToTop();
+  }
+
   componentDidMount(){
 
     //####### Play inital audio (At Mount Vernon School) ############
+    //triggerAudio(StartAudio);
 
     this.setState({initialPos: {
       longitude: -74.434586,

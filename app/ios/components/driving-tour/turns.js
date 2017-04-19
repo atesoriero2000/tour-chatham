@@ -11,6 +11,7 @@ const pic2 = require('../../images/Eagle.jpg');
 const pic3 = require('../../images/FlagWaving.jpg');
 const pic4 = require('../../images/boy-scout-emblem.jpg');
 
+const startPic = pic1;
 const a1 = require('../../images/A1.jpg');
 //const a2 = require('../../images/A2.jpg');
 const a3 = require('../../images/A3.jpg');
@@ -415,21 +416,23 @@ const loc14 = [
 class Turns {
 
   static stages = [
+    //
+    {loc: [{directions: 'Welcome to the Chatham ', picture: startPic}], title: 'The Mount Vernon Schoolhouse', atAudio: null, atPic: startPic},
 
-    {loc: loc1, title: 'The Johnson House Marker', toAudion: null, atAudio: null},
-    {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudion: null, atAudio: null},
-    {loc: loc3, title: 'The Bey’s Boxing Camp Marker', toAudion: null, atAudio: null},
-    {loc: loc4, title: 'The Price-Baldwin House Marker', toAudion: null, atAudio: null},
-    {loc: loc5, title: 'The Chatham Colony Association Marker', toAudion: null, atAudio: null},
-    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', toAudion: null, atAudio: null},
-    {loc: loc7, title: 'The Noe Pond Marker', toAudion: null, atAudio: null},
-    {loc: loc8, title: 'The Greenhouse Industry Marker', toAudion: null, atAudio: null},
-    {loc: loc9, title: 'The Elias Boudinot House Marker', toAudion: null, atAudio: null},
-    {loc: loc10, title: 'The Cockrem Farm Marker', toAudion: null, atAudio: null},
-    {loc: loc11, title: 'The Green Village Marker', toAudion: null, atAudio: null},
-    {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudion: null, atAudio: null},
-    {loc: loc13, title: 'The Loantaka School – Spring Valley School Marker', toAudion: null, atAudio: null},
-    {loc: loc14, title: 'The Boisaubin House Marker', toAudion: null, atAudio: null},
+    {loc: loc1, title: 'The Johnson House Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc3, title: 'The Bey’s Boxing Camp Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc4, title: 'The Price-Baldwin House Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc5, title: 'The Chatham Colony Association Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc7, title: 'The Noe Pond Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc8, title: 'The Greenhouse Industry Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc9, title: 'The Elias Boudinot House Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc10, title: 'The Cockrem Farm Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc11, title: 'The Green Village Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc13, title: 'The Loantaka School – Spring Valley School Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc14, title: 'The Boisaubin House Marker', toAudio: null, atAudio: null, atPic: null},
 
   ];
 

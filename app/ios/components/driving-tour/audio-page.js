@@ -1,3 +1,4 @@
+//@flow
 'use strict';
 
 import React, { Component, } from 'react'
@@ -28,9 +29,8 @@ const geoOpt = {enableHighAccuracy: true, timeout: 500, maximumAge: 500, distanc
 //   }
 // });
 
-
-var start = true;
 var doneAtAudio = false;
+var audioIsPlaying = false;
 
 const radius = 5;
 
@@ -42,15 +42,15 @@ class AudioPage extends Component {
     super(props);
     this.state ={
       initialPos: 'unknown',
-      lastRadius: 0,
       speed: 0,
 
+      clickable: false,
       lastPos: 'unknown',
+      lastRadius: 0,
       picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
       directions: Turns.stages[Turns.stage].loc[Turns.turn].directions,
       title: Turns.stages[Turns.stage].title,
       intervalID: setInterval(() => this.geolocation() , 500),
-      audioIsPlaying: false,
     };
 
   }
@@ -69,17 +69,21 @@ class AudioPage extends Component {
   geolocation(){
 
     navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({lastPos: position.coords});
+      this.setState({lastPos: position.coords, speed: position.coords.speed});
     }, (error) => alert(JSON.stringify(error)), geoOpt);
 
 
+    // this.setState({clickable: ((!audioIsPlaying && (currentStage.length === Turns.turn+1))?true:false) });
     // let currentStage = Turns.stages[Turns.stage];
     // let currentTurn = currentStage.loc[Turns.turn];
     //
     // //if not at location
-    // if(!(currentStage.length === Turns.turn+1){
+    // if(!(currentStage.length === Turns.turn+1){ // Need this or next line will throw error
+    //
     //   let nextTurn = currentStage.loc[Turns.turn+1];
-    //   if(this.isNear(nextTurn.latitude, nextTurn.longitude, nextTurn.radius)){
+    //   this.setState({lastRadius: this.distTo(nextTurn.latitude, nextTurn.longitude)});
+    //
+    //   if(this.state.lastRadius <= nextTurn.radius)){//isNear();
     //     Turns.turn++;
     //   }
     // }
@@ -91,23 +95,24 @@ class AudioPage extends Component {
     }
 
     let radius = this.distTo(this.state.initialPos.latitude, this.state.initialPos.longitude);
-    let speed = (radius - this.state.lastRadius)/(11/15);
 
-    this.setState({lastRadius: radius});
-    this.setState({speed: speed});
-    this.setState({picture: Turns.stages[Turns.stage].loc[Turns.turn].picture});
-    this.setState({directions: Turns.stages[Turns.stage].loc[Turns.turn].directions});
+    this.setState({
+      lastRadius: radius,
+      title: Turns.stages[Turns.stage].title,
+      picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
+      directions: Turns.stages[Turns.stage].loc[Turns.turn].directions,
+    });
   }
 
   triggerAudio(audioFile){
-    // audioFile.play((success) => {
-    //  this.setState({audioIsPlaying: false});
-    //   if (success) {
-    //     console.log('successfully finished playing');
-    //   } else {
-    //     console.log('playback failed due to audio decoding errors');
-    //   }});
-    //this.setState({audioIsPlaying: true});
+    audioFile.play((success) => {
+     audioIsPlaying = false;
+      if (success) {
+        console.log('successfully finished playing');
+      } else {
+        console.log('playback failed due to audio decoding errors');
+      }});
+    audioIsPlaying = true;
   }
 
   onPress(){
@@ -115,41 +120,33 @@ class AudioPage extends Component {
     // let currentStage = Turns.stages[Turns.stage];
     //
     // //Does nothing if audio is playing or if not at location
-    // if(!this.state.audioIsPlaying && (currentStage.length === Turns.turn+1)){
-    //   if(!start){
+    // if(this.state.clickable){
     //
-    //     if(currentStage.atAudio === null) doneAtAudio=true;
+    //   if(currentStage.atAudio === null) doneAtAudio=true;
     //
-    //     if(!doneAtAudio){ //Has done done the at location audio
-    //       this.triggerAudio(currentStage.atAudio);
+    //   if(!doneAtAudio){ //Has not done the at location audio
+    //     this.triggerAudio(currentStage.atAudio);
+    //     doneAtAudio = true;
+    //     this.setState({
+    //          picture: Turns.stages[Turns.stage].atPic,
+    //          directions: 'Remain at the location until the audio is finished, then click the button to continue'});
     //
-    //     }else{
-    //       Turns.stage++;
-    //       doneAtAudio = false;
-    //       Turns.turn = 0;
-    //       this.triggerAudio(currentStage.toAudio);
-    //     }
-    //
-    //   }else{
+    //   }else{//has done at location audio or doesnt have any
+    //     Turns.stage++;
+    //     doneAtAudio = false;
+    //     Turns.turn = 0;
     //     this.triggerAudio(currentStage.toAudio);
-    //     start = false;
     //   }
     // }
-
+  // }
 
     Turns.stage++;
-    //if(!this.state.playing){
-    this.triggerAudio();
-    //stage++;
+    this.setState({clickable: !this.state.clickable});
     console.log("Stage Up: " + Turns.stage);
-    //}
-
   }
 
   resetPos(){
-    this.setState({initialPos: this.state.lastPos});
-    this.setState({lastRadius: 0});
-    this.setState({speed: 0});
+    this.setState({initialPos: this.state.lastPos, lastRadius: 0});
   }
 
   componentWillUpdate(){
@@ -165,8 +162,9 @@ class AudioPage extends Component {
 
   componentDidMount(){
 
-    //####### Play inital audio (At Mount Vernon School) ############
-    //triggerAudio(StartAudio);
+    //####### set turns and stage to passed value in props ############
+    //this.onPress();
+
 
     this.setState({initialPos: {
       longitude: -74.434586,
@@ -216,7 +214,7 @@ class AudioPage extends Component {
           <Text style={styles.buttonText} >Reset Position</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style = {styles.button} onPress = {() => this.onPress()}>
+        <TouchableOpacity style = {styles.button, {opacity: this.state.clickable?1:.05}} onPress = {() => this.onPress()}>
           <Text style={styles.buttonText} >Click for audio</Text>
         </TouchableOpacity>
 

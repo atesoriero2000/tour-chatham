@@ -15,7 +15,6 @@ import {
 var Welcome = require('./app/ios/components/welcome');
 var Tour = require('./app/ios/components/tour');
 var About = require('./app/ios/components/about');
-var Sound = require('react-native-sound');
 
 class scout_project extends Component {
 

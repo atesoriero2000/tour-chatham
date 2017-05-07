@@ -4,18 +4,20 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "build": "babel src/ -d lib/",
-    "prepublish": "npm run build",
-    "flow": "flow"
+    "test": "jest"
   },
   "dependencies": {
-    "react": "15.2.1",
-    "react-native": "0.31.0",
-    "react-native-sound": "^0.8.3"
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.44.0",
+    "react-native-sound": "^0.10.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.44.2"
+    "babel-jest": "20.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "20.0.0",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }

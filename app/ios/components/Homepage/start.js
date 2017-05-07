@@ -27,7 +27,7 @@ class Welcome extends Component {
           The Chatham Historical Society Driving Tour
         </Text>
 
-        <Image style = {styles.logo} source={require('image!chs_logo')} />
+        <Image style = {styles.logo} source={require('../../images/chs_logo.jpg')} />
 
         <TouchableHighlight style = {styles.button}
           onPress = {() => this.toNews()}

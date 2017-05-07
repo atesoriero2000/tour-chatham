@@ -52,7 +52,6 @@ class AudioPage extends Component {
       title: Turns.stages[Turns.stage].title,
       intervalID: setInterval(() => this.geolocation() , 500),
     };
-
   }
 
   isNear(targetLat, targetLong, radius){

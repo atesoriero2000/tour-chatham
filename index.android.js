@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-class scout_project extends Component {
+export default class scout_project extends Component {
   render() {
     return (
       <View style={styles.container}>

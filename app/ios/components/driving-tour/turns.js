@@ -416,8 +416,8 @@ const loc14 = [
 class Turns {
 
   static stages = [
-    //
-    {loc: [{directions: 'Welcome to the Chatham ', picture: startPic}], title: 'The Mount Vernon Schoolhouse', atAudio: null, atPic: startPic},
+
+  //  {loc: [{directions: 'Welcome to the Chatham ', picture: startPic}], title: 'The Mount Vernon Schoolhouse', atAudio: null, atPic: startPic},
 
     {loc: loc1, title: 'The Johnson House Marker', toAudio: null, atAudio: null, atPic: null},
     {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudio: null, atAudio: null, atPic: null},

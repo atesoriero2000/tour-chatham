@@ -26,7 +26,7 @@ class About extends Component {
           </View>
 
           <View style = {styles.right}>
-            <Image style = {styles.logo} source={require('image!tony')} />
+            <Image style = {styles.logo} source={require('../images/tony.jpeg')} />
           </View>
         </View>
 

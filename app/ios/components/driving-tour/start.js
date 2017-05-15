@@ -14,6 +14,7 @@ import {
 
 var Safety = require('./safety');
 var AudioPage = require('./audio-page');
+var SelectionPage = require('./selection-page');
 var Turns = require('./turns');
 
 class Start extends Component {
@@ -37,7 +38,7 @@ class Start extends Component {
         </Text>
 
         <TouchableHighlight style = {styles.button}
-          onPress = {() => this.toAudio()}
+          onPress = {() => this.toNext()}
           underlayColor = '#BBBBBB'>
 
             <Text style = {styles.buttonText}>
@@ -56,9 +57,9 @@ class Start extends Component {
     });
   }
 
-  toAudio(){
+  toNext(){
     Alert.alert("SAFTEY", "SAFTEY INFO",[
-      { text: "Ok, Proceed", onPress: () => this.NavToAudio()},
+      { text: "Ok, Proceed", onPress: () => this.NavToSelection()},
     ])
   }
 
@@ -66,6 +67,14 @@ class Start extends Component {
     this.props.navigator.push({
       title: 'Audio Tour',
       component: AudioPage,
+      passProps: {unmount: this.props.unmount},
+    });
+  }
+
+  NavToSelection(){
+    this.props.navigator.push({
+      title: 'Selection Page',
+      component: SelectionPage,
       passProps: {unmount: this.props.unmount},
     });
   }

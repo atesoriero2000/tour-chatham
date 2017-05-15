@@ -10,7 +10,8 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
-  VibrationIOS,
+  TouchableHighlight,
+  Vibration,
   Image,
 } from 'react-native'
 
@@ -90,7 +91,7 @@ class AudioPage extends Component {
 
     if(this.isNear(this.state.initialPos.latitude, this.state.initialPos.longitude, radius)){
       console.log(turn);
-      VibrationIOS.vibrate();
+      Vibration.vibrate();
     }
 
     let radius = this.distTo(this.state.initialPos.latitude, this.state.initialPos.longitude);
@@ -138,7 +139,7 @@ class AudioPage extends Component {
     //   }
     // }
   // }
-
+    Vibration.vibrate();
     Turns.stage++;
     this.setState({clickable: !this.state.clickable});
     console.log("Stage Up: " + Turns.stage);
@@ -174,6 +175,8 @@ class AudioPage extends Component {
     //   this.setState({initialPos: position.coords});
     // }, (error) => alert(JSON.stringify(error)), geoOpt);
 
+    Turns.stage = this.props.stage;
+    Turns.turn = this.props.turn;
 
   }
 
@@ -213,9 +216,21 @@ class AudioPage extends Component {
           <Text style={styles.buttonText} >Reset Position</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style = {styles.button, {opacity: this.state.clickable?1:.05}} onPress = {() => this.onPress()}>
+        <TouchableHighlight style = {{
+          width: Dimensions.get('window').width/1.5,
+          height: 36,
+          backgroundColor: 'gray',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: 5,
+          opacity: this.state.clickable?1:.05,
+          bottom: 50,
+          transform: [{translateY:50}],
+        }}
+        underlayColor = '#BBBBBB'
+        onPress = {() => this.onPress()}>
           <Text style={styles.buttonText} >Click for audio</Text>
-        </TouchableOpacity>
+        </TouchableHighlight>
 
       </View>
     );

@@ -102,6 +102,7 @@ class AudioPage extends Component {
       picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
       directions: Turns.stages[Turns.stage].loc[Turns.turn].directions,
     });
+    this.check();
   }
 
   triggerAudio(audioFile){
@@ -149,7 +150,7 @@ class AudioPage extends Component {
     this.setState({initialPos: this.state.lastPos, lastRadius: 0});
   }
 
-  componentWillUpdate(){
+  check(){
     if(this.props.unmount().b){
       this.props.navigator.popToTop();
     }
@@ -157,7 +158,7 @@ class AudioPage extends Component {
 
   componentWillUnmount(){
     clearInterval(this.state.intervalID);
-    this.props.navigator.popToTop();
+    //this.props.navigator.popToTop();
   }
 
   componentDidMount(){

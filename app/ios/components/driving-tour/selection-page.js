@@ -10,14 +10,13 @@ import {
   NavigatorIOS,
   Text,
   View,
+  ScrollView,
   Dimensions,
   TouchableOpacity,
-  VibrationIOS,
   Image,
-  Slider,
 } from 'react-native'
 
-var AudioPage = require('./audio-page');
+var Location = require('./start-loc');
 
 class SelectionPage extends Component{
 
@@ -25,23 +24,7 @@ class SelectionPage extends Component{
     super(props);
     this.state = {
       intervalID: setInterval(()=>this.check(), 1000),
-      turn: 0,
-      stage: 0,
-      value: null,
     }
-  }
-
-
-  NavToAudio(){
-    this.props.navigator.push({
-      title: 'Audio Tour',
-      component: AudioPage,
-      passProps: {
-        unmount: this.props.unmount,
-        stage: this.state.stage,
-        turn: this.state.turn,
-      },
-    });
   }
 
   check(){
@@ -51,37 +34,20 @@ class SelectionPage extends Component{
   }
 
   componentWillUnmount(){
-    //this.props.navigator.popToTop();
     clearInterval(this.state.intervalID);
   }
 
   render() {
     return(
-      <View style = {styles.container}>
+      <ScrollView>
+        <View style = {styles.container}>
+            <Location
+              pic = {null} title = {'My Title'} adress = {'Adress'}
+              stage = {1} turn = {1}
+              unmount = {this.props.unmount} navigator = {this.props.navigator}/>
 
-        <Slider style = {styles.slider}
-        onValueChange = {(value) =>{this.setState({stage: value})}}
-        step = {1}
-        minimumValue = {0}
-        maximumValue = {13}
-        maximumTrackTintColor = {'blue'}
-        value = {this.state.stage}/>
-
-        <Slider
-          style = {styles.slider}
-          step = {1}
-          minimumValue = {0}
-          maximumValue = {4}
-          value = {this.state.turn}
-          onValueChange = {(value) =>{this.setState({turn: value})}}
-          disabled = {false}/>
-
-          <Slider/>
-
-        <TouchableOpacity style = {styles.button} onPress = {() => this.NavToAudio()}>
-          <Text style={styles.buttonText}> Click To Continue </Text>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -92,15 +58,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    backgroundColor: '#424ac1',
+    //backgroundColor: '#424ac1',
   },
 
   text:{
-    fontSize: 50,
+    fontSize: 30,
     color: 'black',
-    fontWeight: '100',
+    fontWeight: '300',
     textAlign: 'center',
-    paddingTop: 30,
+    paddingTop: 25,
   },
 
   button:{
@@ -110,9 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 5,
-    //opacity: 0.5,
-    bottom: 50,
-    transform: [{translateY:50}],
+    marginTop: 30,
   },
 
   buttonText:{
@@ -122,10 +86,11 @@ const styles = StyleSheet.create({
   },
 
   slider: {
+    width: 300,
     height: 10,
     margin: 10,
   },
 
 });
 
-module.exports =  SelectionPage;
+module.exports = SelectionPage;

@@ -12,10 +12,11 @@ import {
   Dimensions,
 } from 'react-native'
 
-var Safety = require('./safety');
+var Turns = require('./turns');
 var AudioPage = require('./audio-page');
 var SelectionPage = require('./selection-page');
-var Turns = require('./turns');
+var Safety = require('./test/safety');
+
 
 class Start extends Component {
 
@@ -50,17 +51,17 @@ class Start extends Component {
     );
   }
 
+  toNext(){
+    Alert.alert("SAFTEY", "SAFTEY INFO",[
+      { text: "Ok, Proceed", onPress: () => this.NavToSelection()},
+    ])
+  }
+
   toSafety(){
     this.props.navigator.push({
       title: 'Driving Safety',
       component: Safety
     });
-  }
-
-  toNext(){
-    Alert.alert("SAFTEY", "SAFTEY INFO",[
-      { text: "Ok, Proceed", onPress: () => this.NavToSelection()},
-    ])
   }
 
   NavToAudio(){

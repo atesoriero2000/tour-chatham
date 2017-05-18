@@ -10,7 +10,7 @@ import {
   Text,
 } from 'react-native'
 
-var AudioPage = require('./audio-page');
+var AudioPage = require('../audio-page');
 
 class Safety extends Component {
 

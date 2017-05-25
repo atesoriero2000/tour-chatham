@@ -4,15 +4,12 @@ import React, { Component, } from 'react'
 import {
   AppRegistry,
   StyleSheet,
-  NavigatorIOS,
   Text,
   View,
   Dimensions,
   TouchableOpacity,
   Image,
 } from 'react-native'
-
-var InfoPage = require('./info-page');
 
 class Location extends Component{
 
@@ -23,31 +20,20 @@ class Location extends Component{
     }
   }
 
-  NavToInfo(){
-    this.props.navigator.push({
-      title: 'Drive to Starting Location',
-      component: InfoPage,
-      passProps: {
-        unmount: this.props.unmount,
-        stage: this.props.stage,
-        turn: this.props.turn,
-        title: this.props.title,
-        pic: this.props.pic,
-        adress: this.props.adress,
-      },
-    });
-  }
-
   render() {
     return(
 
-      <TouchableOpacity onPress = {() => this.NavToInfo()}>
+      <TouchableOpacity onPress = {() => this.props.onPress(this.props)}>
         <View style = {styles.container}>
 
-          <Text>HI</Text>
+          <Image style = {styles.image} source = {this.props.pic}/>
 
+          <View style = {styles.contents}>
 
+            <Text style = {styles.text}> {this.props.title} </Text>
+            <Text style = {styles.buttonText}> {this.props.adress} </Text>
 
+          </View>
         </View>
       </TouchableOpacity>
 
@@ -59,30 +45,27 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     flexDirection: 'row',
     width: Dimensions.get('window').width,
-    height: 75,
-    margin: 10,
-    backgroundColor: 'gray',
+    height: Dimensions.get('window').width/5,
+    marginTop: 10,
+    backgroundColor: 'lightgray',
+  },
+
+  content:{
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    height: 50,
   },
 
   text:{
-    fontSize: 30,
+    fontSize: 17,
     color: 'black',
     fontWeight: '300',
     textAlign: 'center',
-    paddingTop: 25,
-  },
-
-  button:{
-    width: Dimensions.get('window').width/1.5,
-    height: 36,
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 5,
-    marginTop: 30,
   },
 
   buttonText:{
@@ -91,6 +74,12 @@ const styles = StyleSheet.create({
     fontWeight: '100',
   },
 
+  image:{
+    margin: 25/2,
+    height: 50,
+    width: 50,
+    backgroundColor: 'red',
+  },
 
 });
 

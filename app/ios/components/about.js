@@ -15,9 +15,10 @@ class About extends Component {
 
   render() {
     return (
-      <ScrollView>
-        <View style = {styles.container}>
+      <View style = {styles.container}>
+        <ScrollView>
 
+        
         <View style = {styles.top}>
           <View style = {styles.left}>
             <Text style = {styles.text}>
@@ -38,8 +39,9 @@ class About extends Component {
           </View>
 
 
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
+
     )
   }
 }

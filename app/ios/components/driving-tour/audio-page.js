@@ -102,7 +102,6 @@ class AudioPage extends Component {
       picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
       directions: Turns.stages[Turns.stage].loc[Turns.turn].directions,
     });
-    this.check();
   }
 
   triggerAudio(audioFile){
@@ -177,8 +176,7 @@ class AudioPage extends Component {
     // }, (error) => alert(JSON.stringify(error)), geoOpt);
 
     Turns.stage = this.props.stage;
-    Turns.turn = this.props.turn;
-
+    Turns.turn = 0;
   }
 
 

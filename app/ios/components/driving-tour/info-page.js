@@ -22,7 +22,7 @@ class InfoPage extends Component{
   constructor(props){
     super(props);
     this.state = {
-      intervalID: setInterval(()=>this.check(), 1000),
+      //intervalID: setInterval(()=>this.check(), 1000),
     }
   }
 
@@ -44,9 +44,7 @@ class InfoPage extends Component{
       onLeftButtonPress: () => this.props.navigator.popToTop(),
 
       passProps: {
-        unmount: this.props.unmount,
         stage: this.props.stage,
-        turn: this.props.turn,
       },
     });
   }
@@ -55,9 +53,20 @@ class InfoPage extends Component{
     return(
       <View style = {styles.container}>
 
+        <Text style = {styles.text}> {this.props.title} </Text>
+
+        <Text style = {styles.subtext}>
+          Please navigate to
+            <Text selectable = {true} style = {styles.text_bold}> {this.props.adress} </Text>
+          then click the button below to start the tour.
+        </Text>
+
+        <Image style = {styles.image} source = {this.props.pic}/>
+
         <TouchableOpacity style = {styles.button} onPress = {() => this.NavToAudio()}>
           <Text style={styles.buttonText}> Click To Continue </Text>
         </TouchableOpacity>
+
       </View>
     );
   }
@@ -65,7 +74,7 @@ class InfoPage extends Component{
 
 const styles = StyleSheet.create({
   container:{
-    flex: 1,
+    flex: 5,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
@@ -77,7 +86,31 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '300',
     textAlign: 'center',
+    paddingHorizontal: 25,
+  },
+
+  text_bold:{
+    fontSize: 20,
+    color: 'black',
+    fontWeight: '300',
+    textAlign: 'center',
+  },
+
+  subtext:{
+    fontSize: 20,
+    color: 'black',
+    fontWeight: '200',
+    textAlign: 'center',
+    paddingHorizontal: 25,
     paddingTop: 25,
+  },
+
+  directions:{
+    fontSize: 15,
+    color: 'black',
+    fontWeight: '200',
+    textAlign: 'center',
+    paddingHorizontal: 25,
   },
 
   button:{
@@ -86,8 +119,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 5,
-    marginTop: 30,
   },
 
   buttonText:{
@@ -96,10 +127,11 @@ const styles = StyleSheet.create({
     fontWeight: '100',
   },
 
-  slider: {
-    width: 300,
-    height: 10,
-    margin: 10,
+  image:{
+    margin: 25,
+    height: Dimensions.get('window').width / 1.5,
+    width: Dimensions.get('window').width / 1.5,
+    backgroundColor: 'red',
   },
 
 });

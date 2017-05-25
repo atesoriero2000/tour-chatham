@@ -17,6 +17,10 @@ import {
 } from 'react-native'
 
 var Location = require('./start-loc');
+var InfoPage = require('./info-page');
+//var backIcon = require('./back_chevron.png');
+
+var active = true;
 
 class SelectionPage extends Component{
 
@@ -28,7 +32,7 @@ class SelectionPage extends Component{
   }
 
   check(){
-    if(this.props.unmount().b){
+    if(this.props.unmount().b && active){
       this.props.navigator.popToTop();
     }
   }
@@ -37,20 +41,96 @@ class SelectionPage extends Component{
     clearInterval(this.state.intervalID);
   }
 
+  NavToInfo(props){
+    active = false;
+    this.props.navigator.push({
+      title: 'Drive to Starting Location',
+      component: InfoPage,
+      leftButtonTitle: 'Selection Page',
+      //leftButtonIcon: back_chevron.png,
+      onLeftButtonPress: () => {
+        this.props.navigator.pop();
+        active=true;
+      },
+
+      passProps: {
+        stage: props.stage,
+        title: props.title,
+        pic: props.pic,
+        adress: props.adress,
+      },
+    });
+  }
+
   render() {
     return(
-      <ScrollView>
-        <View style = {styles.container}>
-            <Location
-              pic = {null} title = {'My Title'} adress = {'Adress'}
-              stage = {1} turn = {1}
-              unmount = {this.props.unmount} navigator = {this.props.navigator}/>
+      <View style = {styles.container}>
+        <ScrollView>
 
-        </View>
-      </ScrollView>
+            <Location
+              pic = {null} title = {'The Mount Vernon Schoolhouse'} adress = {'24 Southern Blvd, Chatham Township'}
+              stage = {0} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Johnson House Marker'} adress = {'805 Fairmount Avenue, Chatham Township'}
+              stage = {1} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Isaac Clark Farmstead Marker'} adress = {'788 River Road, Chatham Township'}
+              stage = {2} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Bey’s Boxing Camp Marker'} adress = {'Adress'}
+              stage = {3} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Price-Baldwin House Marker'} adress = {'Adress'}
+              stage = {4} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Chatham Colony Association'} adress = {'Adress'}
+              stage = {5} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Lewis Noe Farmstead Marker'} adress = {'Adress'}
+              stage = {6} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Noe Pond Marker'} adress = {'Adress'}
+              stage = {7} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Greenhouse Industry Marker'} adress = {'Adress'}
+              stage = {8} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Elias Boudinot House Marker'} adress = {'Adress'}
+              stage = {9} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Cockrem Farm Marker'} adress = {'Adress'}
+              stage = {10} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Green Village Marker'} adress = {'Adress'}
+              stage = {11} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Gibbons Horse Barn Marker'} adress = {'Adress'}
+              stage = {12} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {null} title = {'The Loantaka School Marker'} adress = {'Adress'}
+              stage = {13} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+        </ScrollView>
+      </View>
+
     );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container:{
@@ -58,6 +138,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+    marginBottom: 10,
     //backgroundColor: '#424ac1',
   },
 

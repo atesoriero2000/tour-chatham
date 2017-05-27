@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
 
   container:{
     flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
     //backgroundColor: '#424ac1',
   },
 
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: 'black',
     fontWeight: '100',
-  //  textAlign: 'center',
+    textAlign: 'center',
   },
 });
 

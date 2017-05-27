@@ -18,26 +18,70 @@ class About extends Component {
       <View style = {styles.container}>
         <ScrollView>
 
-        
-        <View style = {styles.top}>
-          <View style = {styles.left}>
-            <Text style = {styles.text}>
-                This app was created by Tony Tesoriero, a Local Chatham Resident, as his Eagle Scout Project.
+          <Text style = {styles.textHeader}>
+            About
+          </Text>
+          <Text style = {styles.text}>
+            This app was created by Anthony Tesoriero, a Local Chatham Resident, as his Eagle Scout Project. In partnership the the Chatham Township Historical Society, Anthony created this audio tour to make the local history of Chatham more accsesible to everyone through modern technology in a new innovative way.
+          </Text>
+
+
+          <Image style = {styles.picture} source={require('../images/tony.jpeg')} />
+
+
+{/* Contributors */}
+          <Text style = {styles.titles}>Contributors</Text>
+          <View style = {styles.contributors}>
+            <View style = {{paddingHorizontal: 10}}>
+              <Text style = {styles.labels}>Development</Text>
+              <Text style = {styles.fineText}>
+                {'Cat Dematos\nEitan Miller\nEthan Aktins\nCarson Storm\nRandom\nRandom'}
+              </Text>
+            </View>
+
+            <View style = {{paddingHorizontal: 10}}>
+              <Text style = {styles.labels}>Audio</Text>
+              <Text style = {styles.fineText}>
+                {'Grace Evans\nJacob Feeney\nKimberly Scaglione\nLilly McGrath\nMikey Behr\nOwen LaChance'}
+              </Text>
+            </View>
+
+          </View>
+
+          <View>
+            <Text style = {styles.labels}>Historical Society</Text>
+            <Text style = {styles.fineText}>
+              {'Martha Wells\nDebbie Bucuk\nSheila Goggins\nCaroline Knott'}
             </Text>
           </View>
 
-          <View style = {styles.right}>
-            <Image style = {styles.logo} source={require('../images/tony.jpeg')} />
+
+{/* Contacts*/}
+          <Text style = {styles.titles}>Contact Information</Text>
+          <View style = {styles.contact}>
+            <Text style = {styles.labels}>
+              Developer
+            </Text>
+            <Text style = {styles.fineText}>
+              Name: Anthony Tesoriero
+            </Text>
+            <Text style = {styles.fineText}>
+              Email: <Text selectable = {true}>atesoriero2000@gmail.com</Text>
+            </Text>
+
+            <Text style = {styles.labels}>
+              Chatham Township Historical Society
+            </Text>
+            <Text style = {styles.fineText}>
+              <Text selectable={true} onPress={null}>
+                24 Southern Blvd, Chatham, NJ
+              </Text>   •   <Text selectable={true} onPress={null}>973-635-4911</Text>
+            </Text>
+
+            <Text style = {styles.fineText}>
+              Museum Hours   •   2pm-4pm 1st Sunday each month
+            </Text>
           </View>
-        </View>
-
-
-
-          <View style = {styles.bottom}>
-              <Text style = {styles.text}>  Thanks to all who helped! ~ </Text>
-              <Text style = {styles.text}> Catarina Dematos </Text>
-          </View>
-
 
         </ScrollView>
       </View>
@@ -47,62 +91,78 @@ class About extends Component {
 }
 
 const styles = StyleSheet.create({
-  top:{
-    flex: 2,
-    flexDirection: "row",
-    backgroundColor: "blue",
-    height: 300,
-  },
-
-
-  bottom:{
-    flex: 2,
-    flexDirection: "column",
-    backgroundColor: "red",
-    height: 1000,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  },
-  right:{
-    flex: 1,
-
-  },
-  left:{
-    flex: 1,
-
-
-  },
-
 
   container:{
-    flex: 2,
-    flexDirection: "column",
-    //justifyContent: 'flex-start'
-    //backgroundColor: '#424ac1',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10 * (Dimensions.get('window').width/375),
   },
 
-    logo:{
-      margin: 20,
-      width: 100,
-      height: 200,
-      //transform: [{translateX:200, translateY:20}]//REMEBER THIS SHIT BRO
-    },
+  picture:{
+    width: Dimensions.get('window').width,
+    height: 200 * (Dimensions.get('window').width/375),
+    marginTop: 50 * (Dimensions.get('window').width/375),
+    marginBottom: 10 * (Dimensions.get('window').width/375),
+    //transform: [{translateX:200, translateY:20}]//REMEBER THIS SHIT BRO
+  },
 
   textHeader:{
-    marginHorizontal: 20,
-    fontSize: 50,
+    fontSize: 50 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '100',
-    textAlign: 'right',
+    textAlign: 'center',
+    paddingTop: 30 * (Dimensions.get('window').width/375),
+    paddingBottom: 15 * (Dimensions.get('window').width/375),
+
   },
 
   text:{
-    padding: 50,
-    fontSize: 18,
+    fontSize: 15 * (Dimensions.get('window').width/375),
+    color: 'grey',
+    fontWeight: '100',
+    textAlign: 'center',
+    paddingHorizontal: 45 * (Dimensions.get('window').width/375),
+  },
+
+  titles:{
+    fontSize: 30 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '100',
+    textAlign: 'center',
+    paddingTop: 50 * (Dimensions.get('window').width/375),
+    paddingBottom: 7 * (Dimensions.get('window').width/375),
+  },
 
-  }
+  contributors:{
+    flex: 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: Dimensions.get('window').width,
+  },
+
+  contact: {
+    width: Dimensions.get('window').width,
+  },
+
+  fineText:{
+    fontSize: 13 * (Dimensions.get('window').width/375),
+    color: 'grey',
+    fontWeight: '100',
+    textAlign: 'center',
+    padding: .5 * (Dimensions.get('window').width/375),
+  },
+
+  labels:{
+    fontSize: 15 * (Dimensions.get('window').width/375),
+    color: 'dimgrey',
+    fontWeight: '500',
+    textAlign: 'center',
+    paddingBottom: 3 * (Dimensions.get('window').width/375),
+    paddingTop: 16 * (Dimensions.get('window').width/375),
+  },
 });
 
 module.exports = About;

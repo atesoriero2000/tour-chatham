@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 
   logo:{
     width: Dimensions.get('window').width,
-    height: 300,
+    height: 300 * (Dimensions.get('window').width/375),
   },
 
   container:{
@@ -66,10 +66,10 @@ const styles = StyleSheet.create({
   },
 
   text:{
-    marginHorizontal: 20,
-    transform: [{translateY: -10}],
-    fontSize: 25,
-    width: 300,
+    marginHorizontal: 20 * (Dimensions.get('window').width/375),
+    marginBottom: 10 * (Dimensions.get('window').width/375),
+    fontSize: 25 * (Dimensions.get('window').width/375),
+    width: 300 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
@@ -78,18 +78,17 @@ const styles = StyleSheet.create({
 
   button:{
     width: Dimensions.get('window').width,
-    height: 36,
+    height: 36 * (Dimensions.get('window').width/375),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
+    padding: 10 * (Dimensions.get('window').width/375),
     opacity: 0.5,
-    bottom: 50,
-    transform: [{translateY:90}],
+    bottom: -40 * (Dimensions.get('window').width/375),
   },
 
   buttonText:{
-    fontSize: 18,
+    fontSize: 18 * (Dimensions.get('window').width/375),
     color: 'white',
     fontWeight: '100',
     justifyContent: 'center',

@@ -20,6 +20,21 @@ var Location = require('./start-loc');
 var InfoPage = require('./info-page');
 //var backIcon = require('./back_chevron.png');
 
+var pic1 = require('../../images/Flower.jpg');
+var pic2 = require('../../images/Flower.jpg');
+var pic3 = require('../../images/Flower.jpg');
+var pic4 = require('../../images/Flower.jpg');
+var pic5 = require('../../images/Flower.jpg');
+var pic6 = require('../../images/Flower.jpg');
+var pic7 = require('../../images/Flower.jpg');
+var pic8 = require('../../images/Flower.jpg');
+var pic9 = require('../../images/Flower.jpg');
+var pic10 = require('../../images/Flower.jpg');
+var pic11 = require('../../images/Flower.jpg');
+var pic12 = require('../../images/Flower.jpg');
+var pic13 = require('../../images/Flower.jpg');
+var pic14 = require('../../images/Flower.jpg');
+
 var active = true;
 
 class SelectionPage extends Component{
@@ -44,9 +59,9 @@ class SelectionPage extends Component{
   NavToInfo(props){
     active = false;
     this.props.navigator.push({
-      title: 'Drive to Starting Location',
+      title: 'Drive to Start Point',
       component: InfoPage,
-      leftButtonTitle: 'Selection Page',
+      leftButtonTitle: 'Selections',
       //leftButtonIcon: back_chevron.png,
       onLeftButtonPress: () => {
         this.props.navigator.pop();
@@ -68,59 +83,59 @@ class SelectionPage extends Component{
         <ScrollView>
 
             <Location
-              pic = {null} title = {'The Mount Vernon Schoolhouse'} adress = {'24 Southern Blvd, Chatham Township'}
+              pic = {pic1} title = {'The Mount Vernon Schoolhouse'} adress = {'24 Southern Blvd, Chatham Township'}
               stage = {0} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Johnson House Marker'} adress = {'805 Fairmount Avenue, Chatham Township'}
+              pic = {pic2} title = {'The Johnson House Marker'} adress = {'805 Fairmount Ave, Chatham Township'}
               stage = {1} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Isaac Clark Farmstead Marker'} adress = {'788 River Road, Chatham Township'}
+              pic = {pic3} title = {'The Isaac Clark Farmstead Marker'} adress = {'788 River Road, Chatham Township'}
               stage = {2} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Bey’s Boxing Camp Marker'} adress = {'Adress'}
+              pic = {pic4} title = {'The Bey’s Boxing Camp Marker'} adress = {'516 River Road, Chatham Township'}
               stage = {3} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Price-Baldwin House Marker'} adress = {'Adress'}
+              pic = {pic5} title = {'The Price-Baldwin House Marker'} adress = {'48 Southern Blvd, Chatham Township'}
               stage = {4} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Chatham Colony Association'} adress = {'Adress'}
+              pic = {pic6} title = {'The Chatham Colony Association'} adress = {'Spring Street, Chatham Township'}
               stage = {5} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Lewis Noe Farmstead Marker'} adress = {'Adress'}
+              pic = {pic7} title = {'The Lewis Noe Farmstead Marker'} adress = {'184 Southern Blvd, Chatham Township'}
               stage = {6} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Noe Pond Marker'} adress = {'Adress'}
+              pic = {pic8} title = {'The Noe Pond Marker'} adress = {'395 Southern Blvd, Chatham Township'}
               stage = {7} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Greenhouse Industry Marker'} adress = {'Adress'}
+              pic = {pic9} title = {'The Greenhouse Industry Marker'} adress = {'405 Southern Blvd, Chatham Township'}
               stage = {8} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Elias Boudinot House Marker'} adress = {'Adress'}
+              pic = {pic10} title = {'The Elias Boudinot House Marker'} adress = {'461 Green Village Road, Green Village'}
               stage = {9} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Cockrem Farm Marker'} adress = {'Adress'}
+              pic = {pic11} title = {'The Cockrem Farm Marker'} adress = {'486 Green Village Road, Green Village'}
               stage = {10} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Green Village Marker'} adress = {'Adress'}
+              pic = {pic12} title = {'The Green Village Marker'} adress = {'Adress'}
               stage = {11} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Gibbons Horse Barn Marker'} adress = {'Adress'}
+              pic = {pic13} title = {'The Gibbons Horse Barn Marker'} adress = {'Adress'}
               stage = {12} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {null} title = {'The Loantaka School Marker'} adress = {'Adress'}
+              pic = {pic14} title = {'The Loantaka School Marker'} adress = {'Adress'}
               stage = {13} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
         </ScrollView>
@@ -129,7 +144,6 @@ class SelectionPage extends Component{
     );
   }
 }
-
 
 
 const styles = StyleSheet.create({
@@ -141,37 +155,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     //backgroundColor: '#424ac1',
   },
-
-  text:{
-    fontSize: 30,
-    color: 'black',
-    fontWeight: '300',
-    textAlign: 'center',
-    paddingTop: 25,
-  },
-
-  button:{
-    width: Dimensions.get('window').width/1.5,
-    height: 36,
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 5,
-    marginTop: 30,
-  },
-
-  buttonText:{
-    fontSize: 15,
-    color: 'white',
-    fontWeight: '100',
-  },
-
-  slider: {
-    width: 300,
-    height: 10,
-    margin: 10,
-  },
-
 });
 
 module.exports = SelectionPage;

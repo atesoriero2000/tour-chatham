@@ -10,6 +10,7 @@ import {
   Text,
   Alert,
   Dimensions,
+  ScrollView,
 } from 'react-native'
 
 var Turns = require('./turns');
@@ -33,31 +34,31 @@ class Start extends Component {
   render() {
     return (
       <View style = {styles.container}>
+        <ScrollView>
+          <Text style = {styles.text}>
+            TOUR OVERVIEW
+          </Text>
 
-        <Text style = {styles.text}>
-          TOUR
-        </Text>
-
-        <TouchableHighlight style = {styles.button}
-          onPress = {() => this.toNext()}
-          underlayColor = '#BBBBBB'>
-
-            <Text style = {styles.buttonText}>
-              Click to Continue
-            </Text>
+          <TouchableHighlight style = {styles.button}
+            onPress = {() => this.toNext()}
+            underlayColor = '#BBBBBB'>
+              <Text style = {styles.buttonText}>
+                Click to Continue
+              </Text>
           </TouchableHighlight>
 
+        </ScrollView>
       </View>
     );
   }
 
   toNext(){
-    Alert.alert("SAFTEY", "SAFTEY INFO",[
-      { text: "Ok, Proceed", onPress: () => this.NavToSelection()},
-    ])
+    Alert.alert('SAFTEY', '\n1) Please make sure you have a passenger. You will need a passenger to follow and read the directions as the come up on the phone screen.\n\n 2) If you miss a turn, safely navigate through adjacent road and proceed back to the instructed route.\n\n 3) Some locations have limited/ample parking. Please be cautious of your surrounding and pay attention to the specified parking directions.\n\n 4) some markers are on private property. Be courteous to others and mindful of trespassing.\n\n 5) Drive safely, the developer, the Chatham Township Historical Society, and associates of the app hold no liability for any incidents while using this app.',[
+      { text: 'Ok, I Understand', onPress: () => this.NavToSelection()},
+    ]);
   }
 
-  toSafety(){
+  NavToSafety(){
     this.props.navigator.push({
       title: 'Driving Safety',
       component: Safety
@@ -74,7 +75,7 @@ class Start extends Component {
 
   NavToSelection(){
     this.props.navigator.push({
-      title: 'Selection Page',
+      title: 'Select a Location',
       component: SelectionPage,
       passProps: {unmount: this.props.unmount},
     });
@@ -104,11 +105,12 @@ const styles = StyleSheet.create({
   },
 
   text:{
-    padding: 100,
-    fontSize: 50,
+    fontSize: 35 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
+    paddingHorizontal: 25 * (Dimensions.get('window').width/375),
+    paddingVertical: 20 * (Dimensions.get('window').width/375),
   },
 
   buttonText:{

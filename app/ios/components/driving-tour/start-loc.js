@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').width/5,
-    marginTop: 10,
+    marginTop: 10 * (Dimensions.get('window').width/375),
     backgroundColor: 'lightgray',
   },
 
@@ -58,26 +58,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     flexDirection: 'column',
-    height: 50,
+    height: 50 * (Dimensions.get('window').width/375),
   },
 
   text:{
-    fontSize: 17,
+    fontSize: 17 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '300',
-    textAlign: 'center',
+    textAlign: 'left',
   },
 
   buttonText:{
-    fontSize: 15,
-    color: 'white',
+    fontSize: 15 * (Dimensions.get('window').width/375),
+    color: 'grey',
     fontWeight: '100',
+    textAlign: 'left',
+    paddingTop: 2 * (Dimensions.get('window').width/375),
   },
 
   image:{
-    margin: 25/2,
-    height: 50,
-    width: 50,
+    margin: 25/2 * (Dimensions.get('window').width/375),
+    height: 50 * (Dimensions.get('window').width/375),
+    width: 50 * (Dimensions.get('window').width/375),
     backgroundColor: 'red',
   },
 

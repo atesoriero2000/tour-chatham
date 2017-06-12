@@ -25,8 +25,7 @@ class About extends Component {
             This app was created by Anthony Tesoriero, a Local Chatham Resident, as his Eagle Scout Project. In partnership the the Chatham Township Historical Society, Anthony created this audio tour to make the local history of Chatham more accsesible to everyone through modern technology in a new innovative way.
           </Text>
 
-
-          <Image style = {styles.picture} source={require('../images/tony.jpeg')} />
+          <Image style = {styles.picture} source={require('../../images/tony.jpeg')} />
 
 
 {/* Contributors */}
@@ -104,7 +103,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: 200 * (Dimensions.get('window').width/375),
     marginTop: 50 * (Dimensions.get('window').width/375),
-    marginBottom: 0 * (Dimensions.get('window').width/375),
     //transform: [{translateX:200, translateY:20}]//REMEBER THIS SHIT BRO
   },
 
@@ -123,7 +121,7 @@ const styles = StyleSheet.create({
     color: 'grey',
     fontWeight: '100',
     textAlign: 'center',
-    paddingHorizontal: 45 * (Dimensions.get('window').width/375),
+    paddingHorizontal: 40 * (Dimensions.get('window').width/375),
   },
 
   titles:{
@@ -132,7 +130,6 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     textAlign: 'center',
     paddingTop: 50 * (Dimensions.get('window').width/375),
-    paddingBottom: 7 * (Dimensions.get('window').width/375),
   },
 
   contributors:{
@@ -161,7 +158,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
     paddingBottom: 3 * (Dimensions.get('window').width/375),
-    paddingTop: 16 * (Dimensions.get('window').width/375),
+    paddingTop: 23 * (Dimensions.get('window').width/375),
   },
 });
 

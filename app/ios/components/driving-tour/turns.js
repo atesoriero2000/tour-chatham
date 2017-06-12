@@ -6,64 +6,64 @@
 //   {loc9}, {loc10}, {loc11}, {loc12}, {loc13}];
 
 
-const pic1 = require('../../images/Flower.jpg');
-const pic2 = require('../../images/Eagle.jpg');
-const pic3 = require('../../images/FlagWaving.jpg');
-const pic4 = require('../../images/boy-scout-emblem.jpg');
+const pic1 = require('../../../images/Flower.jpg');
+const pic2 = require('../../../images/Eagle.jpg');
+const pic3 = require('../../../images/FlagWaving.jpg');
+const pic4 = require('../../../images/boy-scout-emblem.jpg');
 
 const startPic = pic1;
-const a1 = require('../../images/A1.jpg');
+const a1 = require('../../../images/A1.jpg');
 //const a2 = require('../../images/A2.jpg');
-const a3 = require('../../images/A3.jpg');
+const a3 = require('../../../images/A3.jpg');
 
-const b1 = require('../../images/B1.jpg');
-const b2 = require('../../images/B2.jpg');
+const b1 = require('../../../images/B1.jpg');
+const b2 = require('../../../images/B2.jpg');
 
-const d1 = require('../../images/D1.jpg');
-const d2 = require('../../images/D2.jpg');
-const d3 = require('../../images/D3.jpg');
+const d1 = require('../../../images/D1.jpg');
+const d2 = require('../../../images/D2.jpg');
+const d3 = require('../../../images/D3.jpg');
 
-const e1 = require('../../images/E1.jpg');
-const e2 = require('../../images/E2.jpg');
-const e3 = require('../../images/E3.jpg');
+const e1 = require('../../../images/E1.jpg');
+const e2 = require('../../../images/E2.jpg');
+const e3 = require('../../../images/E3.jpg');
 
-const f1 = require('../../images/F1.jpg');
-const f2 = require('../../images/F2.jpg');
-const f3 = require('../../images/F3.jpg');
+const f1 = require('../../../images/F1.jpg');
+const f2 = require('../../../images/F2.jpg');
+const f3 = require('../../../images/F3.jpg');
 
-const g1 = require('../../images/G1.jpg');
-const g2 = require('../../images/G2.jpg');
-const g3 = require('../../images/G3.jpg');
-const g4 = require('../../images/G4.jpg');
-const g5 = require('../../images/G5.jpg');
+const g1 = require('../../../images/G1.jpg');
+const g2 = require('../../../images/G2.jpg');
+const g3 = require('../../../images/G3.jpg');
+const g4 = require('../../../images/G4.jpg');
+const g5 = require('../../../images/G5.jpg');
 
-const h1 = require('../../images/H1.jpg');
-const h2 = require('../../images/H2.jpg');
+const h1 = require('../../../images/H1.jpg');
+const h2 = require('../../../images/H2.jpg');
 
-const i1 = require('../../images/I1.jpg');
-const i2 = require('../../images/I2.jpg');
+const i1 = require('../../../images/I1.jpg');
+const i2 = require('../../../images/I2.jpg');
 
-const j1 = require('../../images/J1.jpg');
-const j2 = require('../../images/J2.jpg');
-const j3 = require('../../images/J3.jpg');
+const j1 = require('../../../images/J1.jpg');
+const j2 = require('../../../images/J2.jpg');
+const j3 = require('../../../images/J3.jpg');
 
-const k1 = require('../../images/K1.jpg');
-const k2 = require('../../images/K2.jpg');
+const k1 = require('../../../images/K1.jpg');
+const k2 = require('../../../images/K2.jpg');
 
-const l1 = require('../../images/L1.jpg');
-const l2 = require('../../images/L2.jpg');
+const l1 = require('../../../images/L1.jpg');
+const l2 = require('../../../images/L2.jpg');
 
-const m1 = require('../../images/M1.jpg');
-const m2 = require('../../images/M2.jpg');
-const m3 = require('../../images/M3.jpg');
-const m4 = require('../../images/M4.jpg');
+const m1 = require('../../../images/M1.jpg');
+const m2 = require('../../../images/M2.jpg');
+const m3 = require('../../../images/M3.jpg');
+const m4 = require('../../../images/M4.jpg');
 
-const n1 = require('../../images/N1.jpg');
-const n2 = require('../../images/N2.jpg');
+const n1 = require('../../../images/N1.jpg');
+const n2 = require('../../../images/N2.jpg');
 
-const o1 = require('../../images/O1.jpg');
-const o2 = require('../../images/O2.jpg');
-const o3 = require('../../images/O3.jpg');
+const o1 = require('../../../images/O1.jpg');
+const o2 = require('../../../images/O2.jpg');
+const o3 = require('../../../images/O3.jpg');
 
 
 //THE JOHNSON HOUSE

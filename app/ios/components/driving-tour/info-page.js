@@ -1,5 +1,5 @@
 // comes from selection page or tour page
-// has a picture of the location, title and adress saying to nav to this and click button to startPic
+// has a picture of the location, title and address saying to nav to this and click button to startPic
 // button click hander onClick() navs to audio page and passes turn and stage props
 
 import React, { Component, } from 'react'
@@ -65,7 +65,7 @@ class InfoPage extends Component{
 
         <Text style = {styles.subtext}>
           Please navigate to
-            <Text selectable = {true} style = {styles.text_bold}> {this.props.adress} </Text>
+            <Text selectable = {true} style = {styles.text_bold}> {this.props.address} </Text>
           then click the button below to start the tour.
         </Text>
 

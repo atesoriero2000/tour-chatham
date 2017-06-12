@@ -1,5 +1,5 @@
 // Component of selectionPage
-// receive props Image, Title, stage, turn, Adress, unmount,
+// receive props Image, Title, stage, turn, address, unmount,
 import React, { Component, } from 'react'
 import {
   AppRegistry,
@@ -31,7 +31,7 @@ class Location extends Component{
           <View style = {styles.contents}>
 
             <Text style = {styles.text}> {this.props.title} </Text>
-            <Text style = {styles.buttonText}> {this.props.adress} </Text>
+            <Text style = {styles.buttonText}> {this.props.address} </Text>
 
           </View>
         </View>

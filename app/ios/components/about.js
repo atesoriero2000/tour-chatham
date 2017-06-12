@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: 200 * (Dimensions.get('window').width/375),
     marginTop: 50 * (Dimensions.get('window').width/375),
-    marginBottom: 10 * (Dimensions.get('window').width/375),
+    marginBottom: 0 * (Dimensions.get('window').width/375),
     //transform: [{translateX:200, translateY:20}]//REMEBER THIS SHIT BRO
   },
 
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     textAlign: 'center',
     paddingTop: 30 * (Dimensions.get('window').width/375),
-    paddingBottom: 15 * (Dimensions.get('window').width/375),
+    paddingBottom: 30 * (Dimensions.get('window').width/375),
 
   },
 

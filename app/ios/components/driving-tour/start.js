@@ -13,6 +13,8 @@ import {
   ScrollView,
 } from 'react-native'
 
+import Swiper from 'react-native-swiper';
+
 var Turns = require('./turns');
 var AudioPage = require('./audio-page');
 var SelectionPage = require('./selection-page');
@@ -34,7 +36,8 @@ class Start extends Component {
   render() {
     return (
       <View style = {styles.container}>
-        <ScrollView>
+        <Swiper showsButtons = {false} activedotColor = {'black'} index  = {0} loop = {false}>
+            <View style = {styles.container}>
           <Text style = {styles.text}>
             TOUR OVERVIEW
           </Text>
@@ -47,7 +50,24 @@ class Start extends Component {
               </Text>
           </TouchableHighlight>
 
-        </ScrollView>
+          </View>
+
+          <View style = {styles.container}>
+          <Text style = {styles.text}>
+          TOUR OVERVIEW
+          </Text>
+
+          <TouchableHighlight style = {styles.button}
+          underlayColor = '#BBBBBB'>
+            <Text style = {styles.buttonText}>
+              Click to Continue vfhrtiuejd
+            </Text>
+          </TouchableHighlight>
+
+          </View>
+
+        </Swiper>
+
       </View>
     );
   }

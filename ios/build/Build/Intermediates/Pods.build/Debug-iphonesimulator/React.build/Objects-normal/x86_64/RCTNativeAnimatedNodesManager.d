@@ -1,0 +1,43 @@
+dependencies: \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.m \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/ios/Pods/Target\ Support\ Files/React/React-prefix.pch \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Modules/RCTUIManager.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTRootView.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTViewManager.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/ReactCommon/yoga/yoga/Yoga.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/ReactCommon/yoga/yoga/YGEnums.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/ReactCommon/yoga/yoga/YGMacros.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAdditionAnimatedNode.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTAnimationDriver.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTDiffClampAnimatedNode.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTDivisionAnimatedNode.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTEventAnimation.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTFrameAnimation.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTInterpolationAnimatedNode.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTModuloAnimatedNode.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTMultiplicationAnimatedNode.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTPropsAnimatedNode.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTSpringAnimation.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTStyleAnimatedNode.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTTransformAnimatedNode.h

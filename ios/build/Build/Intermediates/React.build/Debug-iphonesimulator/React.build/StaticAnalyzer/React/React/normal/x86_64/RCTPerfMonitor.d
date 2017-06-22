@@ -1,0 +1,32 @@
+dependencies: \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Profiler/RCTPerfMonitor.m \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Modules/RCTDevSettings.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Profiler/RCTFPSGraph.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTJavaScriptExecutor.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTPerformanceLogger.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTRootView.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Modules/RCTUIManager.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTViewManager.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTConvert.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTAnimationType.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTBorderStyle.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTPointerEvents.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTTextDecorationLineType.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/Tony_Air/Desktop/App_Dev/scout-project/node_modules/react-native/React/Modules/RCTDevMenu.h

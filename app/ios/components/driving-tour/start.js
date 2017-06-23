@@ -11,9 +11,11 @@ import {
   Alert,
   Dimensions,
   ScrollView,
+  Modal,
 } from 'react-native'
 
 import Swiper from 'react-native-swiper';
+import { BlurView, VibrancyView } from 'react-native-blur';
 
 var Turns = require('./turns');
 var AudioPage = require('./audio-page');
@@ -26,48 +28,118 @@ class Start extends Component {
   constructor(props){
     super(props);
     this.state = {
+      visible: false,
     };
   }
 
   componentWillUnmount(){
-    //clearInterval(this.state.intervalID);
+    this.setState({visible: false});
   }
 
   render() {
     return (
       <View style = {styles.container}>
-        <Swiper showsButtons = {false} activedotColor = {'black'} index  = {0} loop = {false}>
-            <View style = {styles.container}>
-          <Text style = {styles.text}>
-            TOUR OVERVIEW
-          </Text>
-
-          <TouchableHighlight style = {styles.button}
-            onPress = {() => this.toNext()}
-            underlayColor = '#BBBBBB'>
-              <Text style = {styles.buttonText}>
-                Click to Continue
-              </Text>
-          </TouchableHighlight>
-
-          </View>
-
-          <View style = {styles.container}>
-          <Text style = {styles.text}>
+        <Text style = {styles.text}>
           TOUR OVERVIEW
-          </Text>
+        </Text>
 
-          <TouchableHighlight style = {styles.button}
+        <TouchableHighlight style = {styles.button}
+          onPress = {() => this.setState({visible:true})}
           underlayColor = '#BBBBBB'>
             <Text style = {styles.buttonText}>
-              Click to Continue vfhrtiuejd
+              Click to Continue
             </Text>
-          </TouchableHighlight>
+        </TouchableHighlight>
 
-          </View>
+        <Modal
+          animationType={'slide'}
+          transparent={true}
+          visible={this.state.visible}>
 
-        </Swiper>
+            <BlurView
+              blurType="dark"
+              blurAmount={10}
+              style={styles.overlay}>
 
+              <View style={styles.modal}>
+                <Swiper
+                  showsButtons = {true}
+                  index = {0}
+                  loop = {false}
+                  height={Dimensions.get('window').height/1.25}
+                  width={Dimensions.get('window').width/1.25}>
+
+
+                  {/* PAGE 1 */}
+                  <View style = {styles.page1}>
+                    <Text style = {styles.text}>
+                      PAGE 1
+                    </Text>
+
+                    <TouchableHighlight style = {styles.button}
+                      onPress = {() => this.setState({visible:false})}
+                      underlayColor = '#BBBBBB'>
+                      <Text style = {styles.buttonText}>
+                        Click
+                      </Text>
+                    </TouchableHighlight>
+                  </View>
+
+
+
+                  {/* PAGE 2 */}
+                  <View style = {styles.page1}>
+                    <Text style = {styles.text}>
+                      PAGE 2
+                    </Text>
+
+                    <TouchableHighlight style = {styles.button}
+                      onPress = {() => this.setState({visible:false})}
+                      underlayColor = '#BBBBBB'>
+                      <Text style = {styles.buttonText}>
+                        Click
+                      </Text>
+                    </TouchableHighlight>
+                  </View>
+
+
+                  {/* PAGE 3 */}
+                  <View style = {styles.page1}>
+                    <Text style = {styles.text}>
+                      PAGE 3
+                    </Text>
+
+                    <TouchableHighlight style = {styles.button}
+                      onPress = {() => this.setState({visible:false})}
+                      underlayColor = '#BBBBBB'>
+                      <Text style = {styles.buttonText}>
+                        Click
+                      </Text>
+                    </TouchableHighlight>
+                  </View>
+
+
+                  {/* PAGE 4 */}
+                  <View style = {styles.page1}>
+                    <Text style = {styles.text}>
+                      PAGE 4
+                    </Text>
+
+                    <TouchableHighlight style = {styles.button}
+                      onPress = {() => this.toNext()}
+                      underlayColor = '#BBBBBB'>
+                      <Text style = {styles.buttonText}>
+                        Click
+                      </Text>
+                    </TouchableHighlight>
+                  </View>
+
+
+
+              </Swiper>
+            </View>{/* modalformat */}
+          </BlurView>{/* overlay */}
+        </Modal>{/* popup*/}
       </View>
     );
   }
@@ -94,6 +166,7 @@ class Start extends Component {
   }
 
   NavToSelection(){
+    this.setState({visible: false});
     this.props.navigator.push({
       title: 'Select a Location',
       component: SelectionPage,
@@ -105,11 +178,32 @@ class Start extends Component {
 const styles = StyleSheet.create({
 
   container:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+
+  modal:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: Dimensions.get('window').width/1.25,
+    height: Dimensions.get('window').height/1.25,
+    borderRadius: 15,
+    backgroundColor: 'whitesmoke',
+  },
+
+  overlay:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  page1:{
     flex: 2,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    //backgroundColor: '#424ac1',
   },
 
   button:{

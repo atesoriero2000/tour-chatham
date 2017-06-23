@@ -28,6 +28,14 @@ class Welcome extends Component {
         </Text>
 
         <Image style = {styles.logo} source={require('../../../images/chs_logo.jpg')} />
+        {/* <Swiper
+          showsButtons = {true}
+          // dotColor = {'grey'}
+          // activeDotColor = {'black'}
+          index  = {0}
+          loop = {true}
+          autoplay={true}
+          autoplayTimeout={2.5}> */}
 
         <TouchableHighlight style = {styles.button}
           onPress = {() => this.toNews()}

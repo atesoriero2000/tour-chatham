@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').width/5,
     marginTop: 10 * (Dimensions.get('window').width/375),
-    backgroundColor: 'lightgray',
+    backgroundColor: 'gainsboro',
   },
 
   content:{

@@ -12,10 +12,12 @@ import {
   Dimensions,
   ScrollView,
   Modal,
+  Button,
 } from 'react-native'
 
 import Swiper from 'react-native-swiper';
 import { BlurView, VibrancyView } from 'react-native-blur';
+import Icon from 'react-native-vector-icons/EvilIcons';
 
 var Turns = require('./turns');
 var AudioPage = require('./audio-page');
@@ -62,11 +64,12 @@ class Start extends Component {
               style={styles.overlay}>
 
               <View style={styles.modal}>
+
                 <Swiper
                   showsButtons = {true}
                   index = {0}
                   loop = {false}
-                  height={Dimensions.get('window').height/1.25}
+                  height={Dimensions.get('window').height/1.13}
                   width={Dimensions.get('window').width/1.25}>
 
 
@@ -75,14 +78,6 @@ class Start extends Component {
                     <Text style = {styles.text}>
                       PAGE 1
                     </Text>
-
-                    <TouchableHighlight style = {styles.button}
-                      onPress = {() => this.setState({visible:false})}
-                      underlayColor = '#BBBBBB'>
-                      <Text style = {styles.buttonText}>
-                        Click
-                      </Text>
-                    </TouchableHighlight>
                   </View>
 
 
@@ -92,14 +87,6 @@ class Start extends Component {
                     <Text style = {styles.text}>
                       PAGE 2
                     </Text>
-
-                    <TouchableHighlight style = {styles.button}
-                      onPress = {() => this.setState({visible:false})}
-                      underlayColor = '#BBBBBB'>
-                      <Text style = {styles.buttonText}>
-                        Click
-                      </Text>
-                    </TouchableHighlight>
                   </View>
 
 
@@ -108,14 +95,6 @@ class Start extends Component {
                     <Text style = {styles.text}>
                       PAGE 3
                     </Text>
-
-                    <TouchableHighlight style = {styles.button}
-                      onPress = {() => this.setState({visible:false})}
-                      underlayColor = '#BBBBBB'>
-                      <Text style = {styles.buttonText}>
-                        Click
-                      </Text>
-                    </TouchableHighlight>
                   </View>
 
 
@@ -138,6 +117,25 @@ class Start extends Component {
 
               </Swiper>
             </View>{/* modalformat */}
+
+              <Text style={{
+                position: 'absolute',
+                fontSize: 27,
+                fontWeight: '200',
+                top: 7 + 45,
+              }}>Tutorial</Text>
+
+              <Icon
+                name={'close'}
+                size={40}
+                color={'#006CFF'}
+                onPress={()=>this.setState({visible:false})}
+                style={{
+                  position: 'absolute',
+                  top: 7 + 45,
+                  left: 45,
+                }}/>
+
           </BlurView>{/* overlay */}
         </Modal>{/* popup*/}
       </View>
@@ -181,14 +179,19 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',
+  },
+
+  banner:{
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   modal:{
+    position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
     width: Dimensions.get('window').width/1.25,
-    height: Dimensions.get('window').height/1.25,
+    height: Dimensions.get('window').height/1.13,
     borderRadius: 15,
     backgroundColor: 'whitesmoke',
   },
@@ -204,6 +207,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+    // backgroundColor: 'red'
   },
 
   button:{

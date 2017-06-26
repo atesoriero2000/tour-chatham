@@ -62,7 +62,7 @@ class scout_project extends Component {
 
         <TabBarIOS.Item //Tour Tab
           selected = {this.state.selectedTab === 'tour'}
-          systemIcon = {'featured'}
+          systemIcon = {'history'}
 
           onPress= {() => {
               this.setState({

@@ -34,7 +34,7 @@ class About extends Component {
             <View style = {{paddingHorizontal: 10}}>
               <Text style = {styles.labels}>Development</Text>
               <Text style = {styles.fineText}>
-                {'Cat Dematos\nEitan Miller\nEthan Aktins\nCarson Storm\nRandom\nRandom'}
+                {'Cat DeMatos\nEitan Miller\nEthan Aktins\nCarson Storm\nRandom\nRandom'}
               </Text>
             </View>
 

@@ -42,12 +42,11 @@ class AudioPage extends Component {
   constructor(props){
     super(props);
     this.state ={
-      initialPos: 'unknown',
-      speed: 0,
-
       clickable: false,
       lastPos: 'unknown',
+      targetPos: 'unknown',
       lastRadius: 0,
+      isNear: false,
       picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
       directions: Turns.stages[Turns.stage].loc[Turns.turn].directions,
       title: Turns.stages[Turns.stage].title,
@@ -61,9 +60,24 @@ class AudioPage extends Component {
 
 
   distTo(targetLat, targetLong){
-    let lastLat = this.state.lastPos.latitude;
-    let lastLong =  this.state.lastPos.longitude;
-    return (Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2)) * (364537+7/9) );
+    let lastLat = this.state.lastPos.latitude * Math.PI/180;
+    let lastLong =  this.state.lastPos.longitude * Math.PI/180;
+
+    if(targetLat === null){return true}
+
+    let R = 20903520;
+    let φ1 = targetLat * Math.PI/180;
+    let φ2 = this.state.lastPos.latitude * Math.PI/180;
+    let Δφ = (lastLat-targetLat) * Math.PI/180;
+    let Δλ = (lastLong-targetLong) * Math.PI/180;
+
+    let a = Math.sin(Δφ/2) * Math.sin(Δφ/2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ/2) * Math.sin(Δλ/2);
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    let d = R * c;
+    return d;
+
+    //return (Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2)) * (364537+7/9) );
   }
 
   geolocation(){
@@ -73,12 +87,14 @@ class AudioPage extends Component {
     }, (error) => alert(JSON.stringify(error)), geoOpt);
 
 
-    // this.setState({clickable: ((!audioIsPlaying && (currentStage.length === Turns.turn+1))?true:false) });
     // let currentStage = Turns.stages[Turns.stage];
     // let currentTurn = currentStage.loc[Turns.turn];
     //
-    // //if not at location
-    // if(!(currentStage.length === Turns.turn+1){ // Need this or next line will throw error
+    // if audio is not playing and we are on the last turn
+    // this.setState({clickable: ((!audioIsPlaying && (currentStage.loc.length === Turns.turn+1))?true:false) });
+    //
+    // // if not at location
+    // if(currentStage.loc.length > Turns.turn+1){ // Need this or next line will throw error
     //
     //   let nextTurn = currentStage.loc[Turns.turn+1];
     //   this.setState({lastRadius: this.distTo(nextTurn.latitude, nextTurn.longitude)});
@@ -89,14 +105,19 @@ class AudioPage extends Component {
     // }
 
 
-    if(this.isNear(this.state.initialPos.latitude, this.state.initialPos.longitude, radius)){
-      console.log(turn);
-      Vibration.vibrate();
+
+
+    this.setState({isNear: this.isNear(this.state.targetPos.latitude, this.state.targetPos.longitude, this.state.targetPos.radius)});
+    this.setState({clickable: this.state.isNear});
+
+    if(this.state.isNear){
+      this.resetPos();
     }
 
-    let radius = this.distTo(this.state.initialPos.latitude, this.state.initialPos.longitude);
+    let radius = this.distTo(this.state.targetPos.latitude, this.state.targetPos.longitude);
 
     this.setState({
+      targetPos: Turns.stages[Turns.stage].loc[Turns.turn],
       lastRadius: radius,
       title: Turns.stages[Turns.stage].title,
       picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
@@ -139,25 +160,32 @@ class AudioPage extends Component {
     //   }
     // }
   // }
-    Vibration.vibrate();
-    Turns.stage++;
-    this.setState({clickable: !this.state.clickable});
-    console.log("Stage Up: " + Turns.stage);
+    if(this.state.clickable){
+      Vibration.vibrate();
+
+      if(Turns.stages[Turns.stage].loc.length-1 <= Turns.turn){
+        Turns.turn = 0;
+        Turns.state++;
+
+      }else{
+        Turns.turn++;
+      }
+    }
   }
 
   resetPos(){
-    this.setState({initialPos: this.state.lastPos, lastRadius: 0});
-  }
+    //Vibration.vibrate();
 
-  check(){
-    if(this.props.unmount().b){
-      this.props.navigator.popToTop();
+    if(Turns.stages[Turns.stage].loc.length-1 <= Turns.turn){
+      Turns.turn = 0;
+      Turns.stage++;
+    }else{
+      Turns.turn++;
     }
   }
 
   componentWillUnmount(){
     clearInterval(this.state.intervalID);
-    //this.props.navigator.popToTop();
   }
 
   componentDidMount(){
@@ -165,17 +193,12 @@ class AudioPage extends Component {
     //####### set turns and stage to passed value in props ############
     //this.onPress();
 
-
-    this.setState({initialPos: {
-      longitude: -74.434586,
-      latitude: 40.697827,
-    }});
-
     // navigator.geolocation.getCurrentPosition((position) => {
     //   this.setState({initialPos: position.coords});
     // }, (error) => alert(JSON.stringify(error)), geoOpt);
 
-    Turns.stage = this.props.stage;
+    // Turns.stage = this.props.stage;
+    Turns.stage = 0;
     Turns.turn = 0;
   }
 
@@ -189,10 +212,10 @@ class AudioPage extends Component {
         </Text>
 
         <Text style = {styles.location}>
-          INITIAL
+          TARGET
         </Text>
-        <Text> Longitude: {this.state.initialPos.longitude}</Text>
-        <Text> Latitude: {this.state.initialPos.latitude}</Text>
+        <Text> Longitude: {this.state.targetPos.longitude}</Text>
+        <Text> Latitude: {this.state.targetPos.latitude}</Text>
 
         <Text style = {styles.location}>
           LAST
@@ -200,10 +223,9 @@ class AudioPage extends Component {
         <Text> Longitude: {this.state.lastPos.longitude}</Text>
         <Text> Latitude: {this.state.lastPos.latitude}</Text>
         <Text/>
-        <Text> isNear: {JSON.stringify(this.isNear(this.state.initialPos.latitude, this.state.initialPos.longitude, radius))} </Text>
+        <Text> isNear: {JSON.stringify(this.state.isNear)} </Text>
         <Text> Radius: {JSON.stringify(Math.round(this.state.lastRadius, 1))} FT</Text>
-        <Text> Speed: {JSON.stringify(Math.round(this.state.speed, 1))}  MPH</Text>
-
+        <Text> Stage/Turn:   {Turns.stage},{Turns.turn}</Text>
 
 
         <Image
@@ -212,7 +234,7 @@ class AudioPage extends Component {
         />
 
         <TouchableOpacity style = {styles.button} onPress = {() => this.resetPos()}>
-          <Text style={styles.buttonText} >Reset Position</Text>
+          <Text style={styles.buttonText} >Next Turn</Text>
         </TouchableOpacity>
 
         <TouchableHighlight style = {{
@@ -223,8 +245,6 @@ class AudioPage extends Component {
           alignItems: 'center',
           margin: 5,
           opacity: this.state.clickable?1:.05,
-          bottom: 50,
-          transform: [{translateY:50}],
         }}
         underlayColor = '#BBBBBB'
         onPress = {() => this.onPress()}>
@@ -269,8 +289,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 5,
     //opacity: 0.5,
-    bottom: 50,
-    transform: [{translateY:50}],
   },
 
   image:{

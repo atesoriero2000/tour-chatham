@@ -72,7 +72,7 @@ class InfoPage extends Component{
         <Image style = {styles.image} source = {this.props.pic}/>
 
         <TouchableOpacity style = {styles.button} onPress = {() => this.NavToAudio()}>
-          <Text style={styles.buttonText}> Click To Continue </Text>
+          <Text style={styles.buttonText}> Click To Start Tour! </Text>
         </TouchableOpacity>
 
       </View>

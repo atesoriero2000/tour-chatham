@@ -1,7 +1,7 @@
 # You Podfile should look similar to this file. React Native currently does not support use_frameworks!
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 target 'scout_project' do
   # Fixes required for pod specs to work with rn 0.42
@@ -18,7 +18,8 @@ target 'scout_project' do
     'RCTSettings',
     'RCTText',
     'RCTVibration',
-    'RCTWebSocket'
+    'RCTWebSocket',
+    'BatchedBridge'
   ]
 
   pod 'GoogleMaps'  # <~~ remove this line if you do not want to support GoogleMaps on iOS

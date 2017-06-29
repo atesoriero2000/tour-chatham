@@ -73,21 +73,21 @@ const loc1 = [
     picture: a1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Travel straight 2.03 miles past the Fairmount Country Store Deli',
     picture: pic1,
     latitude: 40.705910,
     longitude: -74.429376,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Follow past the Marker and Turn left and park in Esternay Field. You may walk back up Fairmount to the marker.',
     picture: a3,
     latitude: 40.703046,
     longitude: -74.428045,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -99,14 +99,14 @@ const loc2 = [
    picture: b1,
    latitude: null,
    longitude: null,
-   radius: 1000,
+   radius: 500,
  },
  {
    direction: 'Turn left and park in the Passaic River County Park entrance. The marker is located to your left across River Road (if you reach Mountain Ave youve gone too far)',
    picture: b2,
    latitude: 40.697119,
    longitude: -74.435379,
-   radius: 1000,
+   radius: 500,
  },
 ];
 
@@ -118,21 +118,21 @@ const loc3 = [
    picture: d1,
    latitude: null,
    longitude: null,
-   radius: 1000,
+   radius: 500,
  },
  {
    direction: 'Follow River Road for 1.30 miles (the marker is 0.7 miles past Fairmount Ave)',
    picture: d2,
    latitude: 40.702367,
    longitude: -74.427685,
-   radius: 1000,
+   radius: 500,
  },
  {
    direction: 'Park along River Road to right in the gravel outcrop',
    picture: d3,
    latitude: 40.708721,
    longitude: -74.416936,
-   radius: 1000,
+   radius: 500,
  },
 ];
 
@@ -144,21 +144,21 @@ const loc4 = [
     picture: e1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Turn Left onto Southern Blvd and travel up "Snake Hill"',
     picture: e2,
     latitude: 40.720305,
     longitude: -74.401989,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Continue Strait along Southern Blvb just past the intersection of Fairmount Ave until you reach the marker. You may park in the gravel driveway to the right or along Southern Boulevard',
     picture: e3,
     latitude: 40.722827,
     longitude: -74.405053,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -171,21 +171,21 @@ const loc5 = [
     picture: f1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Take the first left onto Spring St (approx 0.2 miles)',
     picture: f2,
     latitude: 40.729022,
     longitude: -74.407241,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Continue until you see the marker. You may park along the right side of Spring Street',
     picture: f3,
     latitude: 40.730427,
     longitude: -74.408672,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -197,35 +197,35 @@ const loc6 = [
     picture: g1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Drive to the end of School Ave and turn right onto Maple St',
     picture: g2,
     latitude: 40.732468,
     longitude: -74.406383,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Take another right onto Lafayette Ave and drive 0.4 miles',
     picture: g3,
     latitude: 40.730598,
     longitude: -74.404530,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Turn right onto Southern Blvd (0.2 miles)',
     picture: g4,
     latitude: 40.727553,
     longitude: -74.409742,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: '184 Southern Blvd and the marker are on the right (If you reached Jay Road you have gone too far). Park in Southern Boulevard School to right just past the marker',
     picture: g5,
     latitude: 40.729440,
     longitude: -74.413286,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -238,14 +238,14 @@ const loc7 = [
     picture: h1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Turn left and park in 395 Southern Blvd (Noe Pond Club) (If you reach Hickory Pl you have gone too far). The marker is 100 ft before the entrance of Noe pond, you may walk to the marker',
     picture: h2,
     latitude: 40.737275,
     longitude: -74.425151,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -257,14 +257,14 @@ const loc8 = [
     picture: i1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: '405 Southern Blvd is on the left. You marker may turn into and park in Nash Field (approx 0.14 mile)',
     picture: i2,
     latitude: 40.741458,
     longitude: -74.430853,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -276,21 +276,21 @@ const loc9 = [
     picture: j1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Turn left onto Green Village Road and drive about 0.8 miles',
     picture: j2,
     latitude: 40.744404,
     longitude: -74.434543,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'The destination is on the left at 461 Green Village Road. You may park in the driveway to the left',
     picture: j3,
     latitude: 40.738649,
     longitude: -74.446364,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -302,14 +302,14 @@ const loc10 = [
     picture: k1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'You may park along white fence to the right',
     picture: k2,
     latitude: 40.738841,
     longitude: -74.449521,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -321,14 +321,14 @@ const loc11 = [
     picture: l1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Stop at 520 Green Village Road and park in the Green Village Deli to the right',
     picture: l2,
     latitude: 40.739029,
     longitude: -74.453421,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -340,28 +340,28 @@ const loc12 = [
     picture: m1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Take the first right to stay on Spring Valley Road (0.9 miles)',
     picture: m2,
     latitude: 40.740854,
     longitude: -74.456702,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the marron marker',
     picture: m3,
     latitude: 40.753155,
     longitude: -74.452436,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'The destination is on the left at 340 Loantaka Way. You may park in gravel driveway to the right',
     picture: m4,
     latitude: 40.752534,
     longitude: -74.446877,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -373,14 +373,14 @@ const loc13 = [
     picture: n1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'You may park along the wooden fence to the right',
     picture: n2,
     latitude: 40.753724,
     longitude: -74.440480,
-    radius: 1000,
+    radius: 500,
   },
 ];
 
@@ -392,21 +392,21 @@ const loc14 = [
     picture: o1,
     latitude: null,
     longitude: null,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Turn right onto Treadwell Ave (If you reach Nordling Lane you have gone too far)',
     picture: o2,
     latitude: 40.765623,
     longitude: -74.445828,
-    radius: 1000,
+    radius: 500,
   },
   {
     direction: 'Park along fence to the left or right once you see the marker on the left',
     picture: o3,
     latitude: 40.768086,
     longitude: -74.442928,
-    radius: 1000,
+    radius: 500,
   },
 ];
 

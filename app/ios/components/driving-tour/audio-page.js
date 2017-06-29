@@ -60,24 +60,28 @@ class AudioPage extends Component {
 
 
   distTo(targetLat, targetLong){
-    let lastLat = this.state.lastPos.latitude * Math.PI/180;
-    let lastLong =  this.state.lastPos.longitude * Math.PI/180;
+    // let lastLat = this.state.lastPos.latitude * Math.PI/180;
+    // let lastLong =  this.state.lastPos.longitude * Math.PI/180;
+    //
+    // let R = 6371;
+    // let φ1 = targetLat * Math.PI/180;
+    // let φ2 = this.state.lastPos.latitude * Math.PI/180;
+    // let Δφ = (lastLat-targetLat) * Math.PI/180;
+    // let Δλ = (lastLong-targetLong) * Math.PI/180;
+    //
+    //
+    // if(targetLat === null){return true}
+    // let a = Math.sin(Δφ/2) * Math.sin(Δφ/2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ/2) * Math.sin(Δλ/2);
+    // let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    //
+    // let d = R * c;
+    // return d;
+    let lastLat = this.state.lastPos.latitude;
+    let lastLong =  this.state.lastPos.longitude;
 
     if(targetLat === null){return true}
 
-    let R = 20903520;
-    let φ1 = targetLat * Math.PI/180;
-    let φ2 = this.state.lastPos.latitude * Math.PI/180;
-    let Δφ = (lastLat-targetLat) * Math.PI/180;
-    let Δλ = (lastLong-targetLong) * Math.PI/180;
-
-    let a = Math.sin(Δφ/2) * Math.sin(Δφ/2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ/2) * Math.sin(Δλ/2);
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-
-    let d = R * c;
-    return d;
-
-    //return (Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2)) * (364537+7/9) );
+    return (Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2)) * (364537+7/9) );
   }
 
   geolocation(){

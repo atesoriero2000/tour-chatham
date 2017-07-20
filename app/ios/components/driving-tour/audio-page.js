@@ -16,7 +16,7 @@ import {
 } from 'react-native'
 
 import KeepAwake from 'react-native-keep-awake';
-import BackgroundGeolocation from "react-native-background-geolocation";
+//import BackgroundGeolocation from "react-native-background-geolocation";
 
 var Sound = require('react-native-sound');
 var Turns = require('./turns');

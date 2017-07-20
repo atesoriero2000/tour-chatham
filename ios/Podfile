@@ -21,8 +21,10 @@ target 'scout_project' do
     'RCTWebSocket',
     'BatchedBridge'
   ]
+#  pod "RNBackgroundGeolocation", :path => "../node_modules/react-native-background-geolocation"
+#  pod "RNBackgroundFetch", :path => "../node_modules/react-native-background-fetch"
 
-  pod 'GoogleMaps'  # <~~ remove this line if you do not want to support GoogleMaps on iOS
+#  pod 'GoogleMaps'  # <~~ remove this line if you do not want to support GoogleMaps on iOS
 
 # when not using frameworks  we can do this instead of including the source files in our project (1/4):
 #  pod 'react-native-maps', path: '../../'

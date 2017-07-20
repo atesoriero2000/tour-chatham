@@ -46,8 +46,8 @@ class Start extends Component {
         </Text>
 
         <TouchableHighlight style = {styles.button}
-          onPress = {() => this.setState({visible:true})}
-          //onPress = {()=>this.NavToAudio()}
+          //onPress = {() => this.setState({visible:true})}
+          onPress = {()=>this.NavToAudio()}
           underlayColor = '#BBBBBB'>
             <Text style = {styles.buttonText}>
               Click to Continue

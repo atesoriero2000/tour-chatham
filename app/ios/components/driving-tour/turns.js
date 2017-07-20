@@ -1,6 +1,10 @@
-//35 mph = 15 m/s = 51 fps
 
-const RADIUS_DELAY = 1500; //feet
+
+
+
+// var stages = [ {loc1}, {loc2}, {loc3}, {loc4}, {loc5}, {loc6}, {loc7}, {loc8},
+//   {loc9}, {loc10}, {loc11}, {loc12}, {loc13}];
+
 
 const pic1 = require('../../../images/Flower.jpg');
 const pic2 = require('../../../images/Eagle.jpg');
@@ -8,58 +12,58 @@ const pic3 = require('../../../images/FlagWaving.jpg');
 const pic4 = require('../../../images/boy-scout-emblem.jpg');
 
 const startPic = pic1;
-const a1 = require('../../../images/edited/A1_00000.jpg');
+const a1 = require('../../../images/A1.jpg');
 //const a2 = require('../../images/A2.jpg');
-const a3 = require('../../../images/edited/A3_00000.jpg');
+const a3 = require('../../../images/A3.jpg');
 
-const b1 = require('../../../images/edited/B1_00000.jpg');
-const b2 = require('../../../images/edited/B2_00000.jpg');
+const b1 = require('../../../images/B1.jpg');
+const b2 = require('../../../images/B2.jpg');
 
-const d1 = require('../../../images/edited/D1_00000.jpg');
-const d2 = require('../../../images/edited/D2_00000.jpg');
-const d3 = require('../../../images/edited/D3_00000.jpg');
+const d1 = require('../../../images/D1.jpg');
+const d2 = require('../../../images/D2.jpg');
+const d3 = require('../../../images/D3.jpg');
 
-const e1 = require('../../../images/edited/E1_00000.jpg');
-const e2 = require('../../../images/edited/E2_00000.jpg');
-const e3 = require('../../../images/edited/E3_00000.jpg');
+const e1 = require('../../../images/E1.jpg');
+const e2 = require('../../../images/E2.jpg');
+const e3 = require('../../../images/E3.jpg');
 
-const f1 = require('../../../images/edited/F1_00000.jpg');
-const f2 = require('../../../images/edited/F2_00000.jpg');
-const f3 = require('../../../images/edited/F3_00000.jpg');
+const f1 = require('../../../images/F1.jpg');
+const f2 = require('../../../images/F2.jpg');
+const f3 = require('../../../images/F3.jpg');
 
-const g1 = require('../../../images/edited/G1_00000.jpg');
-const g2 = require('../../../images/edited/G2_00000.jpg');
-const g3 = require('../../../images/edited/G3_00000.jpg');
-const g4 = require('../../../images/edited/G4_00000.jpg');
-const g5 = require('../../../images/edited/G5_00000.jpg');
+const g1 = require('../../../images/G1.jpg');
+const g2 = require('../../../images/G2.jpg');
+const g3 = require('../../../images/G3.jpg');
+const g4 = require('../../../images/G4.jpg');
+const g5 = require('../../../images/G5.jpg');
 
-const h1 = require('../../../images/edited/H1_00000.jpg');
-const h2 = require('../../../images/edited/H2_00000.jpg');
+const h1 = require('../../../images/H1.jpg');
+const h2 = require('../../../images/H2.jpg');
 
-const i1 = require('../../../images/edited/I1_00000.jpg');
-const i2 = require('../../../images/edited/I2_00000.jpg');
+const i1 = require('../../../images/I1.jpg');
+const i2 = require('../../../images/I2.jpg');
 
-const j1 = require('../../../images/edited/J1_00000.jpg');
-const j2 = require('../../../images/edited/J2_00000.jpg');
-const j3 = require('../../../images/edited/J3_00000.jpg');
+const j1 = require('../../../images/J1.jpg');
+const j2 = require('../../../images/J2.jpg');
+const j3 = require('../../../images/J3.jpg');
 
-const k1 = require('../../../images/edited/K1_00000.jpg');
-const k2 = require('../../../images/edited/K2_00000.jpg');
+const k1 = require('../../../images/K1.jpg');
+const k2 = require('../../../images/K2.jpg');
 
-const l1 = require('../../../images/edited/L1_00000.jpg');
-const l2 = require('../../../images/edited/L2_00000.jpg');
+const l1 = require('../../../images/L1.jpg');
+const l2 = require('../../../images/L2.jpg');
 
-const m1 = require('../../../images/edited/M1_00000.jpg');
-const m2 = require('../../../images/edited/M2_00000.jpg');
-const m3 = require('../../../images/edited/M3_00000.jpg');
-const m4 = require('../../../images/edited/M4_00000.jpg');
+const m1 = require('../../../images/M1.jpg');
+const m2 = require('../../../images/M2.jpg');
+const m3 = require('../../../images/M3.jpg');
+const m4 = require('../../../images/M4.jpg');
 
-const n1 = require('../../../images/edited/N1_00000.jpg');
-const n2 = require('../../../images/edited/N2_00000.jpg');
+const n1 = require('../../../images/N1.jpg');
+const n2 = require('../../../images/N2.jpg');
 
-const o1 = require('../../../images/edited/O1_00000.jpg');
-const o2 = require('../../../images/edited/O2_00000.jpg');
-const o3 = require('../../../images/edited/O3_00000.jpg');
+const o1 = require('../../../images/O1.jpg');
+const o2 = require('../../../images/O2.jpg');
+const o3 = require('../../../images/O3.jpg');
 
 
 //THE JOHNSON HOUSE
@@ -76,14 +80,14 @@ const loc1 = [
     picture: pic1,
     latitude: 40.705910,
     longitude: -74.429376,
-    radius: 9244 - RADIUS_DELAY,
+    radius: 500,
   },
   {
     direction: 'Follow past the Marker and Turn left and park in Esternay Field. You may walk back up Fairmount to the marker.',
     picture: a3,
     latitude: 40.703046,
     longitude: -74.428045,
-    radius: 1108 - RADIUS_DELAY,
+    radius: 500,
   },
 ];
 
@@ -102,7 +106,7 @@ const loc2 = [
    picture: b2,
    latitude: 40.697119,
    longitude: -74.435379,
-   radius: 2965 - RADIUS_DELAY,
+   radius: 500,
  },
 ];
 
@@ -121,14 +125,14 @@ const loc3 = [
    picture: d2,
    latitude: 40.702367,
    longitude: -74.427685,
-   radius: 2863 - RADIUS_DELAY,
+   radius: 500,
  },
  {
    direction: 'Park along River Road to right in the gravel outcrop',
    picture: d3,
    latitude: 40.708721,
    longitude: -74.416936,
-   radius: 3770 - RADIUS_DELAY,
+   radius: 500,
  },
 ];
 
@@ -147,16 +151,17 @@ const loc4 = [
     picture: e2,
     latitude: 40.720305,
     longitude: -74.401989,
-    radius: 5911 - RADIUS_DELAY,
+    radius: 500,
   },
   {
     direction: 'Continue Strait along Southern Blvb just past the intersection of Fairmount Ave until you reach the marker. You may park in the gravel driveway to the right or along Southern Boulevard',
     picture: e3,
     latitude: 40.722827,
     longitude: -74.405053,
-    radius: 1251 - RADIUS_DELAY,
+    radius: 500,
   },
 ];
+
 
 
 // CHATHAM COLONY ASSOCIATION
@@ -173,14 +178,14 @@ const loc5 = [
     picture: f2,
     latitude: 40.729022,
     longitude: -74.407241,
-    radius: 2340 - RADIUS_DELAY,
+    radius: 500,
   },
   {
     direction: 'Continue until you see the marker. You may park along the right side of Spring Street',
     picture: f3,
     latitude: 40.730427,
     longitude: -74.408672,
-    radius: 648 / 2,
+    radius: 500,
   },
 ];
 
@@ -199,30 +204,31 @@ const loc6 = [
     picture: g2,
     latitude: 40.732468,
     longitude: -74.406383,
-    radius: 977 - RADIUS_DELAY,
+    radius: 500,
   },
   {
     direction: 'Take another right onto Lafayette Ave and drive 0.4 miles',
     picture: g3,
     latitude: 40.730598,
     longitude: -74.404530,
-    radius: 853 / 2,
+    radius: 500,
   },
   {
     direction: 'Turn right onto Southern Blvd (0.2 miles)',
     picture: g4,
     latitude: 40.727553,
     longitude: -74.409742,
-    radius: 1819 - RADIUS_DELAY,
+    radius: 500,
   },
   {
     direction: '184 Southern Blvd and the marker are on the right (If you reached Jay Road you have gone too far). Park in Southern Boulevard School to right just past the marker',
     picture: g5,
     latitude: 40.729440,
     longitude: -74.413286,
-    radius: 1198 - RADIUS_DELAY,
+    radius: 500,
   },
 ];
+
 
 
 //NOE POND
@@ -239,7 +245,7 @@ const loc7 = [
     picture: h2,
     latitude: 40.737275,
     longitude: -74.425151,
-    radius: 4351 - RADIUS_DELAY,
+    radius: 500,
   },
 ];
 
@@ -258,7 +264,7 @@ const loc8 = [
     picture: i2,
     latitude: 40.741458,
     longitude: -74.430853,
-    radius: 2194 - RADIUS_DELAY,
+    radius: 500,
   },
 ];
 
@@ -266,7 +272,7 @@ const loc8 = [
 //ELIAS BOUDINOT HOUSE
 const loc9 = [
   {
-    direction: 'Continue along Southern Blvd (northwest) and quickly take a left onto Hickory Pl (if you reach Shunpike Road you have gone too far)',
+    direction: 'Continue along Southern Blvd (northwest) to Hickory Place (0.4 miles) and take a left onto Hickory Pl (if you reach Shunpike Road you have gone too far)',
     picture: j1,
     latitude: null,
     longitude: null,
@@ -277,14 +283,14 @@ const loc9 = [
     picture: j2,
     latitude: 40.744404,
     longitude: -74.434543,
-    radius: 1482 - RADIUS_DELAY,
+    radius: 500,
   },
   {
     direction: 'The destination is on the left at 461 Green Village Road. You may park in the driveway to the left',
     picture: j3,
     latitude: 40.738649,
     longitude: -74.446364,
-    radius: 3884 - RADIUS_DELAY,
+    radius: 500,
   },
 ];
 
@@ -303,7 +309,7 @@ const loc10 = [
     picture: k2,
     latitude: 40.738841,
     longitude: -74.449521,
-    radius: 876 / 2,
+    radius: 500,
   },
 ];
 
@@ -322,7 +328,7 @@ const loc11 = [
     picture: l2,
     latitude: 40.739029,
     longitude: -74.453421,
-    radius: 1080 - RADIUS_DELAY,
+    radius: 500,
   },
 ];
 
@@ -341,21 +347,21 @@ const loc12 = [
     picture: m2,
     latitude: 40.740854,
     longitude: -74.456702,
-    radius: 1125 - RADIUS_DELAY,
+    radius: 500,
   },
   {
     direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the marron marker',
     picture: m3,
     latitude: 40.753155,
     longitude: -74.452436,
-    radius: 4640 - RADIUS_DELAY,
+    radius: 500,
   },
   {
     direction: 'The destination is on the left at 340 Loantaka Way. You may park in gravel driveway to the right',
     picture: m4,
     latitude: 40.752534,
     longitude: -74.446877,
-    radius: 1553 - RADIUS_DELAY,
+    radius: 500,
   },
 ];
 
@@ -374,7 +380,7 @@ const loc13 = [
     picture: n2,
     latitude: 40.753724,
     longitude: -74.440480,
-    radius: 1820 - RADIUS_DELAY,
+    radius: 500,
   },
 ];
 
@@ -393,14 +399,14 @@ const loc14 = [
     picture: o2,
     latitude: 40.765623,
     longitude: -74.445828,
-    radius: 4586 - RADIUS_DELAY,
+    radius: 500,
   },
   {
     direction: 'Park along fence to the left or right once you see the marker on the left',
     picture: o3,
     latitude: 40.768086,
     longitude: -74.442928,
-    radius: 1204 - RADIUS_DELAY,
+    radius: 500,
   },
 ];
 

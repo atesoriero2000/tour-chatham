@@ -16,13 +16,10 @@ import {
 } from 'react-native'
 
 import KeepAwake from 'react-native-keep-awake';
-//import BackgroundGeolocation from "react-native-background-geolocation";
+import BackgroundGeolocation from "react-native-background-geolocation";
+import Sound from 'react-native-sound';
 
-var Sound = require('react-native-sound');
 var Turns = require('./turns');
-
-const geoOpt = {timeout: 100, maximumAge: 1000, enableHighAccuracy: false, distanceFilter: 8};
-
 
 //var f1 = require('../../audio/Page 11 (Owen).mp3');
 // var file1 = new Sound(f1,'',(error)=>{
@@ -60,26 +57,69 @@ class AudioPage extends Component {
 
   componentDidMount(){
 
-    let watchID = navigator.geolocation.watchPosition((pos) => this.geolocation(pos), (error) => alert(JSON.stringify(error)), geoOpt);
-    this.setState({watchID});
-
+    KeepAwake.activate();
     //####### set turns and stage to passed value in props ############
     //this.onPress();
 
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({initialPos: position.coords});
-    }, (error) => alert(JSON.stringify(error)), {timeout: 1000, maximumAge: 1000, enableHighAccuracy: false});
+    BackgroundGeolocation.watchPosition((location) => this.geolocation(location), {
+      interval: 1000,
+      desiredAccuracy: 0,
+      persists: true,
+    });
 
     // Turns.stage = this.props.stage;
     Turns.stage = 0;
     Turns.turn = 0;
   }
 
-  componentWillUnmount(){
-    clearInterval(this.state.intervalID);
-    navigator.geolocation.clearWatch(this.state.watchID);
+  onError(error) {
+    var type = error.type;
+    var code = error.code;
+    alert(type + " Error: " + code);
   }
 
+  componentWillMount() {
+
+    BackgroundGeolocation.destroyLog();
+    // BackgroundGeolocation.on('location', (location) => this.geolocation(location));
+    //BackgroundGeolocation.on('motionchange', (isMoving) => if(!isMoving) BackgroundGeolocation.changePace(true));
+    // BackgroundGeolocation.on('error', this.onError);
+    BackgroundGeolocation.configure({
+      // Geolocation Config
+      desiredAccuracy: 0,
+      stationaryRadius: 25,
+      distanceFilter: 0,
+      disableElasticity: true,
+      locationAuthorizationRequest: 'Always',
+      // Activity Recognition
+      disableStopDetection: true,
+      // Application config
+      debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
+      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE,
+      logMaxDays: 1,
+
+    }, (state) => {
+      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
+      if (!state.enabled) BackgroundGeolocation.start();
+      BackgroundGeolocation.changePace(true);
+    });
+
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.state.intervalID);
+
+    BackgroundGeolocation.stopWatchPosition();
+    BackgroundGeolocation.stop(()=>alert('LOCATION TRACKING STOPPED'));
+
+    // BackgroundGeolocation.un('location');
+    // BackgroundGeolocation.un('error');
+    // BackgroundGeolocation.un('motionchange');
+
+    //BackgroundGeolocation.removeListeners();
+
+    KeepAwake.deactivate();
+  }
 
   isNear(targetLat, targetLong, radius){
     return ( this.distTo(targetLat, targetLong) <= radius);
@@ -205,7 +245,6 @@ class AudioPage extends Component {
     return (
 
       <View style = {styles.container}>
-      <KeepAwake/>
 
         {/* <Text style = {styles.text}>{this.state.title}</Text>
         <Text>{this.state.directions}</Text> */}

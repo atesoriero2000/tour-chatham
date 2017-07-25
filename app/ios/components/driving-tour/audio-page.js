@@ -13,6 +13,7 @@ import {
   TouchableHighlight,
   Vibration,
   Image,
+  ScrollView,
 } from 'react-native'
 
 import KeepAwake from 'react-native-keep-awake';
@@ -21,45 +22,60 @@ import Sound from 'react-native-sound';
 
 var Turns = require('./turns');
 
-//var f1 = require('../../audio/Page 11 (Owen).mp3');
-// var file1 = new Sound(f1,'',(error)=>{
-//   if (error) {
-//       console.log('failed to load the sound', error);
-//     } else { // loaded successfully
-//       console.log(`duration in seconds:  ${file1.getDuration()} number of channels:  ${file1.getNumberOfChannels()}`);
-//   }
-// });
-
 var doneAtAudio = false;
-var audioIsPlaying = false;
-
 
 class AudioPage extends Component {
-
 
   constructor(props){
     super(props);
     this.state ={
-      clickable: false,
+      clickable: true,
       lastPos: 'unknown',
-      targetPos: 'unknown',
-      lastRadius: 0,
-      isNear: false,
+      currentTargetPos: 'unknown',//{latitude: 0, longitude: 0},
+      distToCurrent: 0,
+      nextTargetPos: 'unknown',
+      distToNext: 0,
+      isNear: false, //next turn
 
-      picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
-      directions: Turns.stages[Turns.stage].loc[Turns.turn].directions,
+      audioIsPlaying: false,
+
+      picture: Turns.stages[Turns.stage].startPic,
+      directions: 'NONE',
       title: Turns.stages[Turns.stage].title,
-      intervalID: setInterval(() => this.loop(), 500),
     };
   }
 
+  componentWillMount() {
 
+    BackgroundGeolocation.destroyLog();
+    BackgroundGeolocation.configure({
+      // Geolocation Config
+      desiredAccuracy: 0,
+      stationaryRadius: 25,
+      distanceFilter: 0,
+      disableElasticity: true,
+      locationAuthorizationRequest: 'Always',
+      // Activity Recognition
+      disableStopDetection: true,
+      // Application config
+      debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
+      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE,
+      logMaxDays: 1,
+
+    }, (state) => {
+      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
+      if (!state.enabled) BackgroundGeolocation.start();
+      BackgroundGeolocation.changePace(true);
+    });
+
+  }
 
   componentDidMount(){
 
     KeepAwake.activate();
+
     //####### set turns and stage to passed value in props ############
-    //this.onPress();
+    this.onPress();
 
     BackgroundGeolocation.watchPosition((location) => this.geolocation(location), {
       interval: 1000,
@@ -72,52 +88,10 @@ class AudioPage extends Component {
     Turns.turn = 0;
   }
 
-  onError(error) {
-    var type = error.type;
-    var code = error.code;
-    alert(type + " Error: " + code);
-  }
-
-  componentWillMount() {
-
-    BackgroundGeolocation.destroyLog();
-    // BackgroundGeolocation.on('location', (location) => this.geolocation(location));
-    //BackgroundGeolocation.on('motionchange', (isMoving) => if(!isMoving) BackgroundGeolocation.changePace(true));
-    // BackgroundGeolocation.on('error', this.onError);
-    BackgroundGeolocation.configure({
-      // Geolocation Config
-      desiredAccuracy: 0,
-      stationaryRadius: 25,
-      distanceFilter: 0,
-      disableElasticity: true,
-      locationAuthorizationRequest: 'Always',
-      // Activity Recognition
-      disableStopDetection: true,
-      // Application config
-      debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
-      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE,
-      logMaxDays: 1,
-
-    }, (state) => {
-      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
-      if (!state.enabled) BackgroundGeolocation.start();
-      BackgroundGeolocation.changePace(true);
-    });
-
-  }
-
   componentWillUnmount(){
+
     clearInterval(this.state.intervalID);
-
     BackgroundGeolocation.stopWatchPosition();
-    BackgroundGeolocation.stop(()=>alert('LOCATION TRACKING STOPPED'));
-
-    // BackgroundGeolocation.un('location');
-    // BackgroundGeolocation.un('error');
-    // BackgroundGeolocation.un('motionchange');
-
-    //BackgroundGeolocation.removeListeners();
-
     KeepAwake.deactivate();
   }
 
@@ -139,97 +113,91 @@ class AudioPage extends Component {
     //return (Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2)) * (364537+7/9) );
   }
 
-
-  loop(){
-    let radius = this.distTo(this.state.targetPos.latitude, this.state.targetPos.longitude);
-    this.setState({
-      targetPos: Turns.stages[Turns.stage].loc[Turns.turn],
-      lastRadius: radius,
-      title: Turns.stages[Turns.stage].title,
-      picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
-      directions: Turns.stages[Turns.stage].loc[Turns.turn].direction,
-    });
-  }
-
   geolocation(position){
-    // let currentStage = Turns.stages[Turns.stage];
-    // let currentTurn = currentStage.loc[Turns.turn];
-    //
-    // if audio is not playing and we are on the last turn
-    // this.setState({clickable: ((!audioIsPlaying && (currentStage.loc.length === Turns.turn+1))?true:false) });
-    //
-    // // if not at location
-    // if(currentStage.loc.length > Turns.turn+1){ // Need this or next line will throw error
-    //
-    //   let nextTurn = currentStage.loc[Turns.turn+1];
-    //   this.setState({lastRadius: this.distTo(nextTurn.latitude, nextTurn.longitude)});
-    //
-    //   if(this.state.lastRadius <= nextTurn.radius)){//isNear();
-    //     Turns.turn++;
-    //   }
-    // }
 
-    this.setState({lastPos: position.coords, speed: position.coords.speed});
-    this.setState({isNear: this.isNear(this.state.targetPos.latitude, this.state.targetPos.longitude, this.state.targetPos.radius)});
-    this.setState({clickable: this.state.isNear});
 
-    if(this.state.isNear){
-      this.resetPos();
+    //CURRENT TURN STATE UPDATE
+    let currentStage = Turns.stages[Turns.stage];
+    let currentTurn = currentStage.loc[Turns.turn];
+
+    this.setState({
+      lastPos: position.coords, speed: position.coords.speed,
+      currentTargetPos: {latitude: currentTurn.latitude, longitude: currentTurn.longitude},
+      distToCurrent: this.distTo(currentTurn.latitude, currentTurn.longitude),
+    });
+
+
+    //NEXT TURN STATE UPDATE
+    //TURN UPDATE
+    if(currentStage.loc.length-1 > Turns.turn){ //check if its not the last turn
+
+      let nextTurn = currentStage.loc[Turns.turn+1];
+
+      this.setState({
+        nextTargetPos: {latitude: nextTurn.latitude, longitude: nextTurn.longitude},
+        distToNext: this.distTo(nextTurn.latitude, nextTurn.longitude),
+        isNear: this.isNear(nextTurn.latitude, nextTurn.longitude, nextTurn.radius),
+      });
+
+      //handle next turns
+      if(this.state.isNear){
+        Vibration.vibrate();
+        BackgroundGeolocation.playSound(1300);
+        Turns.turn++;
+      }
     }
-  }
 
+
+
+    //SCREEN UPDATE
+
+    // checks to see if atPic is being displayed
+    // will only overide if atPic is not being displayed or if we are not at the last turn
+    if(this.state.picture !== Turns.stages[Turns.stage].atPic || currentStage.loc.length-1 > Turns.turn){
+      this.setState({
+        picture: Turns.stages[Turns.stage].loc[Turns.turn].picture,
+        directions: Turns.stages[Turns.stage].loc[Turns.turn].direction,
+      });
+    }
+    //if audio is not playing and we are on the last turn
+    this.setState({ clickable: !this.state.audioIsPlaying && (currentStage.loc.length-1 === Turns.turn) });
+
+  }
 
   triggerAudio(audioFile){
-    audioFile.play((success) => {
-     audioIsPlaying = false;
-      if (success) {
-        console.log('successfully finished playing');
-      } else {
-        console.log('playback failed due to audio decoding errors');
-      }});
-    audioIsPlaying = true;
+    audioFile.play(() => this.setState({audioIsPlaying: false})); // audioFile.release();
+    this.setState({audioFile, audioIsPlaying: true});
   }
-
 
   onPress(){
 
-    /* let currentStage = Turns.stages[Turns.stage];
+    if(this.state.clickable){ // Does nothing if audio is playing or if not at location
 
-    //Does nothing if audio is playing or if not at location
-    if(this.state.clickable){
+      let currentStage = Turns.stages[Turns.stage];
+      if(currentStage.atAudio === null) doneAtAudio = true;
 
-      if(currentStage.atAudio === null) doneAtAudio=true;
+      if(!doneAtAudio){ // Has not done the at location audio
 
-      if(!doneAtAudio){ //Has not done the at location audio
         this.triggerAudio(currentStage.atAudio);
         doneAtAudio = true;
         this.setState({
              picture: Turns.stages[Turns.stage].atPic,
              directions: 'Remain at the location until the audio is finished, then click the button to continue'});
 
-      }else{//has done at location audio or doesnt have any
+      }else{ // has done at location audio or doesnt have any
+
         Turns.stage++;
+        Turns.turn = 0;
         doneAtAudio = false;
-        Turns.turn = 0;
-        this.triggerAudio(currentStage.toAudio);
-      }
-    }
-  }*/
-    if(this.state.clickable){
-      Vibration.vibrate();
-
-      if(Turns.stages[Turns.stage].loc.length-1 <= Turns.turn){
-        Turns.turn = 0;
-        Turns.stage++;
-
-      }else{
-        Turns.turn++;
+        this.geolocation({coords: this.state.lastPos});
+        this.triggerAudio(Turns.stages[Turns.stage].toAudio);
       }
     }
   }
 
-  resetPos(){
+  DEBUG_nextTurn(){
     Vibration.vibrate();
+    BackgroundGeolocation.playSound(1300);
 
     if(Turns.stages[Turns.stage].loc.length-1 <= Turns.turn){
       Turns.turn = 0;
@@ -239,75 +207,103 @@ class AudioPage extends Component {
     }
   }
 
+  DEBUG_stopAudio(){
+    this.state.audioFile.stop().release();
+    this.setState({audioIsPlaying: false});
+  }
 
   render() {
     var debug = true;
     return (
 
       <View style = {styles.container}>
+        <ScrollView>
 
-        {/* <Text style = {styles.text}>{this.state.title}</Text>
-        <Text>{this.state.directions}</Text> */}
+          {/* <Text style = {styles.text}>{this.state.title}</Text>
+          <Text>{this.state.directions}</Text> */}
 
-        {debug?
-          <View style={{alignItems: 'center', justifyContent: 'center'}}>
-            <Text style = {styles.text}>
-              AUDIO PAGE
-            </Text>
+          {debug?
+            <View style={{alignItems: 'center', justifyContent: 'center', width: Dimensions.get('window').width}}>
 
-            {/* <Text style = {styles.location}>
-              TARGET
-            </Text>
-            <Text> Longitude: {this.state.targetPos.longitude}</Text>
-            <Text> Latitude: {this.state.targetPos.latitude}</Text> */}
+              <Text style = {styles.text}>
+                AUDIO PAGE
+              </Text>
 
-            <Text style = {styles.location}>
-              LAST
-            </Text>
-            <Text> Longitude: {this.state.lastPos.longitude}</Text>
-            <Text> Latitude: {this.state.lastPos.latitude}</Text>
-            <Text/>
-            <Text> isNear: {JSON.stringify(this.state.isNear)} </Text>
-            <Text> Radius: {JSON.stringify(Math.round(this.state.lastRadius, 1))} FT</Text>
-            <Text> Stage/Turn:   {Turns.stage},{Turns.turn}</Text>
-          </View>:null
-        }
+              <Text style = {styles.location}>
+                CURRENT TARGET
+              </Text>
+              <Text> Longitude: {this.state.currentTargetPos.longitude}</Text>
+              <Text> Latitude: {this.state.currentTargetPos.latitude}</Text>
+              <Text> distToCurrent: {JSON.stringify(Math.round(this.state.distToCurrent, 1))} FT</Text>
 
-        <Image
-        style={styles.image}
-        source={this.state.picture}
-        />
+              <Text style = {styles.location}>
+                NEXT TARGET
+              </Text>
+              <Text> Longitude: {this.state.nextTargetPos.longitude}</Text>
+              <Text> Latitude: {this.state.nextTargetPos.latitude}</Text>
+              <Text/>
+              <Text> distToNext: {JSON.stringify(Math.round(this.state.distToNext, 1))} FT</Text>
+              <Text> isNear: {JSON.stringify(this.state.isNear)} </Text>
 
-        <TouchableOpacity style = {styles.button} onPress = {() => this.resetPos()}>
-          <Text style={styles.buttonText}>Next Turn</Text>
-        </TouchableOpacity>
+              <Text style = {styles.location}>
+                LAST
+              </Text>
+              <Text> Longitude: {this.state.lastPos.longitude}</Text>
+              <Text> Latitude: {this.state.lastPos.latitude}</Text>
+              <Text/>
+              <Text> Stage/Turn:   {Turns.stage},{Turns.turn}</Text>
+            </View>:null
+          }
 
-        {/* <TouchableHighlight style = {{
-          width: Dimensions.get('window').width/1.5,
-          height: 36,
-          backgroundColor: 'gray',
-          justifyContent: 'center',
-          alignItems: 'center',
-          margin: 5,
-          opacity: this.state.clickable?1:.05,
-        }}
-        underlayColor = '#BBBBBB'
-        onPress = {() => this.onPress()}>
-          <Text style={styles.buttonText} >Click for audio</Text>
-        </TouchableHighlight> */}
+          <Image
+          style={styles.image}
+          source={this.state.picture}
+          />
 
+          <TouchableHighlight style = {{
+            width: Dimensions.get('window').width/1.5,
+            height: 36,
+            backgroundColor: 'gray',
+            justifyContent: 'center',
+            alignSelf: 'center',
+            alignItems: 'center',
+            margin: 5,
+            opacity: this.state.clickable?1:.05,
+          }}
+          underlayColor = '#BBBBBB'
+          onPress = {() => this.onPress()}>
+            <Text style={styles.buttonText} >Click to Continue</Text>
+          </TouchableHighlight>
+
+          <View style = {styles.button}>
+            <TouchableOpacity style = {styles.halfButton} onPress = {() => this.DEBUG_nextTurn()}>
+              <Text style={styles.buttonText}>Next Turn</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style = {styles.halfButton} onPress = {() => this.DEBUG_nextTurn()}>
+              <Text style={styles.buttonText}>Last Turn</Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity style = {styles.button} onPress = {() => this.DEBUG_stopAudio()}>
+            <Text style={styles.buttonText}>Stop Audio</Text>
+          </TouchableOpacity>
+
+
+        </ScrollView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+
   container:{
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     flexDirection: 'column',
-    //backgroundColor: '#424ac1',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10 * (Dimensions.get('window').width/375),
   },
 
   location:{
@@ -332,14 +328,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     margin: 5,
-    //opacity: 0.5,
   },
 
   image:{
     margin: 25 * (Dimensions.get('window').width/375),
     height: Dimensions.get('window').width / 1.5,
     width: Dimensions.get('window').width / 1.5,
+    alignSelf: 'center',
     backgroundColor: 'red',
   },
 

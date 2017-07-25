@@ -1,5 +1,4 @@
 //35 mph = 15 m/s = 51 fps
-
 const RADIUS_DELAY = 1000; //feet
 
 const pic1 = require('../../../images/Flower.jpg');
@@ -7,7 +6,6 @@ const pic2 = require('../../../images/Eagle.jpg');
 const pic3 = require('../../../images/FlagWaving.jpg');
 const pic4 = require('../../../images/boy-scout-emblem.jpg');
 
-const startPic = pic1;
 const a1 = require('../../../images/edited/A1_00000.jpg');
 //const a2 = require('../../images/A2.jpg');
 const a3 = require('../../../images/edited/A3_00000.jpg');
@@ -62,10 +60,21 @@ const o2 = require('../../../images/edited/O2_00000.jpg');
 const o3 = require('../../../images/edited/O3_00000.jpg');
 
 
+//THE MOUNT VERNON SCHOOLHOUSE
+const loc0 = [
+  {
+    direction: 'NONE_TURN',
+    picture: a1,
+    latitude: null,
+    longitude: null,
+    radius: 500,
+  },
+];
+
 //THE JOHNSON HOUSE
 const loc1 = [
   {
-    direction: 'Turn left out of the Schoolhouse parking lot onto Fairmount Ave',
+    direction: 'Turn left out of the Schoolhouse parking lot and travel along Fairmount Ave',
     picture: a1,
     latitude: null,
     longitude: null,
@@ -83,7 +92,7 @@ const loc1 = [
     picture: a3,
     latitude: 40.703046,
     longitude: -74.428045,
-    radius: 1500, //1108
+    radius: 1500, //1108 Smaller bc prev is a go strait command and radius can go past that point
   },
 ];
 
@@ -102,7 +111,7 @@ const loc2 = [
    picture: b2,
    latitude: 40.697119,
    longitude: -74.435379,
-   radius: 2965 - RADIUS_DELAY,
+   radius: 2864 - RADIUS_DELAY, // from 40.702367, -74.42768
  },
 ];
 
@@ -173,7 +182,7 @@ const loc5 = [
     picture: f2,
     latitude: 40.729022,
     longitude: -74.407241,
-    radius: 2340 - 1000,
+    radius: 864 - 200, // from 40.727589, -74.409730
   },
   {
     direction: 'Continue until you see the marker. You may park along the right side of Spring Street',
@@ -199,28 +208,28 @@ const loc6 = [
     picture: g2,
     latitude: 40.732468,
     longitude: -74.406383,
-    radius: 977 - 500,
+    radius: 942 - 200, // from 40.730896, -74.409085
   },
   {
     direction: 'Take another right onto Lafayette Ave and drive 0.4 miles',
     picture: g3,
     latitude: 40.732065,
     longitude: -74.402097,
-    radius: 853 - 500,
+    radius: 853 - 200,
   },
   {
     direction: 'Turn right onto Southern Blvd (0.2 miles)',
     picture: g4,
     latitude: 40.727553,
     longitude: -74.409742,
-    radius: 1819 - 500,
+    radius: 1819 - 300,
   },
   {
-    direction: '184 Southern Blvd and the marker are on the right (If you reached Jay Road you have gone too far). Park in Southern Boulevard School to right just past the marker',
+    direction: 'The marker at 184 Southern Blvd is on the right (If you reached Jay Road you have gone too far). Park in Southern Boulevard School to right just past the marker',
     picture: g5,
     latitude: 40.729440,
     longitude: -74.413286,
-    radius: 1198 - 500,
+    radius: 1198 - 250,
   },
 ];
 
@@ -277,7 +286,7 @@ const loc9 = [
     picture: j2,
     latitude: 40.744404,
     longitude: -74.434543,
-    radius: 1482 - 500,
+    radius: 1350 - 350, // from 40.742026, -74.430803
   },
   {
     direction: 'The destination is on the left at 461 Green Village Road. You may park in the driveway to the left',
@@ -322,7 +331,7 @@ const loc11 = [
     picture: l2,
     latitude: 40.739029,
     longitude: -74.453421,
-    radius: 1080 - 250,
+    radius: 1080 - 200,
   },
 ];
 
@@ -341,7 +350,7 @@ const loc12 = [
     picture: m2,
     latitude: 40.740854,
     longitude: -74.456702,
-    radius: 1125 - 250,
+    radius: 1125 - 200,
   },
   {
     direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the marron marker',
@@ -355,7 +364,7 @@ const loc12 = [
     picture: m4,
     latitude: 40.752534,
     longitude: -74.446877,
-    radius: 1553 - 250,
+    radius: 1553 - 200,
   },
 ];
 
@@ -370,7 +379,7 @@ const loc13 = [
     radius: 500,
   },
   {
-    direction: 'You may park along the wooden fence to the right',
+    direction: 'The destination is on the left (a grey/white hosue). You may park along the wooden fence to the right',
     picture: n2,
     latitude: 40.753724,
     longitude: -74.440480,
@@ -393,7 +402,7 @@ const loc14 = [
     picture: o2,
     latitude: 40.765623,
     longitude: -74.445828,
-    radius: 4586 - RADIUS_DELAY,
+    radius: 4786 - RADIUS_DELAY, // from 40.755507, -74.434803
   },
   {
     direction: 'Park along fence to the left or right once you see the marker on the left',
@@ -405,28 +414,89 @@ const loc14 = [
 ];
 
 
+var Sound = require('react-native-sound');
+
+const atPic0 = pic2; //require('../../../images/at0.jpg');
+const atPic1 = pic2; //require('../../../images/at1.jpg');
+const atPic2 = pic2; //require('../../../images/at2.jpg');
+const atPic3 = pic2; //require('../../../images/at3.jpg');
+const atPic4 = pic2; //require('../../../images/at4.jpg');
+const atPic5 = pic2; //require('../../../images/at5.jpg');
+const atPic6 = pic2; //require('../../../images/at6.jpg');
+const atPic7 = pic2; //require('../../../images/at7.jpg');
+const atPic8 = pic2; //require('../../../images/at8.jpg');
+const atPic9 = pic2; //require('../../../images/at9.jpg');
+const atPic10 = pic2; //require('../../../images/at10.jpg');
+const atPic11 = pic2; //require('../../../images/at11.jpg');
+const atPic12 = pic2; //require('../../../images/at12.jpg');
+const atPic13 = pic2; //require('../../../images/at13.jpg');
+const atPic14 = pic2; //require('../../../images/at14.jpg');
+
+var to1 = new Sound('page_3.4_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to2 = new Sound('page_6_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to3 = new Sound('page_7_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to4 = new Sound('page_9_kimberly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to5 = new Sound('page_11_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to6 = new Sound('page_13_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to7 = new Sound('page_15_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to8 = new Sound('page_17_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to9 = new Sound('page_18_jacob.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to10 = new Sound('page_20_kimberly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to11 = new Sound('page_21_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to12 = new Sound('page_22_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to13 = new Sound('page_24_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to14 = new Sound('page_25_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+
+
+var at0 = new Sound('page_2_kimberly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var at1 = new Sound('page_5_jacob.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+
+var at3 = new Sound('page_8_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var at4 = new Sound('page_10_grace.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var at5 = new Sound('page_12_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var at6 = new Sound('page_14_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var at7 = new Sound('page_16_grace.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+
+var at9 = new Sound('page_19_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+
+
+var at12 = new Sound('page_23_jacob.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+
+var at14 = new Sound('page_26_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+
+
+function audioLoadError(error){
+  if (error) {
+    console.log('\n\n\n\n\nFAILED TO LOAD SOUND\n\n' + error);
+  }else{
+    console.log('\n\nAUDIO LOAD SUCCESS\n');
+  }
+}
+
+
 class Turns {
 
   static stages = [
 
-  //  {loc: [{directions: 'Welcome to the Chatham ', picture: startPic}], title: 'The Mount Vernon Schoolhouse', atAudio: null, atPic: startPic},
-
-    {loc: loc1, title: 'The Johnson House Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc3, title: 'The Bey’s Boxing Camp Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc4, title: 'The Price-Baldwin House Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc5, title: 'The Chatham Colony Association Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc7, title: 'The Noe Pond Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc8, title: 'The Greenhouse Industry Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc9, title: 'The Elias Boudinot House Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc10, title: 'The Cockrem Farm Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc11, title: 'The Green Village Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc13, title: 'The Loantaka School – Spring Valley School Marker', toAudio: null, atAudio: null, atPic: null},
-    {loc: loc14, title: 'The Boisaubin House Marker', toAudio: null, atAudio: null, atPic: null},
+    {loc: loc0, title: 'The Mount Vernon Schoolhouse', atAudio: at0, atPic: atPic0},
+    {loc: loc1, title: 'The Johnson House Marker', toAudio: to1, atAudio: at1, atPic: atPic1},
+    {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudio: to2, atAudio: null, atPic: atPic2},
+    {loc: loc3, title: 'The Bey’s Boxing Camp Marker', toAudio: to3, atAudio: at3, atPic: atPic3},
+    {loc: loc4, title: 'The Price-Baldwin House Marker', toAudio: to4, atAudio: at4, atPic: atPic4},
+    {loc: loc5, title: 'The Chatham Colony Association Marker', toAudio: to5, atAudio: at5, atPic: atPic5},
+    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', toAudio: to6, atAudio: at6, atPic: atPic6},
+    {loc: loc7, title: 'The Noe Pond Marker', toAudio: to7, atAudio: at7, atPic: atPic7},
+    {loc: loc8, title: 'The Greenhouse Industry Marker', toAudio: to8, atAudio: null, atPic: atPic8},
+    {loc: loc9, title: 'The Elias Boudinot House Marker', toAudio: to9, atAudio: at9, atPic: atPic9},
+    {loc: loc10, title: 'The Cockrem Farm Marker', toAudio: to10, atAudio: null, atPic: atPic10},
+    {loc: loc11, title: 'The Green Village Marker', toAudio: to11, atAudio: null, atPic: atPic11},
+    {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudio: to12, atAudio: at12, atPic: atPic12},
+    {loc: loc13, title: 'The Loantaka School – Spring Valley School Marker', toAudio: to13, atAudio: null, atPic: atPic13},
+    {loc: loc14, title: 'The Boisaubin House Marker', toAudio: to14, atAudio: at14, atPic: atPic14},
 
   ];
+
+  static endAudio = new Sound('page_27_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 
   static stage = 0;
   static turn = 0;

@@ -408,57 +408,15 @@ const loc14 = [
 // 4586
 // 1204
 
-var stage = 0;
-var turn = 0;
+function distTo(targetLat, targetLong){
 
-var lastLat = 0; //40.708721;
-var lastLong = 0; //-74.416936;
-
-  function distTo(targetLat, targetLong){
-
-    let the_return;
-
-    if(targetLat === null){
-      the_return=true;
-    }else{
-      the_return = Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2)) * (364537+7/9);
-    }
-
-    if(targetLat != null){
-      lastLat = targetLat;
-      lastLong = targetLong;
-    }
-
-    return the_return;
-  }
-
-
-function haversine(targetLat, targetLong){
   let the_return;
 
   if(targetLat === null){
     the_return=true;
+
   }else{
-    // var R = 3959 * 5280;
-    // var φ1 = lastLat/180 * Math.PI;
-    // var φ2 = targetLat/180 * Math.PI
-    // var Δφ = (targetLat-lastLat)/180 * Math.PI
-    // var Δλ = (targetLong-lastLong)/180 * Math.PI
-    //
-    // var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-    //       Math.cos(φ1) * Math.cos(φ2) *
-    //       Math.sin(Δλ/2) * Math.sin(Δλ/2);
-    // var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    //
-    // var d = R * c;
-
-
-    var φ1 = lastLat/180 * Math.PI, φ2 = targetLat/180 * Math.PI, Δλ = (targetLong-lastLong)/180 * Math.PI, R = 3959 * 5280;
-    var d = Math.acos( Math.sin(φ1)*Math.sin(φ2) + Math.cos(φ1)*Math.cos(φ2) * Math.cos(Δλ) ) * R;
-
-    d = Math.round(d);
-
-    the_return = d;
+    the_return = Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2)) * (364537+7/9);
   }
 
   if(targetLat != null){
@@ -469,20 +427,77 @@ function haversine(targetLat, targetLong){
   return the_return;
 }
 
-let RADIUS_DELAY = 1500;
 
-//console.log(haversine(40.714512, -74.407812));
 
-while(stage < stages.length){
-  let d = haversine(stages[stage].loc[turn].latitude, stages[stage].loc[turn].longitude);
 
-  // console.log(d>(RADIUS_DELAY + 500) || d === true ? (d-RADIUS_DELAY):'TOO SMALL: ' + (d-RADIUS_DELAY) );
-  console.log(d>(RADIUS_DELAY + 500) || d === true ? d:'TOO SMALL: ' + d );
+var lastLat = 0;
+var lastLong = 0;
 
-  if(stages[stage].loc.length-1 <= turn){
-    turn = 0;
-    stage++;
-  }else{
-    turn++;
+function haversine(targetLat, targetLong){
+
+  let d = haversine_2(targetLat, targetLong, lastLat, lastLong);
+
+  if(targetLat != null){
+    lastLat = targetLat;
+    lastLong = targetLong;
   }
+
+  return d;
 }
+
+
+
+
+function haversine_2(targetLat, targetLong, lastLat, lastLong) {
+  let the_return;
+
+  if(targetLat === null){
+    the_return=true;
+
+  }else{
+    var φ1 = lastLat/180 * Math.PI, φ2 = targetLat/180 * Math.PI, Δλ = (targetLong-lastLong)/180 * Math.PI, R = 3959 * 5280;
+    var d = Math.acos( Math.sin(φ1)*Math.sin(φ2) + Math.cos(φ1)*Math.cos(φ2) * Math.cos(Δλ) ) * R;
+
+    d = Math.round(d);
+
+    the_return = d;
+  }
+
+  return the_return;
+}
+
+
+
+
+console.log(haversine_2(40.765623, -74.445828, 40.755507, -74.434803));
+
+
+// var stage = 0;
+// var turn = 0;
+
+// let RADIUS_DELAY = 1500;
+
+// while(stage < stages.length){
+//   let d = haversine(stages[stage].loc[turn].latitude, stages[stage].loc[turn].longitude);
+//
+//   // console.log(d>(RADIUS_DELAY + 500) || d === true ? (d-RADIUS_DELAY):'TOO SMALL: ' + (d-RADIUS_DELAY) );
+//   console.log(d>(RADIUS_DELAY + 500) || d === true ? d:'TOO SMALL: ' + d );
+//
+//   if(stages[stage].loc.length-1 <= turn){
+//     turn = 0;
+//     stage++;
+//   }else{
+//     turn++;
+//   }
+// }
+
+/*
+var loc1 = [{longitude: 1000, latitude: 55555}];
+var loc2 = [{longitude: 15500, latitude: 57755}];
+
+
+  const stages = [{loc: loc1}, {loc: loc2}];
+
+var pos = {latitude, longitude} = stages[0].loc[0];
+
+console.log(pos);*/

@@ -82,7 +82,7 @@ const loc1 = [
   },
   {
     direction: 'Travel straight 2.03 miles past the Fairmount Country Store Deli',
-    picture: pic1,
+    picture: pic2,
     latitude: 40.705910,
     longitude: -74.429376,
     radius: 9244 - RADIUS_DELAY,
@@ -416,21 +416,21 @@ const loc14 = [
 
 var Sound = require('react-native-sound');
 
-const atPic0 = pic2; //require('../../../images/at0.jpg');
-const atPic1 = pic2; //require('../../../images/at1.jpg');
-const atPic2 = pic2; //require('../../../images/at2.jpg');
-const atPic3 = pic2; //require('../../../images/at3.jpg');
-const atPic4 = pic2; //require('../../../images/at4.jpg');
-const atPic5 = pic2; //require('../../../images/at5.jpg');
-const atPic6 = pic2; //require('../../../images/at6.jpg');
-const atPic7 = pic2; //require('../../../images/at7.jpg');
-const atPic8 = pic2; //require('../../../images/at8.jpg');
-const atPic9 = pic2; //require('../../../images/at9.jpg');
-const atPic10 = pic2; //require('../../../images/at10.jpg');
-const atPic11 = pic2; //require('../../../images/at11.jpg');
-const atPic12 = pic2; //require('../../../images/at12.jpg');
-const atPic13 = pic2; //require('../../../images/at13.jpg');
-const atPic14 = pic2; //require('../../../images/at14.jpg');
+const atPic0 = pic1; //require('../../../images/at0.jpg');
+const atPic1 = pic1; //require('../../../images/at1.jpg');
+const atPic2 = pic1; //require('../../../images/at2.jpg');
+const atPic3 = pic1; //require('../../../images/at3.jpg');
+const atPic4 = pic1; //require('../../../images/at4.jpg');
+const atPic5 = pic1; //require('../../../images/at5.jpg');
+const atPic6 = pic1; //require('../../../images/at6.jpg');
+const atPic7 = pic1; //require('../../../images/at7.jpg');
+const atPic8 = pic1; //require('../../../images/at8.jpg');
+const atPic9 = pic1; //require('../../../images/at9.jpg');
+const atPic10 = pic1; //require('../../../images/at10.jpg');
+const atPic11 = pic1; //require('../../../images/at11.jpg');
+const atPic12 = pic1; //require('../../../images/at12.jpg');
+const atPic13 = pic1; //require('../../../images/at13.jpg');
+const atPic14 = pic1; //require('../../../images/at14.jpg');
 
 var to1 = new Sound('page_3.4_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to2 = new Sound('page_6_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
@@ -469,7 +469,7 @@ function audioLoadError(error){
   if (error) {
     console.log('\n\n\n\n\nFAILED TO LOAD SOUND\n\n' + error);
   }else{
-    console.log('\n\nAUDIO LOAD SUCCESS\n');
+    console.log('\nAUDIO LOAD SUCCESS');
   }
 }
 
@@ -495,6 +495,8 @@ class Turns {
     {loc: loc14, title: 'The Boisaubin House Marker', toAudio: to14, atAudio: at14, atPic: atPic14},
 
   ];
+
+  static endPic = require('../../../images/boy-scout-emblem.jpg');
 
   static endAudio = new Sound('page_27_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 

@@ -18,22 +18,8 @@ import {
 
 var Location = require('./start-loc');
 var InfoPage = require('./info-page');
+var Turns = require('./turns');
 //var backIcon = require('./back_chevron.png');
-
-var pic1 = require('../../../images/Flower.jpg');
-var pic2 = require('../../../images/Flower.jpg');
-var pic3 = require('../../../images/Flower.jpg');
-var pic4 = require('../../../images/Flower.jpg');
-var pic5 = require('../../../images/Flower.jpg');
-var pic6 = require('../../../images/Flower.jpg');
-var pic7 = require('../../../images/Flower.jpg');
-var pic8 = require('../../../images/Flower.jpg');
-var pic9 = require('../../../images/Flower.jpg');
-var pic10 = require('../../../images/Flower.jpg');
-var pic11 = require('../../../images/Flower.jpg');
-var pic12 = require('../../../images/Flower.jpg');
-var pic13 = require('../../../images/Flower.jpg');
-var pic14 = require('../../../images/Flower.jpg');
 
 var active = true;
 
@@ -83,60 +69,64 @@ class SelectionPage extends Component{
         <ScrollView>
 
             <Location
-              pic = {pic1} title = {'The Mount Vernon Schoolhouse'} address = {'24 Southern Blvd, Chatham Township'}
+              pic = {Turns.stages[0].atPic} title = {'The Mount Vernon Schoolhouse'} address = {'24 Southern Blvd, Chatham Township'}
               stage = {0} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic2} title = {'The Johnson House Marker'} address = {'805 Fairmount Ave, Chatham Township'}
+              pic = {Turns.stages[1].atPic} title = {'The Johnson House Marker'} address = {'805 Fairmount Ave, Chatham Township'}
               stage = {1} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic3} title = {'The Isaac Clark Farmstead Marker'} address = {'788 River Road, Chatham Township'}
+              pic = {Turns.stages[2].atPic} title = {'The Isaac Clark Farmstead Marker'} address = {'788 River Road, Chatham Township'}
               stage = {2} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic4} title = {'The Bey’s Boxing Camp Marker'} address = {'516 River Road, Chatham Township'}
+              pic = {Turns.stages[3].atPic} title = {'The Bey’s Boxing Camp Marker'} address = {'516 River Road, Chatham Township'}
               stage = {3} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic5} title = {'The Price-Baldwin House Marker'} address = {'48 Southern Blvd, Chatham Township'}
+              pic = {Turns.stages[4].atPic} title = {'The Price-Baldwin House Marker'} address = {'48 Southern Blvd, Chatham Township'}
               stage = {4} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic6} title = {'The Chatham Colony Association'} address = {'Spring Street, Chatham Township'}
+              pic = {Turns.stages[5].atPic} title = {'The Chatham Colony Association'} address = {'25 Spring Street, Chatham Township'}
               stage = {5} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic7} title = {'The Lewis Noe Farmstead Marker'} address = {'184 Southern Blvd, Chatham Township'}
+              pic = {Turns.stages[6].atPic} title = {'The Lewis Noe Farmstead Marker'} address = {'184 Southern Blvd, Chatham Township'}
               stage = {6} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic8} title = {'The Noe Pond Marker'} address = {'395 Southern Blvd, Chatham Township'}
+              pic = {Turns.stages[7].atPic} title = {'The Noe Pond Marker'} address = {'395 Southern Blvd, Chatham Township'}
               stage = {7} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic9} title = {'The Greenhouse Industry Marker'} address = {'405 Southern Blvd, Chatham Township'}
+              pic = {Turns.stages[8].atPic} title = {'The Greenhouse Industry Marker'} address = {'405 Southern Blvd, Chatham Township'}
               stage = {8} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic10} title = {'The Elias Boudinot House Marker'} address = {'461 Green Village Road, Green Village'}
+              pic = {Turns.stages[9].atPic} title = {'The Elias Boudinot House Marker'} address = {'461 Green Village Road, Green Village'}
               stage = {9} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic11} title = {'The Cockrem Farm Marker'} address = {'486 Green Village Road, Green Village'}
+              pic = {Turns.stages[10].atPic} title = {'The Cockrem Farm Marker'} address = {'486 Green Village Road, Green Village'}
               stage = {10} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic12} title = {'The Green Village Marker'} address = {'536 Green Village Road, Green Village'}
+              pic = {Turns.stages[11].atPic} title = {'The Green Village Marker'} address = {'536 Green Village Road, Green Village'}
               stage = {11} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic13} title = {'The Gibbons Horse Barn Marker'} address = {'340 Loantaka Way, Madison'}
+              pic = {Turns.stages[12].atPic} title = {'The Gibbons Horse Barn Marker'} address = {'340 Loantaka Way, Madison'}
               stage = {12} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
             <Location
-              pic = {pic14} title = {'The Loantaka School Marker'} address = {'245 Loantaka Way, Madison'}
+              pic = {Turns.stages[13].atPic} title = {'The Loantaka School Marker'} address = {'245 Loantaka Way, Madison'}
               stage = {13} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
+
+            <Location
+              pic = {Turns.stages[14].atPic} title = {'The Boisaubin House Marker'} address = {'65 Treadwell Ave, Madison'}
+              stage = {14} unmount = {this.props.unmount} onPress = {(props) => this.NavToInfo(props)}/>
 
         </ScrollView>
       </View>

@@ -18,6 +18,8 @@ import {
 var AudioPage = require('./audio-page');
 var Turns = require('./turns');
 
+var atEnd = false;
+
 class InfoPage extends Component{
 
   constructor(props){
@@ -43,7 +45,18 @@ class InfoPage extends Component{
       component: AudioPage,
 
       leftButtonTitle: 'End Tour',
-      onLeftButtonPress: () => this.props.navigator.popToTop(),
+      onLeftButtonPress: () => {
+        if(!atEnd){
+          Alert.alert(
+            'End Tour Warning',
+            'Are you sure ypu want to end the tour?',
+            [
+              {text: 'Cancel'},
+              {text: 'End Tour', onPress: () => this.props.navigator.popToTop(), style: 'destructive'},
+            ],
+          );
+        }else this.props.navigator.popToTop();
+      },
 
       rightButtonTitle: 'Return Home',
       onRightButtonPress: () =>
@@ -53,6 +66,7 @@ class InfoPage extends Component{
 
       passProps: {
         stage: this.props.stage,
+        changeAtEnd: (val) => atEnd = val,
       },
     });
   }

@@ -46,8 +46,8 @@ class Start extends Component {
         </Text>
 
         <TouchableHighlight style = {styles.button}
-          //onPress = {() => this.setState({visible:true})}
-          onPress = {()=>this.NavToAudio()}
+          onPress = {() => this.setState({visible:true})}
+          //onPress = {()=>this.NavToAudio()}
           underlayColor = '#BBBBBB'>
             <Text style = {styles.buttonText}>
               Click to Continue
@@ -160,14 +160,17 @@ class Start extends Component {
     this.props.navigator.push({
       title: 'Audio Tour',
       component: AudioPage,
-      passProps: {unmount: this.props.unmount},
+      passProps: {
+        unmount: this.props.unmount,
+        stage: 0,
+      },
     });
   }
 
   NavToSelection(){
     this.setState({visible: false});
     this.props.navigator.push({
-      title: 'Select a Location',
+      title: 'Select a Start Point',
       component: SelectionPage,
       passProps: {unmount: this.props.unmount},
     });

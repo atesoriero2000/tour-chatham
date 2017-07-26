@@ -8,7 +8,8 @@ import {
   View,
   Dimensions,
   Image,
-  ScrollView
+  ScrollView,
+  Linking
 } from 'react-native'
 
 class About extends Component {
@@ -65,16 +66,16 @@ class About extends Component {
               Name: Anthony Tesoriero
             </Text>
             <Text style = {styles.fineText}>
-              Email: <Text selectable = {true}>atesoriero2000@gmail.com</Text>
+              Email: <Text selectable = {true} onPress={() => this.linkUrl("mailto:atesoriero2000@gmail.com")}>atesoriero2000@gmail.com</Text>
             </Text>
 
-            <Text style = {styles.labels}>
+            <Text style = {styles.labels} onPress={() => this.linkUrl("http://www.chathamtownshiphistoricalsociety.org")}>
               Chatham Township Historical Society
             </Text>
             <Text style = {styles.fineText}>
-              <Text selectable={true} onPress={null}>
+              <Text selectable={true} onPress={() => this.linkUrl("http://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m")}>
                 24 Southern Blvd, Chatham, NJ
-              </Text>   •   <Text selectable={true} onPress={null}>973-635-4911</Text>
+              </Text>   •   <Text selectable={true} onPress={() => this.linkUrl("tel:973-635-4911")}>973-635-4911</Text>
             </Text>
 
             <Text style = {styles.fineText}>
@@ -85,7 +86,13 @@ class About extends Component {
         </ScrollView>
       </View>
 
-    )
+    );
+  }
+  linkUrl(url){
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) console.log('Can\'t handle url: ' + url);
+      else return Linking.openURL(url);
+    }).catch(err => console.error('An error occurred', err));
   }
 }
 

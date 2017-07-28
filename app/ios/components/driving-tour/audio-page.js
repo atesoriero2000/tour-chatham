@@ -42,6 +42,7 @@ class AudioPage extends Component {
       picture: Turns.stages[Turns.stage].startPic,
       directions: 'NONE',
       title: Turns.stages[Turns.stage].title,
+      // title: Turns.stages[10].title,
     };
   }
 
@@ -70,6 +71,8 @@ class AudioPage extends Component {
 
     Turns.stage = this.props.stage;
     Turns.turn = Turns.stages[Turns.stage].loc.length-1;
+    // Turns.stage = 4;
+    // Turns.turn = 2;
 
   }
 
@@ -77,14 +80,14 @@ class AudioPage extends Component {
 
     KeepAwake.activate();
 
-    //####### set turns and stage to passed value in props ############
-    this.onPress();
-
     BackgroundGeolocation.watchPosition((location) => this.geolocation(location), {
       interval: 1000,
       desiredAccuracy: 0,
       persists: true,
     });
+
+    //####### set turns and stage to passed value in props ############
+    this.onPress();
   }
 
   componentWillUnmount(){
@@ -118,7 +121,7 @@ class AudioPage extends Component {
       });
     }
     //if audio is not playing and we are on the last turn
-    this.setState({ clickable: !this.state.audioIsPlaying && (currentStage.loc.length-1 === Turns.turn) });
+    this.setState({ clickable: (!this.state.audioIsPlaying && (currentStage.loc.length-1 === Turns.turn) && this.state.distToCurrent > 50)});
 
 
     //NEXT TURN STATE UPDATE
@@ -248,15 +251,27 @@ class AudioPage extends Component {
 
 
   render() {
-    var debug = false;
+    var debug = 0;
+    debug = (debug === 1);
     return (
 
       <View style = {styles.container}>
-        <ScrollView>
+        {/* <ScrollView><View style = {styles.container}> */}
 
-          <Text style = {styles.title}>{this.state.title}</Text>
-          <Text style = {styles.line}>___________________</Text>
-          <Text style = {styles.directions}>{this.state.directions}</Text>
+          <View style = {styles.banner}/>
+
+          <View style = {styles.titleBox}>
+            <Text style = {styles.title}>{this.state.title}</Text>
+          </View>
+
+          <View style = {styles.line}/>
+
+          <View style = {styles.directionBox}>
+            <Text style = {styles.directions}>{this.state.directions}</Text>
+          </View>
+
+          <Text style = {styles.dist}>In: {JSON.stringify(Math.round(this.state.distToNext, 1))} FT</Text>
+
 
           <Image
           style={styles.image}
@@ -268,9 +283,9 @@ class AudioPage extends Component {
             height: 36,
             backgroundColor: 'gray',
             justifyContent: 'center',
-            alignSelf: 'center',
             alignItems: 'center',
-            margin: 5,
+            position: 'absolute',
+            top: 262 + 310,
             opacity: this.state.clickable?1:.05,
           }}
           underlayColor = '#BBBBBB'
@@ -281,7 +296,7 @@ class AudioPage extends Component {
 
           {debug?
             <View style={{alignItems: 'center', justifyContent: 'center', width: Dimensions.get('window').width}}>
-
+              <View style={{height: 300}}/>
               <Text style = {styles.text}>
                 DEBUGGER
               </Text><Text/>
@@ -327,8 +342,7 @@ class AudioPage extends Component {
               <Text/>
             </View>:null
           }
-
-        </ScrollView>
+        {/* </View></ScrollView> */}
       </View>
     );
   }
@@ -339,17 +353,81 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10 * (Dimensions.get('window').width/375),
   },
 
+  banner:{
+    width: Dimensions.get('window').width,
+    height: 64,
+  },
+
+  titleBox:{
+    width: Dimensions.get('window').width,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  title:{
+    fontSize: 30,
+    textAlign: 'center',
+    color: 'black',
+    fontWeight: '300',
+    paddingTop: 5,
+    paddingHorizontal: 45,
+  },
+
+  line:{
+    backgroundColor: 'black',
+    height: .74,
+    width: Dimensions.get('window').width / 3,
+  },
+
+  dist:{
+    fontSize: 15,
+    color: 'dimgray',
+    fontWeight: '500',
+    textAlign: 'center',
+    marginTop: 3,
+  },
+
+  directionBox:{
+    width: Dimensions.get('window').width - 50,
+    height: 107,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+
+  directions:{
+    fontSize: 18,
+    color: 'gray',
+    fontWeight: '300',
+    textAlign: 'center',
+  },
+
+  image:{
+    position: 'absolute',
+    top: 310,
+    left: 0,
+    height: Dimensions.get('window').width / 1.5,
+    width: Dimensions.get('window').width,
+  },
+
+  buttonText:{
+    fontSize: 15,
+    color: 'white',
+    fontWeight: '100',
+  },
+
+//DEBUGGER STYLES
   location:{
     fontSize: 20,
     color: 'black',
     fontWeight: '500',
     textAlign: 'center',
-    paddingTop: 20
+    paddingTop: 20,
   },
 
   text:{
@@ -357,7 +435,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
-    paddingTop: 30,
+    marginTop: 30,
   },
 
   button:{
@@ -367,7 +445,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    margin: 5,
   },
 
   halfButton:{
@@ -389,55 +466,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: 5,
   },
-
-  image:{
-    marginTop: 25 * (Dimensions.get('window').width/375),
-    height: Dimensions.get('window').width / 1.5,
-    width: Dimensions.get('window').width,
-    alignSelf: 'center',
-    backgroundColor: 'red',
-
-    // margin: 25 * (Dimensions.get('window').width/375),
-    // height: Dimensions.get('window').width / 1.5,
-    // width: Dimensions.get('window').width / 1.5,
-    // alignSelf: 'center',
-    // backgroundColor: 'red',
-  },
-
-  buttonText:{
-    fontSize: 15,
-    color: 'white',
-    fontWeight: '100',
-  },
-
-  title:{
-    fontSize: 30,
-    textAlign: 'center',
-    color: 'black',
-    fontWeight: '500',
-    paddingTop: 20,
-    paddingLeft: 25,
-    paddingRight: 25,
-
-  },
-
-  line:{
-    fontSize: 15,
-    color: 'gray',
-    fontWeight: '200',
-    textAlign: 'center',
-  },
-
-  directions:{
-    fontSize: 18,
-    color: 'gray',
-    fontWeight: '300',
-    textAlign: 'center',
-    paddingTop: 15,
-    paddingLeft: 25,
-    paddingRight: 25,
-  },
-
 });
 
 module.exports = AudioPage;

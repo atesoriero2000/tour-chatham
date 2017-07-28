@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  Linking,
 } from 'react-native'
 
 var AudioPage = require('./audio-page');
@@ -25,8 +26,51 @@ class InfoPage extends Component{
   constructor(props){
     super(props);
     this.state = {
+      url: null,
       //intervalID: setInterval(()=>this.check(), 1000),
     }
+  }
+
+  componentDidMount(){
+    let linkStart = "http://maps.apple.com/?daddr=";
+    let address = this.props.address.replace(/\s/g, "+");
+    let linkEnd = ",NJ&dirflg=d&t=m";
+    this.setState({url: linkStart + address + linkEnd});
+  }
+
+  render() {
+    return(
+      <View style = {styles.container}>
+
+        <Text style = {styles.text}> {this.props.title} </Text>
+
+        <View style = {{
+          //Add padding to view not text or onPress position will be ghosting
+          paddingHorizontal: 25 * (Dimensions.get('window').width/375),
+          paddingTop: 25 * (Dimensions.get('window').width/375),
+        }}>
+          <Text style = {styles.subtext}>
+            <Text> Please navigate to</Text>
+            <Text style = {styles.text_bold} onPress={() => this.linkUrl(this.state.url)}> {this.props.address} </Text>
+            <Text>then click the button below to start the tour.</Text>
+          </Text>
+        </View>
+
+        <Image style = {styles.image} source = {this.props.pic}/>
+
+        <TouchableOpacity style = {styles.button} onPress = {() => this.NavToAudio()}>
+          <Text style={styles.buttonText}> Click To Start Tour! </Text>
+        </TouchableOpacity>
+
+      </View>
+    );
+  }
+
+  linkUrl(url){
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) console.log('Can\'t handle url: ' + url);
+      else return Linking.openURL(url);
+    }).catch(err => console.error('An error occurred', err));
   }
 
   check(){
@@ -70,28 +114,6 @@ class InfoPage extends Component{
       },
     });
   }
-
-  render() {
-    return(
-      <View style = {styles.container}>
-
-        <Text style = {styles.text}> {this.props.title} </Text>
-
-        <Text style = {styles.subtext}>
-          Please navigate to
-            <Text selectable = {true} style = {styles.text_bold}> {this.props.address} </Text>
-          then click the button below to start the tour.
-        </Text>
-
-        <Image style = {styles.image} source = {this.props.pic}/>
-
-        <TouchableOpacity style = {styles.button} onPress = {() => this.NavToAudio()}>
-          <Text style={styles.buttonText}> Click To Start Tour! </Text>
-        </TouchableOpacity>
-
-      </View>
-    );
-  }
 }
 
 const styles = StyleSheet.create({
@@ -124,8 +146,6 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '200',
     textAlign: 'center',
-    paddingHorizontal: 25 * (Dimensions.get('window').width/375),
-    paddingTop: 25 * (Dimensions.get('window').width/375),
   },
 
   button:{

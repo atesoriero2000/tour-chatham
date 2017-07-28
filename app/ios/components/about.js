@@ -66,7 +66,7 @@ class About extends Component {
               Name: Anthony Tesoriero
             </Text>
             <Text style = {styles.fineText}>
-              Email: <Text selectable = {true} onPress={() => this.linkUrl("mailto:atesoriero2000@gmail.com")}>atesoriero2000@gmail.com</Text>
+              Email: <Text selectable = {true} onPress={() => this.linkUrl("mailto:atesoriero2000@gmail.com?subject=Chatham%Township%Historical%Society%App")}>atesoriero2000@gmail.com</Text>
             </Text>
 
             <Text style = {styles.labels} onPress={() => this.linkUrl("http://www.chathamtownshiphistoricalsociety.org")}>
@@ -92,7 +92,7 @@ class About extends Component {
     Linking.canOpenURL(url).then(supported => {
       if (!supported) console.log('Can\'t handle url: ' + url);
       else return Linking.openURL(url);
-    }).catch(err => console.error('An error occurred', err));
+    }).catch(err => console.log('An error occurred', err));
   }
 }
 

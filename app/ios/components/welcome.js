@@ -11,6 +11,7 @@ import {
   TouchableHighlight,
   Button,
   Linking,
+  NavigatorIOS,
 } from 'react-native'
 
 class Welcome extends Component {
@@ -20,11 +21,17 @@ class Welcome extends Component {
 
       <View style = {styles.container}>
 
+      {/* faux navigation banner */}
+        <View style = {styles.banner}>
+          <Text style = {styles.bannerText}>Welcome</Text>
+          <View style = {styles.bannerLine}/>
+        </View>
+
         <Text style = {styles.text}>
           The Chatham Historical Society Driving Tour
         </Text>
 
-        <Image style = {styles.logo} source={require('../../images/chs_logo.jpg')} />
+        <Image style = {styles.logo} source = {require('../../images/chs_logo.jpg')}  />
         {/* <Swiper
           showsButtons = {true}
           // dotColor = {'grey'}
@@ -59,26 +66,47 @@ class Welcome extends Component {
 
 const styles = StyleSheet.create({
 
-  logo:{
-    width: Dimensions.get('window').width,
-    height: 300 * (Dimensions.get('window').width/375),
+  container:{
+    flex: 1,
+    alignItems: 'center',
   },
 
-  container:{
-    flex: 2,
+  banner:{
+    height: 65 * (Dimensions.get('window').width/375),
+    width: Dimensions.get('window').width,
+    backgroundColor: '#f9f9f9',
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+
+  bannerText:{
+    fontSize: 17 * (Dimensions.get('window').width/375),
+    paddingTop: 31.5 * (Dimensions.get('window').width/375),
+    paddingBottom: 12 * (Dimensions.get('window').width/375),
+    fontWeight: '600',
+  },
+
+  bannerLine:{
+    height: .5 * (Dimensions.get('window').width/375),
+    width: Dimensions.get('window').width,
+    backgroundColor: '#b9b9b9',
   },
 
   text:{
-    marginHorizontal: 20 * (Dimensions.get('window').width/375),
+    marginHorizontal: 35 * (Dimensions.get('window').width/375),
+    marginTop: 65.5 * (Dimensions.get('window').width/375),
     marginBottom: 10 * (Dimensions.get('window').width/375),
     fontSize: 25 * (Dimensions.get('window').width/375),
-    width: 300 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
     justifyContent: 'center',
+    // backgroundColor: 'red',
+  },
+
+  logo:{
+    width: Dimensions.get('window').width,
+    height: 300 * (Dimensions.get('window').width/375),
+    // backgroundColor: 'blue',
   },
 
   button:{
@@ -87,9 +115,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 10 * (Dimensions.get('window').width/375),
+    marginTop: 40 * (Dimensions.get('window').width/375),
     opacity: 0.5,
-    bottom: -40 * (Dimensions.get('window').width/375),
   },
 
   buttonText:{

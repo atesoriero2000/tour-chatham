@@ -19,7 +19,7 @@ import {
 var Location = require('./start-loc');
 var InfoPage = require('./info-page');
 var Turns = require('./turns');
-//var backIcon = require('./back_chevron.png');
+// var backIcon = require('./back_chevron.png');
 
 var active = true;
 
@@ -48,7 +48,7 @@ class SelectionPage extends Component{
       title: 'Drive to Start Point',
       component: InfoPage,
       leftButtonTitle: 'Selections',
-      //leftButtonIcon: back_chevron.png,
+      //leftButtonIcon: back_chevron,
       onLeftButtonPress: () => {
         this.props.navigator.pop();
         active=true;

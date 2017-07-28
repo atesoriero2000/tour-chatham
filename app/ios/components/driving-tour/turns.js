@@ -159,7 +159,7 @@ const loc4 = [
     radius: 3291 - RADIUS_DELAY, // from 40.714512, -74.407812
   },
   {
-    direction: 'Continue Strait along Southern Blvb just past the intersection of Fairmount Ave until you reach the marker. You may park in the gravel driveway to the right or along Southern Boulevard',
+    direction: 'Continue Strait along Southern Blvd just past the intersection of Fairmount Ave until you reach the marker. You may park in the gravel driveway to the right or along Southern Boulevard',
     picture: e3,
     latitude: 40.722827,
     longitude: -74.405053,
@@ -478,7 +478,7 @@ class Turns {
 
   static stages = [
 
-    {loc: loc0, title: 'The Mount Vernon Schoolhouse', atAudio: at0, atPic: atPic0},
+    {loc: loc0, title: 'The Mount Vernon Schoolhouse Marker', atAudio: at0, atPic: atPic0},
     {loc: loc1, title: 'The Johnson House Marker', toAudio: to1, atAudio: at1, atPic: atPic1},
     {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudio: to2, atAudio: null, atPic: atPic2},
     {loc: loc3, title: 'The Bey’s Boxing Camp Marker', toAudio: to3, atAudio: at3, atPic: atPic3},
@@ -491,7 +491,7 @@ class Turns {
     {loc: loc10, title: 'The Cockrem Farm Marker', toAudio: to10, atAudio: null, atPic: atPic10},
     {loc: loc11, title: 'The Green Village Marker', toAudio: to11, atAudio: null, atPic: atPic11},
     {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudio: to12, atAudio: at12, atPic: atPic12},
-    {loc: loc13, title: 'The Loantaka School – Spring Valley School Marker', toAudio: to13, atAudio: null, atPic: atPic13},
+    {loc: loc13, title: 'The Loantaka School Marker', toAudio: to13, atAudio: null, atPic: atPic13},
     {loc: loc14, title: 'The Boisaubin House Marker', toAudio: to14, atAudio: at14, atPic: atPic14},
 
   ];

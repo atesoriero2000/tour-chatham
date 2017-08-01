@@ -92,9 +92,9 @@ const styles = StyleSheet.create({
   },
 
   text:{
-    marginHorizontal: 35 * (Dimensions.get('window').width/375),
-    marginTop: 65.5 * (Dimensions.get('window').width/375),
-    marginBottom: 10 * (Dimensions.get('window').width/375),
+    paddingHorizontal: 35 * (Dimensions.get('window').width/375),
+    paddingTop: 65.5 * (Dimensions.get('window').width/375),
+    paddingBottom: 10 * (Dimensions.get('window').width/375),
     fontSize: 25 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '100',

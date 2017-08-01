@@ -58,7 +58,7 @@ class InfoPage extends Component{
 
         <Image style = {styles.image} source = {this.props.pic}/>
 
-        <TouchableOpacity style = {styles.button} onPress = {() => this.NavToAudio()}>
+        <TouchableOpacity style = {styles.button} onPress = {() => this.onPress()}>
           <Text style={styles.buttonText}> Click To Start Tour! </Text>
         </TouchableOpacity>
 
@@ -83,7 +83,13 @@ class InfoPage extends Component{
     clearInterval(this.state.intervalID);
   }
 
-  NavToAudio(){
+  onPress(){
+    Alert.alert('SAFTEY', '\n1) Please make sure you have a passenger. You will need a passenger to follow and read the directions as the come up on the phone screen.\n\n 2) If you miss a turn, safely navigate through adjacent road and proceed back to the instructed route.\n\n 3) Some locations have limited/ample parking. Please be cautious of your surrounding and pay attention to the specified parking directions.\n\n 4) some markers are on private property. Be courteous to others and mindful of trespassing.\n\n 5) Drive safely, the developer, the Chatham Township Historical Society, and associates of the app hold no liability for any incidents while using this app.',[
+      { text: 'Ok, I Understand', onPress: () => this.navToAudio()},
+    ]);
+  }
+
+  navToAudio(){
     this.props.navigator.push({
       title: 'Audio Tour',
       component: AudioPage,
@@ -93,7 +99,7 @@ class InfoPage extends Component{
         if(!atEnd){
           Alert.alert(
             'End Tour Warning',
-            'Are you sure ypu want to end the tour?',
+            'Are you sure you want to end the tour?',
             [
               {text: 'Cancel'},
               {text: 'End Tour', onPress: () => this.props.navigator.popToTop(), style: 'destructive'},
@@ -103,10 +109,10 @@ class InfoPage extends Component{
       },
 
       rightButtonTitle: 'Return Home',
-      onRightButtonPress: () =>
-        Alert.alert('Direction Back to Start',
-        '\nThese next directions take approx 9 minutes to travel and 4.5 miles\n\n Turn around on Treadwell Ave and proceed back to Woodland Ave\n\n Turn left onto Woodland Ave and proceed approx 1.4 miles. Then turn right onto Green Village Road\n\n Continue along onto Southern Blvd to Fairmount Ave and turn left onto Fairmount. The school is on the right',
-        [{text: 'Close'}]),
+      onRightButtonPress: () => this.linkUrl("http://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m"),
+        // Alert.alert('Direction Back to Start',
+        // '\nThese next directions take approx 9 minutes to travel and 4.5 miles\n\n Turn around on Treadwell Ave and proceed back to Woodland Ave\n\n Turn left onto Woodland Ave and proceed approx 1.4 miles. Then turn right onto Green Village Road\n\n Continue along onto Southern Blvd to Fairmount Ave and turn left onto Fairmount. The school is on the right',
+        // [{text: 'Close'}]),
 
       passProps: {
         stage: this.props.stage,

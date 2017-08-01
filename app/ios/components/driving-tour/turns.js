@@ -1,10 +1,13 @@
 //35 mph = 15 m/s = 51 fps
-const RADIUS_DELAY = 1000; //feet
+const RADIUS_DELAY = 500; //feet
 
 const pic1 = require('../../../images/Flower.jpg');
 const pic2 = require('../../../images/Eagle.jpg');
 const pic3 = require('../../../images/FlagWaving.jpg');
 const pic4 = require('../../../images/boy-scout-emblem.jpg');
+
+const e0 = pic1;
+const f0 = pic1;
 
 const a1 = require('../../../images/edited/A1_00000.jpg');
 //const a2 = require('../../images/A2.jpg');
@@ -83,16 +86,16 @@ const loc1 = [
   {
     direction: 'Travel straight 2.03 miles past the Fairmount Country Store Deli',
     picture: pic2,
-    latitude: 40.705910,
-    longitude: -74.429376,
-    radius: 9244 - RADIUS_DELAY,
+    latitude: 40.703046,
+    longitude: -74.428045,
+    radius: 9244 + 1108 - RADIUS_DELAY, // strait 9244
   },
   {
     direction: 'Follow past the Marker and Turn left and park in Esternay Field. You may walk back up Fairmount to the marker.',
     picture: a3,
     latitude: 40.703046,
-    longitude: -74.428045,
-    radius: 1500, //1108 Smaller bc prev is a go strait command and radius can go past that point
+    longitude: -74.428045, // from 40.705910, -74.429376
+    radius: 2000, //1108 Smaller bc prev is a go strait command and radius can go past that point
   },
 ];
 
@@ -128,16 +131,16 @@ const loc3 = [
  {
    direction: 'Follow River Road for 1.30 miles (the marker is 0.7 miles past Fairmount Ave)',
    picture: d2,
-   latitude: 40.702367,
-   longitude: -74.427685,
-   radius: 2863 - RADIUS_DELAY,
+   latitude: 40.708721,
+   longitude: -74.416936,
+   radius: 2863 + 3770 - RADIUS_DELAY, // strait
  },
  {
    direction: 'Park along River Road to right in the gravel outcrop',
    picture: d3,
    latitude: 40.708721,
    longitude: -74.416936,
-   radius: 3770 - RADIUS_DELAY,
+   radius: 3770 - RADIUS_DELAY, // from 40.702367, -74.427685
  },
 ];
 
@@ -145,25 +148,32 @@ const loc3 = [
 //PRINCE BALDWIN HOUSE
 const loc4 = [
   {
-    direction: 'Continue Travelling Northeast on River Road and make a left to continue on River Road',
-    picture: e1,
+    direction: 'Continue travelling northeast(right) on River Road',
+    picture: e0,
     latitude: null,
     longitude: null,
     radius: 500,
+  },
+  {
+    direction: 'Make a left to continue on River Road',
+    picture: e1,
+    latitude: 40.714512,
+    longitude: -74.407812,
+    radius: 3291 - RADIUS_DELAY,
   },
   {
     direction: 'Turn Left onto Southern Blvd and travel up "Snake Hill"',
     picture: e2,
     latitude: 40.720305,
     longitude: -74.401989,
-    radius: 3291 - RADIUS_DELAY, // from 40.714512, -74.407812
+    radius: 2657 - RADIUS_DELAY,
   },
   {
     direction: 'Continue Strait along Southern Blvd just past the intersection of Fairmount Ave until you reach the marker. You may park in the gravel driveway to the right or along Southern Boulevard',
     picture: e3,
     latitude: 40.722827,
     longitude: -74.405053,
-    radius: 1000,  //1251,
+    radius: 1100,  //1251,
   },
 ];
 
@@ -171,25 +181,32 @@ const loc4 = [
 // CHATHAM COLONY ASSOCIATION
 const loc5 = [
   {
-    direction: 'Continue traveling along Southern Blvd and take the 3rd right onto Lafayette Ave. (0.4 miles)',
-    picture: f1,
+    direction: 'Continue traveling along Southern Blvd and take the 3rd right onto Lafayette Ave.',
+    picture: f0,
     latitude: null,
     longitude: null,
     radius: 500,
+  },
+  {
+    direction: 'Take the 3rd right onto Lafayette Ave. (0.4 miles)',
+    picture: f1,
+    latitude: 40.727589,
+    longitude: -74.409730,
+    radius: 2166 - RADIUS_DELAY,
   },
   {
     direction: 'Take the first left onto Spring St (approx 0.2 miles)',
     picture: f2,
     latitude: 40.729022,
     longitude: -74.407241,
-    radius: 864 - 200, // from 40.727589, -74.409730
+    radius: 864 - 150, // from 40.727589, -74.409730
   },
   {
     direction: 'Continue until you see the marker. You may park along the right side of Spring Street',
     picture: f3,
     latitude: 40.730427,
     longitude: -74.408672,
-    radius: 648 - 150,
+    radius: 648 - 100,
   },
 ];
 
@@ -208,28 +225,28 @@ const loc6 = [
     picture: g2,
     latitude: 40.732468,
     longitude: -74.406383,
-    radius: 942 - 200, // from 40.730896, -74.409085
+    radius: 942 - 150, // from 40.730896, -74.409085
   },
   {
     direction: 'Take another right onto Lafayette Ave and drive 0.4 miles',
     picture: g3,
     latitude: 40.732065,
     longitude: -74.402097,
-    radius: 853 - 200,
+    radius: 853 - 150,
   },
   {
     direction: 'Turn right onto Southern Blvd (0.2 miles)',
     picture: g4,
     latitude: 40.727553,
     longitude: -74.409742,
-    radius: 1819 - 300,
+    radius: 1819 - 200,
   },
   {
-    direction: 'The marker at 184 Southern Blvd is on the right (If you reached Jay Road you have gone too far). Park in Southern Boulevard School to right just past the marker',
+    direction: 'The marker at 184 Southern Blvd is on the right. Park in Southern Boulevard School to right just past the marker', // (If you reached Jay Road you have gone too far)
     picture: g5,
     latitude: 40.729440,
     longitude: -74.413286,
-    radius: 1198 - 250,
+    radius: 1198 - 200,
   },
 ];
 
@@ -237,14 +254,14 @@ const loc6 = [
 //NOE POND
 const loc7 = [
   {
-    direction: 'Turn left onto Southern Blvd towards Jay Road for approx 0.8 miles',
+    direction: 'Turn left onto Southern Blvd towards Jay Road and travel for approx 0.8 miles',
     picture: h1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'Turn left and park in 395 Southern Blvd (Noe Pond Club) (If you reach Hickory Pl you have gone too far). The marker is 100 ft before the entrance of Noe pond, you may walk to the marker',
+    direction: 'Turn left and park in 395 Southern Blvd (Noe Pond Club). The marker is 100 ft before the entrance of Noe pond, you may walk to the marker', // (If you reach Hickory Pl you have gone too far)
     picture: h2,
     latitude: 40.737275,
     longitude: -74.425151,
@@ -263,11 +280,11 @@ const loc8 = [
     radius: 500,
   },
   {
-    direction: '405 Southern Blvd is on the left. You marker may turn into and park in Nash Field (approx 0.14 mile)',
+    direction: '405 Southern Blvd (Nash Field) is on the left. You marker may turn into and park in Nash Field.',
     picture: i2,
     latitude: 40.741458,
     longitude: -74.430853,
-    radius: 2194 - 1000,
+    radius: 2194 - RADIUS_DELAY,
   },
 ];
 
@@ -286,7 +303,7 @@ const loc9 = [
     picture: j2,
     latitude: 40.744404,
     longitude: -74.434543,
-    radius: 1350 - 350, // from 40.742026, -74.430803
+    radius: 1350 - 300, // from 40.742026, -74.430803
   },
   {
     direction: 'The destination is on the left at 461 Green Village Road. You may park in the driveway to the left',
@@ -301,7 +318,7 @@ const loc9 = [
 //COCKREM FARM
 const loc10 = [
   {
-    direction: 'Turn left back onto Green Village Road going west for approx 0.2 miles to 486 Green Village Road on the right',
+    direction: 'Turn left back onto Green Village Road going west to 486 Green Village Road on the right',
     picture: k1,
     latitude: null,
     longitude: null,
@@ -312,7 +329,7 @@ const loc10 = [
     picture: k2,
     latitude: 40.738841,
     longitude: -74.449521,
-    radius: 876 - 200,
+    radius: 876 - 150,
   },
 ];
 
@@ -331,7 +348,7 @@ const loc11 = [
     picture: l2,
     latitude: 40.739029,
     longitude: -74.453421,
-    radius: 1080 - 200,
+    radius: 1080 - 150,
   },
 ];
 
@@ -350,7 +367,7 @@ const loc12 = [
     picture: m2,
     latitude: 40.740854,
     longitude: -74.456702,
-    radius: 1125 - 200,
+    radius: 1125 - 150,
   },
   {
     direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the marron marker',
@@ -364,7 +381,7 @@ const loc12 = [
     picture: m4,
     latitude: 40.752534,
     longitude: -74.446877,
-    radius: 1553 - 200,
+    radius: 1553 - 150,
   },
 ];
 
@@ -383,7 +400,7 @@ const loc13 = [
     picture: n2,
     latitude: 40.753724,
     longitude: -74.440480,
-    radius: 1820 - 400,
+    radius: 1820 - 200,
   },
 ];
 
@@ -391,7 +408,7 @@ const loc13 = [
 //BOISAUBIN HOUSE
 const loc14 = [
   {
-    direction: 'Continue strait along Loantaka Way towards Shunpike Road and turn left onto Woodland Road (Woodland Road becomes Woodland Ave)',
+    direction: 'Continue strait along Loantaka Way towards Shunpike Road and turn left onto Woodland Road (Woodland Road becomes Woodland Ave)', // LEAVING BAD 1698
     picture: o1,
     latitude: null,
     longitude: null,
@@ -409,7 +426,7 @@ const loc14 = [
     picture: o3,
     latitude: 40.768086,
     longitude: -74.442928,
-    radius: 1204 - 400,
+    radius: 1204 - 200,
   },
 ];
 

@@ -13,6 +13,7 @@ import {
   ScrollView,
   Modal,
   Button,
+  Linking
 } from 'react-native'
 
 import Swiper from 'react-native-swiper';
@@ -22,7 +23,6 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 var Turns = require('./turns');
 var AudioPage = require('./audio-page');
 var SelectionPage = require('./selection-page');
-var Safety = require('./test/safety');
 
 
 class Start extends Component {
@@ -41,19 +41,40 @@ class Start extends Component {
   render() {
     return (
       <View style = {styles.container}>
+
+
+        {/* OVERVIEW PAGE */}
         <Text style = {styles.text}>
           TOUR OVERVIEW
         </Text>
 
+        <Text style = {styles.tutorialText}>
+          This is a audio guided driving tour that will take you across Chatham township Madison and green village to different marked historical sights while telling you the history behind them.
+        </Text>
+
+        <Text style = {styles.tutorialText}>
+          It will take approximately 1.5 hours to complete the whole tour but, you may stop at any marker and pick up where you left off.
+        </Text>
+
+        <TouchableHighlight style = {styles.button}
+          onPress = {() => this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}
+          underlayColor = '#BBBBBB'>
+            <Text style = {styles.buttonText}>
+              More information about the historical marker project
+            </Text>
+        </TouchableHighlight>
+
         <TouchableHighlight style = {styles.button}
           onPress = {() => this.setState({visible:true})}
-          // onPress = {()=>this.NavToAudio()}
+          // onPress = {()=>this.navToAudio()}
           underlayColor = '#BBBBBB'>
             <Text style = {styles.buttonText}>
               Click to Continue
             </Text>
         </TouchableHighlight>
 
+
+        {/* TUTORIAL */}
         <Modal
           animationType={'fade'}
           transparent={true}
@@ -75,38 +96,30 @@ class Start extends Component {
 
 
                   {/* PAGE 1 */}
-                  <View style = {styles.page1}>
+                  <View style = {styles.swiperPage}>
                     <Text style = {styles.text}>
                       PAGE 1
                     </Text>
-                  </View>
 
+                    <Text style = {styles.tutorialText}>
+                      Directions will appear on the screen instructing what you exactly what to do and what turns to make. Below it will be a counter identifying how far away you are from each turn.
+                    </Text>
+
+                  </View>
 
 
                   {/* PAGE 2 */}
-                  <View style = {styles.page1}>
+                  <View style = {styles.swiperPage}>
                     <Text style = {styles.text}>
                       PAGE 2
                     </Text>
-                  </View>
 
-
-                  {/* PAGE 3 */}
-                  <View style = {styles.page1}>
-                    <Text style = {styles.text}>
-                      PAGE 3
-                    </Text>
-                  </View>
-
-
-                  {/* PAGE 4 */}
-                  <View style = {styles.page1}>
-                    <Text style = {styles.text}>
-                      PAGE 4
+                    <Text style = {styles.tutorialText}>
+                      On the next page you will pick your starting location. The tour will start at the location you choose and continue through only the locations listed after. (Any location listed before the location you select will not be played.)
                     </Text>
 
                     <TouchableHighlight style = {styles.button}
-                      onPress = {() => this.toNext()}
+                      onPress = {() => this.navToSelection()}
                       underlayColor = '#BBBBBB'>
                       <Text style = {styles.buttonText}>
                         Click
@@ -143,20 +156,7 @@ class Start extends Component {
     );
   }
 
-  toNext(){
-    Alert.alert('SAFTEY', '\n1) Please make sure you have a passenger. You will need a passenger to follow and read the directions as the come up on the phone screen.\n\n 2) If you miss a turn, safely navigate through adjacent road and proceed back to the instructed route.\n\n 3) Some locations have limited/ample parking. Please be cautious of your surrounding and pay attention to the specified parking directions.\n\n 4) some markers are on private property. Be courteous to others and mindful of trespassing.\n\n 5) Drive safely, the developer, the Chatham Township Historical Society, and associates of the app hold no liability for any incidents while using this app.',[
-      { text: 'Ok, I Understand', onPress: () => this.NavToSelection()},
-    ]);
-  }
-
-  NavToSafety(){
-    this.props.navigator.push({
-      title: 'Driving Safety',
-      component: Safety
-    });
-  }
-
-  NavToAudio(){
+  navToAudio(){
     this.props.navigator.push({
       title: 'Audio Tour',
       component: AudioPage,
@@ -167,7 +167,7 @@ class Start extends Component {
     });
   }
 
-  NavToSelection(){
+  navToSelection(){
     this.setState({visible: false});
     this.props.navigator.push({
       title: 'Select a Start Point',
@@ -175,6 +175,13 @@ class Start extends Component {
       passProps: {unmount: this.props.unmount},
     });
   }
+}
+
+linkUrl(url){
+  Linking.canOpenURL(url).then(supported => {
+    if (!supported) console.log('Can\'t handle url: ' + url);
+    else return Linking.openURL(url);
+  }).catch(err => console.error('An error occurred', err));
 }
 
 const styles = StyleSheet.create({
@@ -185,33 +192,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  banner:{
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  modal:{
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: Dimensions.get('window').width/1.25,
-    height: Dimensions.get('window').height/1.13,
-    borderRadius: 15,
-    backgroundColor: 'whitesmoke',
-  },
-
-  overlay:{
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  page1:{
-    flex: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    // backgroundColor: 'red'
+  text:{
+    fontSize: 35 * (Dimensions.get('window').width/375),
+    color: 'black',
+    fontWeight: '100',
+    textAlign: 'center',
+    paddingHorizontal: 25 * (Dimensions.get('window').width/375),
+    paddingVertical: 20 * (Dimensions.get('window').width/375),
   },
 
   button:{
@@ -226,19 +213,42 @@ const styles = StyleSheet.create({
     transform: [{translateY:50}],
   },
 
-  text:{
-    fontSize: 35 * (Dimensions.get('window').width/375),
-    color: 'black',
-    fontWeight: '100',
-    textAlign: 'center',
-    paddingHorizontal: 25 * (Dimensions.get('window').width/375),
-    paddingVertical: 20 * (Dimensions.get('window').width/375),
-  },
-
   buttonText:{
     fontSize: 18,
     color: 'white',
     fontWeight: '100',
+  },
+
+  overlay:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  modal:{
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: Dimensions.get('window').width/1.25,
+    height: Dimensions.get('window').height/1.13,
+    borderRadius: 15,
+    backgroundColor: 'whitesmoke',
+  },
+
+  swiperPage:{
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    // backgroundColor: 'red'
+  },
+
+  tutorialText:{
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: '500',
+    color: 'black',
+    padding: 20
   },
 });
 

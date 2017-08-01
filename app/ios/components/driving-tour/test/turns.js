@@ -468,8 +468,7 @@ function haversine_2(targetLat, targetLong, lastLat, lastLong) {
 
 
 
-
-console.log(haversine_2(40.765623, -74.445828, 40.755507, -74.434803));
+console.log(haversine_2(40.755507, -74.434803, 40.753724, -74.440480));
 
 
 // var stage = 0;

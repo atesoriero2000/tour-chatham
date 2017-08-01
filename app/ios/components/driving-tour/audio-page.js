@@ -24,6 +24,11 @@ var Turns = require('./turns');
 
 var doneAtAudio = false;
 
+var debug = 1;
+debug = (debug === 1);
+
+var tester = false;
+
 class AudioPage extends Component {
 
   constructor(props){
@@ -99,12 +104,12 @@ class AudioPage extends Component {
 
   geolocation(position){
 
-    //CURRENT TURN STATE UPDATE
     let currentStage = Turns.stages[Turns.stage];
     let currentTurn = currentStage.loc[Turns.turn];
 
+    //LOCATION UPDATE
     this.setState({
-      lastPos: position.coords, speed: position.coords.speed,
+      lastPos: position.coords,
       currentTargetPos: {latitude: currentTurn.latitude, longitude: currentTurn.longitude},
       distToCurrent: this.distTo(currentTurn.latitude, currentTurn.longitude),
     });
@@ -114,14 +119,14 @@ class AudioPage extends Component {
 
     // checks to see if atPic is being displayed
     // will only overide if atPic is not being displayed or if we are not at the last turn
-    if(this.state.picture !== Turns.stages[Turns.stage].atPic || currentStage.loc.length-1 > Turns.turn){
+    if(this.state.picture !== Turns.stages[Turns.stage].atPic){   // || currentStage.loc.length-1 > Turns.turn){
       this.setState({
         picture: currentTurn.picture,
         directions: currentTurn.direction,
       });
     }
-    //if audio is not playing and we are on the last turn
-    this.setState({ clickable: (!this.state.audioIsPlaying && (currentStage.loc.length-1 === Turns.turn) && this.state.distToCurrent > 50)});
+    //if audio is not playing and we are close to the last turn
+    this.setState({ clickable: (!this.state.audioIsPlaying && (currentStage.loc.length-1 === Turns.turn)  && (debug||this.state.distToCurrent < 150) )});
 
 
     //NEXT TURN STATE UPDATE
@@ -151,7 +156,9 @@ class AudioPage extends Component {
 
       //HANDLE END TOUR
       // if its the last stage and we've played the atAudio and it is finished playing
-      if(Turns.stage === 14 && doneAtAudio && !this.state.audioIsPlaying){
+      // removed this is already caught with clickable state && !this.state.audioIsPlaying){
+
+      if(Turns.stage === 14 && doneAtAudio){
         this.endTour();
         return;
       }
@@ -170,14 +177,18 @@ class AudioPage extends Component {
 
       }else{ // has done at location audio or doesnt have any
 
-        Turns.stage++;
         Turns.turn = 0;
+        Turns.stage++;
         doneAtAudio = false;
-        this.setState({ title: Turns.stages[Turns.stage].title });
-        this.geolocation({ coords: this.state.lastPos });
+        this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture });
         this.triggerAudio(Turns.stages[Turns.stage].toAudio);
+        this.update();
       }
     }
+  }
+
+  update(){
+    this.geolocation({ coords: this.state.lastPos });
   }
 
   endTour(){
@@ -203,7 +214,7 @@ class AudioPage extends Component {
     let lastLat = this.state.lastPos.latitude;
     let lastLong =  this.state.lastPos.longitude;
 
-    if(targetLat === null){return true}
+    // if(targetLat === null){return true}
 
     let φ1 = lastLat/180 * Math.PI, φ2 = targetLat/180 * Math.PI, Δλ = (targetLong-lastLong)/180 * Math.PI, R = 3959 * 5280;
     let d = Math.acos( Math.sin(φ1)*Math.sin(φ2) + Math.cos(φ1)*Math.cos(φ2) * Math.cos(Δλ) ) * R;
@@ -216,6 +227,7 @@ class AudioPage extends Component {
   triggerAudio(audioFile){
     audioFile.play(() => {
       this.setState({audioIsPlaying: false});
+      this.update();
     });
     this.setState({audioFile, audioIsPlaying: true});
   }
@@ -223,6 +235,7 @@ class AudioPage extends Component {
   DEBUG_stopAudio(){
     this.state.audioFile.stop();
     this.setState({audioIsPlaying: false});
+    this.update();
   }
 
   DEBUG_nextTurn(){
@@ -251,8 +264,6 @@ class AudioPage extends Component {
 
 
   render() {
-    var debug = 0;
-    debug = (debug === 1);
     return (
 
       <View style = {styles.container}>
@@ -270,7 +281,9 @@ class AudioPage extends Component {
             <Text style = {styles.directions}>{this.state.directions}</Text>
           </View>
 
-          <Text style = {styles.dist}>In: {JSON.stringify(Math.round(this.state.distToNext, 1))} FT</Text>
+          <Text style = {styles.dist}>
+            {doneAtAudio?'':('In: ' + ( (Turns.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
+          </Text>
 
 
           <Image
@@ -293,29 +306,33 @@ class AudioPage extends Component {
             <Text style={styles.buttonText}>Click to Continue</Text>
           </TouchableHighlight>
 
+          {debug||tester?
+            <TouchableOpacity style = {styles.debug1} onPress={() => this.DEBUG_stopAudio()}>
+              <Text style={{color: 'white'}}>{'X'}</Text>
+            </TouchableOpacity>:null
+          }
 
           {debug?
+            <TouchableOpacity style = {styles.debug2} onPress={() => this.DEBUG_lastTurn()}>
+              <Text style={{color: 'white'}}>{'<'}</Text>
+            </TouchableOpacity>:null
+          }
+
+          {debug?
+            <TouchableOpacity style = {styles.debug3} onPress={() => this.DEBUG_nextTurn()}>
+              <Text style={{color: 'white'}}>{'>'}</Text>
+            </TouchableOpacity>:null
+          }
+
+          {debug?<Text style={{position: 'absolute', top: 285, left: 285}}>{Turns.stage},{Turns.turn}</Text>:null}
+
+          {false?
             <View style={{alignItems: 'center', justifyContent: 'center', width: Dimensions.get('window').width}}>
               <View style={{height: 300}}/>
               <Text style = {styles.text}>
                 DEBUGGER
               </Text><Text/>
 
-              <View style = {styles.halfButtonView}>
-                <TouchableOpacity style = {styles.halfButton} onPress = {() => this.DEBUG_lastTurn()}>
-                  <Text style={styles.buttonText}>Last Turn</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style = {styles.halfButton} onPress = {() => this.DEBUG_nextTurn()}>
-                  <Text style={styles.buttonText}>Next Turn</Text>
-                </TouchableOpacity>
-              </View>
-
-              <TouchableOpacity style = {styles.button} onPress = {() => this.DEBUG_stopAudio()}>
-                <Text style={styles.buttonText}>Stop Audio</Text>
-              </TouchableOpacity>
-
-              <Text/>
               <Text> Stage/Turn:   {Turns.stage},{Turns.turn}</Text>
 
               <Text style = {styles.location}>
@@ -323,7 +340,7 @@ class AudioPage extends Component {
               </Text>
               <Text> Longitude: {this.state.currentTargetPos.longitude}</Text>
               <Text> Latitude: {this.state.currentTargetPos.latitude}</Text>
-              <Text> distToCurrent: {JSON.stringify(Math.round(this.state.distToCurrent, 1))} FT</Text>
+              <Text> distToCurrent: {JSON.stringify(Math.round(this.state.distToCurrent))} FT</Text>
 
               <Text style = {styles.location}>
                 NEXT TARGET
@@ -331,7 +348,7 @@ class AudioPage extends Component {
               <Text> Longitude: {this.state.nextTargetPos.longitude}</Text>
               <Text> Latitude: {this.state.nextTargetPos.latitude}</Text>
               <Text/>
-              <Text> distToNext: {JSON.stringify(Math.round(this.state.distToNext, 1))} FT</Text>
+              <Text> distToNext: {JSON.stringify(Math.round(this.state.distToNext))} FT</Text>
               <Text> isNear: {JSON.stringify(this.state.isNear)} </Text>
 
               <Text style = {styles.location}>
@@ -422,6 +439,43 @@ const styles = StyleSheet.create({
   },
 
 //DEBUGGER STYLES
+
+  debug1: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 275,
+    left: 15,
+    backgroundColor: 'gray',
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+  },
+
+  debug2: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 275,
+    left: 55,
+    backgroundColor: 'gray',
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+  },
+
+  debug3: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 275,
+    left: 95,
+    backgroundColor: 'gray',
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+  },
+
   location:{
     fontSize: 20,
     color: 'black',

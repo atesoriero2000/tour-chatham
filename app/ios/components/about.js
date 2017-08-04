@@ -32,14 +32,14 @@ class About extends Component {
 {/* Contributors */}
           <Text style = {styles.titles}>Contributors</Text>
           <View style = {styles.contributors}>
-            <View style = {{paddingHorizontal: 10}}>
+            <View style = {{paddingHorizontal: 10 * (Dimensions.get('window').width/375)}}>
               <Text style = {styles.labels}>Development</Text>
               <Text style = {styles.fineText}>
                 {'Cat DeMatos\nEitan Miller\nEthan Aktins\nCarson Storm\nRandom\nRandom'}
               </Text>
             </View>
 
-            <View style = {{paddingHorizontal: 10}}>
+            <View style = {{paddingHorizontal: 10 * (Dimensions.get('window').width/375)}}>
               <Text style = {styles.labels}>Audio</Text>
               <Text style = {styles.fineText}>
                 {'Grace Evans\nJacob Feeney\nKimberly Scaglione\nLilly McGrath\nMikey Behr\nOwen LaChance'}
@@ -103,14 +103,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10 * (Dimensions.get('window').width/375),
+    marginBottom: 10 * (Dimensions.get('window').height/667),
   },
 
   picture:{
     width: Dimensions.get('window').width,
-    height: 200 * (Dimensions.get('window').width/375),
-    marginTop: 50 * (Dimensions.get('window').width/375),
-    //transform: [{translateX:200, translateY:20}]//REMEBER THIS SHIT BRO
+    height: 200 * (Dimensions.get('window').height/667),
+    marginTop: 50 * (Dimensions.get('window').height/667),
   },
 
   textHeader:{
@@ -118,9 +117,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
-    paddingTop: 30 * (Dimensions.get('window').width/375),
-    paddingBottom: 30 * (Dimensions.get('window').width/375),
-
+    paddingVertical: 30 * (Dimensions.get('window').height/667),
   },
 
   text:{
@@ -136,7 +133,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
-    paddingTop: 50 * (Dimensions.get('window').width/375),
+    paddingTop: 50 * (Dimensions.get('window').height/667),
   },
 
   contributors:{
@@ -164,8 +161,8 @@ const styles = StyleSheet.create({
     color: 'dimgrey',
     fontWeight: '500',
     textAlign: 'center',
-    paddingBottom: 3 * (Dimensions.get('window').width/375),
-    paddingTop: 23 * (Dimensions.get('window').width/375),
+    paddingBottom: 3 * (Dimensions.get('window').height/667),
+    paddingTop: 23 * (Dimensions.get('window').height/667),
   },
 });
 

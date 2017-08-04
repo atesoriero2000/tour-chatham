@@ -47,7 +47,7 @@ class InfoPage extends Component{
         <View style = {{
           //Add padding to view not text or onPress position will be ghosting
           paddingHorizontal: 25 * (Dimensions.get('window').width/375),
-          paddingTop: 25 * (Dimensions.get('window').width/375),
+          paddingTop: 25 * (Dimensions.get('window').height/667),
         }}>
           <Text style = {styles.subtext}>
             <Text> Please navigate to</Text>
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     textAlign: 'center',
     paddingHorizontal: 25 * (Dimensions.get('window').width/375),
-    paddingTop: 20 * (Dimensions.get('window').width/375),
+    paddingTop: 20 * (Dimensions.get('window').height/667),
   },
 
   text_bold:{
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
 
   button:{
     width: Dimensions.get('window').width/1.5,
-    height: 36 * (Dimensions.get('window').width/375),
+    height: 36 * (Dimensions.get('window').height/667),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
     fontSize: 15 * (Dimensions.get('window').width/375),
     color: 'white',
     fontWeight: '100',
+    textAlign: 'center',
   },
 
   image:{

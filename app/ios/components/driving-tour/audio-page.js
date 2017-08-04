@@ -60,7 +60,7 @@ class AudioPage extends Component {
       stationaryRadius: 25,
       distanceFilter: 0,
       disableElasticity: true,
-      locationAuthorizationRequest: 'Always',
+      locationAuthorizationRequest: 'WhenInUse',
       // Activity Recognition
       disableStopDetection: true,
       // Application config
@@ -203,7 +203,7 @@ class AudioPage extends Component {
       picture: Turns.endPic,
     });
 
-    this.triggerAudio(Turns.endAudio);
+    this.triggerAudioBool(Turns.endAudio, false);
   }
 
   isNear(targetLat, targetLong, radius){
@@ -224,12 +224,16 @@ class AudioPage extends Component {
     //return (Math.sqrt(Math.pow((lastLong-targetLong),2) + Math.pow((lastLat-targetLat),2)) * (364537+7/9) );
   }
 
-  triggerAudio(audioFile){
+  triggerAudioBool(audioFile, shouldUpdate){
     audioFile.play(() => {
       this.setState({audioIsPlaying: false});
-      this.update();
+      if(shouldUpdate)this.update();
     });
     this.setState({audioFile, audioIsPlaying: true});
+  }
+
+  triggerAudio(audioFile){
+    this.triggerAudioBool(audioFile, true);
   }
 
   DEBUG_stopAudio(){
@@ -293,12 +297,12 @@ class AudioPage extends Component {
 
           <TouchableHighlight style = {{
             width: Dimensions.get('window').width/1.5,
-            height: 36,
+            height: 36 * (Dimensions.get('window').height/667),
             backgroundColor: 'gray',
             justifyContent: 'center',
             alignItems: 'center',
             position: 'absolute',
-            top: 262 + 310,
+            top: (262 + 310) * (Dimensions.get('window').height/667),
             opacity: this.state.clickable?1:.05,
           }}
           underlayColor = '#BBBBBB'
@@ -325,6 +329,17 @@ class AudioPage extends Component {
           }
 
           {debug?<Text style={{position: 'absolute', top: 285, left: 285}}>{Turns.stage},{Turns.turn}</Text>:null}
+
+          {debug?<Text style={{
+            position: 'absolute',
+            top: 262 + 50,
+            left: 220
+          }}> distToNext: {JSON.stringify(Math.round(this.state.distToNext))} FT</Text>:null}
+          {debug?<Text style={{
+            position: 'absolute',
+            top: 262 + 77,
+            left: 220
+          }}> isNear: {JSON.stringify(this.state.isNear)} </Text>:null}
 
           {false?
             <View style={{alignItems: 'center', justifyContent: 'center', width: Dimensions.get('window').width}}>
@@ -371,54 +386,54 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: 10 * (Dimensions.get('window').width/375),
+    marginBottom: 10 * (Dimensions.get('window').height/667),
   },
 
   banner:{
     width: Dimensions.get('window').width,
-    height: 64,
+    height: 64 * (Dimensions.get('window').height/667),
   },
 
   titleBox:{
     width: Dimensions.get('window').width,
-    height: 100,
+    height: 100 * (Dimensions.get('window').height/667),
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   title:{
-    fontSize: 30,
+    fontSize: 30 * (Dimensions.get('window').width/375),
     textAlign: 'center',
     color: 'black',
     fontWeight: '300',
-    paddingTop: 5,
-    paddingHorizontal: 45,
+    paddingTop: 5 * (Dimensions.get('window').height/667),
+    paddingHorizontal: 45 * (Dimensions.get('window').width/375),
   },
 
   line:{
     backgroundColor: 'black',
-    height: .74,
+    height: .74 * (Dimensions.get('window').height/667),
     width: Dimensions.get('window').width / 3,
   },
 
   dist:{
-    fontSize: 15,
+    fontSize: 15 * (Dimensions.get('window').width/375),
     color: 'dimgray',
     fontWeight: '500',
     textAlign: 'center',
-    marginTop: 3,
+    marginTop: 3 * (Dimensions.get('window').height/667),
   },
 
   directionBox:{
-    width: Dimensions.get('window').width - 50,
-    height: 107,
+    width: 325 * (Dimensions.get('window').width/375),
+    height: 107 * (Dimensions.get('window').height/667),
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 10 * (Dimensions.get('window').height/667),
   },
 
   directions:{
-    fontSize: 18,
+    fontSize: 18 * (Dimensions.get('window').width/375),
     color: 'gray',
     fontWeight: '300',
     textAlign: 'center',
@@ -426,16 +441,16 @@ const styles = StyleSheet.create({
 
   image:{
     position: 'absolute',
-    top: 310,
-    left: 0,
-    height: Dimensions.get('window').width / 1.5,
+    top: 310 * (Dimensions.get('window').width/375),
+    height: 250 * (Dimensions.get('window').width/375),
     width: Dimensions.get('window').width,
   },
 
   buttonText:{
-    fontSize: 15,
+    fontSize: 15 * (Dimensions.get('window').width/375),
     color: 'white',
     fontWeight: '100',
+    textAlign: 'center',
   },
 
 //DEBUGGER STYLES
@@ -444,57 +459,57 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275,
-    left: 15,
+    top: 275 * (Dimensions.get('window').width/375),
+    left: 15 * (Dimensions.get('window').width/375),
     backgroundColor: 'gray',
-    height: 30,
-    width: 30,
-    borderRadius: 15,
+    height: 30 * (Dimensions.get('window').width/375),
+    width: 30 * (Dimensions.get('window').width/375),
+    borderRadius: 15 * (Dimensions.get('window').width/375),
   },
 
   debug2: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275,
-    left: 55,
+    top: 275 * (Dimensions.get('window').width/375),
+    left: 55 * (Dimensions.get('window').width/375),
     backgroundColor: 'gray',
-    height: 30,
-    width: 30,
-    borderRadius: 15,
+    height: 30 * (Dimensions.get('window').width/375),
+    width: 30 * (Dimensions.get('window').width/375),
+    borderRadius: 15 * (Dimensions.get('window').width/375),
   },
 
   debug3: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275,
-    left: 95,
+    top: 275 * (Dimensions.get('window').width/375),
+    left: 95 * (Dimensions.get('window').width/375),
     backgroundColor: 'gray',
-    height: 30,
-    width: 30,
-    borderRadius: 15,
+    height: 30 * (Dimensions.get('window').width/375),
+    width: 30 * (Dimensions.get('window').width/375),
+    borderRadius: 15 * (Dimensions.get('window').width/375),
   },
 
   location:{
-    fontSize: 20,
+    fontSize: 20 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '500',
     textAlign: 'center',
-    paddingTop: 20,
+    paddingTop: 20 * (Dimensions.get('window').width/375),
   },
 
   text:{
-    fontSize: 50,
+    fontSize: 50 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
-    marginTop: 30,
+    marginTop: 30 * (Dimensions.get('window').width/375),
   },
 
   button:{
     width: Dimensions.get('window').width/1.5,
-    height: 36,
+    height: 36 * (Dimensions.get('window').width/375),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
@@ -503,7 +518,7 @@ const styles = StyleSheet.create({
 
   halfButton:{
     width: Dimensions.get('window').width/1.5/2 - 5,
-    height: 36,
+    height: 36 * (Dimensions.get('window').width/375),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
@@ -514,11 +529,11 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: 'row',
     width: Dimensions.get('window').width/1.5,
-    height: 36,
+    height: 36 * (Dimensions.get('window').width/375),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignSelf: 'center',
-    margin: 5,
+    margin: 5 * (Dimensions.get('window').width/375),
   },
 });
 

@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
 
   banner:{
-    height: 65 * (Dimensions.get('window').width/375),
+    height: 65 * (Dimensions.get('window').height/667),
     width: Dimensions.get('window').width,
     backgroundColor: '#f9f9f9',
     alignItems: 'center',
@@ -80,21 +80,21 @@ const styles = StyleSheet.create({
 
   bannerText:{
     fontSize: 17 * (Dimensions.get('window').width/375),
-    paddingTop: 31.5 * (Dimensions.get('window').width/375),
-    paddingBottom: 12 * (Dimensions.get('window').width/375),
+    paddingTop: 31.5 * (Dimensions.get('window').height/667),
+    paddingBottom: 12 * (Dimensions.get('window').height/667),
     fontWeight: '600',
   },
 
   bannerLine:{
-    height: .5 * (Dimensions.get('window').width/375),
+    height: .5 * (Dimensions.get('window').height/667),
     width: Dimensions.get('window').width,
     backgroundColor: '#b9b9b9',
   },
 
   text:{
     paddingHorizontal: 35 * (Dimensions.get('window').width/375),
-    paddingTop: 65.5 * (Dimensions.get('window').width/375),
-    paddingBottom: 10 * (Dimensions.get('window').width/375),
+    paddingTop: 65.5 * (Dimensions.get('window').height/667),
+    paddingBottom: 10 * (Dimensions.get('window').height/667),
     fontSize: 25 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '100',
@@ -105,17 +105,17 @@ const styles = StyleSheet.create({
 
   logo:{
     width: Dimensions.get('window').width,
-    height: 300 * (Dimensions.get('window').width/375),
+    height: 300 * (Dimensions.get('window').height/667),
     // backgroundColor: 'blue',
   },
 
   button:{
     width: Dimensions.get('window').width,
-    height: 36 * (Dimensions.get('window').width/375),
+    height: 36 * (Dimensions.get('window').height/667),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40 * (Dimensions.get('window').width/375),
+    marginTop: 40 * (Dimensions.get('window').height/667),
     opacity: 0.5,
   },
 

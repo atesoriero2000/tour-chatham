@@ -30,7 +30,7 @@ class Location extends Component{
 
           <View style = {styles.contents}>
 
-            <Text style = {styles.text}> {this.props.title} ({this.props.time} mins)</Text>
+            <Text style = {styles.text}> {this.props.title} <Text style={styles.time}>({this.props.time} mins)</Text></Text>
             <Text style = {styles.buttonText}> {this.props.address} </Text>
 
           </View>
@@ -43,14 +43,13 @@ class Location extends Component{
 
 const styles = StyleSheet.create({
   container:{
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
     flexDirection: 'row',
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').width/5,
-    marginTop: 10 * (Dimensions.get('window').width/375),
-    backgroundColor: 'gainsboro',
+    height: 75 * (Dimensions.get('window').height/667),
+    marginTop: 10 * (Dimensions.get('window').height/667),
+    backgroundColor: 'gainsboro', //#e6e6e6
   },
 
   content:{
@@ -58,22 +57,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     flexDirection: 'column',
-    height: 50 * (Dimensions.get('window').width/375),
+    height: 50 * (Dimensions.get('window').height/667),
   },
 
   text:{
-    fontSize: 17 * (Dimensions.get('window').width/375),
+    fontSize: 16.3 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '300',
     textAlign: 'left',
+    letterSpacing: -.5 * (Dimensions.get('window').width/375),
+  },
+
+  time:{
+    fontSize: 12.25 * (Dimensions.get('window').width/375),
+    color: 'black',
+    fontWeight: '300',
+    textAlign: 'left',
+    letterSpacing: -.65 * (Dimensions.get('window').width/375),
   },
 
   buttonText:{
-    fontSize: 15 * (Dimensions.get('window').width/375),
+    fontSize: 14 * (Dimensions.get('window').width/375),
     color: 'grey',
     fontWeight: '100',
     textAlign: 'left',
-    paddingTop: 2 * (Dimensions.get('window').width/375),
+    marginTop: 2 * (Dimensions.get('window').height/667),
+    letterSpacing: -.5  * (Dimensions.get('window').width/375),
   },
 
   image:{

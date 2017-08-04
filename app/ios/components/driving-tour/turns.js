@@ -1,16 +1,15 @@
 //35 mph = 15 m/s = 51 fps
 const RADIUS_DELAY = 500; //feet
+const FIRST_TURN = 250;
 
 const pic1 = require('../../../images/Flower.jpg');
 const pic2 = require('../../../images/Eagle.jpg');
 const pic3 = require('../../../images/FlagWaving.jpg');
 const pic4 = require('../../../images/boy-scout-emblem.jpg');
 
-const e0 = pic1;
-const f0 = pic1;
 
 const a1 = require('../../../images/edited/A1_00000.jpg');
-//const a2 = require('../../images/A2.jpg');
+const a2 = pic1; //require('../../../images/edited/A2_00000.jpg');
 const a3 = require('../../../images/edited/A3_00000.jpg');
 
 const b1 = require('../../../images/edited/B1_00000.jpg');
@@ -20,10 +19,12 @@ const d1 = require('../../../images/edited/D1_00000.jpg');
 const d2 = require('../../../images/edited/D2_00000.jpg');
 const d3 = require('../../../images/edited/D3_00000.jpg');
 
+const e0 = pic1; //require('../../../images/edited/E0_00000.jpg');
 const e1 = require('../../../images/edited/E1_00000.jpg');
 const e2 = require('../../../images/edited/E2_00000.jpg');
 const e3 = require('../../../images/edited/E3_00000.jpg');
 
+const f0 = pic1; //require('../../../images/edited/F0_00000.jpg');
 const f1 = require('../../../images/edited/F1_00000.jpg');
 const f2 = require('../../../images/edited/F2_00000.jpg');
 const f3 = require('../../../images/edited/F3_00000.jpg');
@@ -85,10 +86,10 @@ const loc1 = [
   },
   {
     direction: 'Travel straight 2.03 miles past the Fairmount Country Store Deli',
-    picture: pic2,
+    picture: pic1,
     latitude: 40.703046,
     longitude: -74.428045,
-    radius: 9244 + 1108 - RADIUS_DELAY, // strait 9244
+    radius: (9244 + 1108 - FIRST_TURN) - RADIUS_DELAY, // strait 9244
   },
   {
     direction: 'Follow past the Marker and Turn left and park in Esternay Field. You may walk back up Fairmount to the marker.',
@@ -114,7 +115,7 @@ const loc2 = [
    picture: b2,
    latitude: 40.697119,
    longitude: -74.435379,
-   radius: 2864 - RADIUS_DELAY, // from 40.702367, -74.42768
+   radius: (2864 - FIRST_TURN) - RADIUS_DELAY, // from 40.702367, -74.42768
  },
 ];
 
@@ -133,7 +134,7 @@ const loc3 = [
    picture: d2,
    latitude: 40.708721,
    longitude: -74.416936,
-   radius: 2863 + 3770 - RADIUS_DELAY, // strait
+   radius: (2863 + 3770 - FIRST_TURN) - RADIUS_DELAY, // strait
  },
  {
    direction: 'Park along River Road to right in the gravel outcrop',
@@ -159,7 +160,7 @@ const loc4 = [
     picture: e1,
     latitude: 40.714512,
     longitude: -74.407812,
-    radius: 3291 - RADIUS_DELAY,
+    radius: (3291 - FIRST_TURN) - RADIUS_DELAY,
   },
   {
     direction: 'Turn Left onto Southern Blvd and travel up "Snake Hill"',
@@ -192,7 +193,7 @@ const loc5 = [
     picture: f1,
     latitude: 40.727589,
     longitude: -74.409730,
-    radius: 2166 - RADIUS_DELAY,
+    radius: (2166 - FIRST_TURN) - RADIUS_DELAY,
   },
   {
     direction: 'Take the first left onto Spring St (approx 0.2 miles)',
@@ -223,16 +224,16 @@ const loc6 = [
   {
     direction: 'Drive to the end of School Ave and turn right onto Maple St',
     picture: g2,
-    latitude: 40.732468,
-    longitude: -74.406383,
-    radius: 942 - 150, // from 40.730896, -74.409085
+    latitude: 40.733880,
+    longitude: -74.403967,
+    radius: (1785 - FIRST_TURN) - 150, // from 40.730896, -74.409085  //TODO check first turn
   },
   {
     direction: 'Take another right onto Lafayette Ave and drive 0.4 miles',
     picture: g3,
     latitude: 40.732065,
     longitude: -74.402097,
-    radius: 853 - 150,
+    radius: 840 - 150,
   },
   {
     direction: 'Turn right onto Southern Blvd (0.2 miles)',
@@ -265,7 +266,7 @@ const loc7 = [
     picture: h2,
     latitude: 40.737275,
     longitude: -74.425151,
-    radius: 4351 - RADIUS_DELAY,
+    radius: (4351 - FIRST_TURN) - RADIUS_DELAY,
   },
 ];
 
@@ -284,7 +285,7 @@ const loc8 = [
     picture: i2,
     latitude: 40.741458,
     longitude: -74.430853,
-    radius: 2194 - RADIUS_DELAY,
+    radius: (2194 - FIRST_TURN) - RADIUS_DELAY,
   },
 ];
 
@@ -303,7 +304,7 @@ const loc9 = [
     picture: j2,
     latitude: 40.744404,
     longitude: -74.434543,
-    radius: 1350 - 300, // from 40.742026, -74.430803
+    radius: (1350 - FIRST_TURN) - 300, // from 40.742026, -74.430803
   },
   {
     direction: 'The destination is on the left at 461 Green Village Road. You may park in the driveway to the left',
@@ -329,7 +330,7 @@ const loc10 = [
     picture: k2,
     latitude: 40.738841,
     longitude: -74.449521,
-    radius: 876 - 150,
+    radius: (876 - FIRST_TURN) - 150,
   },
 ];
 
@@ -348,7 +349,7 @@ const loc11 = [
     picture: l2,
     latitude: 40.739029,
     longitude: -74.453421,
-    radius: 1080 - 150,
+    radius: (1080 - FIRST_TURN) - 150,
   },
 ];
 
@@ -367,7 +368,7 @@ const loc12 = [
     picture: m2,
     latitude: 40.740854,
     longitude: -74.456702,
-    radius: 1125 - 150,
+    radius: (1125 - FIRST_TURN) - 150,
   },
   {
     direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the marron marker',
@@ -400,7 +401,7 @@ const loc13 = [
     picture: n2,
     latitude: 40.753724,
     longitude: -74.440480,
-    radius: 1820 - 200,
+    radius: (1820 - FIRST_TURN) - 200,
   },
 ];
 
@@ -408,7 +409,7 @@ const loc13 = [
 //BOISAUBIN HOUSE
 const loc14 = [
   {
-    direction: 'Continue strait along Loantaka Way towards Shunpike Road and turn left onto Woodland Road (Woodland Road becomes Woodland Ave)', // LEAVING BAD 1698
+    direction: 'Continue strait along Loantaka Way towards Shunpike Road and turn left onto Woodland Road (Woodland Road becomes Woodland Ave)', // LEAVING BAD(jk) 1698
     picture: o1,
     latitude: null,
     longitude: null,
@@ -419,7 +420,7 @@ const loc14 = [
     picture: o2,
     latitude: 40.765623,
     longitude: -74.445828,
-    radius: 4786 - RADIUS_DELAY, // from 40.755507, -74.434803
+    radius: (4786 - FIRST_TURN) - RADIUS_DELAY, // from 40.755507, -74.434803
   },
   {
     direction: 'Park along fence to the left or right once you see the marker on the left',
@@ -433,21 +434,37 @@ const loc14 = [
 
 var Sound = require('react-native-sound');
 
-const atPic0 = pic1; //require('../../../images/at0.jpg');
-const atPic1 = pic1; //require('../../../images/at1.jpg');
-const atPic2 = pic1; //require('../../../images/at2.jpg');
-const atPic3 = pic1; //require('../../../images/at3.jpg');
-const atPic4 = pic1; //require('../../../images/at4.jpg');
-const atPic5 = pic1; //require('../../../images/at5.jpg');
-const atPic6 = pic1; //require('../../../images/at6.jpg');
-const atPic7 = pic1; //require('../../../images/at7.jpg');
-const atPic8 = pic1; //require('../../../images/at8.jpg');
-const atPic9 = pic1; //require('../../../images/at9.jpg');
-const atPic10 = pic1; //require('../../../images/at10.jpg');
-const atPic11 = pic1; //require('../../../images/at11.jpg');
-const atPic12 = pic1; //require('../../../images/at12.jpg');
-const atPic13 = pic1; //require('../../../images/at13.jpg');
-const atPic14 = pic1; //require('../../../images/at14.jpg');
+const atPic0 = require('../../../images/atPics/at0.jpg');
+const atPic1 = require('../../../images/atPics/at1.jpg');
+const atPic2 = require('../../../images/atPics/at2.jpg');
+const atPic3 = require('../../../images/atPics/at3.jpg');
+const atPic4 = require('../../../images/atPics/at4.jpg');
+const atPic5 = require('../../../images/atPics/at5.jpg');
+const atPic6 = require('../../../images/atPics/at6.jpg');
+const atPic7 = require('../../../images/atPics/at7.jpg');
+const atPic8 = require('../../../images/atPics/at8.jpg');
+const atPic9 = require('../../../images/atPics/at9.jpg');
+const atPic10 = require('../../../images/atPics/at10.jpg');
+const atPic11 = require('../../../images/atPics/at11.jpg');
+const atPic12 = require('../../../images/atPics/at12.jpg');
+const atPic13 = require('../../../images/atPics/at13.jpg');
+const atPic14 = require('../../../images/atPics/at14.jpg');
+
+const sAtPic0 = require('../../../images/atPics/s_at0.jpg');
+const sAtPic1 = require('../../../images/atPics/s_at1.jpg');
+const sAtPic2 = require('../../../images/atPics/s_at2.jpg');
+const sAtPic3 = require('../../../images/atPics/s_at3.jpg');
+const sAtPic4 = require('../../../images/atPics/s_at4.jpg');
+const sAtPic5 = require('../../../images/atPics/s_at5.jpg');
+const sAtPic6 = require('../../../images/atPics/s_at6.jpg');
+const sAtPic7 = require('../../../images/atPics/s_at7.jpg');
+const sAtPic8 = require('../../../images/atPics/s_at8.jpg');
+const sAtPic9 = require('../../../images/atPics/s_at9.jpg');
+const sAtPic10 = require('../../../images/atPics/s_at10.jpg');
+const sAtPic11 = require('../../../images/atPics/s_at11.jpg');
+const sAtPic12 = require('../../../images/atPics/s_at12.jpg');
+const sAtPic13 = require('../../../images/atPics/s_at13.jpg');
+const sAtPic14 = require('../../../images/atPics/s_at14.jpg');
 
 var to1 = new Sound('page_3.4_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to2 = new Sound('page_6_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
@@ -495,21 +512,21 @@ class Turns {
 
   static stages = [
 
-    {loc: loc0, title: 'The Mount Vernon Schoolhouse Marker', atAudio: at0, atPic: atPic0},
-    {loc: loc1, title: 'The Johnson House Marker', toAudio: to1, atAudio: at1, atPic: atPic1},
-    {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudio: to2, atAudio: null, atPic: atPic2},
-    {loc: loc3, title: 'The Bey’s Boxing Camp Marker', toAudio: to3, atAudio: at3, atPic: atPic3},
-    {loc: loc4, title: 'The Price-Baldwin House Marker', toAudio: to4, atAudio: at4, atPic: atPic4},
-    {loc: loc5, title: 'The Chatham Colony Association Marker', toAudio: to5, atAudio: at5, atPic: atPic5},
-    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', toAudio: to6, atAudio: at6, atPic: atPic6},
-    {loc: loc7, title: 'The Noe Pond Marker', toAudio: to7, atAudio: at7, atPic: atPic7},
-    {loc: loc8, title: 'The Greenhouse Industry Marker', toAudio: to8, atAudio: null, atPic: atPic8},
-    {loc: loc9, title: 'The Elias Boudinot House Marker', toAudio: to9, atAudio: at9, atPic: atPic9},
-    {loc: loc10, title: 'The Cockrem Farm Marker', toAudio: to10, atAudio: null, atPic: atPic10},
-    {loc: loc11, title: 'The Green Village Marker', toAudio: to11, atAudio: null, atPic: atPic11},
-    {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudio: to12, atAudio: at12, atPic: atPic12},
-    {loc: loc13, title: 'The Loantaka School Marker', toAudio: to13, atAudio: null, atPic: atPic13},
-    {loc: loc14, title: 'The Boisaubin House Marker', toAudio: to14, atAudio: at14, atPic: atPic14},
+    {loc: loc0, title: 'The Mount Vernon Schoolhouse Marker', atAudio: at0, atPic: atPic0, squareAtPic: sAtPic0},
+    {loc: loc1, title: 'The Johnson House Marker', toAudio: to1, atAudio: at1, atPic: atPic1, squareAtPic: sAtPic1},
+    {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudio: to2, atAudio: null, atPic: atPic2, squareAtPic: sAtPic2},
+    {loc: loc3, title: 'The Bey’s Boxing Camp Marker', toAudio: to3, atAudio: at3, atPic: atPic3, squareAtPic: sAtPic3},
+    {loc: loc4, title: 'The Price-Baldwin House Marker', toAudio: to4, atAudio: at4, atPic: atPic4, squareAtPic: sAtPic4},
+    {loc: loc5, title: 'The Chatham Colony Association Marker', toAudio: to5, atAudio: at5, atPic: atPic5, squareAtPic: sAtPic5},
+    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', toAudio: to6, atAudio: at6, atPic: atPic6, squareAtPic: sAtPic6},
+    {loc: loc7, title: 'The Noe Pond Marker', toAudio: to7, atAudio: at7, atPic: atPic7, squareAtPic: sAtPic7},
+    {loc: loc8, title: 'The Greenhouse Industry Marker', toAudio: to8, atAudio: null, atPic: atPic8, squareAtPic: sAtPic8},
+    {loc: loc9, title: 'The Elias Boudinot House Marker', toAudio: to9, atAudio: at9, atPic: atPic9, squareAtPic: sAtPic9},
+    {loc: loc10, title: 'The Cockrem Farm Marker', toAudio: to10, atAudio: null, atPic: atPic10, squareAtPic: sAtPic10},
+    {loc: loc11, title: 'The Green Village Marker', toAudio: to11, atAudio: null, atPic: atPic11, squareAtPic: sAtPic11},
+    {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudio: to12, atAudio: at12, atPic: atPic12, squareAtPic: sAtPic12},
+    {loc: loc13, title: 'The Loantaka School Marker', toAudio: to13, atAudio: null, atPic: atPic13, squareAtPic: sAtPic13},
+    {loc: loc14, title: 'The Boisaubin House Marker', toAudio: to14, atAudio: at14, atPic: atPic14, squareAtPic: sAtPic14},
 
   ];
 

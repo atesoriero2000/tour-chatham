@@ -13,7 +13,8 @@ import {
   ScrollView,
   Modal,
   Button,
-  Linking
+  Linking,
+  Image,
 } from 'react-native'
 
 import Swiper from 'react-native-swiper';
@@ -23,6 +24,9 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 var Turns = require('./turns');
 var AudioPage = require('./audio-page');
 var SelectionPage = require('./selection-page');
+
+var Page1 = require('./tutorial/page1');
+var Page2 = require('./tutorial/page2');
 
 
 class Start extends Component {
@@ -44,15 +48,15 @@ class Start extends Component {
 
 
         {/* OVERVIEW PAGE */}
-        <Text style = {styles.text}>
+        <Text style = {styles.title}>
           TOUR OVERVIEW
         </Text>
 
-        <Text style = {styles.tutorialText}>
+        <Text style = {styles.overviewText}>
           This is a audio guided driving tour that will take you across Chatham township Madison and green village to different marked historical sights while telling you the history behind them.
         </Text>
 
-        <Text style = {styles.tutorialText}>
+        <Text style = {styles.overviewText}>
           It will take approximately 1.5 hours to complete the whole tour but, you may stop at any marker and pick up where you left off.
         </Text>
 
@@ -94,64 +98,33 @@ class Start extends Component {
                   height={Dimensions.get('window').height/1.13}
                   width={Dimensions.get('window').width/1.25}>
 
-
-                  {/* PAGE 1 */}
-                  <View style = {styles.swiperPage}>
-                    <Text style = {styles.text}>
-                      PAGE 1
-                    </Text>
-
-                    <Text style = {styles.tutorialText}>
-                      Directions will appear on the screen instructing what you exactly what to do and what turns to make. Below it will be a counter identifying how far away you are from each turn.
-                    </Text>
-
-                  </View>
-
-
-                  {/* PAGE 2 */}
-                  <View style = {styles.swiperPage}>
-                    <Text style = {styles.text}>
-                      PAGE 2
-                    </Text>
-
-                    <Text style = {styles.tutorialText}>
-                      On the next page you will pick your starting location. The tour will start at the location you choose and continue through only the locations listed after. (Any location listed before the location you select will not be played.)
-                    </Text>
-
-                    <TouchableHighlight style = {styles.button}
-                      onPress = {() => this.navToSelection()}
-                      underlayColor = '#BBBBBB'>
-                      <Text style = {styles.buttonText}>
-                        Click
-                      </Text>
-                    </TouchableHighlight>
-                  </View>
-
-
+                  <Page1/>
+                  <Page2 onPress={() => this.navToSelection()}/>
 
               </Swiper>
             </View>{/* modalformat */}
 
+            {/* TUTORIAL HEADER */}
               <Text style={{
                 position: 'absolute',
-                fontSize: 27,
+                fontSize: 27 * (Dimensions.get('window').width/375),
                 fontWeight: '200',
-                top: 7 + 45,
+                top: (7 + 45) * (Dimensions.get('window').height/667),
               }}>Tutorial</Text>
 
               <Icon
                 name={'close'}
-                size={40}
+                size={40 * (Dimensions.get('window').width/375)}
                 color={'#006CFF'}
                 onPress={()=>this.setState({visible:false})}
                 style={{
                   position: 'absolute',
-                  top: 7 + 45,
-                  left: 45,
+                  top: (7 + 45) * (Dimensions.get('window').height/667),
+                  left: 45 * (Dimensions.get('window').width/375),
                 }}/>
 
           </BlurView>{/* overlay */}
-        </Modal>{/* popup*/}
+        </Modal>{/* popup */}
       </View>
     );
   }
@@ -175,13 +148,13 @@ class Start extends Component {
       passProps: {unmount: this.props.unmount},
     });
   }
-}
 
-linkUrl(url){
-  Linking.canOpenURL(url).then(supported => {
-    if (!supported) console.log('Can\'t handle url: ' + url);
-    else return Linking.openURL(url);
-  }).catch(err => console.error('An error occurred', err));
+  linkUrl(url){
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) console.log('Can\'t handle url: ' + url);
+      else return Linking.openURL(url);
+    }).catch(err => console.error('An error occurred', err));
+  }
 }
 
 const styles = StyleSheet.create({
@@ -189,16 +162,23 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
 
-  text:{
+  title:{
     fontSize: 35 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
     paddingHorizontal: 25 * (Dimensions.get('window').width/375),
-    paddingVertical: 20 * (Dimensions.get('window').width/375),
+    paddingTop: 65 + 10 * (Dimensions.get('window').width/375),
+  },
+
+  overviewText:{
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: '500',
+    color: 'black',
+    padding: 20,
   },
 
   button:{
@@ -209,16 +189,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 5,
     //opacity: 0.5,
-    bottom: 50,
-    transform: [{translateY:50}],
   },
 
   buttonText:{
     fontSize: 18,
     color: 'white',
     fontWeight: '100',
+    textAlign: 'center',
+    margin: 10,
   },
 
+
+//MODAL
   overlay:{
     flex: 1,
     alignItems: 'center',
@@ -231,24 +213,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: Dimensions.get('window').width/1.25,
     height: Dimensions.get('window').height/1.13,
-    borderRadius: 15,
+    borderRadius: 15 * (Dimensions.get('window').width/375),
     backgroundColor: 'whitesmoke',
-  },
-
-  swiperPage:{
-    flex: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    // backgroundColor: 'red'
-  },
-
-  tutorialText:{
-    textAlign: 'center',
-    fontSize: 15,
-    fontWeight: '500',
-    color: 'black',
-    padding: 20
   },
 });
 

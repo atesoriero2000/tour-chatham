@@ -20,7 +20,7 @@ import KeepAwake from 'react-native-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
 
-var Turns = require('./turns');
+var Turns = require('../../turns');
 
 var doneAtAudio = false;
 

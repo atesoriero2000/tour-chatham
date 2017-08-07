@@ -17,7 +17,7 @@ import {
 } from 'react-native'
 
 var AudioPage = require('./audio-page');
-var Turns = require('./turns');
+var Turns = require('../../turns');
 
 var atEnd = false;
 

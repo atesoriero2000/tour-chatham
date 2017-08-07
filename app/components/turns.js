@@ -1,67 +1,67 @@
 //35 mph = 15 m/s = 51 fps
 const RADIUS_DELAY = 500; //feet
-const FIRST_TURN = 250;
+const FIRST_TURN = 0;
 
-const pic1 = require('../../../images/Flower.jpg');
-const pic2 = require('../../../images/Eagle.jpg');
-const pic3 = require('../../../images/FlagWaving.jpg');
-const pic4 = require('../../../images/boy-scout-emblem.jpg');
+const pic1 = require('../images/Flower.jpg');
+const pic2 = require('../images/Eagle.jpg');
+const pic3 = require('../images/FlagWaving.jpg');
+const pic4 = require('../images/boy-scout-emblem.jpg');
 
 
-const a1 = require('../../../images/edited/A1_00000.jpg');
-const a2 = pic1; //require('../../../images/edited/A2_00000.jpg');
-const a3 = require('../../../images/edited/A3_00000.jpg');
+const a1 = require('../images/edited/A1_00000.jpg');
+const a2 = pic1; //require('../images/edited/A2_00000.jpg');
+const a3 = require('../images/edited/A3_00000.jpg');
 
-const b1 = require('../../../images/edited/B1_00000.jpg');
-const b2 = require('../../../images/edited/B2_00000.jpg');
+const b1 = require('../images/edited/B1_00000.jpg');
+const b2 = require('../images/edited/B2_00000.jpg');
 
-const d1 = require('../../../images/edited/D1_00000.jpg');
-const d2 = require('../../../images/edited/D2_00000.jpg');
-const d3 = require('../../../images/edited/D3_00000.jpg');
+const d1 = require('../images/edited/D1_00000.jpg');
+const d2 = require('../images/edited/D2_00000.jpg');
+const d3 = require('../images/edited/D3_00000.jpg');
 
-const e0 = pic1; //require('../../../images/edited/E0_00000.jpg');
-const e1 = require('../../../images/edited/E1_00000.jpg');
-const e2 = require('../../../images/edited/E2_00000.jpg');
-const e3 = require('../../../images/edited/E3_00000.jpg');
+const e0 = pic1; //require('../images/edited/E0_00000.jpg');
+const e1 = require('../images/edited/E1_00000.jpg');
+const e2 = require('../images/edited/E2_00000.jpg');
+const e3 = require('../images/edited/E3_00000.jpg');
 
-const f0 = pic1; //require('../../../images/edited/F0_00000.jpg');
-const f1 = require('../../../images/edited/F1_00000.jpg');
-const f2 = require('../../../images/edited/F2_00000.jpg');
-const f3 = require('../../../images/edited/F3_00000.jpg');
+const f0 = pic1; //require('../images/edited/F0_00000.jpg');
+const f1 = require('../images/edited/F1_00000.jpg');
+const f2 = require('../images/edited/F2_00000.jpg');
+const f3 = require('../images/edited/F3_00000.jpg');
 
-const g1 = require('../../../images/edited/G1_00000.jpg');
-const g2 = require('../../../images/edited/G2_00000.jpg');
-const g3 = require('../../../images/edited/G3_00000.jpg');
-const g4 = require('../../../images/edited/G4_00000.jpg');
-const g5 = require('../../../images/edited/G5_00000.jpg');
+const g1 = require('../images/edited/G1_00000.jpg');
+const g2 = require('../images/edited/G2_00000.jpg');
+const g3 = require('../images/edited/G3_00000.jpg');
+const g4 = require('../images/edited/G4_00000.jpg');
+const g5 = require('../images/edited/G5_00000.jpg');
 
-const h1 = require('../../../images/edited/H1_00000.jpg');
-const h2 = require('../../../images/edited/H2_00000.jpg');
+const h1 = require('../images/edited/H1_00000.jpg');
+const h2 = require('../images/edited/H2_00000.jpg');
 
-const i1 = require('../../../images/edited/I1_00000.jpg');
-const i2 = require('../../../images/edited/I2_00000.jpg');
+const i1 = require('../images/edited/I1_00000.jpg');
+const i2 = require('../images/edited/I2_00000.jpg');
 
-const j1 = require('../../../images/edited/J1_00000.jpg');
-const j2 = require('../../../images/edited/J2_00000.jpg');
-const j3 = require('../../../images/edited/J3_00000.jpg');
+const j1 = require('../images/edited/J1_00000.jpg');
+const j2 = require('../images/edited/J2_00000.jpg');
+const j3 = require('../images/edited/J3_00000.jpg');
 
-const k1 = require('../../../images/edited/K1_00000.jpg');
-const k2 = require('../../../images/edited/K2_00000.jpg');
+const k1 = require('../images/edited/K1_00000.jpg');
+const k2 = require('../images/edited/K2_00000.jpg');
 
-const l1 = require('../../../images/edited/L1_00000.jpg');
-const l2 = require('../../../images/edited/L2_00000.jpg');
+const l1 = require('../images/edited/L1_00000.jpg');
+const l2 = require('../images/edited/L2_00000.jpg');
 
-const m1 = require('../../../images/edited/M1_00000.jpg');
-const m2 = require('../../../images/edited/M2_00000.jpg');
-const m3 = require('../../../images/edited/M3_00000.jpg');
-const m4 = require('../../../images/edited/M4_00000.jpg');
+const m1 = require('../images/edited/M1_00000.jpg');
+const m2 = require('../images/edited/M2_00000.jpg');
+const m3 = require('../images/edited/M3_00000.jpg');
+const m4 = require('../images/edited/M4_00000.jpg');
 
-const n1 = require('../../../images/edited/N1_00000.jpg');
-const n2 = require('../../../images/edited/N2_00000.jpg');
+const n1 = require('../images/edited/N1_00000.jpg');
+const n2 = require('../images/edited/N2_00000.jpg');
 
-const o1 = require('../../../images/edited/O1_00000.jpg');
-const o2 = require('../../../images/edited/O2_00000.jpg');
-const o3 = require('../../../images/edited/O3_00000.jpg');
+const o1 = require('../images/edited/O1_00000.jpg');
+const o2 = require('../images/edited/O2_00000.jpg');
+const o3 = require('../images/edited/O3_00000.jpg');
 
 
 //THE MOUNT VERNON SCHOOLHOUSE
@@ -134,14 +134,14 @@ const loc3 = [
    picture: d2,
    latitude: 40.708721,
    longitude: -74.416936,
-   radius: (2863 + 3770 - FIRST_TURN) - RADIUS_DELAY, // strait
+   radius: (2863 + 3770 - FIRST_TURN) - RADIUS_DELAY, // strait //TODO BADDDDDD
  },
  {
    direction: 'Park along River Road to right in the gravel outcrop',
    picture: d3,
    latitude: 40.708721,
    longitude: -74.416936,
-   radius: 3770 - RADIUS_DELAY, // from 40.702367, -74.427685
+   radius: 3770 - RADIUS_DELAY, // from 40.702367, -74.427685 //TODO BADDDDDDD
  },
 ];
 
@@ -434,37 +434,37 @@ const loc14 = [
 
 var Sound = require('react-native-sound');
 
-const atPic0 = require('../../../images/atPics/at0.jpg');
-const atPic1 = require('../../../images/atPics/at1.jpg');
-const atPic2 = require('../../../images/atPics/at2.jpg');
-const atPic3 = require('../../../images/atPics/at3.jpg');
-const atPic4 = require('../../../images/atPics/at4.jpg');
-const atPic5 = require('../../../images/atPics/at5.jpg');
-const atPic6 = require('../../../images/atPics/at6.jpg');
-const atPic7 = require('../../../images/atPics/at7.jpg');
-const atPic8 = require('../../../images/atPics/at8.jpg');
-const atPic9 = require('../../../images/atPics/at9.jpg');
-const atPic10 = require('../../../images/atPics/at10.jpg');
-const atPic11 = require('../../../images/atPics/at11.jpg');
-const atPic12 = require('../../../images/atPics/at12.jpg');
-const atPic13 = require('../../../images/atPics/at13.jpg');
-const atPic14 = require('../../../images/atPics/at14.jpg');
+const atPic0 = require('../images/atPics/at0.jpg');
+const atPic1 = require('../images/atPics/at1.jpg');
+const atPic2 = require('../images/atPics/at2.jpg');
+const atPic3 = require('../images/atPics/at3.jpg');
+const atPic4 = require('../images/atPics/at4.jpg');
+const atPic5 = require('../images/atPics/at5.jpg');
+const atPic6 = require('../images/atPics/at6.jpg');
+const atPic7 = require('../images/atPics/at7.jpg');
+const atPic8 = require('../images/atPics/at8.jpg');
+const atPic9 = require('../images/atPics/at9.jpg');
+const atPic10 = require('../images/atPics/at10.jpg');
+const atPic11 = require('../images/atPics/at11.jpg');
+const atPic12 = require('../images/atPics/at12.jpg');
+const atPic13 = require('../images/atPics/at13.jpg');
+const atPic14 = require('../images/atPics/at14.jpg');
 
-const sAtPic0 = require('../../../images/atPics/s_at0.jpg');
-const sAtPic1 = require('../../../images/atPics/s_at1.jpg');
-const sAtPic2 = require('../../../images/atPics/s_at2.jpg');
-const sAtPic3 = require('../../../images/atPics/s_at3.jpg');
-const sAtPic4 = require('../../../images/atPics/s_at4.jpg');
-const sAtPic5 = require('../../../images/atPics/s_at5.jpg');
-const sAtPic6 = require('../../../images/atPics/s_at6.jpg');
-const sAtPic7 = require('../../../images/atPics/s_at7.jpg');
-const sAtPic8 = require('../../../images/atPics/s_at8.jpg');
-const sAtPic9 = require('../../../images/atPics/s_at9.jpg');
-const sAtPic10 = require('../../../images/atPics/s_at10.jpg');
-const sAtPic11 = require('../../../images/atPics/s_at11.jpg');
-const sAtPic12 = require('../../../images/atPics/s_at12.jpg');
-const sAtPic13 = require('../../../images/atPics/s_at13.jpg');
-const sAtPic14 = require('../../../images/atPics/s_at14.jpg');
+const sAtPic0 = require('../images/atPics/s_at0.jpg');
+const sAtPic1 = require('../images/atPics/s_at1.jpg');
+const sAtPic2 = require('../images/atPics/s_at2.jpg');
+const sAtPic3 = require('../images/atPics/s_at3.jpg');
+const sAtPic4 = require('../images/atPics/s_at4.jpg');
+const sAtPic5 = require('../images/atPics/s_at5.jpg');
+const sAtPic6 = require('../images/atPics/s_at6.jpg');
+const sAtPic7 = require('../images/atPics/s_at7.jpg');
+const sAtPic8 = require('../images/atPics/s_at8.jpg');
+const sAtPic9 = require('../images/atPics/s_at9.jpg');
+const sAtPic10 = require('../images/atPics/s_at10.jpg');
+const sAtPic11 = require('../images/atPics/s_at11.jpg');
+const sAtPic12 = require('../images/atPics/s_at12.jpg');
+const sAtPic13 = require('../images/atPics/s_at13.jpg');
+const sAtPic14 = require('../images/atPics/s_at14.jpg');
 
 var to1 = new Sound('page_3.4_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to2 = new Sound('page_6_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
@@ -530,7 +530,7 @@ class Turns {
 
   ];
 
-  static endPic = require('../../../images/boy-scout-emblem.jpg');
+  static endPic = require('../images/boy-scout-emblem.jpg');
 
   static endAudio = new Sound('page_27_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 

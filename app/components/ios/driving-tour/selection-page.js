@@ -19,7 +19,7 @@ import {
 
 var Location = require('./start-loc');
 var InfoPage = require('./info-page');
-var Turns = require('./turns');
+var Turns = require('../../turns');
 // var backIcon = require('./back_chevron.png');
 
 var active = true;

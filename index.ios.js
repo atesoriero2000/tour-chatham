@@ -12,9 +12,9 @@ import {
   Text
 } from 'react-native';
 
-var Welcome = require('./app/ios/components/welcome');
-var Tour = require('./app/ios/components/tour');
-var About = require('./app/ios/components/about');
+var Welcome = require('./app/components/ios/welcome');
+var Tour = require('./app/components/ios/tour');
+var About = require('./app/components/ios/about');
 
 class scout_project extends Component {
 

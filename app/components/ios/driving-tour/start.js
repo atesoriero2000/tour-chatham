@@ -21,7 +21,7 @@ import Swiper from 'react-native-swiper';
 import { BlurView, VibrancyView } from 'react-native-blur';
 import Icon from 'react-native-vector-icons/EvilIcons';
 
-var Turns = require('./turns');
+var Turns = require('../../turns');
 var AudioPage = require('./audio-page');
 var SelectionPage = require('./selection-page');
 

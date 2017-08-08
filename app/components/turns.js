@@ -1,6 +1,6 @@
 //35 mph = 15 m/s = 51 fps
 const RADIUS_DELAY = 500; //feet
-const FIRST_TURN = 0;
+const FIRST_TURN = 500;
 
 const pic1 = require('../images/Flower.jpg');
 const pic2 = require('../images/Eagle.jpg');
@@ -226,7 +226,7 @@ const loc6 = [
     picture: g2,
     latitude: 40.733880,
     longitude: -74.403967,
-    radius: (1785 - FIRST_TURN) - 150, // from 40.730896, -74.409085  //TODO check first turn
+    radius: (1785 - FIRST_TURN) - 150, // from 40.730896, -74.409085
   },
   {
     direction: 'Take another right onto Lafayette Ave and drive 0.4 miles',
@@ -285,7 +285,7 @@ const loc8 = [
     picture: i2,
     latitude: 40.741458,
     longitude: -74.430853,
-    radius: (2194 - FIRST_TURN) - RADIUS_DELAY,
+    radius: 2194 - RADIUS_DELAY,
   },
 ];
 
@@ -345,7 +345,7 @@ const loc11 = [
     radius: 500,
   },
   {
-    direction: 'Stop at 520 Green Village Road and park in the Green Village Deli to the right',
+    direction: 'Stop at 520 Green Village Road and park in the Green Village Deli to the right', // TODO 520 to new adress deli
     picture: l2,
     latitude: 40.739029,
     longitude: -74.453421,
@@ -420,7 +420,7 @@ const loc14 = [
     picture: o2,
     latitude: 40.765623,
     longitude: -74.445828,
-    radius: (4786 - FIRST_TURN) - RADIUS_DELAY, // from 40.755507, -74.434803
+    radius: 4786 - RADIUS_DELAY, // from 40.755507, -74.434803
   },
   {
     direction: 'Park along fence to the left or right once you see the marker on the left',
@@ -436,35 +436,55 @@ var Sound = require('react-native-sound');
 
 const atPic0 = require('../images/atPics/at0.jpg');
 const atPic1 = require('../images/atPics/at1.jpg');
+const atPic1_2 = require('../images/atPics/at1_2.jpg');
 const atPic2 = require('../images/atPics/at2.jpg');
 const atPic3 = require('../images/atPics/at3.jpg');
 const atPic4 = require('../images/atPics/at4.jpg');
 const atPic5 = require('../images/atPics/at5.jpg');
 const atPic6 = require('../images/atPics/at6.jpg');
+const atPic6_2 = require('../images/atPics/at6_2.jpg');
 const atPic7 = require('../images/atPics/at7.jpg');
+const atPic7_2 = require('../images/atPics/at7_2.jpg');
 const atPic8 = require('../images/atPics/at8.jpg');
 const atPic9 = require('../images/atPics/at9.jpg');
 const atPic10 = require('../images/atPics/at10.jpg');
 const atPic11 = require('../images/atPics/at11.jpg');
+const atPic11_2 = require('../images/atPics/at11_2.jpg');
 const atPic12 = require('../images/atPics/at12.jpg');
+const atPic12_2 = require('../images/atPics/at12_2.jpg');
+const atPic12_3 = require('../images/atPics/at12_3.jpg');
+const atPic12_4 = require('../images/atPics/at12_4.jpg');
 const atPic13 = require('../images/atPics/at13.jpg');
+const atPic13_2 = require('../images/atPics/at13_2.jpg');
 const atPic14 = require('../images/atPics/at14.jpg');
+const atPic14_2 = require('../images/atPics/at14_2.jpg');
+const atPic14_3 = require('../images/atPics/at14_3.jpg');
 
 const sAtPic0 = require('../images/atPics/s_at0.jpg');
 const sAtPic1 = require('../images/atPics/s_at1.jpg');
+const sAtPic1_2 = require('../images/atPics/s_at1_2.jpg');
 const sAtPic2 = require('../images/atPics/s_at2.jpg');
 const sAtPic3 = require('../images/atPics/s_at3.jpg');
 const sAtPic4 = require('../images/atPics/s_at4.jpg');
 const sAtPic5 = require('../images/atPics/s_at5.jpg');
 const sAtPic6 = require('../images/atPics/s_at6.jpg');
+const sAtPic6_2 = require('../images/atPics/s_at6_2.jpg');
 const sAtPic7 = require('../images/atPics/s_at7.jpg');
+const sAtPic7_2 = require('../images/atPics/s_at7_2.jpg');
 const sAtPic8 = require('../images/atPics/s_at8.jpg');
 const sAtPic9 = require('../images/atPics/s_at9.jpg');
 const sAtPic10 = require('../images/atPics/s_at10.jpg');
 const sAtPic11 = require('../images/atPics/s_at11.jpg');
+const sAtPic11_2 = require('../images/atPics/s_at11_2.jpg');
 const sAtPic12 = require('../images/atPics/s_at12.jpg');
+const sAtPic12_2 = require('../images/atPics/s_at12_2.jpg');
+const sAtPic12_3 = require('../images/atPics/s_at12_3.jpg');
+const sAtPic12_4 = require('../images/atPics/s_at12_4.jpg');
 const sAtPic13 = require('../images/atPics/s_at13.jpg');
+const sAtPic13_2 = require('../images/atPics/s_at13_2.jpg');
 const sAtPic14 = require('../images/atPics/s_at14.jpg');
+const sAtPic14_2 = require('../images/atPics/s_at14_2.jpg');
+const sAtPic14_3 = require('../images/atPics/s_at14_3.jpg');
 
 var to1 = new Sound('page_3.4_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to2 = new Sound('page_6_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
@@ -513,20 +533,20 @@ class Turns {
   static stages = [
 
     {loc: loc0, title: 'The Mount Vernon Schoolhouse Marker', atAudio: at0, atPic: atPic0, squareAtPic: sAtPic0},
-    {loc: loc1, title: 'The Johnson House Marker', toAudio: to1, atAudio: at1, atPic: atPic1, squareAtPic: sAtPic1},
+    {loc: loc1, title: 'The Johnson House Marker', toAudio: to1, atAudio: at1, atPic: [atPic1, atPic1_2], squareAtPic: [sAtPic1, sAtPic1_2]},
     {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudio: to2, atAudio: null, atPic: atPic2, squareAtPic: sAtPic2},
     {loc: loc3, title: 'The Bey’s Boxing Camp Marker', toAudio: to3, atAudio: at3, atPic: atPic3, squareAtPic: sAtPic3},
     {loc: loc4, title: 'The Price-Baldwin House Marker', toAudio: to4, atAudio: at4, atPic: atPic4, squareAtPic: sAtPic4},
     {loc: loc5, title: 'The Chatham Colony Association Marker', toAudio: to5, atAudio: at5, atPic: atPic5, squareAtPic: sAtPic5},
-    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', toAudio: to6, atAudio: at6, atPic: atPic6, squareAtPic: sAtPic6},
-    {loc: loc7, title: 'The Noe Pond Marker', toAudio: to7, atAudio: at7, atPic: atPic7, squareAtPic: sAtPic7},
+    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', toAudio: to6, atAudio: at6, atPic: [atPic6, atPic6_2], squareAtPic: [sAtPic6, sAtPic6_2]},
+    {loc: loc7, title: 'The Noe Pond Marker', toAudio: to7, atAudio: at7, atPic: [atPic7, atPic7_2], squareAtPic: [sAtPic7, sAtPic7_2]},
     {loc: loc8, title: 'The Greenhouse Industry Marker', toAudio: to8, atAudio: null, atPic: atPic8, squareAtPic: sAtPic8},
     {loc: loc9, title: 'The Elias Boudinot House Marker', toAudio: to9, atAudio: at9, atPic: atPic9, squareAtPic: sAtPic9},
     {loc: loc10, title: 'The Cockrem Farm Marker', toAudio: to10, atAudio: null, atPic: atPic10, squareAtPic: sAtPic10},
-    {loc: loc11, title: 'The Green Village Marker', toAudio: to11, atAudio: null, atPic: atPic11, squareAtPic: sAtPic11},
-    {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudio: to12, atAudio: at12, atPic: atPic12, squareAtPic: sAtPic12},
-    {loc: loc13, title: 'The Loantaka School Marker', toAudio: to13, atAudio: null, atPic: atPic13, squareAtPic: sAtPic13},
-    {loc: loc14, title: 'The Boisaubin House Marker', toAudio: to14, atAudio: at14, atPic: atPic14, squareAtPic: sAtPic14},
+    {loc: loc11, title: 'The Green Village Marker', toAudio: to11, atAudio: null, atPic: [atPic11, atPic11_2], squareAtPic: [sAtPic11, sAtPic11_2]},
+    {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudio: to12, atAudio: at12, atPic: [atPic12, atPic12_2, atPic12_3, atPic12_4], squareAtPic: [sAtPic12, sAtPic12_2, sAtPic12_3, sAtPic12_4]},
+    {loc: loc13, title: 'The Loantaka School Marker', toAudio: to13, atAudio: null, atPic: [atPic13, atPic13_2], squareAtPic: [sAtPic13, sAtPic13_2]},
+    {loc: loc14, title: 'The Boisaubin House Marker', toAudio: to14, atAudio: at14, atPic: [atPic14, atPic14_2], squareAtPic: [sAtPic14, sAtPic14_2]},
 
   ];
 

@@ -16,6 +16,8 @@ import {
   Linking,
 } from 'react-native'
 
+import Swiper from 'react-native-swiper';
+
 var AudioPage = require('./audio-page');
 var Turns = require('../../turns');
 
@@ -56,7 +58,23 @@ class InfoPage extends Component{
           </Text>
         </View>
 
-        <Image style = {styles.image} source = {this.props.pic}/>
+
+        {Array.isArray(this.props.pic)?
+
+          <Swiper
+            showsButtons = {false}
+            loop = {true}
+            height={Dimensions.get('window').width / 1.5}
+            width={Dimensions.get('window').width / 1.5}
+            autoplay={true}
+            autoplayTimeout={2.5}
+            >
+              {this.props.pic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
+
+          </Swiper>:
+          <Image style = {styles.image} source = {this.props.pic}/>
+        }
+
 
         <TouchableOpacity style = {styles.button} onPress = {() => this.onPress()}>
           <Text style={styles.buttonText}> Click To Start Tour! </Text>
@@ -152,9 +170,11 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: '200',
     textAlign: 'center',
+    marginBottom: 25 * (Dimensions.get('window').width/375),
   },
 
   button:{
+    marginTop: 25 * (Dimensions.get('window').width/375),
     width: Dimensions.get('window').width/1.5,
     height: 36 * (Dimensions.get('window').height/667),
     backgroundColor: 'gray',
@@ -170,10 +190,10 @@ const styles = StyleSheet.create({
   },
 
   image:{
-    margin: 25 * (Dimensions.get('window').width/375),
     height: Dimensions.get('window').width / 1.5,
     width: Dimensions.get('window').width / 1.5,
-    backgroundColor: 'red',
+    backgroundColor: 'transparent',
+    alignSelf: 'center',
   },
 
 });

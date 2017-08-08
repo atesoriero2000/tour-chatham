@@ -470,6 +470,14 @@ function haversine_2(targetLat, targetLong, lastLat, lastLong) {
 
 console.log(haversine_2(40.733880, -74.403967, 40.732065, -74.402097));
 
+// import image from 'boy-scout-emblem!../../../../images/boy-scout-emblem.jpg';
+// import pic1 from 'Flower!../../../../images/Flower.jpg';
+// import pic2 from 'Eagle!../../../../images/Eagle.jpg';
+// const array = [pic1, pic2];
+//
+// console.log(JSON.stringify(typeof image));
+// console.log(JSON.stringify(typeof array));
+
 
 // var stage = 0;
 // var turn = 0;

@@ -52,12 +52,37 @@ class Start extends Component {
           TOUR OVERVIEW
         </Text>
 
-        <Text style = {styles.overviewText}>
-          This is a audio guided driving tour that will take you across Chatham township Madison and green village to different marked historical sights while telling you the history behind them.
+        <Text style = {styles.overviewText}
+          // onPress = {() => this.navToAudio()}
+          onPress = {() => this.setState({visible:true})}
+          >
+          This is a audio guided driving tour that will take you across Chatham Township, Madison, and Green Village to different marked historical sights while telling you the history behind them.
         </Text>
 
+        <Swiper
+          showsButtons = {false}
+          loop = {true}
+          height={250 * (Dimensions.get('window').width/375)}
+          width={Dimensions.get('window').width}
+          autoplay={true}
+          autoplayTimeout={2.5}>
+
+          {
+            [].concat.apply([], Turns.stages.map(pic => pic.atPic)).map( (pic1) => {
+              return(
+                <Image
+                  style={styles.image}
+                  source={pic1}
+                  key={Math.random()}/>
+              )
+            }
+          )
+        }
+
+        </Swiper>
+
         <Text style = {styles.overviewText}>
-          It will take approximately 1.5 hours to complete the whole tour but, you may stop at any marker and pick up where you left off.
+          It will take approximately 1.5 hours to complete the whole tour but, you may stop at any marker and pick up where you left off. You will need a passenger to follow the directions as they pop up.
         </Text>
 
         <TouchableHighlight style = {styles.button}
@@ -179,6 +204,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: 'black',
     padding: 20,
+  },
+
+  image:{
+    width: Dimensions.get('window').width,
+    height: 250,
   },
 
   button:{

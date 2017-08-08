@@ -27,7 +27,7 @@ class Page2 extends Component {
         </View>
 
         <Text style = {styles.text}>
-          On the next page you will pick your starting location. The tour will continue through only the locations listed after. (Any location listed before the location you select will not be played.)
+          On the next page you will pick your starting location. The tour will tour only the locations listed after. (Any locations listed before the selected location will not be toured.)
         </Text>
 
 
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 57 * (Dimensions.get('window').height/667),
-    marginBottom: 15 * (Dimensions.get('window').height/667),
+    marginBottom: 21 * (Dimensions.get('window').height/667),
     backgroundColor: 'lightgrey',
     borderRadius: 10 * (Dimensions.get('window').width/375),
   },
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 17 * (Dimensions.get('window').height/667),
+    marginTop: 22 * (Dimensions.get('window').height/667),
   },
 
   buttonText:{

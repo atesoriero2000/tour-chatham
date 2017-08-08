@@ -26,7 +26,7 @@ class Page1 extends Component {
         </View>
 
         <Text style = {styles.text}>
-          Directions will appear on the screen instructing what you exactly what to do and what turns to make. Below it will be a counter identifying how far away you are from each turn.
+          Directions will appear on the screen instructing you exactly what to do and what turns to make. Below, will be a counter identifying how far you are from each turn.
         </Text>
 
       </View>

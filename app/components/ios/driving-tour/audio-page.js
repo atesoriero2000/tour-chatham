@@ -16,6 +16,7 @@ import {
   ScrollView,
 } from 'react-native'
 
+import Swiper from 'react-native-swiper';
 import KeepAwake from 'react-native-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
@@ -51,7 +52,7 @@ class AudioPage extends Component {
     };
   }
 
-  componentWillMount() {
+  componentWillMount(){
 
     BackgroundGeolocation.destroyLog();
     BackgroundGeolocation.configure({
@@ -76,8 +77,10 @@ class AudioPage extends Component {
 
     Turns.stage = this.props.stage;
     Turns.turn = Turns.stages[Turns.stage].loc.length-1;
+
+    Sound.setCategory('Playback', false);
     // Turns.stage = 4;
-    // Turns.turn = 2;
+    // Turns.turn = 3;
 
   }
 
@@ -93,6 +96,7 @@ class AudioPage extends Component {
 
     //####### set turns and stage to passed value in props ############
     this.onPress();
+    // this.update();
   }
 
   componentWillUnmount(){
@@ -180,7 +184,7 @@ class AudioPage extends Component {
         Turns.turn = 0;
         Turns.stage++;
         doneAtAudio = false;
-        this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture });
+        this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture, isNear: false });
         this.triggerAudio(Turns.stages[Turns.stage].toAudio);
         this.update();
       }
@@ -229,7 +233,7 @@ class AudioPage extends Component {
       this.setState({audioIsPlaying: false});
       if(shouldUpdate)this.update();
     });
-    this.setState({audioFile, audioIsPlaying: true});
+    this.setState({audioFile, audioIsPlaying: true, clickable: false});
   }
 
   triggerAudio(audioFile){
@@ -290,10 +294,26 @@ class AudioPage extends Component {
           </Text>
 
 
-          <Image
-          style={styles.image}
-          source={this.state.picture}
-          />
+          {Array.isArray(this.state.picture)?
+
+            <View style={styles.imageBox}>
+              <Swiper
+                showsButtons = {false}
+                loop = {true}
+                height={250 * (Dimensions.get('window').width/375)}
+                width={Dimensions.get('window').width}
+                autoplay={true}
+                autoplayTimeout={2.5}>
+
+                  {this.state.picture.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
+
+              </Swiper>
+            </View>:
+
+            <View style={styles.imageBox}>
+              <Image style = {styles.image} source = {this.state.picture}/>
+            </View>
+          }
 
           <TouchableHighlight style = {{
             width: Dimensions.get('window').width/1.5,
@@ -439,11 +459,19 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  image:{
+  imageBox:{
     position: 'absolute',
     top: 310 * (Dimensions.get('window').width/375),
     height: 250 * (Dimensions.get('window').width/375),
     width: Dimensions.get('window').width,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  image:{
+    height: 250 * (Dimensions.get('window').width/375),
+    width: Dimensions.get('window').width,
+    alignSelf: 'center',
   },
 
   buttonText:{
@@ -453,7 +481,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-//DEBUGGER STYLES
+  //DEBUGGER STYLES
 
   debug1: {
     justifyContent: 'center',

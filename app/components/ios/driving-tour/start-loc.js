@@ -26,7 +26,11 @@ class Location extends Component{
       <TouchableOpacity onPress = {() => this.props.onPress(this.props)}>
         <View style = {styles.container}>
 
-          <Image style = {styles.image} source = {this.props.pic}/>
+          {
+            Array.isArray(this.props.pic)?
+              <Image style = {styles.image} source = {this.props.pic[0]}/>:
+              <Image style = {styles.image} source = {this.props.pic}/>
+          }
 
           <View style = {styles.contents}>
 
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
     margin: 25/2 * (Dimensions.get('window').width/375),
     height: 50 * (Dimensions.get('window').width/375),
     width: 50 * (Dimensions.get('window').width/375),
-    backgroundColor: 'red',
+    backgroundColor: 'transparent',
   },
 
 });

@@ -8,7 +8,7 @@ const pic4 = require('../images/boy-scout-emblem.jpg');
 
 
 const a1 = require('../images/edited/A1_00000.jpg');
-const a2 = pic1; //require('../images/edited/A2_00000.jpg');
+const a2 = require('../images/old/A2.jpg');
 const a3 = require('../images/edited/A3_00000.jpg');
 
 const b1 = require('../images/edited/B1_00000.jpg');
@@ -18,12 +18,12 @@ const d1 = require('../images/edited/D1_00000.jpg');
 const d2 = require('../images/edited/D2_00000.jpg');
 const d3 = require('../images/edited/D3_00000.jpg');
 
-const e0 = pic1; //require('../images/edited/E0_00000.jpg');
+const e0 = require('../images/old/E0.jpg');
 const e1 = require('../images/edited/E1_00000.jpg');
 const e2 = require('../images/edited/E2_00000.jpg');
 const e3 = require('../images/edited/E3_00000.jpg');
 
-const f0 = pic1; //require('../images/edited/F0_00000.jpg');
+const f0 = require('../images/old/F0.jpg');
 const f1 = require('../images/edited/F1_00000.jpg');
 const f2 = require('../images/edited/F2_00000.jpg');
 const f3 = require('../images/edited/F3_00000.jpg');
@@ -85,7 +85,7 @@ const loc1 = [
   },
   {
     direction: 'Travel straight 2.03 miles past the Fairmount Country Store Deli',
-    picture: pic1,
+    picture: a2,
     latitude: 40.703046,
     longitude: -74.428045,
     radius: 9639 - RADIUS_DELAY, // strait 9244

@@ -66,7 +66,7 @@ class About extends Component {
               Name: Anthony Tesoriero
             </Text>
             <Text style = {styles.fineText}>
-              Email: <Text selectable = {true} onPress={() => this.linkUrl("mailto:atesoriero2000@gmail.com?subject=Chatham%Township%Historical%Society%App")}>atesoriero2000@gmail.com</Text>
+              Email: <Text selectable = {true} onPress={() => this.linkUrl("mailto:atesoriero2000@gmail.com?subject=Chatham%20Township%20Historical%20Society%20App")}>atesoriero2000@gmail.com</Text>
             </Text>
 
             <Text style = {styles.labels} onPress={() => this.linkUrl("http://www.chathamtownshiphistoricalsociety.org")}>

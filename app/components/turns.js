@@ -1,6 +1,5 @@
 //35 mph = 15 m/s = 51 fps
 const RADIUS_DELAY = 500; //feet
-const FIRST_TURN = 500;
 
 const pic1 = require('../images/Flower.jpg');
 const pic2 = require('../images/Eagle.jpg');
@@ -89,14 +88,14 @@ const loc1 = [
     picture: pic1,
     latitude: 40.703046,
     longitude: -74.428045,
-    radius: (9244 + 1108 - FIRST_TURN) - RADIUS_DELAY, // strait 9244
+    radius: 9639 - RADIUS_DELAY, // strait 9244
   },
   {
     direction: 'Follow past the Marker and Turn left and park in Esternay Field. You may walk back up Fairmount to the marker.',
     picture: a3,
     latitude: 40.703046,
     longitude: -74.428045, // from 40.705910, -74.429376
-    radius: 2000, //1108 Smaller bc prev is a go strait command and radius can go past that point
+    radius: 3000, //1108 Smaller bc prev is a go strait command and radius can go past that point
   },
 ];
 
@@ -115,7 +114,7 @@ const loc2 = [
    picture: b2,
    latitude: 40.697119,
    longitude: -74.435379,
-   radius: (2864 - FIRST_TURN) - RADIUS_DELAY, // from 40.702367, -74.42768
+   radius: 2864 - RADIUS_DELAY, // from 40.702367, -74.42768
  },
 ];
 
@@ -134,14 +133,14 @@ const loc3 = [
    picture: d2,
    latitude: 40.708721,
    longitude: -74.416936,
-   radius: (2863 + 3770 - FIRST_TURN) - RADIUS_DELAY, // strait //TODO BADDDDDD
+   radius: 2863 + 3770 - RADIUS_DELAY, // strait
  },
  {
    direction: 'Park along River Road to right in the gravel outcrop',
    picture: d3,
    latitude: 40.708721,
    longitude: -74.416936,
-   radius: 3770 - RADIUS_DELAY, // from 40.702367, -74.427685 //TODO BADDDDDDD
+   radius: 3770 - RADIUS_DELAY, // from 40.702367, -74.427685
  },
 ];
 
@@ -160,7 +159,7 @@ const loc4 = [
     picture: e1,
     latitude: 40.714512,
     longitude: -74.407812,
-    radius: (3291 - FIRST_TURN) - RADIUS_DELAY,
+    radius: 3291 - RADIUS_DELAY,
   },
   {
     direction: 'Turn Left onto Southern Blvd and travel up "Snake Hill"',
@@ -174,7 +173,7 @@ const loc4 = [
     picture: e3,
     latitude: 40.722827,
     longitude: -74.405053,
-    radius: 1100,  //1251,
+    radius: 1000,  //1251,
   },
 ];
 
@@ -193,7 +192,7 @@ const loc5 = [
     picture: f1,
     latitude: 40.727589,
     longitude: -74.409730,
-    radius: (2166 - FIRST_TURN) - RADIUS_DELAY,
+    radius: 2166 - RADIUS_DELAY,
   },
   {
     direction: 'Take the first left onto Spring St (approx 0.2 miles)',
@@ -226,21 +225,21 @@ const loc6 = [
     picture: g2,
     latitude: 40.733880,
     longitude: -74.403967,
-    radius: (1785 - FIRST_TURN) - 150, // from 40.730896, -74.409085
+    radius: 1785 - 150, // from 40.730896, -74.409085
   },
   {
     direction: 'Take another right onto Lafayette Ave and drive 0.4 miles',
     picture: g3,
     latitude: 40.732065,
     longitude: -74.402097,
-    radius: 840 - 150,
+    radius: 840 - 140,
   },
   {
     direction: 'Turn right onto Southern Blvd (0.2 miles)',
     picture: g4,
     latitude: 40.727553,
     longitude: -74.409742,
-    radius: 1819 - 200,
+    radius: 2679 - 250,
   },
   {
     direction: 'The marker at 184 Southern Blvd is on the right. Park in Southern Boulevard School to right just past the marker', // (If you reached Jay Road you have gone too far)
@@ -266,7 +265,7 @@ const loc7 = [
     picture: h2,
     latitude: 40.737275,
     longitude: -74.425151,
-    radius: (4351 - FIRST_TURN) - RADIUS_DELAY,
+    radius: 4351 - RADIUS_DELAY,
   },
 ];
 
@@ -304,7 +303,7 @@ const loc9 = [
     picture: j2,
     latitude: 40.744404,
     longitude: -74.434543,
-    radius: (1350 - FIRST_TURN) - 300, // from 40.742026, -74.430803
+    radius: 1350 - 250, // from 40.742026, -74.430803
   },
   {
     direction: 'The destination is on the left at 461 Green Village Road. You may park in the driveway to the left',
@@ -330,7 +329,7 @@ const loc10 = [
     picture: k2,
     latitude: 40.738841,
     longitude: -74.449521,
-    radius: (876 - FIRST_TURN) - 150,
+    radius: 876 - 150,
   },
 ];
 
@@ -345,11 +344,11 @@ const loc11 = [
     radius: 500,
   },
   {
-    direction: 'Stop at 520 Green Village Road and park in the Green Village Deli to the right', // TODO 520 to new adress deli
+    direction: 'Stop at 536 Green Village Road and park in the Green Village Deli to the right',
     picture: l2,
     latitude: 40.739029,
     longitude: -74.453421,
-    radius: (1080 - FIRST_TURN) - 150,
+    radius: 1080 - 150,
   },
 ];
 
@@ -368,7 +367,7 @@ const loc12 = [
     picture: m2,
     latitude: 40.740854,
     longitude: -74.456702,
-    radius: (1125 - FIRST_TURN) - 150,
+    radius: 1125 - 150,
   },
   {
     direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the marron marker',
@@ -401,7 +400,7 @@ const loc13 = [
     picture: n2,
     latitude: 40.753724,
     longitude: -74.440480,
-    radius: (1820 - FIRST_TURN) - 200,
+    radius: 1820 - 200,
   },
 ];
 

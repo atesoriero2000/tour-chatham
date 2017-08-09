@@ -468,7 +468,7 @@ function haversine_2(targetLat, targetLong, lastLat, lastLong) {
 
 
 
-console.log(haversine_2(40.733880, -74.403967, 40.732065, -74.402097));
+console.log(haversine_2(40.732065, -74.402097, 40.727553, -74.409742));
 
 // import image from 'boy-scout-emblem!../../../../images/boy-scout-emblem.jpg';
 // import pic1 from 'Flower!../../../../images/Flower.jpg';

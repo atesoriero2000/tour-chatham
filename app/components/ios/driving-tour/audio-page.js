@@ -133,24 +133,26 @@ class AudioPage extends Component {
     this.setState({ clickable: (!this.state.audioIsPlaying && (currentStage.loc.length-1 === Turns.turn)  && (debug||this.state.distToCurrent < 150) )});
 
 
-    //NEXT TURN STATE UPDATE
     //TURN UPDATE
-    if(currentStage.loc.length-1 > Turns.turn){ //check if its not the last turn
+    // Set our next turn to either the next turn in the array or
+    // if we are on the last turn of the array already, the first next turn of the next location
+    // this alows us to non restrictivly update state and not leave extrainious states that are not updated
+    // exeption: on last turn of last location cannot look ahead so we use Turns.stage instead of Turns.stage+1
+    let nextTurn = (currentStage.loc.length-1 > Turns.turn) ? currentStage.loc[Turns.turn+1] : Turns.stages[ (Turns.stage===14)?14:Turns.stage+1 ].loc[1];
 
-      let nextTurn = currentStage.loc[Turns.turn+1];
+    //STATE UPDATE
+    this.setState({
+      nextTargetPos: {latitude: nextTurn.latitude, longitude: nextTurn.longitude},
+      distToNext: this.distTo(nextTurn.latitude, nextTurn.longitude),
+      isNear: this.isNear(nextTurn.latitude, nextTurn.longitude, nextTurn.radius),
+      nextRadius: nextTurn.radius, // NOTE: FOR DEBUGGING
+    });
 
-      this.setState({
-        nextTargetPos: {latitude: nextTurn.latitude, longitude: nextTurn.longitude},
-        distToNext: this.distTo(nextTurn.latitude, nextTurn.longitude),
-        isNear: this.isNear(nextTurn.latitude, nextTurn.longitude, nextTurn.radius),
-      });
-
-      //handle next turns
-      if(this.state.isNear){
-        Vibration.vibrate();
-        BackgroundGeolocation.playSound(1300);
-        Turns.turn++;
-      }
+    //Only will increment turn counter if isNear is true and if not the last turn
+    if(this.state.isNear && (currentStage.loc.length-1 > Turns.turn) ){
+      Vibration.vibrate();
+      BackgroundGeolocation.playSound(1300);
+      Turns.turn++;
     }
   }
 
@@ -184,7 +186,8 @@ class AudioPage extends Component {
         Turns.turn = 0;
         Turns.stage++;
         doneAtAudio = false;
-        this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture, isNear: false });
+        this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture});
+        // this.setState({ isNear: false });
         this.triggerAudio(Turns.stages[Turns.stage].toAudio);
         this.update();
       }
@@ -230,10 +233,10 @@ class AudioPage extends Component {
 
   triggerAudioBool(audioFile, shouldUpdate){
     audioFile.play(() => {
-      this.setState({audioIsPlaying: false});
+      this.setState({ audioIsPlaying: false });
       if(shouldUpdate)this.update();
     });
-    this.setState({audioFile, audioIsPlaying: true, clickable: false});
+    this.setState({ audioFile, audioIsPlaying: true, clickable: false }); // clickable set so button immediatly changes
   }
 
   triggerAudio(audioFile){
@@ -358,6 +361,11 @@ class AudioPage extends Component {
           {debug?<Text style={{
             position: 'absolute',
             top: 262 + 77,
+            left: 220
+          }}> nextRadius: {JSON.stringify(this.state.nextRadius)} </Text>:null}
+          {debug?<Text style={{
+            position: 'absolute',
+            top: 262 + 104,
             left: 220
           }}> isNear: {JSON.stringify(this.state.isNear)} </Text>:null}
 

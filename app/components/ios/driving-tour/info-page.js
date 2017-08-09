@@ -47,7 +47,7 @@ class InfoPage extends Component{
         <Text style = {styles.text}> {this.props.title} </Text>
 
         <View style = {{
-          //Add padding to view not text or onPress position will be ghosting
+          // NOTE: Add padding to view not text or onPress position will be ghosting
           paddingHorizontal: 25 * (Dimensions.get('window').width/375),
           paddingTop: 25 * (Dimensions.get('window').height/667),
         }}>

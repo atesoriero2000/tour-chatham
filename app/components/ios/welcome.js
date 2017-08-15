@@ -28,20 +28,32 @@ class Welcome extends Component {
         </View>
 
         <Text style = {styles.text}>
-          The Chatham Historical Society Driving Tour
+          Chatham Township Historical Society Driving Tour
         </Text>
 
-        <Image style = {styles.logo} source = {require('../../images/chs_logo.jpg')}  />
+        <Image style = {styles.border} source = {require('../../images/logo_border.png')}  />
+        <Image style = {styles.logo} source = {require('../../images/chs_logo.png')}  />
 
-        <TouchableHighlight style = {styles.button}
+        <View style={styles.halfButtonView}>
+          <TouchableHighlight style = {styles.halfButton}
+            onPress = {() => this.toNews()}
+            underlayColor = '#BBBBBB'>
+            <Text style = {styles.buttonText}> News </Text>
+          </TouchableHighlight>
+
+          <TouchableHighlight style = {styles.halfButton}
+            onPress = {() => this.props.toTour()}
+            underlayColor = '#BBBBBB'>
+            <Text style = {styles.buttonText}> Tour -> </Text>
+          </TouchableHighlight>
+
+        </View>
+
+        {/* <TouchableHighlight style = {styles.button}
           onPress = {() => this.toNews()}
           underlayColor = '#BBBBBB'>
-
-          <Text style = {styles.buttonText}>
-            News ->
-          </Text>
-
-        </TouchableHighlight>
+          <Text style = {styles.buttonText}> News -> </Text>
+        </TouchableHighlight> */}
 
       </View>
     )
@@ -59,11 +71,10 @@ class Welcome extends Component {
 const styles = StyleSheet.create({
 
   container:{
-    flex: 1,
     alignItems: 'center',
   },
 
-  banner:{
+  banner: {// TODO: check if navigator bar scalable
     height: 65 * (Dimensions.get('window').height/667),
     width: Dimensions.get('window').width,
     backgroundColor: '#f9f9f9',
@@ -84,21 +95,25 @@ const styles = StyleSheet.create({
   },
 
   text:{
-    paddingHorizontal: 35 * (Dimensions.get('window').width/375),
-    paddingTop: 65.5 * (Dimensions.get('window').height/667),
-    paddingBottom: 10 * (Dimensions.get('window').height/667),
-    fontSize: 25 * (Dimensions.get('window').width/375),
+    paddingHorizontal: 25 * (Dimensions.get('window').width/375),
+    paddingTop: 25 * (Dimensions.get('window').height/667),
+    paddingBottom: 15 * (Dimensions.get('window').height/667),
+    fontSize: 35 * (Dimensions.get('window').width/375),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
     justifyContent: 'center',
-    // backgroundColor: 'red',
+  },
+
+  border:{
+    width: Dimensions.get('window').width,
+    height: 13 * (Dimensions.get('window').height/667),
+    marginBottom: 21.5 * (Dimensions.get('window').height/667),
   },
 
   logo:{
     width: Dimensions.get('window').width,
-    height: 300 * (Dimensions.get('window').height/667),
-    // backgroundColor: 'blue',
+    height: 275 * (Dimensions.get('window').width/375),
   },
 
   button:{
@@ -107,12 +122,30 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40 * (Dimensions.get('window').height/667),
+    marginTop: 21.5 * (Dimensions.get('window').height/667),
+    opacity: 0.5,
+  },
+
+  halfButton:{
+    width: Dimensions.get('window').width/2,
+    height: 36 * (Dimensions.get('window').height/667),
+    backgroundColor: 'gray',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  halfButtonView:{
+    flex: 2,
+    flexDirection: 'row',
+    width: Dimensions.get('window').width,
+    height: 36 * (Dimensions.get('window').height/667),
+    justifyContent: 'center',
+    marginTop: 21.5 * (Dimensions.get('window').height/667),
     opacity: 0.5,
   },
 
   buttonText:{
-    fontSize: 18 * (Dimensions.get('window').width/375),
+    fontSize: 17 * (Dimensions.get('window').width/375),
     color: 'white',
     fontWeight: '100',
     justifyContent: 'center',

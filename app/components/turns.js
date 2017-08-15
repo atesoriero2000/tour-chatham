@@ -8,7 +8,7 @@ const pic4 = require('../images/boy-scout-emblem.jpg');
 
 
 const a1 = require('../images/edited/A1_00000.jpg');
-const a2 = require('../images/old/A2.jpg');
+const a2 = require('../images/edited/A2_00000.jpg');
 const a3 = require('../images/edited/A3_00000.jpg');
 
 const b1 = require('../images/edited/B1_00000.jpg');
@@ -18,12 +18,12 @@ const d1 = require('../images/edited/D1_00000.jpg');
 const d2 = require('../images/edited/D2_00000.jpg');
 const d3 = require('../images/edited/D3_00000.jpg');
 
-const e0 = require('../images/old/E0.jpg');
+const e0 = require('../images/edited/E0_00000.jpg');
 const e1 = require('../images/edited/E1_00000.jpg');
 const e2 = require('../images/edited/E2_00000.jpg');
 const e3 = require('../images/edited/E3_00000.jpg');
 
-const f0 = require('../images/old/F0.jpg');
+const f0 = require('../images/edited/F0_00000.jpg');
 const f1 = require('../images/edited/F1_00000.jpg');
 const f2 = require('../images/edited/F2_00000.jpg');
 const f3 = require('../images/edited/F3_00000.jpg');
@@ -497,18 +497,18 @@ var to9 = new Sound('page_18_jacob.mp3', Sound.MAIN_BUNDLE, (error) => audioLoad
 var to10 = new Sound('page_20_kimberly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to11 = new Sound('page_21_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to12 = new Sound('page_22_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to13 = new Sound('page_24_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to13 = new Sound('page_24_cat.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to14 = new Sound('page_25_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 
 
 var at0 = new Sound('page_2_kimberly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var at1 = new Sound('page_5_jacob.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var at1 = new Sound('page_5_cat.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 
 var at3 = new Sound('page_8_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var at4 = new Sound('page_10_grace.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var at5 = new Sound('page_12_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var at6 = new Sound('page_14_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var at7 = new Sound('page_16_grace.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var at7 = new Sound('page_16_cat.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 
 var at9 = new Sound('page_19_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 
@@ -548,8 +548,6 @@ class Turns {
     {loc: loc14, title: 'The Boisaubin House Marker', toAudio: to14, atAudio: at14, atPic: [atPic14, atPic14_2], squareAtPic: [sAtPic14, sAtPic14_2]},
 
   ];
-
-  static endPic = require('../images/boy-scout-emblem.jpg');
 
   static endAudio = new Sound('page_27_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 

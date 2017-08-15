@@ -12,6 +12,8 @@ import {
   Text
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/Ionicons';
+
 var Welcome = require('./app/components/ios/welcome');
 var Tour = require('./app/components/ios/tour');
 var About = require('./app/components/ios/about');
@@ -21,12 +23,7 @@ class scout_project extends Component {
    constructor(props){
     super(props);
     this.state = {
-      selectedTab: 'welcome',
-      unmount: {
-        a: false,
-        b: false,
-        c: false,
-      },
+      selectedTab: 'welcome'
     };
   }
 
@@ -34,67 +31,39 @@ class scout_project extends Component {
     console.log(this.state.unmount);
   }
 
-  getUnmount(){
-    return this.state.unmount
-  }
-
   render() {
     return(
       <TabBarIOS selectedTab={this.state.selectedTab}>
 
-        <TabBarIOS.Item //Welcome Tab
+        <Icon.TabBarItemIOS  //Welcome Tab
           selected = {this.state.selectedTab === 'welcome'}
-          systemIcon = {'featured'}
+          title = {'Home'}
+          iconName = {'ios-home-outline'}
+          selectedIconName = {'ios-home'}
+          onPress = { () => this.setState({ selectedTab: 'welcome' }) }>
 
-          onPress= {() => {
-              this.setState({
-                selectedTab: 'welcome',
-                unmount: {
-                  a: false,
-                  b: true,
-                  c: true,
-                },
-              });
-            }}>
-          <Welcome unmount = {() => this.getUnmount()}/>
-        </TabBarIOS.Item>
+          <Welcome toTour = { () => this.setState({ selectedTab: 'tour' }) }/>
+        </Icon.TabBarItemIOS>
 
 
-        <TabBarIOS.Item //Tour Tab
+        <Icon.TabBarItemIOS //Tour Tab
           selected = {this.state.selectedTab === 'tour'}
-          systemIcon = {'history'}
+          title = {'Tour'}
+          iconName = {'ios-car-outline'}
+          selectedIconName = {'ios-car'}
+          onPress = { () => this.setState({ selectedTab: 'tour'}) }>
 
-          onPress= {() => {
-              this.setState({
-                selectedTab: 'tour',
-                unmount: {
-                  a: true,
-                  b: false,
-                  c: true,
-                },
-              });
-            }}>
-          <Tour unmount = {() => this.getUnmount()}/>
-        </TabBarIOS.Item>
+          <Tour/>
+        </Icon.TabBarItemIOS>
 
 
         <TabBarIOS.Item //About Tab
           selected = {this.state.selectedTab === 'about'}
           systemIcon = {'more'}
+          onPress = { () => this.setState({ selectedTab: 'about' }) }>
 
-          onPress= {() => {
-              this.setState({
-                selectedTab: 'about',
-                unmount: {
-                  a: true,
-                  b: true,
-                  c: false,
-                },
-              });
-            }}>
-          <About unmount ={() => this.state.getUnmount()}/>
+          <About/>
         </TabBarIOS.Item>
-
 
       </TabBarIOS>
     );

@@ -19,7 +19,8 @@ import {
 
 import Swiper from 'react-native-swiper';
 import { BlurView, VibrancyView } from 'react-native-blur';
-import Icon from 'react-native-vector-icons/EvilIcons';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 var Turns = require('../../turns');
 var AudioPage = require('./audio-page');
@@ -27,6 +28,8 @@ var SelectionPage = require('./selection-page');
 
 var Page1 = require('./tutorial/page1');
 var Page2 = require('./tutorial/page2');
+var Header = require('./tutorial/header');
+
 
 
 class Start extends Component {
@@ -38,6 +41,10 @@ class Start extends Component {
     };
   }
 
+  componentWillMount(){ // TODO: check if navigator back arrow scalable and bar
+    Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
+  }
+
   componentWillUnmount(){
     this.setState({visible: false});
   }
@@ -46,63 +53,55 @@ class Start extends Component {
     return (
       <View style = {styles.container}>
 
-
         {/* OVERVIEW PAGE */}
-        <Text style = {styles.title}>
-          TOUR OVERVIEW
-        </Text>
+        <View style = {styles.overviewContainer}>
 
-        <Text style = {styles.overviewText}
-          // onPress = {() => this.navToAudio()}
-          onPress = {() => this.setState({visible:true})}
-          >
-          This is a audio guided driving tour that will take you across Chatham Township, Madison, and Green Village to different marked historical sights while telling you the history behind them.
-        </Text>
+          <Text style = {styles.overviewText1}>
+            Explore Chatham Township, Madison, and Green Village
+            as you drive to different marked historical sights while
+            listening the history behind them!
+          </Text>
 
-        <Swiper
-          showsButtons = {false}
-          loop = {true}
-          height={250 * (Dimensions.get('window').width/375)}
-          width={Dimensions.get('window').width}
-          autoplay={true}
-          autoplayTimeout={2.5}>
+          <Swiper
+            showsButtons = {false}
+            loop = {true}
+            height={240 * (Dimensions.get('window').width/375)}
+            width={Dimensions.get('window').width}
+            autoplay={true}
+            autoplayTimeout={2.5}>
 
-          {
-            [].concat.apply([], Turns.stages.map(pic => pic.atPic)).map( (pic1) => {
-              return(
-                <Image
-                  style={styles.image}
-                  source={pic1}
-                  key={Math.random()}/>
+            {[].concat.apply([], Turns.stages.map(pic => pic.atPic)).map( (pic1) => {
+                return(
+                  <Image
+                    style={styles.image}
+                    source={pic1}
+                    key={Math.random()}/>
+                  )
+                }
               )
             }
-          )
-        }
 
-        </Swiper>
+          </Swiper>
 
-        <Text style = {styles.overviewText}>
-          It will take approximately 1.5 hours to complete the whole tour but, you may stop at any marker and pick up where you left off. You will need a passenger to follow the directions as they pop up.
-        </Text>
+          <Text style = {styles.overviewText2}>
+            It will take approximately 1.5 hours to complete the whole
+            tour but, you may stop at any marker and pick up where you
+            left off. You will need a passenger to follow the directions
+            as they pop up. <Text style={styles.clickable} onPress = {() =>
+              this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
+              Click here for more info!</Text>
+          </Text>
 
-        <TouchableHighlight style = {styles.button}
-          onPress = {() => this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}
-          underlayColor = '#BBBBBB'>
-            <Text style = {styles.buttonText}>
-              More information about the historical marker project
-            </Text>
-        </TouchableHighlight>
+          <TouchableHighlight style = {styles.button}
+            onPress = {() => this.setState({visible:true})}
+            // onPress = {()=>this.navToAudio()}
+            underlayColor = '#BBBBBB'>
+              <Text style = {styles.buttonText}>
+                Click to Continue
+              </Text>
+          </TouchableHighlight>
 
-        <TouchableHighlight style = {styles.button}
-          onPress = {() => this.setState({visible:true})}
-          // onPress = {()=>this.navToAudio()}
-          underlayColor = '#BBBBBB'>
-            <Text style = {styles.buttonText}>
-              Click to Continue
-            </Text>
-        </TouchableHighlight>
-
-
+        </View>
         {/* TUTORIAL */}
         <Modal
           animationType={'fade'}
@@ -130,23 +129,7 @@ class Start extends Component {
             </View>{/* modalformat */}
 
             {/* TUTORIAL HEADER */}
-              <Text style={{
-                position: 'absolute',
-                fontSize: 27 * (Dimensions.get('window').width/375),
-                fontWeight: '200',
-                top: (7 + 45) * (Dimensions.get('window').height/667),
-              }}>Tutorial</Text>
-
-              <Icon
-                name={'close'}
-                size={40 * (Dimensions.get('window').width/375)}
-                color={'#006CFF'}
-                onPress={()=>this.setState({visible:false})}
-                style={{
-                  position: 'absolute',
-                  top: (7 + 45) * (Dimensions.get('window').height/667),
-                  left: 45 * (Dimensions.get('window').width/375),
-                }}/>
+            <Header onPress={()=>this.setState({visible:false})}/>
 
           </BlurView>{/* overlay */}
         </Modal>{/* popup */}
@@ -159,7 +142,6 @@ class Start extends Component {
       title: 'Audio Tour',
       component: AudioPage,
       passProps: {
-        unmount: this.props.unmount,
         stage: 0,
       },
     });
@@ -170,7 +152,8 @@ class Start extends Component {
     this.props.navigator.push({
       title: 'Select a Start Point',
       component: SelectionPage,
-      passProps: {unmount: this.props.unmount},
+      leftButtonIcon: this.state.backIcon,
+      onLeftButtonPress: () => this.props.navigator.pop(),
     });
   }
 
@@ -187,46 +170,63 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
-  title:{
-    fontSize: 35 * (Dimensions.get('window').width/375),
-    color: 'black',
+  overviewContainer:{
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    alignItems: 'center',
+  },
+
+  overviewText1:{
+    textAlign: 'center',
+    fontSize: 17 * (Dimensions.get('window').width/375),
     fontWeight: '100',
-    textAlign: 'center',
-    paddingHorizontal: 25 * (Dimensions.get('window').width/375),
-    paddingTop: 65 + 10 * (Dimensions.get('window').width/375),
+    color: 'grey',
+    marginHorizontal: 30 * (Dimensions.get('window').width/375),
+    marginTop: (65 + 26) * (Dimensions.get('window').height/667),
+    marginBottom: 19 * (Dimensions.get('window').height/667),
   },
 
-  overviewText:{
+  overviewText2:{
     textAlign: 'center',
-    fontSize: 15,
-    fontWeight: '500',
-    color: 'black',
-    padding: 20,
+    fontSize: 15 * (Dimensions.get('window').width/375),
+    fontWeight: '100',
+    color: 'grey',
+    marginHorizontal: 30 * (Dimensions.get('window').width/375),
+    marginTop: 21 * (Dimensions.get('window').height/667),
+    marginBottom: 19 * (Dimensions.get('window').height/667),
+  },
+
+  clickable:{
+    fontSize: 14 * (Dimensions.get('window').width/375),
+    fontWeight: '100',
+    color: '#9090FF',
+    textDecorationLine: 'underline',
   },
 
   image:{
     width: Dimensions.get('window').width,
-    height: 250,
+    height: 240 * (Dimensions.get('window').width/375),
   },
 
   button:{
-    width: Dimensions.get('window').width/1.25,
-    height: 48,
-    backgroundColor: 'gray',
+    width: Dimensions.get('window').width,
+    height: 36 * (Dimensions.get('window').height/667),
+    backgroundColor: 'grey',
+    opacity: .5,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 5,
-    //opacity: 0.5,
+    alignSelf: 'center',
   },
 
   buttonText:{
-    fontSize: 18,
+    fontSize: 17 * (Dimensions.get('window').width/375),
     color: 'white',
     fontWeight: '100',
     textAlign: 'center',
-    margin: 10,
+  //  margin: 10 * (Dimensions.get('window').width/375),
   },
 
 

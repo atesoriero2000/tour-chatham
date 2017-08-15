@@ -17,9 +17,8 @@ class Tour extends Component {
       <NavigatorIOS
         style = {styles.container}
         initialRoute = {{
-          title: 'Start Tour',
+          title: 'Start the Tour!',
           component: Start,
-          passProps: {unmount: this.props.unmount},
         }}
         />
     );

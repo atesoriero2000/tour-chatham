@@ -29,7 +29,6 @@ class InfoPage extends Component{
     super(props);
     this.state = {
       url: null,
-      //intervalID: setInterval(()=>this.check(), 1000),
     }
   }
 
@@ -91,16 +90,6 @@ class InfoPage extends Component{
     }).catch(err => console.error('An error occurred', err));
   }
 
-  check(){
-    if(this.props.unmount().b){
-      this.props.navigator.popToTop();
-    }
-  }
-
-  componentWillUnmount(){
-    clearInterval(this.state.intervalID);
-  }
-
   onPress(){
     Alert.alert('SAFTEY', '\n1) Please make sure you have a passenger. You will need a passenger to follow and read the directions as the come up on the phone screen.\n\n 2) If you miss a turn, safely navigate through adjacent road and proceed back to the instructed route.\n\n 3) Some locations have limited/ample parking. Please be cautious of your surrounding and pay attention to the specified parking directions.\n\n 4) some markers are on private property. Be courteous to others and mindful of trespassing.\n\n 5) Drive safely, the developer, the Chatham Township Historical Society, and associates of the app hold no liability for any incidents while using this app.',[
       { text: 'Ok, I Understand', onPress: () => this.navToAudio()},
@@ -160,7 +149,7 @@ const styles = StyleSheet.create({
 
   text_bold:{
     fontSize: 20 * (Dimensions.get('window').width/375),
-    color: 'black',
+    color: '#6565FF',
     fontWeight: '300',
     textAlign: 'center',
   },

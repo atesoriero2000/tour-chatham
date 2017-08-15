@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { Component, } from 'react'
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '100',
     textAlign: 'center',
-    margin: 10 * (Dimensions.get('window').width/375),
   },
 });
 

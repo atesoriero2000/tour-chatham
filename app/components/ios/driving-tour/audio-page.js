@@ -24,11 +24,9 @@ import Sound from 'react-native-sound';
 var Turns = require('../../turns');
 
 var doneAtAudio = false;
+var firstAudio = true;
 
-var debug = 1;
-debug = (debug === 1);
-
-var tester = false;
+const mode = 'demo'; // debug, demo, tester
 
 class AudioPage extends Component {
 
@@ -102,6 +100,7 @@ class AudioPage extends Component {
   componentWillUnmount(){
     this.DEBUG_stopAudio();
     doneAtAudio = false;
+    firstAudio = true;
     BackgroundGeolocation.stopWatchPosition();
     KeepAwake.deactivate();
   }
@@ -130,7 +129,9 @@ class AudioPage extends Component {
       });
     }
     //if audio is not playing and we are close to the last turn
-    this.setState({ clickable: (!this.state.audioIsPlaying && (currentStage.loc.length-1 === Turns.turn)  && (debug||this.state.distToCurrent < 150) )});
+    this.setState({ clickable: (!this.state.audioIsPlaying
+      && (currentStage.loc.length-1 === Turns.turn)
+      && (mode === 'debug'||mode === 'demo'||this.state.distToCurrent < 200) )});
 
 
     //TURN UPDATE
@@ -207,7 +208,7 @@ class AudioPage extends Component {
       clickable: false,
       title: 'Thankyou for taking the Tour!',
       directions: 'To exit this page, click the "End Tour" button in the top left corner. For direction back to the Schoolhouse, click the "Return Home" button in the top right corner.',
-      picture: Turns.endPic,
+      picture: [].concat.apply([], Turns.stages.map(pic => pic.atPic)),
     });
 
     this.triggerAudioBool(Turns.endAudio, false);
@@ -220,8 +221,6 @@ class AudioPage extends Component {
   distTo(targetLat, targetLong){
     let lastLat = this.state.lastPos.latitude;
     let lastLong =  this.state.lastPos.longitude;
-
-    // if(targetLat === null){return true}
 
     let φ1 = lastLat/180 * Math.PI, φ2 = targetLat/180 * Math.PI, Δλ = (targetLong-lastLong)/180 * Math.PI, R = 3959 * 5280;
     let d = Math.acos( Math.sin(φ1)*Math.sin(φ2) + Math.cos(φ1)*Math.cos(φ2) * Math.cos(Δλ) ) * R;
@@ -236,6 +235,12 @@ class AudioPage extends Component {
       this.setState({ audioIsPlaying: false });
       if(shouldUpdate)this.update();
     });
+
+    if(firstAudio){
+      audioFile.setVolume(1);
+      firstAudio = false;
+    }
+
     this.setState({ audioFile, audioIsPlaying: true, clickable: false }); // clickable set so button immediatly changes
   }
 
@@ -333,37 +338,37 @@ class AudioPage extends Component {
             <Text style={styles.buttonText}>Click to Continue</Text>
           </TouchableHighlight>
 
-          {debug||tester?
+          {mode === 'debug'||mode === 'demo'||mode === 'tester'?
             <TouchableOpacity style = {styles.debug1} onPress={() => this.DEBUG_stopAudio()}>
               <Text style={{color: 'white'}}>{'X'}</Text>
             </TouchableOpacity>:null
           }
 
-          {debug?
+          {mode === 'debug'||mode === 'demo'?
             <TouchableOpacity style = {styles.debug2} onPress={() => this.DEBUG_lastTurn()}>
               <Text style={{color: 'white'}}>{'<'}</Text>
             </TouchableOpacity>:null
           }
 
-          {debug?
+          {mode === 'debug'||mode === 'demo'?
             <TouchableOpacity style = {styles.debug3} onPress={() => this.DEBUG_nextTurn()}>
               <Text style={{color: 'white'}}>{'>'}</Text>
             </TouchableOpacity>:null
           }
 
-          {debug?<Text style={{position: 'absolute', top: 285, left: 285}}>{Turns.stage},{Turns.turn}</Text>:null}
+          {mode === 'debug'?<Text style={{position: 'absolute', top: 285, left: 285}}>{Turns.stage},{Turns.turn}</Text>:null}
 
-          {debug?<Text style={{
+          {mode === 'debug'?<Text style={{
             position: 'absolute',
             top: 262 + 50,
             left: 220
           }}> distToNext: {JSON.stringify(Math.round(this.state.distToNext))} FT</Text>:null}
-          {debug?<Text style={{
+          {mode === 'debug'?<Text style={{
             position: 'absolute',
             top: 262 + 77,
             left: 220
           }}> nextRadius: {JSON.stringify(this.state.nextRadius)} </Text>:null}
-          {debug?<Text style={{
+          {mode === 'debug'?<Text style={{
             position: 'absolute',
             top: 262 + 104,
             left: 220
@@ -482,6 +487,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
 
+  button:{
+    width: Dimensions.get('window').width/1.5,
+    height: 36 * (Dimensions.get('window').width/375),
+    backgroundColor: 'gray',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+
   buttonText:{
     fontSize: 15 * (Dimensions.get('window').width/375),
     color: 'white',
@@ -497,7 +511,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 275 * (Dimensions.get('window').width/375),
     left: 15 * (Dimensions.get('window').width/375),
-    backgroundColor: 'gray',
+    backgroundColor: ((mode === 'demo') ? 'white' : 'gray'),
     height: 30 * (Dimensions.get('window').width/375),
     width: 30 * (Dimensions.get('window').width/375),
     borderRadius: 15 * (Dimensions.get('window').width/375),
@@ -509,7 +523,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 275 * (Dimensions.get('window').width/375),
     left: 55 * (Dimensions.get('window').width/375),
-    backgroundColor: 'gray',
+    backgroundColor: ((mode === 'demo') ? 'white' : 'gray'),
     height: 30 * (Dimensions.get('window').width/375),
     width: 30 * (Dimensions.get('window').width/375),
     borderRadius: 15 * (Dimensions.get('window').width/375),
@@ -521,7 +535,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 275 * (Dimensions.get('window').width/375),
     left: 95 * (Dimensions.get('window').width/375),
-    backgroundColor: 'gray',
+    backgroundColor: ((mode === 'demo') ? 'white' : 'gray'),
     height: 30 * (Dimensions.get('window').width/375),
     width: 30 * (Dimensions.get('window').width/375),
     borderRadius: 15 * (Dimensions.get('window').width/375),
@@ -541,15 +555,6 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     textAlign: 'center',
     marginTop: 30 * (Dimensions.get('window').width/375),
-  },
-
-  button:{
-    width: Dimensions.get('window').width/1.5,
-    height: 36 * (Dimensions.get('window').width/375),
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
   },
 
   halfButton:{

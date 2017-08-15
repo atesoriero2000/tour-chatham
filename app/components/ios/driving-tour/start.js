@@ -41,7 +41,7 @@ class Start extends Component {
     };
   }
 
-  componentWillMount(){ // TODO: check if navigator back arrow scalable and bar
+  componentWillMount(){
     Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
   }
 
@@ -61,6 +61,9 @@ class Start extends Component {
             as you drive to different marked historical sights while
             listening the history behind them!
           </Text>
+          <Text style={styles.clickable} onPress = {() =>
+            this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
+            Click here for more info!</Text>
 
           <Swiper
             showsButtons = {false}
@@ -87,9 +90,7 @@ class Start extends Component {
             It will take approximately 1.5 hours to complete the whole
             tour but, you may stop at any marker and pick up where you
             left off. You will need a passenger to follow the directions
-            as they pop up. <Text style={styles.clickable} onPress = {() =>
-              this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
-              Click here for more info!</Text>
+            as they pop up.
           </Text>
 
           <TouchableHighlight style = {styles.button}
@@ -185,18 +186,7 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     color: 'grey',
     marginHorizontal: 30 * (Dimensions.get('window').width/375),
-    marginTop: (65 + 26) * (Dimensions.get('window').height/667),
-    marginBottom: 19 * (Dimensions.get('window').height/667),
-  },
-
-  overviewText2:{
-    textAlign: 'center',
-    fontSize: 15 * (Dimensions.get('window').width/375),
-    fontWeight: '100',
-    color: 'grey',
-    marginHorizontal: 30 * (Dimensions.get('window').width/375),
-    marginTop: 21 * (Dimensions.get('window').height/667),
-    marginBottom: 19 * (Dimensions.get('window').height/667),
+    marginTop: 65 + (23) * Math.pow((Dimensions.get('window').height/667), 2.5),
   },
 
   clickable:{
@@ -204,7 +194,20 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     color: '#9090FF',
     textDecorationLine: 'underline',
+    marginTop: 1 * Math.pow((Dimensions.get('window').height/667), 2.5),
+    marginBottom: 15 * Math.pow((Dimensions.get('window').height/667), 2.5),
   },
+
+  overviewText2:{
+    textAlign: 'center',
+    fontSize: 15 * (Dimensions.get('window').width/375),
+    fontWeight: '100',
+    color: 'grey',
+    marginHorizontal: 35 * (Dimensions.get('window').width/375),
+    marginTop: 14 * Math.pow((Dimensions.get('window').height/667), 2.5),
+    marginBottom: 15 * Math.pow((Dimensions.get('window').height/667), 2.5),
+  },
+
 
   image:{
     width: Dimensions.get('window').width,
@@ -213,7 +216,7 @@ const styles = StyleSheet.create({
 
   button:{
     width: Dimensions.get('window').width,
-    height: 36 * (Dimensions.get('window').height/667),
+    height: 36 * Math.pow((Dimensions.get('window').height/667), 2),
     backgroundColor: 'grey',
     opacity: .5,
     justifyContent: 'center',
@@ -226,7 +229,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '100',
     textAlign: 'center',
-  //  margin: 10 * (Dimensions.get('window').width/375),
   },
 
 

@@ -23,7 +23,7 @@ class About extends Component {
             About
           </Text>
           <Text style = {styles.text}>
-            This app was created by Anthony Tesoriero, a Local Chatham Resident, as his Eagle Scout Project. In partnership the the Chatham Township Historical Society, Anthony created this audio tour to make the local history of Chatham more accsesible to everyone through modern technology in a new innovative way.
+            This app was created by Anthony Tesoriero, a Local Chatham Resident, as his Eagle Scout Project. In partnership with the Chatham Township Historical Society, Anthony created this audio tour to make the local history of Chatham more accsesible to everyone through modern technology in a new innovative way.
           </Text>
 
           <Image style = {styles.picture} source={require('../../images/tony.jpeg')} />
@@ -51,7 +51,7 @@ class About extends Component {
           <View>
             <Text style = {styles.labels}>Historical Society</Text>
             <Text style = {styles.fineText}>
-              {'Martha Wells\nDebbie Bucuk\nSheila Goggins\nCaroline Knott'}
+              {'Pat Wells\nSheila Goggins\nDebbie Bucuk\nCaroline Knott'}
             </Text>
           </View>
 
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
 
   picture:{
     width: Dimensions.get('window').width,
-    height: 200 * (Dimensions.get('window').height/667),
+    height: 211 * (Dimensions.get('window').width/375),
     marginTop: 50 * (Dimensions.get('window').height/667),
   },
 

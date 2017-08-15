@@ -50,7 +50,6 @@
 		4F634F5D1F26558F00316BEA /* page_14_lilly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F451F26558E00316BEA /* page_14_lilly.mp3 */; };
 		4F634F5E1F26558F00316BEA /* page_15_eitan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F461F26558E00316BEA /* page_15_eitan.mp3 */; };
 		4F634F601F26558F00316BEA /* page_17_owen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F481F26558E00316BEA /* page_17_owen.mp3 */; };
-		4F634F611F26558F00316BEA /* page_18_jacob.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F491F26558E00316BEA /* page_18_jacob.mp3 */; };
 		4F634F621F26558F00316BEA /* page_19_owen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F4A1F26558E00316BEA /* page_19_owen.mp3 */; };
 		4F634F631F26558F00316BEA /* page_20_kimberly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F4B1F26558E00316BEA /* page_20_kimberly.mp3 */; };
 		4F634F641F26558F00316BEA /* page_21_mikey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F4C1F26558E00316BEA /* page_21_mikey.mp3 */; };
@@ -59,10 +58,11 @@
 		4F634F681F26558F00316BEA /* page_25_mikey.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F501F26558E00316BEA /* page_25_mikey.mp3 */; };
 		4F634F691F26558F00316BEA /* page_26_eitan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F511F26558E00316BEA /* page_26_eitan.mp3 */; };
 		4F634F6A1F26558F00316BEA /* page_27_tony.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F521F26558E00316BEA /* page_27_tony.mp3 */; };
-		4F634F6F1F266A5C00316BEA /* page_2_kimberly.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F634F6E1F266A5C00316BEA /* page_2_kimberly.mp3 */; };
 		4F6D3EB31F3E1082005939F4 /* page_5_cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F6D3EB01F3E1082005939F4 /* page_5_cat.mp3 */; };
 		4F6D3EB41F3E1082005939F4 /* page_16_cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F6D3EB11F3E1082005939F4 /* page_16_cat.mp3 */; };
 		4F6D3EB51F3E1082005939F4 /* page_24_cat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F6D3EB21F3E1082005939F4 /* page_24_cat.mp3 */; };
+		4F6D3F3C1F439394005939F4 /* page_2_eitan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F6D3F3A1F439394005939F4 /* page_2_eitan.mp3 */; };
+		4F6D3F3D1F439394005939F4 /* page_18_eitan.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4F6D3F3B1F439394005939F4 /* page_18_eitan.mp3 */; };
 		4F78B4FA1F21871C006C10DC /* libRNBackgroundFetch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F42CE7C1F217ABA00213A08 /* libRNBackgroundFetch.a */; };
 		4F78B4FB1F218729006C10DC /* libCocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F42CE6E1F217ABA00213A08 /* libCocoaLumberjack.a */; };
 		4F78B4FC1F21873D006C10DC /* libRNBackgroundGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F42CE521F217ABA00213A08 /* libRNBackgroundGeolocation.a */; };
@@ -468,7 +468,6 @@
 		4F634F451F26558E00316BEA /* page_14_lilly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_14_lilly.mp3; path = ../app/audio/page_14_lilly.mp3; sourceTree = "<group>"; };
 		4F634F461F26558E00316BEA /* page_15_eitan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_15_eitan.mp3; path = ../app/audio/page_15_eitan.mp3; sourceTree = "<group>"; };
 		4F634F481F26558E00316BEA /* page_17_owen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_17_owen.mp3; path = ../app/audio/page_17_owen.mp3; sourceTree = "<group>"; };
-		4F634F491F26558E00316BEA /* page_18_jacob.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_18_jacob.mp3; path = ../app/audio/page_18_jacob.mp3; sourceTree = "<group>"; };
 		4F634F4A1F26558E00316BEA /* page_19_owen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_19_owen.mp3; path = ../app/audio/page_19_owen.mp3; sourceTree = "<group>"; };
 		4F634F4B1F26558E00316BEA /* page_20_kimberly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_20_kimberly.mp3; path = ../app/audio/page_20_kimberly.mp3; sourceTree = "<group>"; };
 		4F634F4C1F26558E00316BEA /* page_21_mikey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_21_mikey.mp3; path = ../app/audio/page_21_mikey.mp3; sourceTree = "<group>"; };
@@ -477,10 +476,11 @@
 		4F634F501F26558E00316BEA /* page_25_mikey.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_25_mikey.mp3; path = ../app/audio/page_25_mikey.mp3; sourceTree = "<group>"; };
 		4F634F511F26558E00316BEA /* page_26_eitan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_26_eitan.mp3; path = ../app/audio/page_26_eitan.mp3; sourceTree = "<group>"; };
 		4F634F521F26558E00316BEA /* page_27_tony.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_27_tony.mp3; path = ../app/audio/page_27_tony.mp3; sourceTree = "<group>"; };
-		4F634F6E1F266A5C00316BEA /* page_2_kimberly.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_2_kimberly.mp3; path = ../app/audio/page_2_kimberly.mp3; sourceTree = "<group>"; };
 		4F6D3EB01F3E1082005939F4 /* page_5_cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_5_cat.mp3; path = ../app/audio/page_5_cat.mp3; sourceTree = "<group>"; };
 		4F6D3EB11F3E1082005939F4 /* page_16_cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_16_cat.mp3; path = ../app/audio/page_16_cat.mp3; sourceTree = "<group>"; };
 		4F6D3EB21F3E1082005939F4 /* page_24_cat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_24_cat.mp3; path = ../app/audio/page_24_cat.mp3; sourceTree = "<group>"; };
+		4F6D3F3A1F439394005939F4 /* page_2_eitan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_2_eitan.mp3; path = ../app/audio/page_2_eitan.mp3; sourceTree = "<group>"; };
+		4F6D3F3B1F439394005939F4 /* page_18_eitan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = page_18_eitan.mp3; path = ../app/audio/page_18_eitan.mp3; sourceTree = "<group>"; };
 		4F78B5011F2187BF006C10DC /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RNBackgroundFetch+AppDelegate.m"; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; };
 		4F902D5A1F3934B800D8BDF5 /* libReact.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libReact.a; path = "Pods/../build/Release-iphoneos/React/libReact.a"; sourceTree = "<group>"; };
 		5592D8421A4D4F129C89D90F /* Lumberjack.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Lumberjack.xcodeproj; path = "../node_modules/cocoa-lumberjack/CocoaLumberjack/Lumberjack.xcodeproj"; sourceTree = "<group>"; };
@@ -764,7 +764,7 @@
 		4F634F6B1F265A1E00316BEA /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				4F634F6E1F266A5C00316BEA /* page_2_kimberly.mp3 */,
+				4F6D3F3A1F439394005939F4 /* page_2_eitan.mp3 */,
 				4F634F3B1F26558E00316BEA /* page_3.4_lilly.mp3 */,
 				4F6D3EB01F3E1082005939F4 /* page_5_cat.mp3 */,
 				4F634F3D1F26558E00316BEA /* page_6_eitan.mp3 */,
@@ -779,7 +779,7 @@
 				4F634F461F26558E00316BEA /* page_15_eitan.mp3 */,
 				4F6D3EB11F3E1082005939F4 /* page_16_cat.mp3 */,
 				4F634F481F26558E00316BEA /* page_17_owen.mp3 */,
-				4F634F491F26558E00316BEA /* page_18_jacob.mp3 */,
+				4F6D3F3B1F439394005939F4 /* page_18_eitan.mp3 */,
 				4F634F4A1F26558E00316BEA /* page_19_owen.mp3 */,
 				4F634F4B1F26558E00316BEA /* page_20_kimberly.mp3 */,
 				4F634F4C1F26558E00316BEA /* page_21_mikey.mp3 */,
@@ -1445,7 +1445,6 @@
 				4F634F641F26558F00316BEA /* page_21_mikey.mp3 in Resources */,
 				8A1EB59685DA4947AEF21B0A /* EvilIcons.ttf in Resources */,
 				B0FE093E12084288A6B0FF5D /* FontAwesome.ttf in Resources */,
-				4F634F6F1F266A5C00316BEA /* page_2_kimberly.mp3 in Resources */,
 				4F6D3EB31F3E1082005939F4 /* page_5_cat.mp3 in Resources */,
 				4F634F571F26558F00316BEA /* page_8_owen.mp3 in Resources */,
 				EC77CE67885C42F7A4BD026E /* Foundation.ttf in Resources */,
@@ -1466,14 +1465,15 @@
 				4F634F5B1F26558F00316BEA /* page_12_mikey.mp3 in Resources */,
 				4F634F601F26558F00316BEA /* page_17_owen.mp3 in Resources */,
 				4F634F531F26558F00316BEA /* page_3.4_lilly.mp3 in Resources */,
-				4F634F611F26558F00316BEA /* page_18_jacob.mp3 in Resources */,
 				4F634F5A1F26558F00316BEA /* page_11_owen.mp3 in Resources */,
 				4F634F621F26558F00316BEA /* page_19_owen.mp3 in Resources */,
 				4F634F5E1F26558F00316BEA /* page_15_eitan.mp3 in Resources */,
 				463AB9AA5B114471A6D7B787 /* SimpleLineIcons.ttf in Resources */,
 				4F6D3EB51F3E1082005939F4 /* page_24_cat.mp3 in Resources */,
 				FA7F6F03F54846C5B50A3B3D /* Zocial.ttf in Resources */,
+				4F6D3F3D1F439394005939F4 /* page_18_eitan.mp3 in Resources */,
 				4F634F661F26558F00316BEA /* page_23_jacob.mp3 in Resources */,
+				4F6D3F3C1F439394005939F4 /* page_2_eitan.mp3 in Resources */,
 				4F42CE7E1F217AF800213A08 /* fontello.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1754,6 +1754,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.scout-project";
 				PRODUCT_NAME = scout_project;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1795,6 +1796,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.scout-project";
 				PRODUCT_NAME = scout_project;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

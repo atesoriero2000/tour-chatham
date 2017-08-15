@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 57 * (Dimensions.get('window').height/667),
-    marginBottom: 21 * (Dimensions.get('window').height/667),
+    marginBottom: 21 * Math.pow((Dimensions.get('window').height/667), 2),
     backgroundColor: 'lightgrey',
     borderRadius: 10 * (Dimensions.get('window').width/375),
   },
@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
 
   button:{
     width: Dimensions.get('window').width/1.25,
-    height: 35 * (Dimensions.get('window').height/667),
+    height: 35 * Math.pow((Dimensions.get('window').height/667), 1.5),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22 * (Dimensions.get('window').height/667),
+    marginTop: 22 * Math.pow((Dimensions.get('window').height/667), 2),
   },
 
   buttonText:{

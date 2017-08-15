@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 57 * (Dimensions.get('window').height/667),
-    marginBottom: 15 * (Dimensions.get('window').height/667),
+    marginBottom: 15 * Math.pow((Dimensions.get('window').height/667), 2),
     backgroundColor: 'lightgrey',
     borderRadius: 10 * (Dimensions.get('window').width/375),
   },

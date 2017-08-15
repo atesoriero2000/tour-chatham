@@ -148,7 +148,7 @@ const loc3 = [
 //PRINCE BALDWIN HOUSE
 const loc4 = [
   {
-    direction: 'Continue travelling northeast(right) on River Road',
+    direction: 'Continue travelling northeast (right) on River Road',
     picture: e0,
     latitude: null,
     longitude: null,
@@ -493,7 +493,7 @@ var to5 = new Sound('page_11_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadE
 var to6 = new Sound('page_13_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to7 = new Sound('page_15_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to8 = new Sound('page_17_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to9 = new Sound('page_18_jacob.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var to9 = new Sound('page_18_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to10 = new Sound('page_20_kimberly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to11 = new Sound('page_21_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var to12 = new Sound('page_22_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
@@ -501,7 +501,7 @@ var to13 = new Sound('page_24_cat.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadE
 var to14 = new Sound('page_25_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 
 
-var at0 = new Sound('page_2_kimberly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var at0 = new Sound('page_2_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 var at1 = new Sound('page_5_cat.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 
 var at3 = new Sound('page_8_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));

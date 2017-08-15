@@ -32,7 +32,7 @@ class SelectionPage extends Component{
     }
   }
 
-  componentWillMount(){// TODO: check if navigator back arrow scalable and bar
+  componentWillMount(){
     Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
   }
 

@@ -43,12 +43,12 @@ class InfoPage extends Component{
     return(
       <View style = {styles.container}>
 
-        <Text style = {styles.text}> {this.props.title} </Text>
+        <Text style = {styles.text}>{this.props.title}</Text>
 
         <View style = {{
           // NOTE: Add padding to view not text or onPress position will be ghosting
-          paddingHorizontal: 25 * (Dimensions.get('window').width/375),
-          paddingTop: 25 * (Dimensions.get('window').height/667),
+          paddingHorizontal: 20 * (Dimensions.get('window').width/375),
+          paddingTop: 25 * Math.pow((Dimensions.get('window').height/667), 2),
         }}>
           <Text style = {styles.subtext}>
             <Text> Please navigate to</Text>
@@ -91,7 +91,7 @@ class InfoPage extends Component{
   }
 
   onPress(){
-    Alert.alert('SAFTEY', '\n1) Please make sure you have a passenger. You will need a passenger to follow and read the directions as the come up on the phone screen.\n\n 2) If you miss a turn, safely navigate through adjacent road and proceed back to the instructed route.\n\n 3) Some locations have limited/ample parking. Please be cautious of your surrounding and pay attention to the specified parking directions.\n\n 4) some markers are on private property. Be courteous to others and mindful of trespassing.\n\n 5) Drive safely, the developer, the Chatham Township Historical Society, and associates of the app hold no liability for any incidents while using this app.',[
+    Alert.alert('SAFTEY', '\n1) Please make sure you have a passenger. You will need a passenger to follow and read the directions as the come up on the phone screen.\n\n 2) If you miss a turn, safely navigate through adjacent roads and proceed back to the instructed route.\n\n 3) Some locations have limited/ample parking. Please be cautious of your surroundings and pay attention to the specified parking directions.\n\n 4) Some markers are on private property. Be courteous to others and mindful of trespassing.\n\n 5) Drive safely, the developer, the Chatham Township Historical Society, and associates of the app hold no liability for any incidents while using this app.',[
       { text: 'Ok, I Understand', onPress: () => this.navToAudio()},
     ]);
   }
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     textAlign: 'center',
     paddingHorizontal: 25 * (Dimensions.get('window').width/375),
-    paddingTop: 20 * (Dimensions.get('window').height/667),
+    paddingTop: 20 * Math.pow((Dimensions.get('window').height/667), 2),
   },
 
   text_bold:{
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
   button:{
     marginTop: 25 * (Dimensions.get('window').width/375),
     width: Dimensions.get('window').width/1.5,
-    height: 36 * (Dimensions.get('window').height/667),
+    height: 36 * Math.pow((Dimensions.get('window').height/667), 2),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',

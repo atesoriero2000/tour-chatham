@@ -33,13 +33,14 @@ class AudioPage extends Component {
   constructor(props){
     super(props);
     this.state ={
-      clickable: true,
       lastPos: 'unknown',
       currentTargetPos: 'unknown',//{latitude: 0, longitude: 0},
       distToCurrent: 0,
       nextTargetPos: 'unknown',
       distToNext: 0,
       isNear: false, //next turn
+      isNearLastTurn: true,
+      clickable: true,
 
       audioIsPlaying: false,
 
@@ -110,6 +111,7 @@ class AudioPage extends Component {
     let currentStage = Turns.stages[Turns.stage];
     let currentTurn = currentStage.loc[Turns.turn];
 
+
     //LOCATION UPDATE
     this.setState({
       lastPos: position.coords,
@@ -128,10 +130,16 @@ class AudioPage extends Component {
         directions: currentTurn.direction,
       });
     }
+
+    // for clickable, when near last turn in location but locks when true.
+    // unlocks on stage change in onPress()
+    let lastTurn = currentStage.loc[currentStage.loc.length-1];
+    this.setState({ isNearLastTurn: this.state.isNearLastTurn ? true : (mode === 'demo'||this.isNear(lastTurn.latitude, lastTurn.longitude, 200)) });
+
     //if audio is not playing and we are close to the last turn
     this.setState({ clickable: (!this.state.audioIsPlaying
       && (currentStage.loc.length-1 === Turns.turn)
-      && (mode === 'demo'||this.state.distToCurrent < 200) )});
+      && this.state.isNearLastTurn )});
 
 
     //TURN UPDATE
@@ -187,7 +195,7 @@ class AudioPage extends Component {
         Turns.turn = 0;
         Turns.stage++;
         doneAtAudio = false;
-        this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture});
+        this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture, isNearLastTurn: false});
         // this.setState({ isNear: false });
         this.triggerAudio(Turns.stages[Turns.stage].toAudio);
         this.update();

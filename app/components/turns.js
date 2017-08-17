@@ -68,8 +68,8 @@ const loc0 = [
   {
     direction: 'NONE_TURN',
     picture: a1,
-    latitude: null,
-    longitude: null,
+    latitude: 40.721841,
+    longitude: -74.403383,
     radius: 500,
   },
 ];

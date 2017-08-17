@@ -134,7 +134,9 @@ class AudioPage extends Component {
     // for clickable, when near last turn in location but locks when true.
     // unlocks on stage change in onPress()
     let lastTurn = currentStage.loc[currentStage.loc.length-1];
-    this.setState({ isNearLastTurn: this.state.isNearLastTurn ? true : (mode === 'demo'||this.isNear(lastTurn.latitude, lastTurn.longitude, 200)) });
+    if(!this.state.isNearLastTurn){
+      this.setState({ isNearLastTurn: (mode === 'demo'||this.isNear(lastTurn.latitude, lastTurn.longitude, 200)) });
+    }
 
     //if audio is not playing and we are close to the last turn
     this.setState({ clickable: (!this.state.audioIsPlaying
@@ -348,19 +350,19 @@ class AudioPage extends Component {
 
           {(mode === 'debug'||mode === 'demo'||mode === 'tester1'||mode === 'tester2') &&
             <TouchableOpacity style = {styles.debug1} onPress={() => this.DEBUG_stopAudio()}>
-              <Text style={{color: 'white'}}>{'X'}</Text>
+              <Text style={{color: 'whitesmoke'}}>{'X'}</Text>
             </TouchableOpacity>
           }
 
           {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
             <TouchableOpacity style = {styles.debug2} onPress={() => this.DEBUG_lastTurn()}>
-              <Text style={{color: 'white'}}>{'<'}</Text>
+              <Text style={{color: 'whitesmoke'}}>{'<'}</Text>
             </TouchableOpacity>
           }
 
           {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
             <TouchableOpacity style = {styles.debug3} onPress={() => this.DEBUG_nextTurn()}>
-              <Text style={{color: 'white'}}>{'>'}</Text>
+              <Text style={{color: 'whitesmoke'}}>{'>'}</Text>
             </TouchableOpacity>
           }
 

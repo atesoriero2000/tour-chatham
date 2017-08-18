@@ -24,9 +24,10 @@ import Sound from 'react-native-sound';
 var Turns = require('../../turns');
 
 var doneAtAudio = false;
+var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'demo'; // debug, demo, tester1, tester2, release
+const mode = 'tester2'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
@@ -39,7 +40,6 @@ class AudioPage extends Component {
       nextTargetPos: 'unknown',
       distToNext: 0,
       isNear: false, //next turn
-      isNearLastTurn: true,
       clickable: true,
 
       audioIsPlaying: false,
@@ -134,14 +134,13 @@ class AudioPage extends Component {
     // for clickable, when near last turn in location but locks when true.
     // unlocks on stage change in onPress()
     let lastTurn = currentStage.loc[currentStage.loc.length-1];
-    if(!this.state.isNearLastTurn){
-      this.setState({ isNearLastTurn: (mode === 'demo'||this.isNear(lastTurn.latitude, lastTurn.longitude, 200)) });
-    }
+    let radius = (isNearLastTurn?1000:200);
+
+    isNearLastTurn = (mode === 'demo'||this.isNear(lastTurn.latitude, lastTurn.longitude, radius));
+
 
     //if audio is not playing and we are close to the last turn
-    this.setState({ clickable: (!this.state.audioIsPlaying
-      && (currentStage.loc.length-1 === Turns.turn)
-      && this.state.isNearLastTurn )});
+    this.setState({ clickable: (!this.state.audioIsPlaying && isNearLastTurn )});
 
 
     //TURN UPDATE
@@ -197,7 +196,8 @@ class AudioPage extends Component {
         Turns.turn = 0;
         Turns.stage++;
         doneAtAudio = false;
-        this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture, isNearLastTurn: false});
+        isNearLastTurn = false;
+        this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture});
         // this.setState({ isNear: false });
         this.triggerAudio(Turns.stages[Turns.stage].toAudio);
         this.update();

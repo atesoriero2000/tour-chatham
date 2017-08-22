@@ -26,7 +26,7 @@ class About extends Component {
             This app was created by Anthony Tesoriero, a Local Chatham Resident, as his Eagle Scout Project. In partnership with the Chatham Township Historical Society, Anthony created this audio tour to make the local history of Chatham more accsesible to everyone through modern technology in a new innovative way.
           </Text>
 
-          <Image style = {styles.picture} source={require('../../images/tony.jpeg')} />
+          <Image style = {styles.picture} source={require('../../images/tony.jpg')} />
 
 
 {/* Contributors */}

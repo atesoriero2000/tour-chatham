@@ -27,13 +27,13 @@ var doneAtAudio = false;
 var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'tester2'; // debug, demo, tester1, tester2, release
+const mode = 'demo'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
   constructor(props){
     super(props);
-    this.state ={
+    this.state = {
       lastPos: 'unknown',
       currentTargetPos: 'unknown',//{latitude: 0, longitude: 0},
       distToCurrent: 0,
@@ -103,6 +103,7 @@ class AudioPage extends Component {
     doneAtAudio = false;
     firstAudio = true;
     BackgroundGeolocation.stopWatchPosition();
+    BackgroundGeolocation.stop();
     KeepAwake.deactivate();
   }
 
@@ -131,16 +132,17 @@ class AudioPage extends Component {
       });
     }
 
-    // for clickable, when near last turn in location but locks when true.
-    // unlocks on stage change in onPress()
+    // for clickable, when near last turn in location but radius increases when true.
+    // deaceases radius on stage change in onPress()
+    // radius increases so that thue button doesnt turn of when the driver parks a little far away but will turn off if they drive far past the spot.
     let lastTurn = currentStage.loc[currentStage.loc.length-1];
-    let radius = (isNearLastTurn?1000:200);
+    let radius = (isNearLastTurn ? 750 : 200);
 
     isNearLastTurn = (mode === 'demo'||this.isNear(lastTurn.latitude, lastTurn.longitude, radius));
 
 
     //if audio is not playing and we are close to the last turn
-    this.setState({ clickable: (!this.state.audioIsPlaying && isNearLastTurn )});
+    this.setState({ clickable: (!this.state.audioIsPlaying && (currentStage.loc.length-1 === Turns.turn) && isNearLastTurn )});
 
 
     //TURN UPDATE
@@ -212,6 +214,7 @@ class AudioPage extends Component {
   endTour(){
 
     BackgroundGeolocation.stopWatchPosition();
+    BackgroundGeolocation.stop();
     this.props.changeAtEnd(true);
 
     this.setState({

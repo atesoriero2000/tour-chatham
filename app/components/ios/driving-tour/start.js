@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     color: 'grey',
     marginHorizontal: 30 * (Dimensions.get('window').width/375),
-    marginTop: 65 + (23) * Math.pow((Dimensions.get('window').height/667), 2.5),
+    marginTop: 65 + (21) * Math.pow((Dimensions.get('window').height/667), 2.5),
   },
 
   clickable:{
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     color: '#9090FF',
     textDecorationLine: 'underline',
     marginTop: 1 * Math.pow((Dimensions.get('window').height/667), 2.5),
-    marginBottom: 15 * Math.pow((Dimensions.get('window').height/667), 2.5),
+    marginBottom: 17 * Math.pow((Dimensions.get('window').height/667), 2.5),
   },
 
   overviewText2:{
@@ -204,8 +204,8 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     color: 'grey',
     marginHorizontal: 35 * (Dimensions.get('window').width/375),
-    marginTop: 14 * Math.pow((Dimensions.get('window').height/667), 2.5),
-    marginBottom: 15 * Math.pow((Dimensions.get('window').height/667), 2.5),
+    marginTop: 15 * Math.pow((Dimensions.get('window').height/667), 2.5),
+    marginBottom: 14 * Math.pow((Dimensions.get('window').height/667), 2.5),
   },
 
 

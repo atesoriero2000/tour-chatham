@@ -1,10 +1,10 @@
 //35 mph = 15 m/s = 51 fps
 const RADIUS_DELAY = 500; //feet
 
-const pic1 = require('../images/Flower.jpg');
-const pic2 = require('../images/Eagle.jpg');
-const pic3 = require('../images/FlagWaving.jpg');
-const pic4 = require('../images/boy-scout-emblem.jpg');
+const pic1 = require('../images/testing_pics/Flower.jpg');
+const pic2 = require('../images/testing_pics/Eagle.jpg');
+const pic3 = require('../images/testing_pics/FlagWaving.jpg');
+const pic4 = require('../images/testing_pics/boy-scout-emblem.jpg');
 
 
 const a1 = require('../images/edited/A1_00000.jpg');

@@ -27,7 +27,7 @@ var doneAtAudio = false;
 var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'demo'; // debug, demo, tester1, tester2, release
+const mode = 'tester2'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
@@ -277,6 +277,7 @@ class AudioPage extends Component {
     }else{
       Turns.turn++;
     }
+    this.update();
   }
 
   DEBUG_lastTurn(){
@@ -289,6 +290,7 @@ class AudioPage extends Component {
     }else{
       Turns.turn--;
     }
+    this.update();
   }
 
 

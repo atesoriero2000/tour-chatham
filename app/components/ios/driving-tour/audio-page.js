@@ -1,4 +1,4 @@
-//@flow
+// @flow
 // 'use strict';
 
 import React, { Component, } from 'react'
@@ -27,7 +27,7 @@ var doneAtAudio = false;
 var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'tester2'; // debug, demo, tester1, tester2, release
+const mode = 'demo'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
@@ -78,6 +78,7 @@ class AudioPage extends Component {
     Turns.turn = Turns.stages[Turns.stage].loc.length-1;
 
     Sound.setCategory('Playback', false);
+    Sound.setActive(true);
     // Turns.stage = 4;
     // Turns.turn = 3;
 
@@ -105,6 +106,7 @@ class AudioPage extends Component {
     BackgroundGeolocation.stopWatchPosition();
     BackgroundGeolocation.stop();
     KeepAwake.deactivate();
+    Sound.setActive(false);
   }
 
   geolocation(position){
@@ -246,7 +248,7 @@ class AudioPage extends Component {
   triggerAudioBool(audioFile, shouldUpdate){
     audioFile.play(() => {
       this.setState({ audioIsPlaying: false });
-      if(shouldUpdate)this.update();
+      if(shouldUpdate)this.update(); else Sound.setActive(false);
     });
 
     if(firstAudio){

@@ -1,34 +1,47 @@
 PODS:
-  - React/BatchedBridge (0.46.4):
+  - CocoaLumberjack (3.2.1):
+    - CocoaLumberjack/Default (= 3.2.1)
+    - CocoaLumberjack/Extensions (= 3.2.1)
+  - CocoaLumberjack/Default (3.2.1)
+  - CocoaLumberjack/Extensions (3.2.1):
+    - CocoaLumberjack/Default
+  - React (0.47.2):
+    - React/Core (= 0.47.2)
+  - React/BatchedBridge (0.47.2):
     - React/Core
     - React/cxxreact_legacy
-  - React/Core (0.46.4):
-    - Yoga (= 0.46.4.React)
-  - React/cxxreact_legacy (0.46.4):
+  - React/Core (0.47.2):
+    - Yoga (= 0.47.2.React)
+  - React/cxxreact_legacy (0.47.2):
     - React/jschelpers_legacy
-  - React/jschelpers_legacy (0.46.4)
-  - React/RCTActionSheet (0.46.4):
+  - React/jschelpers_legacy (0.47.2)
+  - React/RCTActionSheet (0.47.2):
     - React/Core
-  - React/RCTAnimation (0.46.4):
+  - React/RCTAnimation (0.47.2):
     - React/Core
-  - React/RCTGeolocation (0.46.4):
+  - React/RCTGeolocation (0.47.2):
     - React/Core
-  - React/RCTImage (0.46.4):
+  - React/RCTImage (0.47.2):
     - React/Core
     - React/RCTNetwork
-  - React/RCTLinkingIOS (0.46.4):
+  - React/RCTLinkingIOS (0.47.2):
     - React/Core
-  - React/RCTNetwork (0.46.4):
+  - React/RCTNetwork (0.47.2):
     - React/Core
-  - React/RCTSettings (0.46.4):
+  - React/RCTSettings (0.47.2):
     - React/Core
-  - React/RCTText (0.46.4):
+  - React/RCTText (0.47.2):
     - React/Core
-  - React/RCTVibration (0.46.4):
+  - React/RCTVibration (0.47.2):
     - React/Core
-  - React/RCTWebSocket (0.46.4):
+  - React/RCTWebSocket (0.47.2):
     - React/Core
-  - Yoga (0.46.4.React)
+  - RNBackgroundFetch (2.1.0):
+    - React
+  - RNBackgroundGeolocation (2.9.2):
+    - CocoaLumberjack (~> 3.0)
+    - React
+  - Yoga (0.47.2.React)
 
 DEPENDENCIES:
   - React/BatchedBridge (from `../node_modules/react-native`)
@@ -43,18 +56,27 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
+  - RNBackgroundGeolocation (from `../node_modules/react-native-background-geolocation`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 EXTERNAL SOURCES:
   React:
     :path: ../node_modules/react-native
+  RNBackgroundFetch:
+    :path: ../node_modules/react-native-background-fetch
+  RNBackgroundGeolocation:
+    :path: ../node_modules/react-native-background-geolocation
   Yoga:
     :path: ../node_modules/react-native/ReactCommon/yoga
 
 SPEC CHECKSUMS:
-  React: 596d8774642d10fea20b1f24cc591fcf633f73ad
-  Yoga: 98e24da91afe33bb43fedaf27dafede269c04fe8
+  CocoaLumberjack: 2800c03334042fe80589423c8d80e582dcaec482
+  React: fbe1a006550fb55871cb377ba7741f5d1cfff733
+  RNBackgroundFetch: 3df6a89bd25a83cfe7f0dc20a87a57fd27194c42
+  RNBackgroundGeolocation: f3fe4bc0d99afb12cb2b330eb923fbbaf8549b98
+  Yoga: ff8531e8cf9f7ec92a75dd44286a68c4a084c507
 
-PODFILE CHECKSUM: 506f88daf7080512c66ea7b430faa14965432266
+PODFILE CHECKSUM: 10d526c4a1ddff9649beda27454877ee48848786
 
 COCOAPODS: 1.2.1

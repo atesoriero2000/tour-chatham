@@ -11,6 +11,7 @@ import {
   Image,
 } from 'react-native'
 
+const d_window = Dimensions.get('window');
 
 class Page1 extends Component {
 
@@ -43,25 +44,25 @@ const styles = StyleSheet.create({
   imageBox:{
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 57 * (Dimensions.get('window').height/667),
-    marginBottom: 15 * Math.pow((Dimensions.get('window').height/667), 2),
+    marginTop: 57 * (d_window.height/667),
+    marginBottom: 15 * Math.pow((d_window.height/667), 2),
     backgroundColor: 'lightgrey',
-    borderRadius: 10 * (Dimensions.get('window').width/375),
+    borderRadius: 10 * (d_window.width/375),
   },
 
   image:{
-    width: (Dimensions.get('window').width/1.25)/1.375,
-    height: (Dimensions.get('window').width/.7597)/1.375,
-    margin: 10 * (Dimensions.get('window').width/375),
-    borderRadius: 5 * (Dimensions.get('window').width/375),
+    width: (d_window.width/1.25)/1.375,
+    height: (d_window.width/.7597)/1.375,
+    margin: 10 * (d_window.width/375),
+    borderRadius: 5 * (d_window.width/375),
   },
 
   text:{
     textAlign: 'center',
-    fontSize: 15 * (Dimensions.get('window').width/375),
+    fontSize: 15 * (d_window.width/375),
     fontWeight: '500',
     color: 'black',
-    paddingHorizontal: 20 * (Dimensions.get('window').width/375),
+    paddingHorizontal: 20 * (d_window.width/375),
   },
 });
 

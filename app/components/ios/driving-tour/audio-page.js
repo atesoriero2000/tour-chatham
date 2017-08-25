@@ -21,13 +21,15 @@ import KeepAwake from 'react-native-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
 
+const d_window = Dimensions.get('window');
+
 var Turns = require('../../turns');
 
 var doneAtAudio = false;
 var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'demo'; // debug, demo, tester1, tester2, release
+const mode = 'tester2'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
@@ -325,8 +327,8 @@ class AudioPage extends Component {
               <Swiper
                 showsButtons = {false}
                 loop = {true}
-                height={250 * (Dimensions.get('window').width/375)}
-                width={Dimensions.get('window').width}
+                height={250 * (d_window.width/375)}
+                width={d_window.width}
                 autoplay={true}
                 autoplayTimeout={2.5}>
 
@@ -341,13 +343,13 @@ class AudioPage extends Component {
           }
 
           <TouchableHighlight style = {{
-            width: Dimensions.get('window').width/1.5,
-            height: 36 * Math.pow((Dimensions.get('window').height/667), 2), //height
+            width: d_window.width/1.5,
+            height: 36 * Math.pow((d_window.height/667), 2), //height
             backgroundColor: 'gray',
             justifyContent: 'center',
             alignItems: 'center',
             position: 'absolute',
-            top: (262 + 310) * (Dimensions.get('window').height/667), //height
+            top: (262 + 310) * (d_window.height/667), //height
             opacity: this.state.clickable?1:.05,
           }}
           underlayColor = '#BBBBBB'
@@ -392,7 +394,7 @@ class AudioPage extends Component {
           }}> isNear: {JSON.stringify(this.state.isNear)} </Text>}
 
           {false &&
-            <View style={{alignItems: 'center', justifyContent: 'center', width: Dimensions.get('window').width}}>
+            <View style={{alignItems: 'center', justifyContent: 'center', width: d_window.width}}>
               <View style={{height: 300}}/>
               <Text style = {styles.text}>
                 DEBUGGER
@@ -436,77 +438,77 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    // marginBottom: 10 * (Dimensions.get('window').width/375), //height
+    // marginBottom: 10 * (d_window.width/375), //height
   },
 
   banner:{
-    width: Dimensions.get('window').width,
+    width: d_window.width,
     height: 64, //NOTE: not scalable
   },
 
   titleBox:{
-    width: Dimensions.get('window').width,
-    height: 100 * Math.pow((Dimensions.get('window').height/667), 1.25), //height
+    width: d_window.width,
+    height: 100 * Math.pow((d_window.height/667), 1.25), //height
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   title:{
-    fontSize: 30 * (Dimensions.get('window').width/375),
+    fontSize: 30 * (d_window.width/375),
     textAlign: 'center',
     color: 'black',
     fontWeight: '300',
-    paddingTop: 5 * Math.pow((Dimensions.get('window').height/667), 2), //height
-    paddingHorizontal: 45 * (Dimensions.get('window').width/375),
+    paddingTop: 5 * Math.pow((d_window.height/667), 2), //height
+    paddingHorizontal: 45 * (d_window.width/375),
   },
 
   line:{
     backgroundColor: 'black',
-    height: .74 * (Dimensions.get('window').width/375), //height
-    width: Dimensions.get('window').width / 3,
+    height: .74 * (d_window.width/375), //height
+    width: d_window.width / 3,
   },
 
   directionBox:{
-    width: 325 * (Dimensions.get('window').width/375),
-    height: 107 * Math.pow((Dimensions.get('window').height/667), 1.25), //height
+    width: 325 * (d_window.width/375),
+    height: 107 * Math.pow((d_window.height/667), 1.25), //height
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10 * Math.pow((Dimensions.get('window').height/667), 2), //height
+    marginTop: 10 * Math.pow((d_window.height/667), 2), //height
   },
 
   directions:{
-    fontSize: 18 * (Dimensions.get('window').width/375),
+    fontSize: 18 * (d_window.width/375),
     color: 'gray',
     fontWeight: '300',
     textAlign: 'center',
   },
 
   dist:{
-    fontSize: 15 * (Dimensions.get('window').width/375),
+    fontSize: 15 * (d_window.width/375),
     color: 'dimgray',
     fontWeight: '500',
     textAlign: 'center',
-    marginTop: 3 * Math.pow((Dimensions.get('window').height/667), 2), //height
+    marginTop: 3 * Math.pow((d_window.height/667), 2), //height
   },
 
   imageBox:{
     position: 'absolute',
-    top: 310 * (Dimensions.get('window').width/375),
-    height: 250 * (Dimensions.get('window').width/375),
-    width: Dimensions.get('window').width,
+    top: 310 * (d_window.width/375),
+    height: 250 * (d_window.width/375),
+    width: d_window.width,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   image:{
-    height: 250 * (Dimensions.get('window').width/375),
-    width: Dimensions.get('window').width,
+    height: 250 * (d_window.width/375),
+    width: d_window.width,
     alignSelf: 'center',
   },
 
   button:{
-    width: Dimensions.get('window').width/1.5,
-    height: 36 * (Dimensions.get('window').width/375),
+    width: d_window.width/1.5,
+    height: 36 * (d_window.width/375),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
@@ -514,7 +516,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText:{
-    fontSize: 15 * (Dimensions.get('window').width/375),
+    fontSize: 15 * (d_window.width/375),
     color: 'white',
     fontWeight: '100',
     textAlign: 'center',
@@ -526,57 +528,57 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275 * (Dimensions.get('window').width/375),
-    left: 15 * (Dimensions.get('window').width/375),
+    top: 275 * (d_window.width/375),
+    left: 15 * (d_window.width/375),
     backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
-    height: 30 * (Dimensions.get('window').width/375),
-    width: 30 * (Dimensions.get('window').width/375),
-    borderRadius: 15 * (Dimensions.get('window').width/375),
+    height: 30 * (d_window.width/375),
+    width: 30 * (d_window.width/375),
+    borderRadius: 15 * (d_window.width/375),
   },
 
   debug2: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275 * (Dimensions.get('window').width/375),
-    left: 55 * (Dimensions.get('window').width/375),
+    top: 275 * (d_window.width/375),
+    left: 55 * (d_window.width/375),
     backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
-    height: 30 * (Dimensions.get('window').width/375),
-    width: 30 * (Dimensions.get('window').width/375),
-    borderRadius: 15 * (Dimensions.get('window').width/375),
+    height: 30 * (d_window.width/375),
+    width: 30 * (d_window.width/375),
+    borderRadius: 15 * (d_window.width/375),
   },
 
   debug3: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275 * (Dimensions.get('window').width/375),
-    left: 95 * (Dimensions.get('window').width/375),
+    top: 275 * (d_window.width/375),
+    left: 95 * (d_window.width/375),
     backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
-    height: 30 * (Dimensions.get('window').width/375),
-    width: 30 * (Dimensions.get('window').width/375),
-    borderRadius: 15 * (Dimensions.get('window').width/375),
+    height: 30 * (d_window.width/375),
+    width: 30 * (d_window.width/375),
+    borderRadius: 15 * (d_window.width/375),
   },
 
   location:{
-    fontSize: 20 * (Dimensions.get('window').width/375),
+    fontSize: 20 * (d_window.width/375),
     color: 'black',
     fontWeight: '500',
     textAlign: 'center',
-    paddingTop: 20 * (Dimensions.get('window').width/375),
+    paddingTop: 20 * (d_window.width/375),
   },
 
   text:{
-    fontSize: 50 * (Dimensions.get('window').width/375),
+    fontSize: 50 * (d_window.width/375),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
-    marginTop: 30 * (Dimensions.get('window').width/375),
+    marginTop: 30 * (d_window.width/375),
   },
 
   halfButton:{
-    width: Dimensions.get('window').width/1.5/2 - 5,
-    height: 36 * (Dimensions.get('window').width/375),
+    width: d_window.width/1.5/2 - 5,
+    height: 36 * (d_window.width/375),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
@@ -586,12 +588,12 @@ const styles = StyleSheet.create({
   halfButtonView:{
     flex: 2,
     flexDirection: 'row',
-    width: Dimensions.get('window').width/1.5,
-    height: 36 * (Dimensions.get('window').width/375),
+    width: d_window.width/1.5,
+    height: 36 * (d_window.width/375),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignSelf: 'center',
-    margin: 5 * (Dimensions.get('window').width/375),
+    margin: 5 * (d_window.width/375),
   },
 });
 

@@ -18,6 +18,8 @@ import {
 
 import Swiper from 'react-native-swiper';
 
+const d_window = Dimensions.get('window');
+
 var AudioPage = require('./audio-page');
 var Turns = require('../../turns');
 
@@ -47,8 +49,8 @@ class InfoPage extends Component{
 
         <View style = {{
           // NOTE: Add padding to view not text or onPress position will be ghosting
-          paddingHorizontal: 20 * (Dimensions.get('window').width/375),
-          paddingTop: 25 * Math.pow((Dimensions.get('window').height/667), 2),
+          paddingHorizontal: 20 * (d_window.width/375),
+          paddingTop: 25 * Math.pow((d_window.height/667), 2),
         }}>
           <Text style = {styles.subtext}>
             <Text> Please navigate to</Text>
@@ -63,8 +65,8 @@ class InfoPage extends Component{
           <Swiper
             showsButtons = {false}
             loop = {true}
-            height={Dimensions.get('window').width / 1.5}
-            width={Dimensions.get('window').width / 1.5}
+            height={d_window.width / 1.5}
+            width={d_window.width / 1.5}
             autoplay={true}
             autoplayTimeout={2.5}
             >
@@ -87,7 +89,7 @@ class InfoPage extends Component{
     Linking.canOpenURL(url).then(supported => {
       if (!supported) console.log('Can\'t handle url: ' + url);
       else return Linking.openURL(url);
-    }).catch(err => console.error('An error occurred', err));
+    }).catch(err => console.log('An error occurred', err));
   }
 
   onPress(){
@@ -139,48 +141,48 @@ const styles = StyleSheet.create({
   },
 
   text:{
-    fontSize: 30 * (Dimensions.get('window').width/375),
+    fontSize: 30 * (d_window.width/375),
     color: 'black',
     fontWeight: '300',
     textAlign: 'center',
-    paddingHorizontal: 25 * (Dimensions.get('window').width/375),
-    paddingTop: 20 * Math.pow((Dimensions.get('window').height/667), 2),
+    paddingHorizontal: 25 * (d_window.width/375),
+    paddingTop: 20 * Math.pow((d_window.height/667), 2),
   },
 
   text_bold:{
-    fontSize: 20 * (Dimensions.get('window').width/375),
+    fontSize: 20 * (d_window.width/375),
     color: '#6565FF',
     fontWeight: '300',
     textAlign: 'center',
   },
 
   subtext:{
-    fontSize: 20 * (Dimensions.get('window').width/375),
+    fontSize: 20 * (d_window.width/375),
     color: 'black',
     fontWeight: '200',
     textAlign: 'center',
-    marginBottom: 25 * (Dimensions.get('window').width/375),
+    marginBottom: 25 * (d_window.width/375),
   },
 
   button:{
-    marginTop: 25 * (Dimensions.get('window').width/375),
-    width: Dimensions.get('window').width/1.5,
-    height: 36 * Math.pow((Dimensions.get('window').height/667), 2),
+    marginTop: 25 * (d_window.width/375),
+    width: d_window.width/1.5,
+    height: 36 * Math.pow((d_window.height/667), 2),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   buttonText:{
-    fontSize: 15 * (Dimensions.get('window').width/375),
+    fontSize: 15 * (d_window.width/375),
     color: 'white',
     fontWeight: '100',
     textAlign: 'center',
   },
 
   image:{
-    height: Dimensions.get('window').width / 1.5,
-    width: Dimensions.get('window').width / 1.5,
+    height: d_window.width / 1.5,
+    width: d_window.width / 1.5,
     backgroundColor: 'transparent',
     alignSelf: 'center',
   },

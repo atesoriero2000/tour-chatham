@@ -11,6 +11,8 @@ import {
 
 import Icon from 'react-native-vector-icons/EvilIcons';
 
+const d_window = Dimensions.get('window');
+
 class Header extends Component {
 
   render() {
@@ -21,7 +23,7 @@ class Header extends Component {
 
         <Icon
           name={'close'}
-          size={40 * (Dimensions.get('window').width/375)}
+          size={40 * (d_window.width/375)}
           color={'#157EFB'}
           onPress={()=>this.props.onPress()}
           style={styles.exitButton}/>
@@ -39,15 +41,15 @@ const styles = StyleSheet.create({
 
   title:{
     position: 'absolute',
-    bottom: (247 + 1) * (Dimensions.get('window').height/667),
-    fontSize: 30 * (Dimensions.get('window').width/375),
+    bottom: (247 + 1) * (d_window.height/667),
+    fontSize: 30 * (d_window.width/375),
     fontWeight: '100',
   },
 
   exitButton:{
     position: 'absolute',
-    bottom: 247 * (Dimensions.get('window').height/667),
-    right: 101 * (Dimensions.get('window').width/375),
+    bottom: 247 * (d_window.height/667),
+    right: 101 * (d_window.width/375),
   },
 });
 

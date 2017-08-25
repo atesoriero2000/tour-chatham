@@ -15,12 +15,18 @@ import {
   Button,
   Linking,
   Image,
+  AsyncStorage,
 } from 'react-native'
 
 import Swiper from 'react-native-swiper';
 import { BlurView, VibrancyView } from 'react-native-blur';
-
 import Icon from 'react-native-vector-icons/Ionicons';
+
+const d_window = Dimensions.get('window');
+
+const lMonthKey = 'UIDLastMonth';
+const lYearKey = 'UIDLastYear';
+var currentDate = new Date();
 
 var Turns = require('../../turns');
 var AudioPage = require('./audio-page');
@@ -43,6 +49,37 @@ class Start extends Component {
 
   componentWillMount(){
     Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
+    this.props.setOnHelpPress( () => this.setState({visible: true}) );
+  }
+
+  componentDidMount(){
+    let lastMonth;
+    let lastYear;
+
+    AsyncStorage.getItem(lMonthKey).then( (value) => {
+      if(value !== null){
+        lastMonth = JSON.parse(value);
+      }
+      console.log(value);
+    });
+
+    AsyncStorage.getItem(lYearKey).then( (value) => {
+      if(value !== null){
+        lastYear = JSON.parse(value);
+      }
+      console.log(value);
+    });
+
+    let thisMonth = currentDate.getMonth();
+    let thisYear = currentDate.getYear();
+
+    // if the dates have not been set, show tutorial and set dates
+    // NOTE: (int) - null === null !== 0  and  null !=== (int)
+    // if it has been more than a month, reshow tutorial and reset date
+    let showTutorial = ( thisMonth - lastMonth !== 0 || thisYear !== lastYear );
+    // let showTutorial = true;
+
+    this.setState({showTutorial});
   }
 
   componentWillUnmount(){
@@ -68,8 +105,8 @@ class Start extends Component {
           <Swiper
             showsButtons = {false}
             loop = {true}
-            height={240 * (Dimensions.get('window').width/375)}
-            width={Dimensions.get('window').width}
+            height={240 * (d_window.width/375)}
+            width={d_window.width}
             autoplay={true}
             autoplayTimeout={2.5}>
 
@@ -94,7 +131,7 @@ class Start extends Component {
           </Text>
 
           <TouchableHighlight style = {styles.button}
-            onPress = {() => this.setState({visible:true})}
+            onPress = {() => this.onPress()}
             // onPress = {()=>this.navToAudio()}
             underlayColor = '#BBBBBB'>
               <Text style = {styles.buttonText}>
@@ -103,6 +140,8 @@ class Start extends Component {
           </TouchableHighlight>
 
         </View>
+
+
         {/* TUTORIAL */}
         <Modal
           animationType={'fade'}
@@ -120,22 +159,39 @@ class Start extends Component {
                   showsButtons = {true}
                   index = {0}
                   loop = {false}
-                  height={Dimensions.get('window').height/1.13}
-                  width={Dimensions.get('window').width/1.25}>
+                  height={d_window.height/1.13}
+                  width={d_window.width/1.25}>
 
                   <Page1/>
-                  <Page2 onPress={() => this.navToSelection()}/>
+                  <Page2 onPress={() => {
+                    this.navToSelection();
+                    this.setItem(lMonthKey, JSON.stringify(currentDate.getMonth()) );
+                    this.setItem(lYearKey, JSON.stringify(currentDate.getYear()) );
+                  }}/>
 
               </Swiper>
             </View>{/* modalformat */}
 
             {/* TUTORIAL HEADER */}
-            <Header onPress={()=>this.setState({visible:false})}/>
+            <Header onPress={() => this.setState({visible:false})}/>
 
           </BlurView>{/* overlay */}
         </Modal>{/* popup */}
       </View>
     );
+  }
+
+  onPress(){
+    if(this.state.showTutorial){
+      this.setState({visible:true});
+
+    }else{
+      this.navToSelection();
+    }
+  }
+
+  setItem(key, val){
+    AsyncStorage.setItem(key, val).catch( (err) => console.log('HIIIIII') );
   }
 
   navToAudio(){
@@ -162,7 +218,7 @@ class Start extends Component {
     Linking.canOpenURL(url).then(supported => {
       if (!supported) console.log('Can\'t handle url: ' + url);
       else return Linking.openURL(url);
-    }).catch(err => console.error('An error occurred', err));
+    }).catch(err => console.log('An error occurred', err));
   }
 }
 
@@ -175,48 +231,48 @@ const styles = StyleSheet.create({
   },
 
   overviewContainer:{
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: d_window.width,
+    height: d_window.height,
     alignItems: 'center',
   },
 
   overviewText1:{
     textAlign: 'center',
-    fontSize: 17 * (Dimensions.get('window').width/375),
+    fontSize: 17 * (d_window.width/375),
     fontWeight: '100',
     color: 'grey',
-    marginHorizontal: 30 * (Dimensions.get('window').width/375),
-    marginTop: 65 + (21) * Math.pow((Dimensions.get('window').height/667), 2.5),
+    marginHorizontal: 30 * (d_window.width/375),
+    marginTop: 65 + (21) * Math.pow((d_window.height/667), 2.5),
   },
 
   clickable:{
-    fontSize: 14 * (Dimensions.get('window').width/375),
+    fontSize: 14 * (d_window.width/375),
     fontWeight: '100',
     color: '#9090FF',
     textDecorationLine: 'underline',
-    marginTop: 1 * Math.pow((Dimensions.get('window').height/667), 2.5),
-    marginBottom: 17 * Math.pow((Dimensions.get('window').height/667), 2.5),
+    marginTop: 2 * Math.pow((d_window.height/667), 2.5),
+    marginBottom: 16 * Math.pow((d_window.height/667), 2.5),
   },
 
   overviewText2:{
     textAlign: 'center',
-    fontSize: 15 * (Dimensions.get('window').width/375),
+    fontSize: 15 * (d_window.width/375),
     fontWeight: '100',
     color: 'grey',
-    marginHorizontal: 35 * (Dimensions.get('window').width/375),
-    marginTop: 15 * Math.pow((Dimensions.get('window').height/667), 2.5),
-    marginBottom: 14 * Math.pow((Dimensions.get('window').height/667), 2.5),
+    marginHorizontal: 35 * (d_window.width/375),
+    marginTop: 15 * Math.pow((d_window.height/667), 2.5),
+    marginBottom: 14 * Math.pow((d_window.height/667), 2.5),
   },
 
 
   image:{
-    width: Dimensions.get('window').width,
-    height: 240 * (Dimensions.get('window').width/375),
+    width: d_window.width,
+    height: 240 * (d_window.width/375),
   },
 
   button:{
-    width: Dimensions.get('window').width,
-    height: 36 * Math.pow((Dimensions.get('window').height/667), 2),
+    width: d_window.width,
+    height: 36 * Math.pow((d_window.height/667), 2),
     backgroundColor: 'grey',
     opacity: .5,
     justifyContent: 'center',
@@ -225,7 +281,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText:{
-    fontSize: 17 * (Dimensions.get('window').width/375),
+    fontSize: 17 * (d_window.width/375),
     color: 'white',
     fontWeight: '100',
     textAlign: 'center',
@@ -243,9 +299,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
-    width: Dimensions.get('window').width/1.25,
-    height: Dimensions.get('window').height/1.13,
-    borderRadius: 15 * (Dimensions.get('window').width/375),
+    width: d_window.width/1.25,
+    height: d_window.height/1.13,
+    borderRadius: 15 * (d_window.width/375),
     backgroundColor: 'whitesmoke',
   },
 });

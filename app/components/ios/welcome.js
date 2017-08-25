@@ -16,6 +16,8 @@ import {
 
 import BackgroundGeolocation from "react-native-background-geolocation";
 
+const d_window = Dimensions.get('window');
+
 class Welcome extends Component {
 
   constructor(props){
@@ -95,7 +97,7 @@ class Welcome extends Component {
     Linking.canOpenURL(url).then(supported => {
       if (!supported) console.log('Can\'t handle url: ' + url);
       else return Linking.openURL(url);
-    }).catch(err => console.error('An error occurred', err));
+    }).catch(err => console.log('An error occurred', err));
   }
 }
 
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
 
   banner: {// NOTE: navigator bar is not scalable
     height: 65,
-    width: Dimensions.get('window').width,
+    width: d_window.width,
     backgroundColor: '#f9f9f9',
     alignItems: 'center',
   },
@@ -121,15 +123,15 @@ const styles = StyleSheet.create({
 
   bannerLine:{
     height: .5,
-    width: Dimensions.get('window').width,
+    width: d_window.width,
     backgroundColor: '#b9b9b9',
   },
 
   text:{
-    paddingHorizontal: 25 * (Dimensions.get('window').width/375),
-    paddingTop: 25 * Math.pow((Dimensions.get('window').height/667), 2),
-    paddingBottom: 15 * Math.pow((Dimensions.get('window').height/667), 2),
-    fontSize: 35 * (Dimensions.get('window').width/375),
+    paddingHorizontal: 25 * (d_window.width/375),
+    paddingTop: 25 * Math.pow((d_window.height/667), 2),
+    paddingBottom: 15 * Math.pow((d_window.height/667), 2),
+    fontSize: 35 * (d_window.width/375),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
@@ -137,29 +139,29 @@ const styles = StyleSheet.create({
   },
 
   border:{
-    width: Dimensions.get('window').width,
-    height: 13 * Math.pow((Dimensions.get('window').height/667), 2),
-    marginBottom: 21.5 * Math.pow((Dimensions.get('window').height/667), 2),
+    width: d_window.width,
+    height: 13 * Math.pow((d_window.height/667), 2),
+    marginBottom: 21.5 * Math.pow((d_window.height/667), 2),
   },
 
   logo:{
-    width: Dimensions.get('window').width,
-    height: 275 * (Dimensions.get('window').width/375),
+    width: d_window.width,
+    height: 275 * (d_window.width/375),
   },
 
   button:{
-    width: Dimensions.get('window').width,
-    height: 36 * Math.pow((Dimensions.get('window').height/667), 2),
+    width: d_window.width,
+    height: 36 * Math.pow((d_window.height/667), 2),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 21.5 * Math.pow((Dimensions.get('window').height/667), 2),
+    marginTop: 21.5 * Math.pow((d_window.height/667), 2),
     opacity: 0.5,
   },
 
   halfButton:{
-    width: Dimensions.get('window').width/2,
-    height: 36 * Math.pow((Dimensions.get('window').height/667), 2),
+    width: d_window.width/2,
+    height: 36 * Math.pow((d_window.height/667), 2),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
@@ -168,15 +170,15 @@ const styles = StyleSheet.create({
   halfButtonView:{
     flex: 2,
     flexDirection: 'row',
-    width: Dimensions.get('window').width,
-    height: 36 * Math.pow((Dimensions.get('window').height/667), 2),
+    width: d_window.width,
+    height: 36 * Math.pow((d_window.height/667), 2),
     justifyContent: 'center',
-    marginTop: 21.5 * Math.pow((Dimensions.get('window').height/667), 2),
+    marginTop: 21.5 * Math.pow((d_window.height/667), 2),
     opacity: 0.5,
   },
 
   buttonText:{
-    fontSize: 17 * (Dimensions.get('window').width/375),
+    fontSize: 17 * (d_window.width/375),
     color: 'white',
     fontWeight: '100',
     justifyContent: 'center',

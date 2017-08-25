@@ -1,5 +1,9 @@
 /**
- * Sample React Native App
+ * Chatham Township Historical Society's Driving Tour App
+ * Created by: Anthony Tesoriero
+ * https://github.com/atesoriero2000
+ *
+ * Powered by React Native
  * https://github.com/facebook/react-native
  * @flow
  */
@@ -27,10 +31,6 @@ class scout_project extends Component {
     };
   }
 
-  componentWillUpdate(){
-    console.log(this.state.unmount);
-  }
-
   render() {
     return(
       <TabBarIOS selectedTab={this.state.selectedTab}>
@@ -53,7 +53,7 @@ class scout_project extends Component {
           selectedIconName = {'ios-car'}
           onPress = { () => this.setState({ selectedTab: 'tour'}) }>
 
-          <Tour/>
+          <Tour toAbout = { () => this.setState({ selectedTab: 'about' }) }/>
         </Icon.TabBarItemIOS>
 
 

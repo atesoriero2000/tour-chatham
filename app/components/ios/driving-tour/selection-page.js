@@ -17,11 +17,13 @@ import {
   Alert,
 } from 'react-native'
 
+import Icon from 'react-native-vector-icons/Ionicons';
+
+const d_window = Dimensions.get('window');
+
 var Location = require('./start-loc');
 var InfoPage = require('./info-page');
 var Turns = require('../../turns');
-
-import Icon from 'react-native-vector-icons/Ionicons';
 
 class SelectionPage extends Component{
 
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    marginBottom: 10 * (Dimensions.get('window').height/667),
+    marginBottom: 10 * (d_window.height/667),
   },
 });
 

@@ -12,6 +12,8 @@ import {
   Linking
 } from 'react-native'
 
+const d_window = Dimensions.get('window');
+
 class About extends Component {
 
   render() {
@@ -32,14 +34,14 @@ class About extends Component {
 {/* Contributors */}
           <Text style = {styles.titles}>Contributors</Text>
           <View style = {styles.contributors}>
-            <View style = {{paddingHorizontal: 10 * (Dimensions.get('window').width/375)}}>
+            <View style = {{paddingHorizontal: 10 * (d_window.width/375)}}>
               <Text style = {styles.labels}>Development</Text>
               <Text style = {styles.fineText}>
                 {'Cat DeMatos\nEitan Miller\nEthan Aktins\nCarson Storm\nRandom\nRandom'}
               </Text>
             </View>
 
-            <View style = {{paddingHorizontal: 10 * (Dimensions.get('window').width/375)}}>
+            <View style = {{paddingHorizontal: 10 * (d_window.width/375)}}>
               <Text style = {styles.labels}>Audio</Text>
               <Text style = {styles.fineText}>
                 {'Grace Evans\nJacob Feeney\nKimberly Scaglione\nLilly McGrath\nMikey Behr\nOwen LaChance'}
@@ -103,37 +105,37 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10 * (Dimensions.get('window').height/667),
+    marginBottom: 10 * (d_window.height/667),
   },
 
   picture:{
-    width: Dimensions.get('window').width,
-    height: 211 * (Dimensions.get('window').width/375),
-    marginTop: 50 * (Dimensions.get('window').height/667),
+    width: d_window.width,
+    height: 211 * (d_window.width/375),
+    marginTop: 50 * (d_window.height/667),
   },
 
   textHeader:{
-    fontSize: 50 * (Dimensions.get('window').width/375),
+    fontSize: 50 * (d_window.width/375),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
-    paddingVertical: 30 * (Dimensions.get('window').height/667),
+    paddingVertical: 30 * (d_window.height/667),
   },
 
   text:{
-    fontSize: 15 * (Dimensions.get('window').width/375),
+    fontSize: 15 * (d_window.width/375),
     color: 'grey',
     fontWeight: '100',
     textAlign: 'center',
-    paddingHorizontal: 40 * (Dimensions.get('window').width/375),
+    paddingHorizontal: 40 * (d_window.width/375),
   },
 
   titles:{
-    fontSize: 30 * (Dimensions.get('window').width/375),
+    fontSize: 30 * (d_window.width/375),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
-    paddingTop: 50 * (Dimensions.get('window').height/667),
+    paddingTop: 50 * (d_window.height/667),
   },
 
   contributors:{
@@ -141,28 +143,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: Dimensions.get('window').width,
+    width: d_window.width,
   },
 
   contact: {
-    width: Dimensions.get('window').width,
+    width: d_window.width,
   },
 
   fineText:{
-    fontSize: 13 * (Dimensions.get('window').width/375),
+    fontSize: 13 * (d_window.width/375),
     color: 'grey',
     fontWeight: '100',
     textAlign: 'center',
-    padding: .5 * (Dimensions.get('window').width/375),
+    padding: .5 * (d_window.width/375),
   },
 
   labels:{
-    fontSize: 15 * (Dimensions.get('window').width/375),
+    fontSize: 15 * (d_window.width/375),
     color: 'dimgrey',
     fontWeight: '500',
     textAlign: 'center',
-    paddingBottom: 3 * (Dimensions.get('window').height/667),
-    paddingTop: 23 * (Dimensions.get('window').height/667),
+    paddingBottom: 3 * (d_window.height/667),
+    paddingTop: 23 * (d_window.height/667),
   },
 });
 

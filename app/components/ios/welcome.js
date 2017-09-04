@@ -56,37 +56,37 @@ class Welcome extends Component {
 
       {/* faux navigation banner */}
         <View style = {styles.banner}>
-          <Text style = {styles.bannerText}>Welcome</Text>
+          <Text allowFontScaling = {false} style = {styles.bannerText}>Welcome</Text>
           <View style = {styles.bannerLine}/>
         </View>
 
-        <Text style = {styles.text}>
+        <Text allowFontScaling = {false} style = {styles.text}>
           Chatham Township Historical Society Driving Tour
         </Text>
 
         <Image style = {styles.border} source = {require('../../images/logo_border.png')}  />
         <Image style = {styles.logo} source = {require('../../images/chs_logo.png')}  />
 
-        <View style={styles.halfButtonView}>
+        {/* <View style={styles.halfButtonView}>
           <TouchableHighlight style = {styles.halfButton}
             onPress = {() => this.toNews()}
             underlayColor = '#BBBBBB'>
-            <Text style = {styles.buttonText}> News </Text>
+            <Text allowFontScaling = {false} style = {styles.buttonText}> News </Text>
           </TouchableHighlight>
 
           <TouchableHighlight style = {styles.halfButton}
             onPress = {() => this.props.toTour()}
             underlayColor = '#BBBBBB'>
-            <Text style = {styles.buttonText}> Tour -> </Text>
+            <Text allowFontScaling = {false} style = {styles.buttonText}> Tour -> </Text>
           </TouchableHighlight>
 
-        </View>
+        </View> */}
 
-        {/* <TouchableHighlight style = {styles.button}
+        <TouchableHighlight style = {styles.button}
           onPress = {() => this.toNews()}
           underlayColor = '#BBBBBB'>
-          <Text style = {styles.buttonText}> News -> </Text>
-        </TouchableHighlight> */}
+          <Text allowFontScaling = {false} style = {styles.buttonText}> Upcoming Events </Text>
+        </TouchableHighlight>
 
       </View>
     )

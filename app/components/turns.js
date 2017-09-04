@@ -88,14 +88,14 @@ const loc1 = [
     picture: a2,
     latitude: 40.703046,
     longitude: -74.428045,
-    radius: 9639 - RADIUS_DELAY, // strait 9244
+    radius: 9639 - RADIUS_DELAY, // straight 9244
   },
   {
     direction: 'Follow past the Marker and Turn left and park in Esternay Field. You may walk back up Fairmount to the marker.',
     picture: a3,
     latitude: 40.703046,
     longitude: -74.428045, // from 40.705910, -74.429376
-    radius: 3000, //1108 Smaller bc prev is a go strait command and radius can go past that point
+    radius: 3000, //1108 Smaller bc prev is a go straight command and radius can go past that point
   },
 ];
 
@@ -133,10 +133,10 @@ const loc3 = [
    picture: d2,
    latitude: 40.708721,
    longitude: -74.416936,
-   radius: 2863 + 3770 - RADIUS_DELAY, // strait
+   radius: 2863 + 3770 - RADIUS_DELAY, // straight
  },
  {
-   direction: 'Park along River Road to right in the gravel outcrop',
+   direction: 'Park along River Road to the right in the gravel outcrop',
    picture: d3,
    latitude: 40.708721,
    longitude: -74.416936,
@@ -169,7 +169,7 @@ const loc4 = [
     radius: 2657 - RADIUS_DELAY,
   },
   {
-    direction: 'Continue Strait along Southern Blvd just past the intersection of Fairmount Ave until you reach the marker. You may park in the gravel driveway to the right or along Southern Boulevard',
+    direction: 'Continue straight along Southern Blvd just past the intersection of Fairmount Ave until you reach the marker. You may park in the gravel driveway to the right or along Southern Boulevard',
     picture: e3,
     latitude: 40.722827,
     longitude: -74.405053,
@@ -242,7 +242,7 @@ const loc6 = [
     radius: 2679 - 250,
   },
   {
-    direction: 'The marker at 184 Southern Blvd is on the right. Park in Southern Boulevard School to right just past the marker', // (If you reached Jay Road you have gone too far)
+    direction: 'The marker at 184 Southern Blvd is on the right. Park in Southern Boulevard School to the right just past the marker', // (If you reached Jay Road you have gone too far)
     picture: g5,
     latitude: 40.729440,
     longitude: -74.413286,
@@ -254,7 +254,7 @@ const loc6 = [
 //NOE POND
 const loc7 = [
   {
-    direction: 'Turn left onto Southern Blvd towards Jay Road and travel for approx 0.8 miles',
+    direction: 'Turn right onto Southern Blvd towards Jay Road and travel for approx 0.8 miles',
     picture: h1,
     latitude: null,
     longitude: null,
@@ -280,7 +280,7 @@ const loc8 = [
     radius: 500,
   },
   {
-    direction: '405 Southern Blvd (Nash Field) is on the left. You marker may turn into and park in Nash Field.',
+    direction: '405 Southern Blvd (Nash Field) is on the left. You may turn into and park in Nash Field.',
     picture: i2,
     latitude: 40.741458,
     longitude: -74.430853,
@@ -325,7 +325,7 @@ const loc10 = [
     radius: 500,
   },
   {
-    direction: 'You may park along white fence to the right',
+    direction: 'You may park along the white fence in the outcrop to the right',
     picture: k2,
     latitude: 40.738841,
     longitude: -74.449521,
@@ -370,7 +370,7 @@ const loc12 = [
     radius: 1125 - 150,
   },
   {
-    direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the marron marker',
+    direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the maroon marker',
     picture: m3,
     latitude: 40.753155,
     longitude: -74.452436,
@@ -396,7 +396,7 @@ const loc13 = [
     radius: 500,
   },
   {
-    direction: 'The destination is on the left (a grey/white hosue). You may park along the wooden fence to the right',
+    direction: 'The destination is on the left (a grey/white hosue). You may park along the wooden fence in the outcrop to the right',
     picture: n2,
     latitude: 40.753724,
     longitude: -74.440480,
@@ -408,7 +408,7 @@ const loc13 = [
 //BOISAUBIN HOUSE
 const loc14 = [
   {
-    direction: 'Continue strait along Loantaka Way towards Shunpike Road and turn left onto Woodland Road (Woodland Road becomes Woodland Ave)', // LEAVING BAD(jk) 1698
+    direction: 'Continue straight along Loantaka Way towards Shunpike Road and turn left onto Woodland Road (Woodland Road becomes Woodland Ave)', // LEAVING BAD(jk) 1698
     picture: o1,
     latitude: null,
     longitude: null,
@@ -422,7 +422,7 @@ const loc14 = [
     radius: 4786 - RADIUS_DELAY, // from 40.755507, -74.434803
   },
   {
-    direction: 'Park along fence to the left or right once you see the marker on the left',
+    direction: 'Park along fence in an outcrop to the right once you see the marker on the left',
     picture: o3,
     latitude: 40.768086,
     longitude: -74.442928,

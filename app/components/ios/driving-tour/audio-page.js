@@ -140,7 +140,7 @@ class AudioPage extends Component {
     // deaceases radius on stage change in onPress()
     // radius increases so that thue button doesnt turn of when the driver parks a little far away but will turn off if they drive far past the spot.
     let lastTurn = currentStage.loc[currentStage.loc.length-1];
-    let radius = (isNearLastTurn ? 750 : 200);
+    let radius = (isNearLastTurn ? 1150 : 200);
 
     isNearLastTurn = (mode === 'demo'||this.isNear(lastTurn.latitude, lastTurn.longitude, radius));
 
@@ -204,7 +204,6 @@ class AudioPage extends Component {
         doneAtAudio = false;
         isNearLastTurn = false;
         this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture});
-        // this.setState({ isNear: false });
         this.triggerAudio(Turns.stages[Turns.stage].toAudio);
         this.update();
       }
@@ -307,16 +306,16 @@ class AudioPage extends Component {
           <View style = {styles.banner}/>
 
           <View style = {styles.titleBox}>
-            <Text style = {styles.title}>{this.state.title}</Text>
+            <Text allowFontScaling = {false} style = {styles.title}>{this.state.title}</Text>
           </View>
 
           <View style = {styles.line}/>
 
           <View style = {styles.directionBox}>
-            <Text style = {styles.directions}>{this.state.directions}</Text>
+            <Text allowFontScaling = {false} style = {styles.directions}>{this.state.directions}</Text>
           </View>
 
-          <Text style = {styles.dist}>
+          <Text allowFontScaling = {false} style = {styles.dist}>
             {doneAtAudio?'':('In: ' + ( (Turns.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
           </Text>
 
@@ -354,40 +353,40 @@ class AudioPage extends Component {
           }}
           underlayColor = '#BBBBBB'
           onPress = {() => this.onPress()}>
-            <Text style={styles.buttonText}>Click to Continue</Text>
+            <Text allowFontScaling = {false} style={styles.buttonText}>Click to Continue</Text>
           </TouchableHighlight>
 
           {(mode === 'debug'||mode === 'demo'||mode === 'tester1'||mode === 'tester2') &&
             <TouchableOpacity style = {styles.debug1} onPress={() => this.DEBUG_stopAudio()}>
-              <Text style={{color: 'whitesmoke'}}>{'X'}</Text>
+              <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'X'}</Text>
             </TouchableOpacity>
           }
 
           {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
             <TouchableOpacity style = {styles.debug2} onPress={() => this.DEBUG_lastTurn()}>
-              <Text style={{color: 'whitesmoke'}}>{'<'}</Text>
+              <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'<'}</Text>
             </TouchableOpacity>
           }
 
           {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
             <TouchableOpacity style = {styles.debug3} onPress={() => this.DEBUG_nextTurn()}>
-              <Text style={{color: 'whitesmoke'}}>{'>'}</Text>
+              <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'>'}</Text>
             </TouchableOpacity>
           }
 
-          {(mode === 'debug') && <Text style={{position: 'absolute', top: 285, left: 285}}>{Turns.stage},{Turns.turn}</Text>}
+          {(mode === 'debug') && <Text allowFontScaling = {false} style={{position: 'absolute', top: 285, left: 285}}>{Turns.stage},{Turns.turn}</Text>}
 
-          {(mode === 'debug') && <Text style={{
+          {(mode === 'debug') && <Text allowFontScaling = {false} style={{
             position: 'absolute',
             top: 262 + 50,
             left: 220
           }}> distToNext: {JSON.stringify(Math.round(this.state.distToNext))} FT</Text>}
-          {(mode === 'debug') && <Text style={{
+          {(mode === 'debug') && <Text allowFontScaling = {false} style={{
             position: 'absolute',
             top: 262 + 77,
             left: 220
           }}> nextRadius: {JSON.stringify(this.state.nextRadius)} </Text>}
-          {(mode === 'debug') && <Text style={{
+          {(mode === 'debug') && <Text allowFontScaling = {false} style={{
             position: 'absolute',
             top: 262 + 104,
             left: 220
@@ -396,20 +395,20 @@ class AudioPage extends Component {
           {false &&
             <View style={{alignItems: 'center', justifyContent: 'center', width: d_window.width}}>
               <View style={{height: 300}}/>
-              <Text style = {styles.text}>
+              <Text allowFontScaling = {false} style = {styles.text}>
                 DEBUGGER
               </Text><Text/>
 
               <Text> Stage/Turn:   {Turns.stage},{Turns.turn}</Text>
 
-              <Text style = {styles.location}>
+              <Text allowFontScaling = {false} style = {styles.location}>
                 CURRENT TARGET
               </Text>
               <Text> Longitude: {this.state.currentTargetPos.longitude}</Text>
               <Text> Latitude: {this.state.currentTargetPos.latitude}</Text>
               <Text> distToCurrent: {JSON.stringify(Math.round(this.state.distToCurrent))} FT</Text>
 
-              <Text style = {styles.location}>
+              <Text allowFontScaling = {false} style = {styles.location}>
                 NEXT TARGET
               </Text>
               <Text> Longitude: {this.state.nextTargetPos.longitude}</Text>
@@ -418,7 +417,7 @@ class AudioPage extends Component {
               <Text> distToNext: {JSON.stringify(Math.round(this.state.distToNext))} FT</Text>
               <Text> isNear: {JSON.stringify(this.state.isNear)} </Text>
 
-              <Text style = {styles.location}>
+              <Text allowFontScaling = {false} style = {styles.location}>
                 LAST
               </Text>
               <Text> Longitude: {this.state.lastPos.longitude}</Text>
@@ -465,7 +464,7 @@ const styles = StyleSheet.create({
   line:{
     backgroundColor: 'black',
     height: .74 * (d_window.width/375), //height
-    width: d_window.width / 3,
+    width: 150 * (d_window.width/375),
   },
 
   directionBox:{

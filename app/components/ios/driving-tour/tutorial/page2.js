@@ -27,7 +27,7 @@ class Page2 extends Component {
           />
         </View>
 
-        <Text style = {styles.text}>
+        <Text allowFontScaling = {false} style = {styles.text}>
           On the next page you will pick your starting location. The tour will tour only the locations listed after. (Any locations listed before the selected location will not be toured.)
         </Text>
 
@@ -36,7 +36,7 @@ class Page2 extends Component {
           onPress = {() => this.props.onPress()}
           underlayColor = '#BBBBBB'>
 
-          <Text style = {styles.buttonText}>Click to Continue</Text>
+          <Text allowFontScaling = {false} style = {styles.buttonText}>Click to Continue</Text>
 
         </TouchableHighlight>
 

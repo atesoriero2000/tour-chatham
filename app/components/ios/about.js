@@ -21,10 +21,10 @@ class About extends Component {
       <View style = {styles.container}>
         <ScrollView>
 
-          <Text style = {styles.textHeader}>
+          <Text allowFontScaling = {false} style = {styles.textHeader}>
             About
           </Text>
-          <Text style = {styles.text}>
+          <Text allowFontScaling = {false} style = {styles.text}>
             This app was created by Anthony Tesoriero, a Local Chatham Resident, as his Eagle Scout Project. In partnership with the Chatham Township Historical Society, Anthony created this audio tour to make the local history of Chatham more accsesible to everyone through modern technology in a new innovative way.
           </Text>
 
@@ -32,18 +32,18 @@ class About extends Component {
 
 
 {/* Contributors */}
-          <Text style = {styles.titles}>Contributors</Text>
+          <Text allowFontScaling = {false} style = {styles.titles}>Contributors</Text>
           <View style = {styles.contributors}>
             <View style = {{paddingHorizontal: 10 * (d_window.width/375)}}>
-              <Text style = {styles.labels}>Development</Text>
-              <Text style = {styles.fineText}>
-                {'Cat DeMatos\nEitan Miller\nEthan Aktins\nCarson Storm\nRandom\nRandom'}
+              <Text allowFontScaling = {false} style = {styles.labels}>Development</Text>
+              <Text allowFontScaling = {false} style = {styles.fineText}>
+                {'Cat DeMatos\nEitan Miller\nEthan Aktins\nCarson Storm\nKismet Seekond\nPhil Rauch'}
               </Text>
             </View>
 
             <View style = {{paddingHorizontal: 10 * (d_window.width/375)}}>
-              <Text style = {styles.labels}>Audio</Text>
-              <Text style = {styles.fineText}>
+              <Text allowFontScaling = {false} style = {styles.labels}>Audio</Text>
+              <Text allowFontScaling = {false} style = {styles.fineText}>
                 {'Grace Evans\nJacob Feeney\nKimberly Scaglione\nLilly McGrath\nMikey Behr\nOwen LaChance'}
               </Text>
             </View>
@@ -51,36 +51,36 @@ class About extends Component {
           </View>
 
           <View>
-            <Text style = {styles.labels}>Historical Society</Text>
-            <Text style = {styles.fineText}>
+            <Text allowFontScaling = {false} style = {styles.labels}>Historical Society</Text>
+            <Text allowFontScaling = {false} style = {styles.fineText}>
               {'Pat Wells\nSheila Goggins\nDebbie Bucuk\nCaroline Knott'}
             </Text>
           </View>
 
 
 {/* Contacts*/}
-          <Text style = {styles.titles}>Contact Information</Text>
+          <Text allowFontScaling = {false} style = {styles.titles}>Contact Information</Text>
           <View style = {styles.contact}>
-            <Text style = {styles.labels}>
+            <Text allowFontScaling = {false} style = {styles.labels}>
               Developer
             </Text>
-            <Text style = {styles.fineText}>
+            <Text allowFontScaling = {false} style = {styles.fineText}>
               Name: Anthony Tesoriero
             </Text>
-            <Text style = {styles.fineText}>
-              Email: <Text selectable = {true} onPress={() => this.linkUrl("mailto:atesoriero2000@gmail.com?subject=Chatham%20Township%20Historical%20Society%20App")}>atesoriero2000@gmail.com</Text>
+            <Text allowFontScaling = {false} style = {styles.fineText}>
+              Email: <Text allowFontScaling = {false} selectable = {true} onPress={() => this.linkUrl("mailto:atesoriero2000@gmail.com?subject=Chatham%20Township%20Historical%20Society%20App")}>atesoriero2000@gmail.com</Text>
             </Text>
 
-            <Text style = {styles.labels} onPress={() => this.linkUrl("http://www.chathamtownshiphistoricalsociety.org")}>
+            <Text allowFontScaling = {false} style = {styles.labels} onPress={() => this.linkUrl("http://www.chathamtownshiphistoricalsociety.org")}>
               Chatham Township Historical Society
             </Text>
-            <Text style = {styles.fineText}>
-              <Text selectable={true} onPress={() => this.linkUrl("http://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m")}>
+            <Text allowFontScaling = {false} style = {styles.fineText}>
+              <Text allowFontScaling = {false} selectable={true} onPress={() => this.linkUrl("http://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m")}>
                 24 Southern Blvd, Chatham, NJ
-              </Text>   •   <Text selectable={true} onPress={() => this.linkUrl("tel:973-635-4911")}>973-635-4911</Text>
+              </Text>   •   <Text allowFontScaling = {false} selectable={true} onPress={() => this.linkUrl("tel:973-635-4911")}>973-635-4911</Text>
             </Text>
 
-            <Text style = {styles.fineText}>
+            <Text allowFontScaling = {false} style = {styles.fineText}>
               Museum Hours   •   2pm-4pm 1st Sunday each month
             </Text>
           </View>

@@ -24,9 +24,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const d_window = Dimensions.get('window');
 
-const lMonthKey = 'UIDLastMonth';
-const lYearKey = 'UIDLastYear';
-var currentDate = new Date();
+// const lMonthKey = 'UIDLastMonth';
+// const lYearKey = 'UIDLastYear';
+// var currentDate = new Date();
 
 var Turns = require('../../turns');
 var AudioPage = require('./audio-page');
@@ -49,38 +49,38 @@ class Start extends Component {
 
   componentWillMount(){
     Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
-    this.props.setOnHelpPress( () => this.setState({visible: true}) );
+    // this.props.setOnHelpPress( () => this.setState({visible: true}) );
   }
 
-  componentDidMount(){
-    let lastMonth;
-    let lastYear;
-
-    AsyncStorage.getItem(lMonthKey).then( (value) => {
-      if(value !== null){
-        lastMonth = JSON.parse(value);
-      }
-      console.log(value);
-    });
-
-    AsyncStorage.getItem(lYearKey).then( (value) => {
-      if(value !== null){
-        lastYear = JSON.parse(value);
-      }
-      console.log(value);
-    });
-
-    let thisMonth = currentDate.getMonth();
-    let thisYear = currentDate.getYear();
-
-    // if the dates have not been set, show tutorial and set dates
-    // NOTE: (int) - null === null !== 0  and  null !=== (int)
-    // if it has been more than a month, reshow tutorial and reset date
-    let showTutorial = ( thisMonth - lastMonth !== 0 || thisYear !== lastYear );
-    // let showTutorial = true;
-
-    this.setState({showTutorial});
-  }
+  // componentDidMount(){
+  //   let lastMonth;
+  //   let lastYear;
+  //
+  //   AsyncStorage.getItem(lMonthKey).then( (value) => {
+  //     if(value !== null){
+  //       lastMonth = JSON.parse(value);
+  //     }
+  //     console.log(value);
+  //   });
+  //
+  //   AsyncStorage.getItem(lYearKey).then( (value) => {
+  //     if(value !== null){
+  //       lastYear = JSON.parse(value);
+  //     }
+  //     console.log(value);
+  //   });
+  //
+  //   let thisMonth = currentDate.getMonth();
+  //   let thisYear = currentDate.getYear();
+  //
+  //   // if the dates have not been set, show tutorial and set dates
+  //   // NOTE: (int) - null === null !== 0  and  null !=== (int)
+  //   // if it has been more than a month, reshow tutorial and reset date
+  //   let showTutorial = ( thisMonth - lastMonth !== 0 || thisYear !== lastYear );
+  //   // let showTutorial = true;
+  //
+  //   this.setState({showTutorial});
+  // }
 
   componentWillUnmount(){
     this.setState({visible: false});
@@ -93,12 +93,12 @@ class Start extends Component {
         {/* OVERVIEW PAGE */}
         <View style = {styles.overviewContainer}>
 
-          <Text style = {styles.overviewText1}>
+          <Text allowFontScaling = {false} style = {styles.overviewText1}>
             Explore Chatham Township, Madison, and Green Village
             as you drive to different marked historical sights while
             listening the history behind them!
           </Text>
-          <Text style={styles.clickable} onPress = {() =>
+          <Text allowFontScaling = {false} style={styles.clickable} onPress = {() =>
             this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
             Click here for more info!</Text>
 
@@ -123,7 +123,7 @@ class Start extends Component {
 
           </Swiper>
 
-          <Text style = {styles.overviewText2}>
+          <Text allowFontScaling = {false} style = {styles.overviewText2}>
             It will take approximately 1.5 hours to complete the whole
             tour but, you may stop at any marker and pick up where you
             left off. You will need a passenger to follow the directions
@@ -134,7 +134,7 @@ class Start extends Component {
             onPress = {() => this.onPress()}
             // onPress = {()=>this.navToAudio()}
             underlayColor = '#BBBBBB'>
-              <Text style = {styles.buttonText}>
+              <Text allowFontScaling = {false} style = {styles.buttonText}>
                 Click to Continue
               </Text>
           </TouchableHighlight>
@@ -165,8 +165,8 @@ class Start extends Component {
                   <Page1/>
                   <Page2 onPress={() => {
                     this.navToSelection();
-                    this.setItem(lMonthKey, JSON.stringify(currentDate.getMonth()) );
-                    this.setItem(lYearKey, JSON.stringify(currentDate.getYear()) );
+                    // this.setItem(lMonthKey, JSON.stringify(currentDate.getMonth()) );
+                    // this.setItem(lYearKey, JSON.stringify(currentDate.getYear()) );
                   }}/>
 
               </Swiper>
@@ -182,17 +182,17 @@ class Start extends Component {
   }
 
   onPress(){
-    if(this.state.showTutorial){
+    // if(this.state.showTutorial){
       this.setState({visible:true});
 
-    }else{
-      this.navToSelection();
-    }
+    // }else{
+    //   this.navToSelection();
+    // }
   }
 
-  setItem(key, val){
-    AsyncStorage.setItem(key, val).catch( (err) => console.log('HIIIIII') );
-  }
+  // setItem(key, val){
+  //   AsyncStorage.setItem(key, val).catch( (err) => console.log('HIIIIII') );
+  // }
 
   navToAudio(){
     this.props.navigator.push({

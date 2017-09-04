@@ -36,8 +36,8 @@ class Location extends Component{
 
           <View style = {styles.contents}>
 
-            <Text style = {styles.text}> {this.props.title} <Text style={styles.time}>({this.props.time} mins)</Text></Text>
-            <Text style = {styles.buttonText}> {this.props.address} </Text>
+            <Text allowFontScaling = {false} style = {styles.text}> {this.props.title} <Text allowFontScaling = {false} style={styles.time}>({this.props.time} mins)</Text></Text>
+            <Text allowFontScaling = {false} style = {styles.buttonText}> {this.props.address} </Text>
 
           </View>
         </View>

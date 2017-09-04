@@ -19,7 +19,7 @@ class Header extends Component {
     return (
       <View style={styles.container}>
 
-        <Text style={styles.title}>Tutorial</Text>
+        <Text allowFontScaling = {false} style={styles.title}>Tutorial</Text>
 
         <Icon
           name={'close'}

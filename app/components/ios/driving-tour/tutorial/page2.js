@@ -28,7 +28,9 @@ class Page2 extends Component {
         </View>
 
         <Text allowFontScaling = {false} style = {styles.text}>
-          On the next page you will pick your starting location. The tour will tour only the locations listed after. (Any locations listed before the selected location will not be toured.)
+          On the next page you will pick your starting location.
+          You will only visit the locations listed after
+          (any locations listed before the selected location will not be toured).
         </Text>
 
 

@@ -96,7 +96,7 @@ class Start extends Component {
           <Text allowFontScaling = {false} style = {styles.overviewText1}>
             Explore Chatham Township, Madison, and Green Village
             as you drive to different marked historical sights while
-            listening the history behind them!
+            listening to the history behind them!
           </Text>
           <Text allowFontScaling = {false} style={styles.clickable} onPress = {() =>
             this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
@@ -125,7 +125,7 @@ class Start extends Component {
 
           <Text allowFontScaling = {false} style = {styles.overviewText2}>
             It will take approximately 1.5 hours to complete the whole
-            tour but, you may stop at any marker and pick up where you
+            tour, but you may stop at any marker and pick up where you
             left off. You will need a passenger to follow the directions
             as they pop up.
           </Text>

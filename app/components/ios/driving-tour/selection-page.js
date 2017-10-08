@@ -41,7 +41,7 @@ class SelectionPage extends Component{
   alert(props){
     Alert.alert(
       'Course Confirmation',
-      '\nFrom this location to the end, it will take about ' + props.time + ' minutes.\nYou may stop and pick up where you left off at any time.\nAll locations listed before this will not be toured. Is this ok?',
+      '\nFrom this location to the end of the list, it will take about ' + props.time + ' minutes.\nYou may stop and pick up where you left off at any time.\nAll locations listed before this will not be toured. Is that ok?',
       [
         {text: 'Cancel'},
         {text: 'Yes this works', onPress: () => this.navToInfo(props), style: 'cancel'},

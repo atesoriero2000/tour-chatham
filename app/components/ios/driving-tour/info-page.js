@@ -93,7 +93,8 @@ class InfoPage extends Component{
   }
 
   onPress(){
-    Alert.alert('SAFETY', '\n1) Please make sure you have a passenger. You will need a passenger to follow and read the directions as the come up on the phone screen.\n\n 2) If you miss a turn, safely navigate through adjacent roads and proceed back to the instructed route.\n\n 3) Some locations have limited/ample parking. Please be cautious of your surroundings and pay attention to the specified parking directions.\n\n 4) Some markers are on private property. Be courteous to others and mindful of trespassing.\n\n 5) Drive safely, the developer, the Chatham Township Historical Society, and associates of the app hold no liability for any incidents while using this app.',[
+    Alert.alert('SAFETY', '\n1) You must have a passenger to follow and read the directions as the come up on the phone screen.\n\n 2) If you miss a turn, safely navigate through adjacent roads, and proceed back to the instructed route.\n\n 3) Some locations have limited parking. Please be cautious of your surroundings, and pay attention to the specified parking directions.\n\n 4) Some markers are on private property. Be courteous to others, and be mindful of trespassing.\n\n 5) Drive safely. The developer, the Chatham Township Historical Society, and contributors to the app hold no liability for any incidents that may occur while using this app.'
+    ,[
       { text: 'Ok, I Understand', onPress: () => this.navToAudio()},
     ]);
   }

@@ -3,11 +3,11 @@ package com.scout_project;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.transistorsoft.rnbackgroundgeolocation.RNBackgroundGeolocation;
 import com.cmcewen.blurview.BlurViewPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.zmxv.RNSound.RNSoundPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
+import com.zmxv.RNSound.RNSoundPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.transistorsoft.rnbackgroundgeolocation.RNBackgroundGeolocation;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -28,12 +28,17 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNBackgroundGeolocation(),
             new BlurViewPackage(),
-            new VectorIconsPackage(),
+            new KCKeepAwakePackage(),
             new RNSoundPackage(),
-            new KCKeepAwakePackage()
+            new VectorIconsPackage(),
+            new RNBackgroundGeolocation()
       );
+    }
+
+    @Override
+    protected String getJSMainModuleName() {
+      return "index";
     }
   };
 

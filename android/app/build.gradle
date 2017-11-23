@@ -72,6 +72,10 @@ import com.android.build.OutputFile
  * ]
  */
 
+project.ext.react = [
+    entryFile: "index.js"
+]
+
 apply from: "../../node_modules/react-native/react.gradle"
 
 /**
@@ -91,11 +95,9 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
-        renderscriptTargetApi 23
-        renderscriptSupportModeEnabled true
         applicationId "com.scout_project"
         minSdkVersion 16
         targetSdkVersion 22
@@ -135,11 +137,11 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-background-geolocation')
     compile project(':react-native-blur')
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-sound')
     compile project(':react-native-keep-awake')
+    compile project(':react-native-sound')
+    compile project(':react-native-vector-icons')
+    compile project(':react-native-background-geolocation')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules

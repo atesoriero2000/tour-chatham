@@ -5,78 +5,67 @@ PODS:
   - CocoaLumberjack/Default (3.2.1)
   - CocoaLumberjack/Extensions (3.2.1):
     - CocoaLumberjack/Default
-  - React (0.47.2):
-    - React/Core (= 0.47.2)
-  - React/BatchedBridge (0.47.2):
-    - React/Core
-    - React/cxxreact_legacy
-  - React/Core (0.47.2):
-    - Yoga (= 0.47.2.React)
-  - React/cxxreact_legacy (0.47.2):
-    - React/jschelpers_legacy
-  - React/jschelpers_legacy (0.47.2)
-  - React/RCTActionSheet (0.47.2):
-    - React/Core
-  - React/RCTAnimation (0.47.2):
-    - React/Core
-  - React/RCTGeolocation (0.47.2):
-    - React/Core
-  - React/RCTImage (0.47.2):
-    - React/Core
-    - React/RCTNetwork
-  - React/RCTLinkingIOS (0.47.2):
-    - React/Core
-  - React/RCTNetwork (0.47.2):
-    - React/Core
-  - React/RCTSettings (0.47.2):
-    - React/Core
-  - React/RCTText (0.47.2):
-    - React/Core
-  - React/RCTVibration (0.47.2):
-    - React/Core
-  - React/RCTWebSocket (0.47.2):
-    - React/Core
-  - RNBackgroundFetch (2.1.0):
+  - React (0.50.3):
+    - React/Core (= 0.50.3)
+  - react-native-blur (0.8.0):
     - React
-  - RNBackgroundGeolocation (2.9.2):
+  - react-native-keep-awake (2.0.6):
+    - React
+  - React/Core (0.50.3):
+    - yoga (= 0.50.3.React)
+  - RNBackgroundFetch (2.2.1):
+    - React
+  - RNBackgroundGeolocation (2.10.1):
     - CocoaLumberjack (~> 3.0)
     - React
-  - Yoga (0.47.2.React)
+  - RNSound (0.10.4):
+    - React/Core
+    - RNSound/Core (= 0.10.4)
+  - RNSound/Core (0.10.4):
+    - React/Core
+  - RNVectorIcons (4.4.2):
+    - React
+  - yoga (0.50.3.React)
 
 DEPENDENCIES:
-  - React/BatchedBridge (from `../node_modules/react-native`)
-  - React/Core (from `../node_modules/react-native`)
-  - React/RCTActionSheet (from `../node_modules/react-native`)
-  - React/RCTAnimation (from `../node_modules/react-native`)
-  - React/RCTGeolocation (from `../node_modules/react-native`)
-  - React/RCTImage (from `../node_modules/react-native`)
-  - React/RCTLinkingIOS (from `../node_modules/react-native`)
-  - React/RCTNetwork (from `../node_modules/react-native`)
-  - React/RCTSettings (from `../node_modules/react-native`)
-  - React/RCTText (from `../node_modules/react-native`)
-  - React/RCTVibration (from `../node_modules/react-native`)
-  - React/RCTWebSocket (from `../node_modules/react-native`)
+  - React (from `../node_modules/react-native`)
+  - react-native-blur (from `../node_modules/react-native-blur`)
+  - react-native-keep-awake (from `../node_modules/react-native-keep-awake`)
   - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
   - RNBackgroundGeolocation (from `../node_modules/react-native-background-geolocation`)
-  - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
+  - RNSound (from `../node_modules/react-native-sound`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 EXTERNAL SOURCES:
   React:
     :path: ../node_modules/react-native
+  react-native-blur:
+    :path: ../node_modules/react-native-blur
+  react-native-keep-awake:
+    :path: ../node_modules/react-native-keep-awake
   RNBackgroundFetch:
     :path: ../node_modules/react-native-background-fetch
   RNBackgroundGeolocation:
     :path: ../node_modules/react-native-background-geolocation
-  Yoga:
+  RNSound:
+    :path: ../node_modules/react-native-sound
+  RNVectorIcons:
+    :path: ../node_modules/react-native-vector-icons
+  yoga:
     :path: ../node_modules/react-native/ReactCommon/yoga
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 2800c03334042fe80589423c8d80e582dcaec482
-  React: fbe1a006550fb55871cb377ba7741f5d1cfff733
-  RNBackgroundFetch: 3df6a89bd25a83cfe7f0dc20a87a57fd27194c42
-  RNBackgroundGeolocation: f3fe4bc0d99afb12cb2b330eb923fbbaf8549b98
-  Yoga: ff8531e8cf9f7ec92a75dd44286a68c4a084c507
+  React: 0ba6cae888dc82dc47d6d5f3090615e1b5f6f3e7
+  react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
+  react-native-keep-awake: bb4dbb6fd21a7879432f9538b0b7d71398fe9f81
+  RNBackgroundFetch: d5d637e360e914f13a503c1387fb551b961168bc
+  RNBackgroundGeolocation: 002820787ed9ae01eb36e06a2a282aea363e1ee0
+  RNSound: 8a65b2a795a9412430677fe8514c6c8ed25e7db1
+  RNVectorIcons: c1821d56c775cc5a3bca66c77dfc8cb4a90d27e2
+  yoga: faecc6be81ca7823ccbb470b93a1b228499fa1c0
 
-PODFILE CHECKSUM: 10d526c4a1ddff9649beda27454877ee48848786
+PODFILE CHECKSUM: 8b31b73ed4840cc4b68a99ae44ef748a71ce3237
 
 COCOAPODS: 1.2.1

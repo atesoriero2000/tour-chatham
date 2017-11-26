@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
 
   container:{
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
   banner: {// NOTE: navigator bar is not scalable

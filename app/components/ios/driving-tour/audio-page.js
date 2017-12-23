@@ -29,7 +29,7 @@ var doneAtAudio = false;
 var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'tester2'; // debug, demo, tester1, tester2, release
+const mode = 'demo'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
@@ -343,12 +343,12 @@ class AudioPage extends Component {
 
           <TouchableHighlight style = {{
             width: d_window.width/1.5,
-            height: 36 * Math.pow((d_window.height/667), 2), //height
+            height: 36 * Math.pow((d_window.height/667), 2) - (d_window.height === 812? 10:0), //height
             backgroundColor: 'gray',
             justifyContent: 'center',
             alignItems: 'center',
             position: 'absolute',
-            top: (262 + 310) * (d_window.height/667), //height
+            top: (262 + 310) * (d_window.height/667) - (d_window.height === 812? 36:0), //height
             opacity: this.state.clickable?1:.05,
           }}
           underlayColor = '#BBBBBB'
@@ -442,7 +442,7 @@ const styles = StyleSheet.create({
 
   banner:{
     width: d_window.width,
-    height: 64, //NOTE: not scalable
+    height: 64 + (d_window.height === 812? 20:0), //NOTE: not scalable
   },
 
   titleBox:{
@@ -472,7 +472,7 @@ const styles = StyleSheet.create({
     height: 107 * Math.pow((d_window.height/667), 1.25), //height
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10 * Math.pow((d_window.height/667), 2), //height
+    marginTop: 10 * Math.pow((d_window.height/667), 2) - (d_window.height === 812? 10:0), //height
   },
 
   directions:{
@@ -487,12 +487,12 @@ const styles = StyleSheet.create({
     color: 'dimgray',
     fontWeight: '500',
     textAlign: 'center',
-    marginTop: 3 * Math.pow((d_window.height/667), 2), //height
+    marginTop: 3 * Math.pow((d_window.height/667), 2) - (d_window.height === 812? 4.44:0), //height
   },
 
   imageBox:{
     position: 'absolute',
-    top: 310 * (d_window.width/375),
+    top: 310 * (d_window.width/375) + (d_window.height === 812? 77:0),
     height: 250 * (d_window.width/375),
     width: d_window.width,
     alignItems: 'center',
@@ -527,7 +527,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275 * (d_window.width/375),
+    top: 275 * (d_window.width/375) + (d_window.height === 812? 75:0),
     left: 15 * (d_window.width/375),
     backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
     height: 30 * (d_window.width/375),
@@ -539,7 +539,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275 * (d_window.width/375),
+    top: 275 * (d_window.width/375) + (d_window.height === 812? 75:0),
     left: 55 * (d_window.width/375),
     backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
     height: 30 * (d_window.width/375),
@@ -551,7 +551,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275 * (d_window.width/375),
+    top: 275 * (d_window.width/375) + (d_window.height === 812? 75:0),
     left: 95 * (d_window.width/375),
     backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
     height: 30 * (d_window.width/375),

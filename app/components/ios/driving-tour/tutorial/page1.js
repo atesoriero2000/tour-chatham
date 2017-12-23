@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   imageBox:{
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 57 * (d_window.height/667),
+    marginTop: 57 * (d_window.height/667) + (d_window.height === 812 ? 0:0),
     marginBottom: 15 * Math.pow((d_window.height/667), 2),
     backgroundColor: 'lightgrey',
     borderRadius: 10 * (d_window.width/375),

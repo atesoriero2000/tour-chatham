@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     flexDirection: 'row',
     width: d_window.width,
-    height: 75 * (d_window.height/667),
+    height: 75 * (d_window.height/667) - (d_window.height === 812? 10:0),
     marginTop: 10 * (d_window.height/667),
     backgroundColor: 'gainsboro', //#e6e6e6
   },

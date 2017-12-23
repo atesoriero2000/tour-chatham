@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
   imageBox:{
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 57 * (d_window.height/667),
-    marginBottom: 21 * Math.pow((d_window.height/667), 2),
+    marginTop: 57 * (d_window.height/667) + (d_window.height === 812 ? 0:0),
+    marginBottom: 21 * Math.pow((d_window.height/667), 2) - (d_window.height === 812 ? 10:0),
     backgroundColor: 'lightgrey',
     borderRadius: 10 * (d_window.width/375),
   },
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22 * Math.pow((d_window.height/667), 2),
+    marginTop: 22 * Math.pow((d_window.height/667), 2) - (d_window.height === 812 ? 10:0),
   },
 
   buttonText:{

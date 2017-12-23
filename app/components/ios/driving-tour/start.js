@@ -159,7 +159,7 @@ class Start extends Component {
                   showsButtons = {true}
                   index = {0}
                   loop = {false}
-                  height={d_window.height/1.13}
+                  height={d_window.height/1.13 - (d_window.height === 812 ? 95:0)}
                   width={d_window.width/1.25}>
 
                   <Page1/>
@@ -225,7 +225,7 @@ class Start extends Component {
 const styles = StyleSheet.create({
 
   container:{
-    flex: 1,
+    flex: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -234,6 +234,7 @@ const styles = StyleSheet.create({
     width: d_window.width,
     height: d_window.height,
     alignItems: 'center',
+    // justifyContent: 'center',
   },
 
   overviewText1:{
@@ -242,7 +243,7 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     color: 'grey',
     marginHorizontal: 30 * (d_window.width/375),
-    marginTop: 65 + (21) * Math.pow((d_window.height/667), 2.5),
+    marginTop: 65 + (21) * Math.pow((d_window.height/667), 2.5) + (d_window.height === 812? 27:0),
   },
 
   clickable:{
@@ -254,20 +255,19 @@ const styles = StyleSheet.create({
     marginBottom: 16 * Math.pow((d_window.height/667), 2.5),
   },
 
+  image:{
+    width: d_window.width,
+    height: 240 * (d_window.width/375),
+  },
+
   overviewText2:{
     textAlign: 'center',
     fontSize: 15 * (d_window.width/375),
     fontWeight: '100',
     color: 'grey',
     marginHorizontal: 35 * (d_window.width/375),
-    marginTop: 15 * Math.pow((d_window.height/667), 2.5),
+    marginTop: 15 * Math.pow((d_window.height/667), 2.5) + (d_window.height === 812? 10:0),
     marginBottom: 14 * Math.pow((d_window.height/667), 2.5),
-  },
-
-
-  image:{
-    width: d_window.width,
-    height: 240 * (d_window.width/375),
   },
 
   button:{
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: d_window.width/1.25,
-    height: d_window.height/1.13,
+    height: d_window.height/1.13 - (d_window.height === 812 ? 95:0),
     borderRadius: 15 * (d_window.width/375),
     backgroundColor: 'whitesmoke',
   },

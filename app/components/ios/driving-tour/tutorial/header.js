@@ -41,14 +41,14 @@ const styles = StyleSheet.create({
 
   title:{
     position: 'absolute',
-    bottom: (247 + 1) * (d_window.height/667),
+    bottom: (247 + 1) * (d_window.height/667) - (d_window.height === 812 ? 40:0),
     fontSize: 30 * (d_window.width/375),
     fontWeight: '100',
   },
 
   exitButton:{
     position: 'absolute',
-    bottom: 247 * (d_window.height/667),
+    bottom: 247 * (d_window.height/667) - (d_window.height === 812 ? 40:0),
     right: 101 * (d_window.width/375),
   },
 });

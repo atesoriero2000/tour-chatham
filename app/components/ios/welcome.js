@@ -12,6 +12,7 @@ import {
   Button,
   Linking,
   NavigatorIOS,
+  SafeAreaView
 } from 'react-native'
 
 import BackgroundGeolocation from "react-native-background-geolocation";
@@ -55,6 +56,7 @@ class Welcome extends Component {
       <View style = {styles.container}>
 
       {/* faux navigation banner */}
+        {d_window.height === 812 && <View style = {styles.bannerSafeArea}/>}
         <View style = {styles.banner}>
           <Text allowFontScaling = {false} style = {styles.bannerText}>Welcome</Text>
           <View style = {styles.bannerLine}/>
@@ -108,6 +110,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
+  bannerSafeArea:{
+    height: 24,
+    width: d_window.width,
+    backgroundColor: '#f9f9f9',
+    alignItems: 'center',
+  },
+
   banner: {// NOTE: navigator bar is not scalable
     height: 65,
     width: d_window.width,
@@ -123,7 +132,7 @@ const styles = StyleSheet.create({
   },
 
   bannerLine:{
-    height: .5,
+    height: .48,
     width: d_window.width,
     backgroundColor: '#b9b9b9',
   },
@@ -156,7 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 21.5 * Math.pow((d_window.height/667), 2),
+    marginTop: 21.5 * Math.pow((d_window.height/667), 2) + (d_window.height === 812? 10:0),
     opacity: 0.5,
   },
 

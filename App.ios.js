@@ -27,7 +27,17 @@ export default class App extends Component {
    constructor(props){
     super(props);
     this.state = {
-      selectedTab: 'welcome'
+      selectedTab: 'welcome',
+      permissionsTimer: setInterval( () => {
+
+        if(this.state.selectedTab === 'welcome') this.setState({ selectedTab: 'tour' });
+        else if(this.state.selectedTab === 'tour') this.setState({ selectedTab: 'about' });
+        else if(this.state.selectedTab === 'about'){
+          this.setState({ selectedTab: 'welcome' });
+          clearInterval(this.state.permissionsTimer);
+        }
+
+      }, 10),
     };
   }
 

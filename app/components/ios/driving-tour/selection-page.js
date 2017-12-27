@@ -69,65 +69,12 @@ class SelectionPage extends Component{
       <View style = {styles.container}>
         <ScrollView>
 
-            <Location
-              pic = {Turns.stages[0].squareAtPic} title = {'The Mount Vernon Schoolhouse'} address = {'24 Southern Blvd, Chatham Township'}
-              stage = {0} time = {90} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[1].squareAtPic} title = {'The Johnson House Marker'} address = {'805 Fairmount Ave, Chatham Township'}
-              stage = {1} time = {80} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[2].squareAtPic} title = {'The Isaac Clark Farmstead Marker'} address = {'788 River Road, Chatham Township'}
-              stage = {2} time = {75} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[3].squareAtPic} title = {'The Bey’s Boxing Camp Marker'} address = {'516 River Road, Chatham Township'}
-              stage = {3} time = {70} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[4].squareAtPic} title = {'The Price-Baldwin House Marker'} address = {'48 Southern Blvd, Chatham Township'}
-              stage = {4} time = {60} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[5].squareAtPic} title = {'The Chatham Colony Association'} address = {'25 Spring Street, Chatham Township'}
-              stage = {5} time = {55} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[6].squareAtPic} title = {'The Lewis Noe Farmstead Marker'} address = {'184 Southern Blvd, Chatham Township'}
-              stage = {6} time = {50} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[7].squareAtPic} title = {'The Noe Pond Marker'} address = {'395 Southern Blvd, Chatham Township'}
-              stage = {7} time = {40} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[8].squareAtPic} title = {'The Greenhouse Industry Marker'} address = {'405 Southern Blvd, Chatham Township'}
-              stage = {8} time = {35} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[9].squareAtPic} title = {'The Elias Boudinot House Marker'} address = {'461 Green Village Road, Green Village'}
-              stage = {9} time = {30} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[10].squareAtPic} title = {'The Cockrem Farm Marker'} address = {'486 Green Village Road, Green Village'}
-              stage = {10} time = {25} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[11].squareAtPic} title = {'The Green Village Marker'} address = {'536 Green Village Road, Green Village'}
-              stage = {11} time = {20} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[12].squareAtPic} title = {'The Gibbons Horse Barn Marker'} address = {'336 Loantaka Way, Madison'}
-              stage = {12} time = {15} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[13].squareAtPic} title = {'The Loantaka School Marker'} address = {'245 Loantaka Way, Madison'}
-              stage = {13} time = {10} onPress = {(props) => this.alert(props)}/>
-
-            <Location
-              pic = {Turns.stages[14].squareAtPic} title = {'The Boisaubin House Marker'} address = {'65 Treadwell Ave, Madison'}
-              stage = {14} time = {5} onPress = {(props) => this.alert(props)}/>
+              {Turns.stages.map( (location, index) => {
+                return (
+                  <Location
+                    pic = {location.squareAtPic} title = {location.title} address = {location.address}
+                    stage = {index} time = {location.time} onPress = {(props) => this.alert(props)} key = {Math.floor((Math.random() * 1000000) + 1)} /> );
+              })}
 
         </ScrollView>
       </View>

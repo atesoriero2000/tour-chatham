@@ -26,7 +26,7 @@ class About extends Component {
           </Text>
           <Text allowFontScaling = {false} style = {styles.text}>
             This app was created by Anthony Tesoriero, a local Chatham resident, as his Eagle Scout Project.
-            In partnership with the Chatham Township Historical Society, Anthony created this audio tour 
+            In partnership with the Chatham Township Historical Society, Anthony created this audio tour
             to make the local history of Chatham more accessible for everyone through modern technology in an innovative way.
           </Text>
 
@@ -70,7 +70,7 @@ class About extends Component {
               Name: Anthony Tesoriero
             </Text>
             <Text allowFontScaling = {false} style = {styles.fineText}>
-              Email: <Text allowFontScaling = {false} selectable = {true} onPress={() => this.linkUrl("mailto:atesoriero2000@gmail.com?subject=Chatham%20Township%20Historical%20Society%20App")}>atesoriero2000@gmail.com</Text>
+              Email: <Text allowFontScaling = {false} selectable = {true} onPress={() => this.linkUrl("mailto:atesoriero2000@gmail.com?subject=Chatham%20Township%20Historical%20Society%20Driving%20Tour")}>atesoriero2000@gmail.com</Text>
             </Text>
 
             <Text allowFontScaling = {false} style = {styles.labels} onPress={() => this.linkUrl("http://www.chathamtownshiphistoricalsociety.org")}>

@@ -1,10 +1,10 @@
 //35 mph = 15 m/s = 51 fps
 const RADIUS_DELAY = 500; //feet
 
-const pic1 = require('../images/testing_pics/Flower.jpg');
-const pic2 = require('../images/testing_pics/Eagle.jpg');
-const pic3 = require('../images/testing_pics/FlagWaving.jpg');
-const pic4 = require('../images/testing_pics/boy-scout-emblem.jpg');
+// const pic1 = require('../images/testing_pics/Flower.jpg');
+// const pic2 = require('../images/testing_pics/Eagle.jpg');
+// const pic3 = require('../images/testing_pics/FlagWaving.jpg');
+// const pic4 = require('../images/testing_pics/boy-scout-emblem.jpg');
 
 
 const a1 = require('../images/edited/A1_00000.jpg');
@@ -531,21 +531,21 @@ class Turns {
 
   static stages = [
 
-    {loc: loc0, title: 'The Mount Vernon Schoolhouse Marker', atAudio: at0, atPic: atPic0, squareAtPic: sAtPic0},
-    {loc: loc1, title: 'The Johnson House Marker', toAudio: to1, atAudio: at1, atPic: [atPic1, atPic1_2], squareAtPic: [sAtPic1, sAtPic1_2]},
-    {loc: loc2, title: 'The Isaac Clark Farmstead Marker', toAudio: to2, atAudio: null, atPic: atPic2, squareAtPic: sAtPic2},
-    {loc: loc3, title: 'The Bey’s Boxing Camp Marker', toAudio: to3, atAudio: at3, atPic: atPic3, squareAtPic: sAtPic3},
-    {loc: loc4, title: 'The Price-Baldwin House Marker', toAudio: to4, atAudio: at4, atPic: atPic4, squareAtPic: sAtPic4},
-    {loc: loc5, title: 'The Chatham Colony Association Marker', toAudio: to5, atAudio: at5, atPic: atPic5, squareAtPic: sAtPic5},
-    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', toAudio: to6, atAudio: at6, atPic: [atPic6, atPic6_2], squareAtPic: [sAtPic6, sAtPic6_2]},
-    {loc: loc7, title: 'The Noe Pond Marker', toAudio: to7, atAudio: at7, atPic: [atPic7, atPic7_2], squareAtPic: [sAtPic7, sAtPic7_2]},
-    {loc: loc8, title: 'The Greenhouse Industry Marker', toAudio: to8, atAudio: null, atPic: atPic8, squareAtPic: sAtPic8},
-    {loc: loc9, title: 'The Elias Boudinot House Marker', toAudio: to9, atAudio: at9, atPic: atPic9, squareAtPic: sAtPic9},
-    {loc: loc10, title: 'The Cockrem Farm Marker', toAudio: to10, atAudio: null, atPic: atPic10, squareAtPic: sAtPic10},
-    {loc: loc11, title: 'The Green Village Marker', toAudio: to11, atAudio: null, atPic: [atPic11, atPic11_2], squareAtPic: [sAtPic11, sAtPic11_2]},
-    {loc: loc12, title: 'The Gibbons Horse Barn Marker', toAudio: to12, atAudio: at12, atPic: [atPic12, atPic12_2, atPic12_3, atPic12_4], squareAtPic: [sAtPic12, sAtPic12_2, sAtPic12_3, sAtPic12_4]},
-    {loc: loc13, title: 'The Loantaka School Marker', toAudio: to13, atAudio: null, atPic: [atPic13, atPic13_2], squareAtPic: [sAtPic13, sAtPic13_2]},
-    {loc: loc14, title: 'The Boisaubin House Marker', toAudio: to14, atAudio: at14, atPic: [atPic14, atPic14_2], squareAtPic: [sAtPic14, sAtPic14_2]},
+    {loc: loc0, title: 'The Mount Vernon Schoolhouse', address: '24 Southern Blvd, Chatham Township', time: 90, atAudio: at0, atPic: atPic0, squareAtPic: sAtPic0},
+    {loc: loc1, title: 'The Johnson House Marker', address: '805 Fairmount Ave, Chatham Township', time: 80, toAudio: to1, atAudio: at1, atPic: [atPic1, atPic1_2], squareAtPic: [sAtPic1, sAtPic1_2]},
+    {loc: loc2, title: 'The Isaac Clark Farmstead Marker', address: '788 River Road, Chatham Township', time: 75, toAudio: to2, atAudio: null, atPic: atPic2, squareAtPic: sAtPic2},
+    {loc: loc3, title: 'The Bey’s Boxing Camp Marker', address: '516 River Road, Chatham Township', time: 70, toAudio: to3, atAudio: at3, atPic: atPic3, squareAtPic: sAtPic3},
+    {loc: loc4, title: 'The Price-Baldwin House Marker', address: '48 Southern Blvd, Chatham Township', time: 60, toAudio: to4, atAudio: at4, atPic: atPic4, squareAtPic: sAtPic4},
+    {loc: loc5, title: 'The Chatham Colony Association', address: '25 Spring Street, Chatham Township', time: 55, toAudio: to5, atAudio: at5, atPic: atPic5, squareAtPic: sAtPic5},
+    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', address: '184 Southern Blvd, Chatham Township', time: 50, toAudio: to6, atAudio: at6, atPic: [atPic6, atPic6_2], squareAtPic: [sAtPic6, sAtPic6_2]},
+    {loc: loc7, title: 'The Noe Pond Marker', address: '395 Southern Blvd, Chatham Township', time: 40, toAudio: to7, atAudio: at7, atPic: [atPic7, atPic7_2], squareAtPic: [sAtPic7, sAtPic7_2]},
+    {loc: loc8, title: 'The Greenhouse Industry Marker', address: '405 Southern Blvd, Chatham Township', time: 35, toAudio: to8, atAudio: null, atPic: atPic8, squareAtPic: sAtPic8},
+    {loc: loc9, title: 'The Elias Boudinot House Marker', address: '461 Green Village Road, Green Village', time: 30, toAudio: to9, atAudio: at9, atPic: atPic9, squareAtPic: sAtPic9},
+    {loc: loc10, title: 'The Cockrem Farm Marker', address: '486 Green Village Road, Green Village', time: 25, toAudio: to10, atAudio: null, atPic: atPic10, squareAtPic: sAtPic10},
+    {loc: loc11, title: 'The Green Village Marker', address: '536 Green Village Road, Green Village', time: 20, toAudio: to11, atAudio: null, atPic: [atPic11, atPic11_2], squareAtPic: [sAtPic11, sAtPic11_2]},
+    {loc: loc12, title: 'The Gibbons Horse Barn Marker', address: '336 Loantaka Way, Madison', time: 15, toAudio: to12, atAudio: at12, atPic: [atPic12, atPic12_2, atPic12_3, atPic12_4], squareAtPic: [sAtPic12, sAtPic12_2, sAtPic12_3, sAtPic12_4]},
+    {loc: loc13, title: 'The Loantaka School Marker', address: '245 Loantaka Way, Madison', time: 10, toAudio: to13, atAudio: null, atPic: [atPic13, atPic13_2], squareAtPic: [sAtPic13, sAtPic13_2]},
+    {loc: loc14, title: 'The Boisaubin House Marker', address: '65 Treadwell Ave, Madison', time: 5, toAudio: to14, atAudio: at14, atPic: [atPic14, atPic14_2], squareAtPic: [sAtPic14, sAtPic14_2]},
 
   ];
 

@@ -95,7 +95,7 @@ class Start extends Component {
 
           <Text allowFontScaling = {false} style = {styles.overviewText1}>
             Explore Chatham Township, Madison, and Green Village
-            as you drive to different marked historical sights while
+            as you drive to different marked historical sites while
             listening to the history behind them!
           </Text>
           <Text allowFontScaling = {false} style={styles.clickable} onPress = {() =>

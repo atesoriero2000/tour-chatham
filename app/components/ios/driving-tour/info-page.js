@@ -16,9 +16,9 @@ import {
   Linking,
 } from 'react-native'
 
-import Swiper from 'react-native-swiper';
-
 const d_window = Dimensions.get('window');
+
+var Swiper = require('../../Swiper');
 
 var AudioPage = require('./audio-page');
 var Turns = require('../../turns');

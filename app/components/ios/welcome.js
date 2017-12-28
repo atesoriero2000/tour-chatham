@@ -24,30 +24,11 @@ class Welcome extends Component {
   constructor(props){
     super(props);
     this.state = {
-      permissionsTimer: setInterval( () => {
-        BackgroundGeolocation.stop();
-        clearInterval(this.state.permissionsTimer);
-      }, 1000),
     };
   }
 
   componentDidMount(){
 
-    BackgroundGeolocation.configure({ // NOTE: needed tp force permissions popup on startup
-      desiredAccuracy: 0,
-      stationaryRadius: 25,
-      distanceFilter: 0,
-      disableElasticity: true,
-      locationAuthorizationRequest: 'WhenInUse',
-      disableStopDetection: true,
-      debug: false,
-      logLevel: BackgroundGeolocation.LOG_LEVEL_OFF,
-      logMaxDays: 1,
-
-    }, (state) => {
-      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
-      if (!state.enabled) BackgroundGeolocation.start();
-    });
   }
 
   render() {
@@ -101,6 +82,19 @@ class Welcome extends Component {
       else return Linking.openURL(url);
     }).catch(err => console.log('An error occurred', err));
   }
+
+  permissionsPopup(){
+    BackgroundGeolocation.configure({ // NOTE: needed tp force permissions popup on startup
+      locationAuthorizationRequest: 'WhenInUse',
+      debug: false,
+      logLevel: BackgroundGeolocation.LOG_LEVEL_OFF,
+    }, (state) => {
+      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
+      if (!state.enabled) BackgroundGeolocation.start();
+    });
+    BackgroundGeolocation.stop();
+  }
+
 }
 
 const styles = StyleSheet.create({

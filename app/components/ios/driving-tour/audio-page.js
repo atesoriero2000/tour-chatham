@@ -16,12 +16,13 @@ import {
   ScrollView,
 } from 'react-native'
 
-import Swiper from 'react-native-swiper';
 import KeepAwake from 'react-native-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
 
 const d_window = Dimensions.get('window');
+
+var Swiper = require('../../Swiper');
 
 var Turns = require('../../turns');
 
@@ -29,7 +30,7 @@ var doneAtAudio = false;
 var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'release'; // debug, demo, tester1, tester2, release
+const mode = 'demo'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
@@ -56,6 +57,21 @@ class AudioPage extends Component {
   componentWillMount(){
 
     BackgroundGeolocation.destroyLog();
+
+    Turns.stage = this.props.stage;
+    Turns.turn = Turns.stages[Turns.stage].loc.length-1;
+
+    Sound.setCategory('Playback', false);
+    Sound.setActive(true);
+    // Turns.stage = 4;
+    // Turns.turn = 3;
+
+  }
+
+  componentDidMount(){
+
+    KeepAwake.activate();
+
     BackgroundGeolocation.configure({
       // Geolocation Config
       desiredAccuracy: 0,
@@ -75,20 +91,6 @@ class AudioPage extends Component {
       if (!state.enabled) BackgroundGeolocation.start();
       BackgroundGeolocation.changePace(true);
     });
-
-    Turns.stage = this.props.stage;
-    Turns.turn = Turns.stages[Turns.stage].loc.length-1;
-
-    Sound.setCategory('Playback', false);
-    Sound.setActive(true);
-    // Turns.stage = 4;
-    // Turns.turn = 3;
-
-  }
-
-  componentDidMount(){
-
-    KeepAwake.activate();
 
     BackgroundGeolocation.watchPosition((location) => this.geolocation(location), {
       interval: 1000,

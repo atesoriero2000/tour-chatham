@@ -21,7 +21,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const d_window = Dimensions.get('window');
 
-var Location = require('./start-loc');
+var Location = require('./Location');
 var InfoPage = require('./info-page');
 var Turns = require('../../turns');
 

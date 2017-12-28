@@ -18,7 +18,6 @@ import {
   AsyncStorage,
 } from 'react-native'
 
-import Swiper from 'react-native-swiper';
 import { BlurView, VibrancyView } from 'react-native-blur';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -28,6 +27,7 @@ const d_window = Dimensions.get('window');
 // const lYearKey = 'UIDLastYear';
 // var currentDate = new Date();
 
+var Swiper = require('../../Swiper');
 var Turns = require('../../turns');
 var AudioPage = require('./audio-page');
 var SelectionPage = require('./selection-page');

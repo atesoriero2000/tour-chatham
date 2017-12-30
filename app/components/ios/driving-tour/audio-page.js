@@ -30,7 +30,7 @@ var doneAtAudio = false;
 var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'demo'; // debug, demo, tester1, tester2, release
+const mode = 'release'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
@@ -72,35 +72,11 @@ class AudioPage extends Component {
 
     KeepAwake.activate();
 
-    BackgroundGeolocation.configure({
-      // Geolocation Config
-      desiredAccuracy: 0,
-      stationaryRadius: 25,
-      distanceFilter: 0,
-      disableElasticity: true,
-      locationAuthorizationRequest: 'WhenInUse',
-      // Activity Recognition
-      disableStopDetection: true,
-      // Application config
-      debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
-      logLevel: BackgroundGeolocation.LOG_LEVEL_OFF, //BackgroundGeolocation.LOG_LEVEL_VERBOSE,
-      logMaxDays: 1,
-
-    }, (state) => {
-      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
-      if (!state.enabled) BackgroundGeolocation.start();
-      BackgroundGeolocation.changePace(true);
-    });
-
-    BackgroundGeolocation.watchPosition((location) => this.geolocation(location), {
-      interval: 1000,
-      desiredAccuracy: 0,
-      persists: true,
-    });
-
     //####### set turns and stage to passed value in props ############
     this.onPress();
     // this.update();
+
+    this.startGeolocation();
   }
 
   componentWillUnmount(){
@@ -264,6 +240,36 @@ class AudioPage extends Component {
 
   triggerAudio(audioFile){
     this.triggerAudioBool(audioFile, true);
+  }
+
+  startGeolocation(){
+
+    BackgroundGeolocation.configure({
+      // Geolocation Config
+      desiredAccuracy: 0,
+      stationaryRadius: 25,
+      distanceFilter: 0,
+      disableElasticity: true,
+      locationAuthorizationRequest: 'WhenInUse',
+      // Activity Recognition
+      disableStopDetection: true,
+      // Application config
+      debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
+      logLevel: BackgroundGeolocation.LOG_LEVEL_OFF, //BackgroundGeolocation.LOG_LEVEL_VERBOSE,
+      logMaxDays: 1,
+
+    }, (state) => {
+      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
+      if (!state.enabled) BackgroundGeolocation.start();
+      BackgroundGeolocation.changePace(true);
+    });
+
+    BackgroundGeolocation.watchPosition((location) => this.geolocation(location), {
+      interval: 1000,
+      desiredAccuracy: 0,
+      persists: true,
+    });
+
   }
 
   DEBUG_stopAudio(){

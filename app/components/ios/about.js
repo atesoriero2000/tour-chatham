@@ -55,7 +55,7 @@ class About extends Component {
           <View>
             <Text allowFontScaling = {false} style = {styles.labels}>Historical Society</Text>
             <Text allowFontScaling = {false} style = {styles.fineText}>
-              {'Pat Wells\nSheila Goggins\nDebbie Bucuk\nCaroline Knott'}
+              {'Pat Wells\nMartha Wells\nSheila Goggins\nDebbie Bucuk\nCaroline Knott'}
             </Text>
           </View>
 

@@ -53,9 +53,9 @@ class InfoPage extends Component{
           paddingTop: 25 * Math.pow((d_window.height/667), 2),
         }}>
           <Text allowFontScaling = {false} style = {styles.subtext}>
-            <Text> Please navigate to</Text>
+            <Text allowFontScaling = {false} > Please navigate to</Text>
             <Text allowFontScaling = {false} style = {styles.text_bold} onPress={() => this.linkUrl(this.state.url)}> {this.props.address} </Text>
-            <Text>then click the button below to start the tour.</Text>
+            <Text allowFontScaling = {false} >then click the button below to start the tour.</Text>
           </Text>
         </View>
 

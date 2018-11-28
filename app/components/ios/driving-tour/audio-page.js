@@ -30,7 +30,7 @@ var doneAtAudio = false;
 var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'release'; // debug, demo, tester1, tester2, release
+const mode = 'tester2'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 

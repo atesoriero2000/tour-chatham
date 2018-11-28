@@ -28,7 +28,7 @@ class Welcome extends Component {
   }
 
   componentDidMount(){
-
+    console.log(JSON.stringify(d_window));
   }
 
   render() {

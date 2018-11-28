@@ -9,7 +9,7 @@
   "dependencies": {
     "react": "16.0.0",
     "react-native": "^0.51.0",
-    "react-native-background-geolocation": "^2.10.1",
+    "react-native-background-geolocation": "^2.9.2",
     "react-native-blur": "^3.2.2",
     "react-native-keep-awake": "^2.0.6",
     "react-native-sound": "^0.10.4",

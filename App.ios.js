@@ -44,15 +44,8 @@ export default class App extends Component {
   }
 
   permissionsPopup(){
-    BackgroundGeolocation.configure({ // NOTE: needed tp force permissions popup on startup
-      locationAuthorizationRequest: 'WhenInUse',
-      debug: false,
-      logLevel: BackgroundGeolocation.LOG_LEVEL_OFF,
-    }, (state) => {
-      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
-      if (!state.enabled) BackgroundGeolocation.start();
-    });
-    BackgroundGeolocation.stop();
+    // NOTE: needed to force permissions popup on startup
+    navigator.geolocation.requestAuthorization();
   }
 
   render() {

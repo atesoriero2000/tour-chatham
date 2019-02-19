@@ -1,6 +1,7 @@
 /**
  * react-native-swiper
  * @author leecade<leecade@163.com>
+ * edited by Anthony Tesoriero
  */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'

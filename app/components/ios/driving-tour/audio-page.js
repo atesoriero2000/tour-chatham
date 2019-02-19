@@ -30,7 +30,7 @@ var doneAtAudio = false;
 var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'tester2'; // debug, demo, tester1, tester2, release
+const mode = 'demo'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
@@ -145,9 +145,10 @@ class AudioPage extends Component {
     //Only will increment turn counter if isNear is true and if not the last turn
     if(this.state.isNear && (currentStage.loc.length-1 > Turns.turn) ){
       Vibration.vibrate();
-      BackgroundGeolocation.playSound(1300);
+      BackgroundGeolocation.playSound(1300); //default voicemail sound
       Turns.turn++;
     }
+    console.log("GOT POSITION:     ", this.state.lastPos);
   }
 
   onPress(){
@@ -230,10 +231,10 @@ class AudioPage extends Component {
       if(shouldUpdate)this.update(); else Sound.setActive(false);
     });
 
-    if(firstAudio){
+    // if(firstAudio){
       audioFile.setVolume(1);
-      firstAudio = false;
-    }
+    //firstAudio = false;
+    // }
 
     this.setState({ audioFile, audioIsPlaying: true, clickable: false }); // clickable set so button immediatly changes
   }
@@ -242,34 +243,76 @@ class AudioPage extends Component {
     this.triggerAudioBool(audioFile, true);
   }
 
-  startGeolocation(){
+  startGeolocation2(){
 
-    BackgroundGeolocation.configure({
+    // LISTENERS
+    BackgroundGeolocation.onLocation(
+      (location) => this.geolocation(location),
+      (error) => console.log("***** WATCH POSITION FAILED *****:    ", error));
+
+    // READY
+    BackgroundGeolocation.ready(
+    {
       // Geolocation Config
-      desiredAccuracy: 0,
+      reset: true,
+      desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_LOWEST,
       stationaryRadius: 25,
-      distanceFilter: 0,
+      //distanceFilter: 10,
+      locationUpdateInterval: 500,
       disableElasticity: true,
       locationAuthorizationRequest: 'WhenInUse',
       // Activity Recognition
       disableStopDetection: true,
       // Application config
       debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
-      logLevel: BackgroundGeolocation.LOG_LEVEL_OFF, //BackgroundGeolocation.LOG_LEVEL_VERBOSE,
+      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE, //BackgroundGeolocation.LOG_LEVEL_VERBOSE, //OFF
       logMaxDays: 1,
+    },
 
-    }, (state) => {
-      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
-      if (!state.enabled) BackgroundGeolocation.start();
+    //START
+    (state) => {
+      console.log("BackgroundGeolocation is configured and ready:   ", state.enabled);
+      if (!state.enabled){
+         BackgroundGeolocation.start();
+         console.log("GEOLOCATION STARTED");
+       }
       BackgroundGeolocation.changePace(true);
-    });
+    },
+    () => console.log("***** GEOLOCATION READY FAILED *****")
+    );
+  }
 
-    BackgroundGeolocation.watchPosition((location) => this.geolocation(location), {
-      interval: 1000,
-      desiredAccuracy: 0,
-      persists: true,
-    });
+  startGeolocation(){
 
+    BackgroundGeolocation.ready(
+    {
+      // Geolocation Config
+      reset: true,
+      desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_LOWEST,
+
+      stationaryRadius: 25,
+      //distanceFilter: 10,
+      locationUpdateInterval: 1000,
+
+      disableElasticity: true,
+      locationAuthorizationRequest: 'WhenInUse',
+      // Activity Recognition
+      disableStopDetection: true,
+      // Application config
+      debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
+      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE, //VERBOSE, OFF
+      logMaxDays: 1,
+    },
+    (state) => {
+      console.log("BackgroundGeolocation is configured and ready:   ", state.enabled);
+
+      if (!state.enabled){
+         BackgroundGeolocation.start();
+         console.log("GEOLOCATION STARTED");
+       }
+
+    },
+    () => console.log("***** GEOLOCATION READY FAILED *****"));
   }
 
   DEBUG_stopAudio(){

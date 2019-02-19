@@ -526,7 +526,12 @@ function audioLoadError(error){
   }
 }
 
-
+// Turns Object
+// L--> Stages Array, endAudio, stage and turn counter
+//          L-> 15 Site Objects
+//                 L-> Location Array, title, address, timeout, toAudio, atAudio, atPic, squareAtPic,
+//                        L-> N# of individual Turn Objects
+//                               L-> direction, picture, logituted, latitude, radius
 class Turns {
 
   static stages = [

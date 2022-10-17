@@ -65,7 +65,7 @@ class App extends Component {
           clearInterval(this.state.mountTabs);
         }
       }, 5),
-      visible: true,
+      visible: false,
     };
   }
 
@@ -84,50 +84,14 @@ class App extends Component {
   render() {
     return(
       <SafeAreaView>
-        {/* TUTORIAL */}
-        <Modal
-          animationType={'fade'}
-          transparent={true}
-          visible={this.state.visible}>
-
-            <BlurView
-              blurType="dark"
-              blurAmount={10}
-              style={styles.overlay}>
-
-              <View style={styles.modal}>
-
-                {/* <Swiper
-                  showsButtons = {true}
-                  index = {0}
-                  loop = {false}
-                  height={d_window.height/1.13 - (d_window.height === 812 ? 95:0)}
-                  width={d_window.width/1.25}>
-
-                  <Page1/>
-                  <Page2 onPress={() => {
-                    this.doNothing();
-                    // this.setItem(lMonthKey, JSON.stringify(currentDate.getMonth()) );
-                    // this.setItem(lYearKey, JSON.stringify(currentDate.getYear()) );
-                  }}/>
-
-              </Swiper> */}
-              <Text>HI!!!!</Text>
-              <Icon.Button
-                name="ios-arrow-back-outline"
-                backgroundColor="#3b5998"
-                onPress={() => this.setState({ visible: true })}>
-                Login with Facebook
-              </Icon.Button>
-            </View>{/* modalformat */}
-
-            {/* TUTORIAL HEADER */}
-            <Header onPress={() => this.setState({visible:false})}/>
-
-          </BlurView>{/* overlay */}
-        </Modal>{/* popup */}
-
-        {/* <Tour/> */}
+        {/* <Text>HI!!!!</Text>
+        <Icon.Button
+          name="ios-arrow-back-outline"
+          backgroundColor="#3b5998"
+          onPress={() => this.setState({ visible: true })}>
+          Login with Facebook
+        </Icon.Button> */}
+        <Tour/>
       
       </SafeAreaView>
     );

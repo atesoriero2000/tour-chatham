@@ -27,8 +27,8 @@ import {
 //   Text
 // } from 'react-native';
 
-// import Icon from 'react-native-vector-icons/Ionicons';
-// import BackgroundGeolocation from "react-native-background-geolocation";
+import Icon from 'react-native-vector-icons/Ionicons';
+import BackgroundGeolocation from "react-native-background-geolocation";
 
 var Welcome = require('./app/components/ios/welcome');
 var Tour = require('./app/components/ios/tour');
@@ -37,10 +37,16 @@ var About = require('./app/components/ios/about');
 const App: () => Node = () => {
   
   return(
-    <About/>
-    // <SafeAreaView>
-    //   <Text>HI!!!!</Text>
-    // </SafeAreaView>
+    // <Tour/>
+    <SafeAreaView>
+      <Text>HI!!!!</Text>
+      <Icon.Button
+        name="ios-arrow-back-outline"
+        backgroundColor="#3b5998"
+        onPress={null}>
+        Login with Facebook
+      </Icon.Button>
+    </SafeAreaView>
   );
   //  constructor(props){
   //   super(props);

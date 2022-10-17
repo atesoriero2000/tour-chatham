@@ -14,6 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-scout_project-scout_projectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-scout_project-scout_projectTests.a */; };
 		F592392728FCDDB900840D5F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F592392628FCDDB900840D5F /* LaunchScreen.xib */; };
+		F592396A28FD035300840D5F /* hermes.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F592396928FD035300840D5F /* hermes.xcframework */; };
+		F592396C28FD035900840D5F /* libReact-hermes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F592396B28FD035900840D5F /* libReact-hermes.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,9 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-scout_project-scout_projectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scout_project-scout_projectTests.release.xcconfig"; path = "Target Support Files/Pods-scout_project-scout_projectTests/Pods-scout_project-scout_projectTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F592392628FCDDB900840D5F /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = scout_project/LaunchScreen.xib; sourceTree = "<group>"; };
+		F592396728FD033C00840D5F /* libPods-scout_project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-scout_project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F592396928FD035300840D5F /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
+		F592396B28FD035900840D5F /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F592396C28FD035900840D5F /* libReact-hermes.a in Frameworks */,
+				F592396A28FD035300840D5F /* hermes.xcframework in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-scout_project.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +106,9 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F592396B28FD035900840D5F /* libReact-hermes.a */,
+				F592396928FD035300840D5F /* hermes.xcframework */,
+				F592396728FD033C00840D5F /* libPods-scout_project.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-scout_project.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-scout_project-scout_projectTests.a */,

@@ -1,0 +1,6 @@
+module Pods_scout_project {
+  umbrella header "Pods-scout_project-umbrella.h"
+
+  export *
+  module * { export * }
+}

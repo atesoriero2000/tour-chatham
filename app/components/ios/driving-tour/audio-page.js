@@ -16,7 +16,8 @@ import {
   ScrollView,
 } from 'react-native'
 
-import KeepAwake from 'react-native-keep-awake';
+// import KeepAwake from 'react-native-keep-awake';
+import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
 
@@ -70,7 +71,8 @@ class AudioPage extends Component {
 
   componentDidMount(){
 
-    KeepAwake.activate();
+    // KeepAwake.activate();
+    activateKeepAwake();
 
     //####### set turns and stage to passed value in props ############
     this.onPress();
@@ -85,7 +87,8 @@ class AudioPage extends Component {
     firstAudio = true;
     BackgroundGeolocation.stopWatchPosition();
     BackgroundGeolocation.stop();
-    KeepAwake.deactivate();
+    // KeepAwake.deactivate();
+    deactivateKeepAwake();
     Sound.setActive(false);
   }
 

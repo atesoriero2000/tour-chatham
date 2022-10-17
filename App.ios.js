@@ -46,6 +46,7 @@ var Page1 = require('./app/components/ios/driving-tour/tutorial/page1');
 var Page2 = require('./app/components/ios/driving-tour/tutorial/page2');
 var Header = require('./app/components/ios/driving-tour/tutorial/header');
 var Swiper = require('./app/components/Swiper');
+var Start = require('./app/components/ios/driving-tour/start');
 
 
 class App extends Component {
@@ -91,7 +92,7 @@ class App extends Component {
           onPress={() => this.setState({ visible: true })}>
           Login with Facebook
         </Icon.Button> */}
-        <Tour/>
+        <Start/>
       
       </SafeAreaView>
     );

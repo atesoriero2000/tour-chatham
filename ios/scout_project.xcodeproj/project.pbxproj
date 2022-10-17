@@ -13,12 +13,14 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-scout_project-scout_projectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-scout_project-scout_projectTests.a */; };
+		DEB9A14EDC0AE0D748F88D35 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3249C2FC42585C536B2E4B /* ExpoModulesProvider.swift */; };
 		E0D0878E4D06401FE26AAAAC /* libPods-scout_project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F592396728FD033C00840D5F /* libPods-scout_project.a */; };
 		F592392728FCDDB900840D5F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F592392628FCDDB900840D5F /* LaunchScreen.xib */; };
 		F592396A28FD035300840D5F /* hermes.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F592396928FD035300840D5F /* hermes.xcframework */; };
 		F592396C28FD035900840D5F /* libReact-hermes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F592396B28FD035900840D5F /* libReact-hermes.a */; };
 		F5A24C3528FDD52E00557D10 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5A24C1D28FDCD8500557D10 /* Ionicons.ttf */; };
 		F5A24C3728FDE80400557D10 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5A24C3628FDE80400557D10 /* EvilIcons.ttf */; };
+		FDA2AF7D87119A0915AE3238 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84D353BA5CC15E95CFD233B /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,7 @@
 		00E356EE1AD99517003FC87E /* scout_projectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = scout_projectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* scout_projectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = scout_projectTests.m; sourceTree = "<group>"; };
+		0A3249C2FC42585C536B2E4B /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-scout_project-scout_projectTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* scout_project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scout_project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = scout_project/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = scout_project/AppDelegate.mm; sourceTree = "<group>"; };
@@ -47,6 +50,7 @@
 		5B7EB9410499542E8C5724F5 /* Pods-scout_project-scout_projectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scout_project-scout_projectTests.debug.xcconfig"; path = "Target Support Files/Pods-scout_project-scout_projectTests/Pods-scout_project-scout_projectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-scout_project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-scout_project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-scout_project-scout_projectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scout_project-scout_projectTests.release.xcconfig"; path = "Target Support Files/Pods-scout_project-scout_projectTests/Pods-scout_project-scout_projectTests.release.xcconfig"; sourceTree = "<group>"; };
+		C84D353BA5CC15E95CFD233B /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-scout_project/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F592392628FCDDB900840D5F /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = scout_project/LaunchScreen.xib; sourceTree = "<group>"; };
 		F592396728FD033C00840D5F /* libPods-scout_project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-scout_project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +128,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5AC715E0E3597C63A26E8374 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				EA92311814C9771DE6143A9A /* scout_project */,
+				B5DFF4B97C5CAEE70441AC8F /* scout_projectTests */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +153,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				5AC715E0E3597C63A26E8374 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -155,6 +169,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B5DFF4B97C5CAEE70441AC8F /* scout_projectTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A3249C2FC42585C536B2E4B /* ExpoModulesProvider.swift */,
+			);
+			name = scout_projectTests;
+			sourceTree = "<group>";
+		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +186,14 @@
 				89C6BE57DB24E9ADA2F236DE /* Pods-scout_project-scout_projectTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EA92311814C9771DE6143A9A /* scout_project */ = {
+			isa = PBXGroup;
+			children = (
+				C84D353BA5CC15E95CFD233B /* ExpoModulesProvider.swift */,
+			);
+			name = scout_project;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* scout_projectTests.m in Sources */,
+				DEB9A14EDC0AE0D748F88D35 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +465,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				FDA2AF7D87119A0915AE3238 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +502,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/scout_project.app/scout_project";
@@ -495,6 +528,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/scout_project.app/scout_project";
@@ -524,6 +558,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.tour-chatham";
 				PRODUCT_NAME = scout_project;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -554,6 +589,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.tour-chatham";
 				PRODUCT_NAME = scout_project;
 				SWIFT_VERSION = 5.0;

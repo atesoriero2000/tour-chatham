@@ -18,7 +18,7 @@ import {
   AsyncStorage,
 } from 'react-native'
 
-import { BlurView, VibrancyView } from 'react-native-blur';
+import { BlurView, VibrancyView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const d_window = Dimensions.get('window');
@@ -37,6 +37,9 @@ var Page2 = require('./tutorial/page2');
 var Header = require('./tutorial/header');
 
 
+//Testing imports
+// var SelectionPage = require('../about.js');
+// var AudioPage = require('../about.js');
 
 class Start extends Component {
 

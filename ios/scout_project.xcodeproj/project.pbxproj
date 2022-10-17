@@ -18,6 +18,7 @@
 		F592396A28FD035300840D5F /* hermes.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F592396928FD035300840D5F /* hermes.xcframework */; };
 		F592396C28FD035900840D5F /* libReact-hermes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F592396B28FD035900840D5F /* libReact-hermes.a */; };
 		F5A24C3528FDD52E00557D10 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5A24C1D28FDCD8500557D10 /* Ionicons.ttf */; };
+		F5A24C3728FDE80400557D10 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5A24C3628FDE80400557D10 /* EvilIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		F592396928FD035300840D5F /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
 		F592396B28FD035900840D5F /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A24C1D28FDCD8500557D10 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		F5A24C3628FDE80400557D10 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				F5A24C1D28FDCD8500557D10 /* Ionicons.ttf */,
+				F5A24C3628FDE80400557D10 /* EvilIcons.ttf */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				F592392628FCDDB900840D5F /* LaunchScreen.xib */,
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5A24C3528FDD52E00557D10 /* Ionicons.ttf in Resources */,
+				F5A24C3728FDE80400557D10 /* EvilIcons.ttf in Resources */,
 				F592392728FCDDB900840D5F /* LaunchScreen.xib in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);

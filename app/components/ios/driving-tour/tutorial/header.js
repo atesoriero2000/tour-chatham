@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/EvilIcons';
+Icon.loadFont();
 
 const d_window = Dimensions.get('window');
 

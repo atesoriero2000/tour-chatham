@@ -42,6 +42,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>
+		<string>Evilicons.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

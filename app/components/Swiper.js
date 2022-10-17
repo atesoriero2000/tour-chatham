@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 import {
   Text,
   View,
-  ViewPropTypes,
   ScrollView,
   Dimensions,
   TouchableOpacity,
@@ -16,6 +15,8 @@ import {
   Platform,
   ActivityIndicator
 } from 'react-native'
+
+import { ViewPropTypes } from 'deprecated-react-native-prop-types'
 
 const { width, height } = Dimensions.get('window')
 

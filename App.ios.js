@@ -8,214 +8,78 @@
  * @flow
  */
 
-import React, { Component, } from 'react'
-// import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-// import {
-//   AppRegistry,
-//   TabBarIOS,
-//   View,
-//   Text
-// } from 'react-native';
+import React, { Component } from 'react'
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import BackgroundGeolocation from "react-native-background-geolocation";
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 var Welcome = require('./app/components/ios/welcome');
 var Tour = require('./app/components/ios/tour');
 var About = require('./app/components/ios/about');
 
-//Testing imports
-import { BlurView, VibrancyView } from '@react-native-community/blur';
-import {
-  Dimensions,
-  Modal
-} from 'react-native';
-import { parseSync } from '@babel/core';
-const d_window = Dimensions.get('window');
-var Page1 = require('./app/components/ios/driving-tour/tutorial/page1');
-var Page2 = require('./app/components/ios/driving-tour/tutorial/page2');
-var Header = require('./app/components/ios/driving-tour/tutorial/header');
-var Swiper = require('./app/components/Swiper');
-var Start = require('./app/components/ios/driving-tour/start');
-
+const Tab = createBottomTabNavigator();
 
 class App extends Component {
-
-   constructor(props){
+  constructor(props){
     super(props);
     this.state = {
-      selectedTab: 'welcome',
-      mountTabs: setInterval( () => {
-
-        if(this.state.selectedTab === 'welcome') this.setState({ selectedTab: 'tour' });
-        else if(this.state.selectedTab === 'tour') this.setState({ selectedTab: 'about' });
-
-        else if(this.state.selectedTab === 'about'){
-          this.setState({ selectedTab: 'welcome' });
-          this.permissionsPopup();
-          clearInterval(this.state.mountTabs);
-        }
-      }, 5),
-      visible: false,
     };
   }
 
-  doNothing(){
-    // This is a very complex method not to be messed with
-    // Hint: it does nothing
-    return;
-  }
+  //TODO
+  // permissionsPopup(){
+  //   // NOTE: needed to force permissions popup on startup
+  //   // TODO: FIXME: XXX: Removed for 0.70.3 setup
+  //   navigator.geolocation.requestAuthorization();
+  // }
 
-  permissionsPopup(){
-    // NOTE: needed to force permissions popup on startup
-    // navigator.geolocation.requestAuthorization();
-    return;
-  }
-  
   render() {
+    const MyTheme = {
+      dark: false,
+      colors: {
+        primary: 'rgb(255, 45, 85)',
+        background: 'white',
+        card: 'white',
+        text: 'rgb(28, 28, 30)',
+        border: 'rgb(199, 199, 204)',
+        notification: 'rgb(255, 69, 58)',
+      },
+    }
+
     return(
-      <SafeAreaView>
-        {/* <Text>HI!!!!</Text>
-        <Icon.Button
-          name="ios-arrow-back-outline"
-          backgroundColor="#3b5998"
-          onPress={() => this.setState({ visible: true })}>
-          Login with Facebook
-        </Icon.Button> */}
-        <Start/>
-      
-      </SafeAreaView>
+      <NavigationContainer theme={MyTheme}>
+        <Tab.Navigator initialRouteName='Home' screenOptions={{
+          lazy: false, 
+          headerShown: false,
+          tabBarActiveTintColor: 'tomato',
+          tabBarStyle: {paddingTop: 8}
+        }}>
+
+          <Tab.Screen name='Home' component={Welcome} options={{
+            headerTitle: 'Welcome!',
+            headerShown: true,
+            // headerStyle: { height: 98 },
+            tabBarIcon: ({ focused, color, size }) => (
+              <Icon name='home' color={color} size={size}/>
+            )}}/>
+
+          <Tab.Screen name='Tour' component={Tour} options={{
+            tabBarIcon: ({ focused, color, size }) => (
+              <Icon name='car' color={color} size={size+4}/>
+            )}}/>
+
+          <Tab.Screen name='About' component={About} options={{
+            tabBarIcon: ({ focused, color, size }) => (
+              <Icon name='information-circle' color={color} size={size+2}/>
+            )}}/>
+            
+        </Tab.Navigator>
+      </NavigationContainer>
     );
-  //   return(
-  //     <TabBarIOS selectedTab={this.state.selectedTab}>
-
-  //       <Icon.TabBarItemIOS  //Welcome Tab
-  //         selected = {this.state.selectedTab === 'welcome'}
-  //         title = {'Home'}
-  //         iconName = {'ios-home-outline'}
-  //         selectedIconName = {'ios-home'}
-  //         onPress = { () => this.setState({ selectedTab: 'welcome' }) }>
-
-  //         <Welcome toTour = { () => this.setState({ selectedTab: 'tour' }) }/>
-  //       </Icon.TabBarItemIOS>
-
-
-  //       <Icon.TabBarItemIOS //Tour Tab
-  //         selected = {this.state.selectedTab === 'tour'}
-  //         title = {'Tour'}
-  //         iconName = {'ios-car-outline'}
-  //         selectedIconName = {'ios-car'}
-  //         onPress = { () => this.setState({ selectedTab: 'tour'}) }>
-
-  //         <Tour toAbout = { () => this.setState({ selectedTab: 'about' }) }/>
-  //       </Icon.TabBarItemIOS>
-
-
-  //       <TabBarIOS.Item //About Tab
-  //         selected = {this.state.selectedTab === 'about'}
-  //         systemIcon = {'more'}
-  //         onPress = { () => this.setState({ selectedTab: 'about' }) }>
-
-  //         <About/>
-  //        </TabBarIOS.Item>
-
-  //      </TabBarIOS>
-  //   );
   }
 };
 
-const styles = StyleSheet.create({
-
-  container:{
-    flex: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  overviewContainer:{
-    width: d_window.width,
-    height: d_window.height,
-    alignItems: 'center',
-    // justifyContent: 'center',
-  },
-
-  overviewText1:{
-    textAlign: 'center',
-    fontSize: 17 * (d_window.width/375),
-    fontWeight: '100',
-    color: 'grey',
-    marginHorizontal: 30 * (d_window.width/375),
-    marginTop: 65 + (21) * Math.pow((d_window.height/667), 2.5) + (d_window.height === 812? 27:0),
-  },
-
-  clickable:{
-    fontSize: 14 * (d_window.width/375),
-    fontWeight: '100',
-    color: '#9090FF',
-    textDecorationLine: 'underline',
-    marginTop: 2 * Math.pow((d_window.height/667), 2.5),
-    marginBottom: 16 * Math.pow((d_window.height/667), 2.5),
-  },
-
-  image:{
-    width: d_window.width,
-    height: 240 * (d_window.width/375),
-  },
-
-  overviewText2:{
-    textAlign: 'center',
-    fontSize: 15 * (d_window.width/375),
-    fontWeight: '100',
-    color: 'grey',
-    marginHorizontal: 35 * (d_window.width/375),
-    marginTop: 15 * Math.pow((d_window.height/667), 2.5) + (d_window.height === 812? 10:0),
-    marginBottom: 14 * Math.pow((d_window.height/667), 2.5),
-  },
-
-  button:{
-    width: d_window.width,
-    height: 36 * Math.pow((d_window.height/667), 2),
-    backgroundColor: 'grey',
-    opacity: .5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
-
-  buttonText:{
-    fontSize: 17 * (d_window.width/375),
-    color: 'white',
-    fontWeight: '100',
-    textAlign: 'center',
-  },
-
-
-//MODAL
-  overlay:{
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  modal:{
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: d_window.width/1.25,
-    height: d_window.height/1.13 - (d_window.height === 812 ? 95:0),
-    borderRadius: 15 * (d_window.width/375),
-    backgroundColor: 'whitesmoke',
-  },
-});
-// export default App;
 module.exports = App;

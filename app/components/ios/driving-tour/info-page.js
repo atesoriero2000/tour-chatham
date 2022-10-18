@@ -2,11 +2,9 @@
 // has a picture of the location, title and address saying to nav to this and click button to startPic
 // button click hander onClick() navs to audio page and passes turn and stage props
 
-import React, { Component, } from 'react'
+import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
-  NavigatorIOS,
   Text,
   View,
   Dimensions,

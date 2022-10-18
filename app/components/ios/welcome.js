@@ -1,8 +1,7 @@
 'use strict';
 
-import React, { Component, } from 'react'
+import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
   View,
   Image,
@@ -11,8 +10,6 @@ import {
   TouchableHighlight,
   Button,
   Linking,
-  NavigatorIOS,
-  SafeAreaView
 } from 'react-native'
 
 import BackgroundGeolocation from "react-native-background-geolocation";
@@ -35,13 +32,6 @@ class Welcome extends Component {
     return (
 
       <View style = {styles.container}>
-
-      {/* faux navigation banner */}
-        {d_window.height === 812 && <View style = {styles.bannerSafeArea}/>}
-        <View style = {styles.banner}>
-          <Text allowFontScaling = {false} style = {styles.bannerText}>Welcome</Text>
-          <View style = {styles.bannerLine}/>
-        </View>
 
         <Text allowFontScaling = {false} style = {styles.text}>
           Chatham Township Historical Society Driving Tour
@@ -83,17 +73,17 @@ class Welcome extends Component {
     }).catch(err => console.log('An error occurred', err));
   }
 
-  permissionsPopup(){
-    BackgroundGeolocation.configure({ // NOTE: needed tp force permissions popup on startup
-      locationAuthorizationRequest: 'WhenInUse',
-      debug: false,
-      logLevel: BackgroundGeolocation.LOG_LEVEL_OFF,
-    }, (state) => {
-      console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
-      if (!state.enabled) BackgroundGeolocation.start();
-    });
-    BackgroundGeolocation.stop();
-  }
+  // permissionsPopup(){
+  //   BackgroundGeolocation.configure({ // NOTE: needed to force permissions popup on startup
+  //     locationAuthorizationRequest: 'WhenInUse',
+  //     debug: false,
+  //     logLevel: BackgroundGeolocation.LOG_LEVEL_OFF,
+  //   }, (state) => {
+  //     console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
+  //     if (!state.enabled) BackgroundGeolocation.start();
+  //   });
+  //   BackgroundGeolocation.stop();
+  // }
 
 }
 
@@ -102,33 +92,6 @@ const styles = StyleSheet.create({
   container:{
     alignItems: 'center',
     justifyContent: 'center',
-  },
-
-  bannerSafeArea:{
-    height: 24,
-    width: d_window.width,
-    backgroundColor: '#f9f9f9',
-    alignItems: 'center',
-  },
-
-  banner: {// NOTE: navigator bar is not scalable
-    height: 65,
-    width: d_window.width,
-    backgroundColor: '#f9f9f9',
-    alignItems: 'center',
-  },
-
-  bannerText:{
-    fontSize: 17,
-    paddingTop: 31.5,
-    paddingBottom: 12,
-    fontWeight: '600',
-  },
-
-  bannerLine:{
-    height: .48,
-    width: d_window.width,
-    backgroundColor: '#b9b9b9',
   },
 
   text:{

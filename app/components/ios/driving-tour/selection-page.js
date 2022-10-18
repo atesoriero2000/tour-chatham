@@ -3,17 +3,12 @@
 //each button passes props to an onClick() handler which nvigates to info page and passes props to it
 // props include title, stage, turn, picture, address
 
-import React, { Component, } from 'react'
+import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
-  NavigatorIOS,
-  Text,
   View,
   ScrollView,
   Dimensions,
-  TouchableOpacity,
-  Image,
   Alert,
 } from 'react-native'
 
@@ -22,7 +17,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const d_window = Dimensions.get('window');
 
 var Location = require('./Location');
-var InfoPage = require('./info-page');
 var Turns = require('../../turns');
 
 class SelectionPage extends Component{
@@ -34,6 +28,7 @@ class SelectionPage extends Component{
     }
   }
 
+  //TODO
   componentWillMount(){
     Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
   }
@@ -49,19 +44,17 @@ class SelectionPage extends Component{
     );
   }
 
+  //TODO:
   navToInfo(props){
-    this.props.navigator.push({
-      title: 'Drive to Start Point',
-      component: InfoPage,
-      leftButtonIcon: this.state.backIcon,
-      onLeftButtonPress: () => this.props.navigator.pop(),
-      passProps: {
-        stage: props.stage,
-        title: props.title,
-        pic: props.pic,
-        address: props.address,
-      },
-    });
+    this.props.navigation.navigate('Tour', {screen: 'Drive to Start Point'});
+      //   leftButtonIcon: this.state.backIcon,
+      //   onLeftButtonPress: () => this.props.navigator.pop(),
+      //   passProps: {
+      //     stage: props.stage,
+      //     title: props.title,
+      //     pic: props.pic,
+      //     address: props.address,
+      //   },
   }
 
   render() {

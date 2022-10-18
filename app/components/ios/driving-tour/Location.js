@@ -1,8 +1,7 @@
 // Component of selectionPage
 // receive props Image, Title, stage, turn, address, unmount,
-import React, { Component, } from 'react'
+import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -101,4 +100,3 @@ const styles = StyleSheet.create({
 });
 
 module.exports = Location;
-//AppRegistry.registerComponent('Location', () => Location);

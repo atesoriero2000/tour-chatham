@@ -1,8 +1,7 @@
 'use strict';
 
-import React, { Component, } from 'react'
+import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -11,6 +10,7 @@ import {
   ScrollView,
   Linking
 } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const d_window = Dimensions.get('window');
 
@@ -18,7 +18,7 @@ class About extends Component {
 
   render() {
     return (
-      <View style = {styles.container}>
+      <SafeAreaView style = {styles.container}>
         <ScrollView>
 
           <Text allowFontScaling = {false} style = {styles.textHeader}>
@@ -88,7 +88,7 @@ class About extends Component {
           </View>
 
         </ScrollView>
-      </View>
+      </SafeAreaView>
 
     );
   }
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10 * (d_window.height/667),
+    // marginBottom: 10 * (d_window.height/667),
   },
 
   picture:{

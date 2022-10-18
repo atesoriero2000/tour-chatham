@@ -1,101 +1,38 @@
 'use strict';
 
-import React, { Component, } from 'react'
+import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
-  NavigatorIOS,
   TouchableHighlight,
   View,
   Text,
-  Alert,
   Dimensions,
-  ScrollView,
-  Modal,
-  Button,
   Linking,
   Image,
-  AsyncStorage,
+  Modal
 } from 'react-native'
-
-import { BlurView, VibrancyView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const d_window = Dimensions.get('window');
 
-// const lMonthKey = 'UIDLastMonth';
-// const lYearKey = 'UIDLastYear';
-// var currentDate = new Date();
-
 var Swiper = require('../../Swiper');
 var Turns = require('../../turns');
-var AudioPage = require('./audio-page');
-var SelectionPage = require('./selection-page');
-
-var Page1 = require('./tutorial/page1');
-var Page2 = require('./tutorial/page2');
-var Header = require('./tutorial/header');
-
-
-//Testing imports
-// var SelectionPage = require('../about.js');
-// var AudioPage = require('../about.js');
+var TutorialPopup = require('./tutorial-popup')
 
 class Start extends Component {
 
   constructor(props){
     super(props);
     this.state = {
-      visible: false,
+      tutorialVisible: false,
     };
-  }
-
-  componentWillMount(){
-    Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
-    // this.props.setOnHelpPress( () => this.setState({visible: true}) );
-  }
-
-  // componentDidMount(){
-  //   let lastMonth;
-  //   let lastYear;
-  //
-  //   AsyncStorage.getItem(lMonthKey).then( (value) => {
-  //     if(value !== null){
-  //       lastMonth = JSON.parse(value);
-  //     }
-  //     console.log(value);
-  //   });
-  //
-  //   AsyncStorage.getItem(lYearKey).then( (value) => {
-  //     if(value !== null){
-  //       lastYear = JSON.parse(value);
-  //     }
-  //     console.log(value);
-  //   });
-  //
-  //   let thisMonth = currentDate.getMonth();
-  //   let thisYear = currentDate.getYear();
-  //
-  //   // if the dates have not been set, show tutorial and set dates
-  //   // NOTE: (int) - null === null !== 0  and  null !=== (int)
-  //   // if it has been more than a month, reshow tutorial and reset date
-  //   let showTutorial = ( thisMonth - lastMonth !== 0 || thisYear !== lastYear );
-  //   // let showTutorial = true;
-  //
-  //   this.setState({showTutorial});
-  // }
-
-  componentWillUnmount(){
-    this.setState({visible: false});
   }
 
   render() {
     return (
-      <View style = {styles.container}>
-
-        {/* OVERVIEW PAGE */}
+      <SafeAreaView style = {styles.container}>
         <View style = {styles.overviewContainer}>
-
           <Text allowFontScaling = {false} style = {styles.overviewText1}>
             Explore Chatham Township, Madison, and Green Village
             as you drive to different marked historical sites while
@@ -105,25 +42,12 @@ class Start extends Component {
             this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
             Click here for more info!</Text>
 
-          <Swiper
-            showsButtons = {false}
-            loop = {true}
-            height={240 * (d_window.width/375)}
-            width={d_window.width}
-            autoplay={true}
-            autoplayTimeout={2.5}>
-
+          <Swiper showsButtons = {false} loop = {true} autoplay={true} autoplayTimeout={2.5} 
+            height={240 * (d_window.width/375)} 
+            width={d_window.width}>
             {[].concat.apply([], Turns.stages.map(pic => pic.atPic)).map( (pic1) => {
-                return(
-                  <Image
-                    style={styles.image}
-                    source={pic1}
-                    key={Math.random()}/>
-                  )
-                }
-              )
+                return( <Image style={styles.image} source={pic1} key={Math.random()}/> )})
             }
-
           </Swiper>
 
           <Text allowFontScaling = {false} style = {styles.overviewText2}>
@@ -134,8 +58,7 @@ class Start extends Component {
           </Text>
 
           <TouchableHighlight style = {styles.button}
-            onPress = {() => this.onPress()}
-            // onPress = {()=>this.navToAudio()}
+            onPress = {() => this.setState({tutorialVisible: true})}
             underlayColor = '#BBBBBB'>
               <Text allowFontScaling = {false} style = {styles.buttonText}>
                 Click to Continue
@@ -144,77 +67,12 @@ class Start extends Component {
 
         </View>
 
+        <Modal animationType={'fade'} transparent={true} visible={this.state.tutorialVisible}>
+          <TutorialPopup closePopup={() => this.setState({tutorialVisible: false})} navigation={this.props.navigation}/>
+        </Modal>
 
-        {/* TUTORIAL */}
-        <Modal
-          animationType={'fade'}
-          transparent={true}
-          visible={this.state.visible}>
-
-            <BlurView
-              blurType="dark"
-              blurAmount={10}
-              style={styles.overlay}>
-
-              <View style={styles.modal}>
-
-                <Swiper
-                  showsButtons = {true}
-                  index = {0}
-                  loop = {false}
-                  height={d_window.height/1.13 - (d_window.height === 812 ? 95:0)}
-                  width={d_window.width/1.25}>
-
-                  <Page1/>
-                  <Page2 onPress={() => {
-                    this.navToSelection();
-                    // this.setItem(lMonthKey, JSON.stringify(currentDate.getMonth()) );
-                    // this.setItem(lYearKey, JSON.stringify(currentDate.getYear()) );
-                  }}/>
-
-              </Swiper>
-            </View>{/* modalformat */}
-
-            {/* TUTORIAL HEADER */}
-            <Header onPress={() => this.setState({visible:false})}/>
-
-          </BlurView>{/* overlay */}
-        </Modal>{/* popup */}
-      </View>
+      </SafeAreaView>
     );
-  }
-
-  onPress(){
-    // if(this.state.showTutorial){
-      this.setState({visible:true});
-
-    // }else{
-    //   this.navToSelection();
-    // }
-  }
-
-  // setItem(key, val){
-  //   AsyncStorage.setItem(key, val).catch( (err) => console.log('HIIIIII') );
-  // }
-
-  navToAudio(){
-    this.props.navigator.push({
-      title: 'Audio Tour',
-      component: AudioPage,
-      passProps: {
-        stage: 0,
-      },
-    });
-  }
-
-  navToSelection(){
-    this.setState({visible: false});
-    this.props.navigator.push({
-      title: 'Select a Start Point',
-      component: SelectionPage,
-      leftButtonIcon: this.state.backIcon,
-      onLeftButtonPress: () => this.props.navigator.pop(),
-    });
   }
 
   linkUrl(url){
@@ -288,24 +146,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '100',
     textAlign: 'center',
-  },
-
-
-//MODAL
-  overlay:{
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  modal:{
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: d_window.width/1.25,
-    height: d_window.height/1.13 - (d_window.height === 812 ? 95:0),
-    borderRadius: 15 * (d_window.width/375),
-    backgroundColor: 'whitesmoke',
   },
 });
 

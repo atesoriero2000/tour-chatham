@@ -1,11 +1,9 @@
 // @flow
 // 'use strict';
 
-import React, { Component, } from 'react'
+import React, { Component } from 'react'
 import {
-  AppRegistry,
   StyleSheet,
-  NavigatorIOS,
   Text,
   View,
   Dimensions,
@@ -16,7 +14,6 @@ import {
   ScrollView,
 } from 'react-native'
 
-// import KeepAwake from 'react-native-keep-awake';
 import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';

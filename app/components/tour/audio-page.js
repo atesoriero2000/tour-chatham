@@ -215,7 +215,6 @@ class AudioPage extends Component {
       BackgroundGeolocation.playSound(1300); //default voicemail sound
       Turns.turn++;
     }
-
     /* LOGGER */
     console.log("GOT POSITION:     ", this.state.lastPos);
   }
@@ -266,7 +265,6 @@ class AudioPage extends Component {
   componentWillUnmount(){
     this.state.audioFile.stop();
     doneAtAudio = false;
-    // firstAudio = true;
     BackgroundGeolocation.stopWatchPosition();
     BackgroundGeolocation.stop();
     deactivateKeepAwake();
@@ -435,7 +433,6 @@ class AudioPage extends Component {
   ////////////////////////////  
  //// DEBUGGING FUCTIONS ////
 ////////////////////////////
-//TODO: Used in componentWillUnmount() remove DEBUG_
   DEBUG_stopAudio(){
     this.state.audioFile.stop();
     this.setState({audioIsPlaying: false});

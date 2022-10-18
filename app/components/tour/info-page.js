@@ -18,8 +18,6 @@ const d_window = Dimensions.get('window');
 
 var Swiper = require('../helpers/Swiper');
 
-var atEnd = false;
-
 class InfoPage extends Component{
 
   constructor(props){
@@ -38,29 +36,8 @@ class InfoPage extends Component{
       screen: 'Audio Tour',
       params: {
         stage: this.state.stage,
-        changeAtEnd: (val) => atEnd = val,
       }
-    });
-
-      // leftButtonTitle: 'End Tour',
-      // onLeftButtonPress: () => {
-      //   if(!atEnd){
-      //     Alert.alert(
-      //       'End Tour Warning',
-      //       'Are you sure you want to end the tour?',
-      //       [
-      //         {text: 'Cancel'},
-      //         {text: 'End Tour', onPress: () => this.props.navigator.popToTop(), style: 'destructive'},
-      //       ],
-      //     );
-      //   }else this.props.navigator.popToTop();
-      // },
-
-      // rightButtonTitle: 'Return Home',
-      // onRightButtonPress: () => this.linkUrl("http://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m"),
-        // // Alert.alert('Direction Back to Start',
-        // // '\nThese next directions take approx 9 minutes to travel and 4.5 miles\n\n Turn around on Treadwell Ave and proceed back to Woodland Ave\n\n Turn left onto Woodland Ave and proceed approx 1.4 miles. Then turn right onto Green Village Road\n\n Continue along onto Southern Blvd to Fairmount Ave and turn left onto Fairmount. The school is on the right',
-        // // [{text: 'Close'}]),
+    })
   }
   
   onPress(){

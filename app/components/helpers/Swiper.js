@@ -167,7 +167,7 @@ class Swiper extends Component{
   autoplayTimer = null
   loopJumpTimer = null
 
-  componentWillReceiveProps (nextProps) {
+  OLD_willRecieveProps (nextProps) {
     const sizeChanged = (nextProps.width || width) !== this.state.width ||
                         (nextProps.height || height) !== this.state.height
     if (!nextProps.autoplay && this.autoplayTimer) clearTimeout(this.autoplayTimer)
@@ -175,6 +175,7 @@ class Swiper extends Component{
   }
 
   componentDidMount () {
+    this.OLD_willRecieveProps(this.props)
     this.autoplay()
   }
 

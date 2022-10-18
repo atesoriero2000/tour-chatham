@@ -77,7 +77,7 @@ class About extends Component {
               Chatham Township Historical Society
             </Text>
             <Text allowFontScaling = {false} style = {styles.fineText}>
-              <Text allowFontScaling = {false} selectable={true} onPress={() => this.linkUrl("http://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m")}>
+              <Text allowFontScaling = {false} selectable={true} onPress={() => this.linkUrl("https://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m")}>
                 24 Southern Blvd, Chatham, NJ
               </Text>   •   <Text allowFontScaling = {false} selectable={true} onPress={() => this.linkUrl("tel:973-635-4911")}>973-635-4911</Text>
             </Text>

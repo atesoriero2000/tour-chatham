@@ -54,6 +54,8 @@ class AudioPage extends Component {
       // title: Turns.stages[10].title,
       
       tourEnded: false,
+
+      isNearOverride: false, //for debugging
     };
   }
 
@@ -210,7 +212,7 @@ class AudioPage extends Component {
     // if audio is not playing and we are close to the last turn
     let lastTurn = currentStage.loc[currentStage.loc.length-1];
     let radius = (isNearLastTurn ? 1150 : 200);
-    isNearLastTurn = (mode === 'demo'||this.isNear(lastTurn.latitude, lastTurn.longitude, radius));
+    isNearLastTurn = (this.state.isNearOverride||this.isNear(lastTurn.latitude, lastTurn.longitude, radius));
     this.setState({ clickable: (!this.state.audioIsPlaying && (currentStage.loc.length-1 === Turns.turn) && isNearLastTurn )});
 
     /*----------------------*/
@@ -228,7 +230,7 @@ class AudioPage extends Component {
     this.setState({
       nextTargetPos: {latitude: nextTurn.latitude, longitude: nextTurn.longitude},
       distToNext: this.distTo(nextTurn.latitude, nextTurn.longitude),
-      isNear: this.isNear(nextTurn.latitude, nextTurn.longitude, nextTurn.radius),
+      isNear: this.state.isNearOverride||this.isNear(nextTurn.latitude, nextTurn.longitude, nextTurn.radius),
       nextRadius: nextTurn.radius, // NOTE: FOR DEBUGGING
     });
 
@@ -309,11 +311,9 @@ class AudioPage extends Component {
 
   render() {
     return (
-      <View style = {styles.container}>
+      <ScrollView>
+        <View style = {styles.container}>
         { /* TODO: add condition for debug mode*/ }
-        <ScrollView><View style = {styles.container}> 
-          {/* <View style = {styles.banner}/> */}
-
           <View style = {styles.titleBox}>
             <Text allowFontScaling = {false} style = {styles.title}>{this.state.title}</Text>
           </View>
@@ -357,6 +357,7 @@ class AudioPage extends Component {
             justifyContent: 'center',
             alignItems: 'center',
             position: 'absolute',
+            zIndex: 100000,
             top: (162 + 310) * (d_window.height/scaleH), //height
             opacity: this.state.clickable?1:.05,
           }}
@@ -366,18 +367,23 @@ class AudioPage extends Component {
           </TouchableHighlight>
 
           {(mode === 'debug'||mode === 'demo'||mode === 'tester1'||mode === 'tester2') &&
-            <TouchableOpacity style = {debuggerStyles.stopAudioButton} onPress={() => this.DEBUG_stopAudio()}>
+            <TouchableOpacity style = {[debuggerStyles.button, {left: 15}]} onPress={() => this.DEBUG_stopAudio()}>
               <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'X'}</Text>
             </TouchableOpacity>
           }
           {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
-            <TouchableOpacity style = {debuggerStyles.lastTurnButton} onPress={() => this.DEBUG_lastTurn()}>
+            <TouchableOpacity style = {[debuggerStyles.button, {left: 45}]} onPress={() => this.DEBUG_lastTurn()}>
               <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'<'}</Text>
             </TouchableOpacity>
           }
           {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
-            <TouchableOpacity style = {debuggerStyles.nextTurnButton} onPress={() => this.DEBUG_nextTurn()}>
+            <TouchableOpacity style = {[debuggerStyles.button, {left: 75}]} onPress={() => this.DEBUG_nextTurn()}>
               <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'>'}</Text>
+            </TouchableOpacity>
+          }
+          {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
+            <TouchableOpacity style = {[debuggerStyles.button, {left: 105, backgroundColor: this.state.isNearOverride?'tomato':'gray'}]} onPress={() => this.DEBUG_toggleIsNearOverride()}>
+              <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'@'}</Text>
             </TouchableOpacity>
           }
 
@@ -399,8 +405,7 @@ class AudioPage extends Component {
           }}> isNear: {JSON.stringify(this.state.isNear)} </Text>} */}
 
           {true &&
-            <View style={{alignItems: 'center', justifyContent: 'center', width: d_window.width}}>
-              <View style={{height: 270}}/>
+            <View style={{alignItems: 'center', justifyContent: 'center', width: d_window.width, zIndex: 1, paddingTop: 285}}>
               <Text allowFontScaling = {false} style = {debuggerStyles.title}>
                 DEBUGGER
               </Text><Text/>
@@ -433,8 +438,8 @@ class AudioPage extends Component {
               <Text/>
             </View>
           }
-        </View></ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     );
   }
 
@@ -492,6 +497,11 @@ class AudioPage extends Component {
     }else{
       Turns.turn--;
     }
+    this.update();
+  }
+
+  DEBUG_toggleIsNearOverride(){
+    this.setState({ isNearOverride: !this.state.isNearOverride });
     this.update();
   }
 }
@@ -590,37 +600,13 @@ const styles = StyleSheet.create({
 //////////////////////////
 const debuggerStyles = StyleSheet.create({
 
-  stopAudioButton: {
+  button: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 235 * (d_window.width/scale),
+    top: 270 * (d_window.width/scale),
     left: 15 * (d_window.width/scale),
-    backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
-    height: 30 * (d_window.width/scale),
-    width: 30 * (d_window.width/scale),
-    borderRadius: 15 * (d_window.width/scale),
-  },
-
-  lastTurnButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 235 * (d_window.width/scale),
-    left: 55 * (d_window.width/scale),
-    backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
-    height: 30 * (d_window.width/scale),
-    width: 30 * (d_window.width/scale),
-    borderRadius: 15 * (d_window.width/scale),
-  },
-
-  nextTurnButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 235 * (d_window.width/scale),
-    left: 95 * (d_window.width/scale),
-    backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
+    backgroundColor: 'gray',
     height: 30 * (d_window.width/scale),
     width: 30 * (d_window.width/scale),
     borderRadius: 15 * (d_window.width/scale),

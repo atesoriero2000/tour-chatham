@@ -11,7 +11,6 @@ import {
   Image,
   Modal
 } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const d_window = Dimensions.get('window');
@@ -27,6 +26,18 @@ class Start extends Component {
     this.state = {
       tutorialVisible: false,
     };
+  }
+
+  navToSelection(){
+    this.setState({ tutorialVisible: false});
+    this.props.navigation.navigate('Tour', {screen: 'Select a Start Point'});
+  }
+
+  linkUrl(url){
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) console.log('Can\'t handle url: ' + url);
+      else return Linking.openURL(url);
+    }).catch(err => console.log('An error occurred', err));
   }
 
   render() {
@@ -68,18 +79,11 @@ class Start extends Component {
         </View>
 
         <Modal animationType={'fade'} transparent={true} visible={this.state.tutorialVisible}>
-          <TutorialPopup closePopup={() => this.setState({tutorialVisible: false})} navigation={this.props.navigation}/>
+          <TutorialPopup closePopup={() => this.setState({tutorialVisible: false})} navToSelection={() => this.navToSelection()}/>
         </Modal>
 
       </SafeAreaView>
     );
-  }
-
-  linkUrl(url){
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) console.log('Can\'t handle url: ' + url);
-      else return Linking.openURL(url);
-    }).catch(err => console.log('An error occurred', err));
   }
 }
 

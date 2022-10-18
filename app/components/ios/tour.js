@@ -2,9 +2,7 @@
 
 import React, { Component } from 'react'
 import {
-  StyleSheet,
   Dimensions,
-  Image,
 } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 

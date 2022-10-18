@@ -12,8 +12,6 @@ import {
   Alert,
 } from 'react-native'
 
-import Icon from 'react-native-vector-icons/Ionicons';
-
 const d_window = Dimensions.get('window');
 
 var Location = require('./Location');
@@ -28,18 +26,6 @@ class SelectionPage extends Component{
     }
   }
 
-  alert(props){
-    Alert.alert(
-      'Course Confirmation',
-      '\nFrom this location to the end of the list, it will take about ' + props.time + ' minutes.\nYou may stop and pick up where you left off at any time.\nAll locations listed before this will not be toured. Is that ok?',
-      [
-        {text: 'Cancel'},
-        {text: 'Yes this works', onPress: () => this.navToInfo(props), style: 'cancel'},
-      ],
-    );
-  }
-
-  //TODO:
   navToInfo(props){
     this.props.navigation.navigate('Tour', {
       screen: 'Drive to Start Point',
@@ -50,9 +36,17 @@ class SelectionPage extends Component{
         address: props.address
       }
     });
-      //   leftButtonIcon: this.state.backIcon,
-                // Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
-      
+  }
+
+  alert(props){
+    Alert.alert(
+      'Course Confirmation',
+      '\nFrom this location to the end of the list, it will take about ' + props.time + ' minutes.\nYou may stop and pick up where you left off at any time.\nAll locations listed before this will not be toured. Is that ok?',
+      [
+        {text: 'Cancel'},
+        {text: 'Yes this works', onPress: () => this.navToInfo(props), style: 'cancel'},
+      ],
+    );
   }
 
   render() {

@@ -7,29 +7,15 @@ import {
   View,
   Text,
   Dimensions,
-  Modal,
-  Linking,
   Image,
-  Button,
 } from 'react-native'
-
 import { BlurView, VibrancyView } from '@react-native-community/blur';
-// import Icon from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/EvilIcons';
 
 const d_window = Dimensions.get('window');
-
 var Swiper = require('../../Swiper');
 
 class TutorialPopup extends Component {
-
-    navToSelection(){
-        this.props.closePopup();
-        this.props.navigation.navigate('Tour', {screen: 'Select a Start Point'});
-          //TODO
-          // leftButtonIcon: this.state.backIcon,
-            //   Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
-    }
 
     render() {
         return (
@@ -62,7 +48,7 @@ class TutorialPopup extends Component {
                                 (any locations listed before the selected location will not be toured).
                             </Text>
                             <TouchableHighlight style = {styles.button}
-                                onPress = {() => this.navToSelection()}
+                                onPress = {() => this.props.navToSelection()}
                                 underlayColor = '#BBBBBB'>
                                 <Text allowFontScaling = {false} style = {styles.buttonText}>Click to Continue</Text>
                             </TouchableHighlight>

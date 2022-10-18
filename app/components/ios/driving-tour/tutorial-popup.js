@@ -16,7 +16,6 @@ import {
 import { BlurView, VibrancyView } from '@react-native-community/blur';
 // import Icon from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/EvilIcons';
-Icon.loadFont();
 
 const d_window = Dimensions.get('window');
 
@@ -29,7 +28,6 @@ class TutorialPopup extends Component {
         this.props.navigation.navigate('Tour', {screen: 'Select a Start Point'});
           //TODO
           // leftButtonIcon: this.state.backIcon,
-          // onLeftButtonPress: () => this.props.navigator.pop(),
             //   Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
     }
 
@@ -81,7 +79,6 @@ class TutorialPopup extends Component {
                 </View>
                 
             </BlurView>
-            // </Modal>
         )
     }
 }

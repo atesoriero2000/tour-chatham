@@ -56,7 +56,7 @@ class AudioPage extends Component {
 
     BackgroundGeolocation.destroyLog();
 
-    Turns.stage = this.props.stage;
+    Turns.stage = this.props.route.params.stage;
     Turns.turn = Turns.stages[Turns.stage].loc.length-1;
 
     Sound.setCategory('Playback', false);
@@ -197,7 +197,7 @@ class AudioPage extends Component {
 
     BackgroundGeolocation.stopWatchPosition();
     BackgroundGeolocation.stop();
-    this.props.changeAtEnd(true);
+    this.props.route.params.changeAtEnd(true);
 
     this.setState({
       clickable: false,

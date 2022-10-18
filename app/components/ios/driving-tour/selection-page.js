@@ -28,11 +28,6 @@ class SelectionPage extends Component{
     }
   }
 
-  //TODO
-  componentWillMount(){
-    Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
-  }
-
   alert(props){
     Alert.alert(
       'Course Confirmation',
@@ -46,15 +41,18 @@ class SelectionPage extends Component{
 
   //TODO:
   navToInfo(props){
-    this.props.navigation.navigate('Tour', {screen: 'Drive to Start Point'});
+    this.props.navigation.navigate('Tour', {
+      screen: 'Drive to Start Point',
+      params: {
+        stage: props.stage,
+        title: props.title,
+        pic: props.pic,
+        address: props.address
+      }
+    });
       //   leftButtonIcon: this.state.backIcon,
-      //   onLeftButtonPress: () => this.props.navigator.pop(),
-      //   passProps: {
-      //     stage: props.stage,
-      //     title: props.title,
-      //     pic: props.pic,
-      //     address: props.address,
-      //   },
+                // Icon.getImageSource('ios-arrow-back-outline', 35, '#157EFB').then( (backIcon) => this.setState({ backIcon }));
+      
   }
 
   render() {

@@ -28,13 +28,18 @@ class InfoPage extends Component{
   constructor(props){
     super(props);
     this.state = {
+      stage: props.route.params.stage,
+      title: props.route.params.title,
+      pic: props.route.params.pic,
+      address: props.route.params.address,
       url: null,
     }
   }
 
+
   componentDidMount(){
     let linkStart = "http://maps.apple.com/?daddr=";
-    let address = this.props.address.replace(/\s/g, "+");
+    let address = this.state.address.replace(/\s/g, "+");
     let linkEnd = ",NJ&dirflg=d&t=m";
     this.setState({url: linkStart + address + linkEnd});
   }
@@ -43,7 +48,7 @@ class InfoPage extends Component{
     return(
       <View style = {styles.container}>
 
-        <Text allowFontScaling = {false} style = {styles.text}>{this.props.title}</Text>
+        <Text allowFontScaling = {false} style = {styles.text}>{this.state.title}</Text>
 
         <View style = {{
           // NOTE: Add padding to view not text or onPress position will be ghosting
@@ -52,13 +57,13 @@ class InfoPage extends Component{
         }}>
           <Text allowFontScaling = {false} style = {styles.subtext}>
             <Text allowFontScaling = {false} > Please navigate to</Text>
-            <Text allowFontScaling = {false} style = {styles.text_bold} onPress={() => this.linkUrl(this.state.url)}> {this.props.address} </Text>
+            <Text allowFontScaling = {false} style = {styles.text_bold} onPress={() => this.linkUrl(this.state.url)}> {this.state.address} </Text>
             <Text allowFontScaling = {false} >then click the button below to start the tour.</Text>
           </Text>
         </View>
 
 
-        {Array.isArray(this.props.pic)?
+        {Array.isArray(this.state.pic)?
 
           <Swiper
             showsButtons = {false}
@@ -68,10 +73,10 @@ class InfoPage extends Component{
             autoplay={true}
             autoplayTimeout={2.5}
             >
-              {this.props.pic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
+              {this.state.pic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
 
           </Swiper>:
-          <Image style = {styles.image} source = {this.props.pic}/>
+          <Image style = {styles.image} source = {this.state.pic}/>
         }
 
 
@@ -98,35 +103,34 @@ class InfoPage extends Component{
   }
 
   navToAudio(){
-    this.props.navigator.push({
-      title: 'Audio Tour',
-      component: AudioPage,
 
-      leftButtonTitle: 'End Tour',
-      onLeftButtonPress: () => {
-        if(!atEnd){
-          Alert.alert(
-            'End Tour Warning',
-            'Are you sure you want to end the tour?',
-            [
-              {text: 'Cancel'},
-              {text: 'End Tour', onPress: () => this.props.navigator.popToTop(), style: 'destructive'},
-            ],
-          );
-        }else this.props.navigator.popToTop();
-      },
-
-      rightButtonTitle: 'Return Home',
-      onRightButtonPress: () => this.linkUrl("http://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m"),
-        // Alert.alert('Direction Back to Start',
-        // '\nThese next directions take approx 9 minutes to travel and 4.5 miles\n\n Turn around on Treadwell Ave and proceed back to Woodland Ave\n\n Turn left onto Woodland Ave and proceed approx 1.4 miles. Then turn right onto Green Village Road\n\n Continue along onto Southern Blvd to Fairmount Ave and turn left onto Fairmount. The school is on the right',
-        // [{text: 'Close'}]),
-
-      passProps: {
-        stage: this.props.stage,
+    this.props.navigation.navigate('Tour', {
+      screen: 'Audio Tour',
+      params: {
+        stage: this.state.stage,
         changeAtEnd: (val) => atEnd = val,
-      },
+      }
     });
+
+      // leftButtonTitle: 'End Tour',
+      // onLeftButtonPress: () => {
+      //   if(!atEnd){
+      //     Alert.alert(
+      //       'End Tour Warning',
+      //       'Are you sure you want to end the tour?',
+      //       [
+      //         {text: 'Cancel'},
+      //         {text: 'End Tour', onPress: () => this.props.navigator.popToTop(), style: 'destructive'},
+      //       ],
+      //     );
+      //   }else this.props.navigator.popToTop();
+      // },
+
+      // rightButtonTitle: 'Return Home',
+      // onRightButtonPress: () => this.linkUrl("http://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m"),
+        // // Alert.alert('Direction Back to Start',
+        // // '\nThese next directions take approx 9 minutes to travel and 4.5 miles\n\n Turn around on Treadwell Ave and proceed back to Woodland Ave\n\n Turn left onto Woodland Ave and proceed approx 1.4 miles. Then turn right onto Green Village Road\n\n Continue along onto Southern Blvd to Fairmount Ave and turn left onto Fairmount. The school is on the right',
+        // // [{text: 'Close'}]),
   }
 }
 

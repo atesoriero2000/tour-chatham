@@ -20,15 +20,15 @@ import Sound from 'react-native-sound';
 
 const d_window = Dimensions.get('window');
 
-var Swiper = require('../../Swiper');
+var Swiper = require('../helpers/Swiper');
 
-var Turns = require('../../turns');
+var Turns = require('../helpers/turns');
 
 var doneAtAudio = false;
 var isNearLastTurn = true;
 var firstAudio = true;
 
-const mode = 'demo'; // debug, demo, tester1, tester2, release
+const mode = 'debug'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
@@ -52,6 +52,7 @@ class AudioPage extends Component {
     };
   }
 
+  //TODO:
   componentWillMount(){
 
     BackgroundGeolocation.destroyLog();
@@ -352,7 +353,7 @@ class AudioPage extends Component {
     return (
 
       <View style = {styles.container}>
-        {/* <ScrollView><View style = {styles.container}> */}
+        <ScrollView><View style = {styles.container}>
 
           <View style = {styles.banner}/>
 
@@ -443,7 +444,7 @@ class AudioPage extends Component {
             left: 220
           }}> isNear: {JSON.stringify(this.state.isNear)} </Text>}
 
-          {false &&
+          {true &&
             <View style={{alignItems: 'center', justifyContent: 'center', width: d_window.width}}>
               <View style={{height: 300}}/>
               <Text allowFontScaling = {false} style = {styles.text}>
@@ -476,7 +477,7 @@ class AudioPage extends Component {
               <Text/>
             </View>
           }
-        {/* </View></ScrollView> */}
+        </View></ScrollView>
       </View>
     );
   }

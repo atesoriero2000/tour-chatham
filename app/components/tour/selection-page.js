@@ -14,8 +14,8 @@ import {
 
 const d_window = Dimensions.get('window');
 
-var Location = require('./Location');
-var Turns = require('../../turns');
+var Location = require('../helpers/Location');
+var Turns = require('../helpers/turns');
 
 class SelectionPage extends Component{
 

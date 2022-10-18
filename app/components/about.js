@@ -30,7 +30,7 @@ class About extends Component {
             to make the local history of Chatham more accessible for everyone through modern technology in an innovative way.
           </Text>
 
-          <Image style = {styles.picture} source={require('../../images/tony.jpg')} />
+          <Image style = {styles.picture} source={require('../images/tony.jpg')} />
 
 
 {/* Contributors */}

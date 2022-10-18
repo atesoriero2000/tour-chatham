@@ -16,7 +16,7 @@ import {
 
 const d_window = Dimensions.get('window');
 
-var Swiper = require('../../Swiper');
+var Swiper = require('../helpers/Swiper');
 
 var atEnd = false;
 

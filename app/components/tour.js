@@ -9,10 +9,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 // import Icon from 'react-native-vector-icons/Ionicons';
 const d_window = Dimensions.get('window');
 
-var Start = require('./driving-tour/start');
-var SelectionPage = require('./driving-tour/selection-page');
-var InfoPage = require('./driving-tour/info-page');
-var AudioPage = require('./driving-tour/audio-page');
+var Start = require('./tour/start');
+var SelectionPage = require('./tour/selection-page');
+var InfoPage = require('./tour/info-page');
+var AudioPage = require('./tour/audio-page');
 
 const Stack = createNativeStackNavigator();
 

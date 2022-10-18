@@ -15,8 +15,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const d_window = Dimensions.get('window');
 
-var Swiper = require('../../Swiper');
-var Turns = require('../../turns');
+var Swiper = require('../helpers/Swiper');
+var Turns = require('../helpers/turns');
 var TutorialPopup = require('./tutorial-popup')
 
 class Start extends Component {

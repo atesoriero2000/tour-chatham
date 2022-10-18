@@ -37,8 +37,8 @@ class Welcome extends Component {
           Chatham Township Historical Society Driving Tour
         </Text>
 
-        <Image style = {styles.border} source = {require('../../images/logo_border.png')}  />
-        <Image style = {styles.logo} source = {require('../../images/chs_logo.png')}  />
+        <Image style = {styles.border} source = {require('../images/logo_border.png')}  />
+        <Image style = {styles.logo} source = {require('../images/chs_logo.png')}  />
 
         {/* <View style={styles.halfButtonView}>
           <TouchableHighlight style = {styles.halfButton}

@@ -11,9 +11,10 @@ import {
 } from 'react-native'
 import { BlurView, VibrancyView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/EvilIcons';
+Icon.loadFont(); //TODO: fix idk why its only needed once
 
 const d_window = Dimensions.get('window');
-var Swiper = require('../../Swiper');
+var Swiper = require('../helpers/Swiper');
 
 class TutorialPopup extends Component {
 
@@ -28,7 +29,7 @@ class TutorialPopup extends Component {
                         {/* Page 1 */}
                         <View style={styles.container}>
                             <View style={styles.imageBox}>
-                                <Image source={require('../../../images/tutorial1.jpg')} style={styles.image} />
+                                <Image source={require('../../images/tutorial1.jpg')} style={styles.image} />
                             </View>
                             <Text allowFontScaling = {false} style = {styles.text}>
                                 Directions will appear on the screen instructing you exactly
@@ -40,7 +41,7 @@ class TutorialPopup extends Component {
                         {/* Page 2 */}
                         <View style = {styles.container}>
                             <View style={styles.imageBox}>
-                                <Image source={require('../../../images/tutorial2.jpg')} style={styles.image} />
+                                <Image source={require('../../images/tutorial2.jpg')} style={styles.image} />
                             </View>
                             <Text allowFontScaling = {false} style = {styles.text}>
                                 On the next page you will pick your starting location.

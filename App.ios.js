@@ -16,9 +16,9 @@ import BackgroundGeolocation from "react-native-background-geolocation";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-var Welcome = require('./app/components/ios/welcome');
-var Tour = require('./app/components/ios/tour');
-var About = require('./app/components/ios/about');
+var Welcome = require('./app/components/welcome');
+var Tour = require('./app/components/tour');
+var About = require('./app/components/about');
 
 const Tab = createBottomTabNavigator();
 

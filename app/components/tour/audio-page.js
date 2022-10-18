@@ -17,6 +17,9 @@ import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
 
+var scale = 450;
+var scaleH = 800;
+
 var Swiper = require('../helpers/Swiper');
 var Turns = require('../helpers/turns');
 
@@ -60,29 +63,20 @@ class AudioPage extends Component {
  //// INIT FUCTIONS ////
 ///////////////////////
 
-  //TODO: REMOVE 
-  UNSAFE_componentWillMount(){
-
-    BackgroundGeolocation.destroyLog();
-
-    Turns.stage = this.props.route.params.stage;
-    Turns.turn = Turns.stages[Turns.stage].loc.length-1;
-
-    Sound.setCategory('Playback', false);
-    Sound.setActive(true);
-    // Turns.stage = 4;
-    // Turns.turn = 3;
-
-  }
-
   componentDidMount(){
     this.props.navigation.setOptions({ 
       headerLeft: () => ( <Button title='End Tour' onPress={() => this.endTourButton()} /> ),
       headerRight: () => ( <Button title='Return Home' onPress={() => this.returnHomeButton()} /> ),
     })
     activateKeepAwake();
+    Sound.setCategory('Playback', false);
+    Sound.setActive(true); //TODO: Check if should turn off after audio is finished cause it is rn
 
     //####### set turns and stage to passed value in props ############
+    Turns.stage = this.props.route.params.stage;
+    Turns.turn = Turns.stages[Turns.stage].loc.length-1; //Grab last turn (atAudio)
+    // Turns.stage = 4;
+    // Turns.turn = 3;
     this.buttonPressed();
     // this.update();
 
@@ -90,12 +84,43 @@ class AudioPage extends Component {
   }
 
   startGeolocation(){
+
+    //requestTemporaryFullAccuracy
+
+    //WhenInUse in ready() then Always with setConfig()
+    // locationAuthorizationRequest
+    //upgradeToAlwaysAllow() {
+    // Simply update `locationAuthorizationRequest` to "Always" -- the SDK will cause iOS to immediately show the authorization upgrade dialog for "Change to Always Allow":
+    // BackgroundGeolocation.setConfig({ locationAuthorizationRequest: 'Always' });
+    // }
+    // try {
+    //   int status = await BackgroundGeolocation.requestPermission();
+    //   console.log('[requestPermission] success: ', status);
+    // } catch(status) {
+    //   console.warn('[requestPermission] FAILURE: ', status);
+    // }
+
+
+    //onLocation: give rapid and all location updates
+        //needs to be accompanied by getCurrPos or watch___
+    //watchPosition: interval desiredAccuracy, timeout 
+    //getCurrentPosition
+    //all Returns https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html#sample
+    
+
+    BackgroundGeolocation.onLocation(
+      (location) => {
+        console.log("[onLocation] success: ", location);
+        this.setState({lastPos: location.coords});
+        this.update();
+      },  (error) => console.log("***** onLocation FAILED *****:    ", error));
+    BackgroundGeolocation.logger.destroyLog();
     BackgroundGeolocation.ready({
       reset: true,
       desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_LOWEST,
       stationaryRadius: 25,
       //distanceFilter: 10,
-      locationUpdateInterval: 1000,
+      locationUpdateInterval: 1000, //was 500
       disableElasticity: true,
       locationAuthorizationRequest: 'WhenInUse',
       disableStopDetection: true, // Activity Recognition
@@ -107,6 +132,7 @@ class AudioPage extends Component {
                         BackgroundGeolocation.start();
                         console.log("GEOLOCATION STARTED");
                       } 
+                      // BackgroundGeolocation.changePace(true); //TODO: OLD What does this do
     }, () => console.log("***** GEOLOCATION READY FAILED *****"));
   }
 
@@ -234,7 +260,7 @@ class AudioPage extends Component {
 ///////////////////////////
   showEndScreen(){
     //Kill location services for unessecary tracking (reduntant to componentWillUnmount())
-    BackgroundGeolocation.stopWatchPosition();
+    BackgroundGeolocation.stopWatchPosition(); //TODO: check if nessecary
     BackgroundGeolocation.stop();
 
     this.setState({
@@ -249,6 +275,7 @@ class AudioPage extends Component {
   }
   
   endTourButton(){
+    //TODO: maybe just make a fuction Component and return <Button/>
     if(!this.state.tourEnded)
       Alert.alert( 'End Tour Warning', 'Are you sure you want to end the tour?',
         [{ text: 'Cancel', style: 'cancel' },
@@ -257,6 +284,8 @@ class AudioPage extends Component {
   }
 
   returnHomeButton(){
+    //TODO: maybe just make a fuction Component and return <Button/>
+    //TODO: Figure out better functionality
     Alert.alert( 'Direction Back to Start', '\nThese next directions take approx 9 minutes to travel and 4.5 miles\n\n Line2 \n\n Line3 \n\n Would you like to go?',
       [{ text: 'Close', style: 'default' },
        { text: 'Go', onPress: () => { this.linkUrl("http://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
@@ -264,11 +293,13 @@ class AudioPage extends Component {
 
   componentWillUnmount(){
     this.state.audioFile.stop();
+    Sound.setActive(false);
     doneAtAudio = false;
-    BackgroundGeolocation.stopWatchPosition();
+    // isNearLastTurn = true;
+    BackgroundGeolocation.removeListeners();
+    BackgroundGeolocation.stopWatchPosition(); //TODO: check if nessecary
     BackgroundGeolocation.stop();
     deactivateKeepAwake();
-    Sound.setActive(false);
   }
 
   
@@ -304,7 +335,7 @@ class AudioPage extends Component {
               <Swiper
                 showsButtons = {false}
                 loop = {true}
-                height={250 * (d_window.width/375)}
+                height={250 * (d_window.width/scale)}
                 width={d_window.width}
                 autoplay={true}
                 autoplayTimeout={2.5}>
@@ -321,12 +352,12 @@ class AudioPage extends Component {
 
           <TouchableHighlight style = {{
             width: d_window.width/1.5,
-            height: 36 * Math.pow((d_window.height/667), 2) - (d_window.height === 812? 10:0), //height
+            height: 36 * Math.pow((d_window.height/scaleH), 2), //height
             backgroundColor: 'gray',
             justifyContent: 'center',
             alignItems: 'center',
             position: 'absolute',
-            top: (262 + 310) * (d_window.height/667) - (d_window.height === 812? 36:0), //height
+            top: (162 + 310) * (d_window.height/scaleH), //height
             opacity: this.state.clickable?1:.05,
           }}
           underlayColor = '#BBBBBB'
@@ -339,21 +370,18 @@ class AudioPage extends Component {
               <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'X'}</Text>
             </TouchableOpacity>
           }
-
           {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
             <TouchableOpacity style = {debuggerStyles.lastTurnButton} onPress={() => this.DEBUG_lastTurn()}>
               <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'<'}</Text>
             </TouchableOpacity>
           }
-
           {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
             <TouchableOpacity style = {debuggerStyles.nextTurnButton} onPress={() => this.DEBUG_nextTurn()}>
               <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'>'}</Text>
             </TouchableOpacity>
           }
 
-          {(mode === 'debug') && <Text allowFontScaling = {false} style={{position: 'absolute', top: 285, left: 285}}>{Turns.stage},{Turns.turn}</Text>}
-
+          {/* {(mode === 'debug') && <Text allowFontScaling = {false} style={{position: 'absolute', top: 285, left: 285}}>{Turns.stage},{Turns.turn}</Text>}
           {(mode === 'debug') && <Text allowFontScaling = {false} style={{
             position: 'absolute',
             top: 262 + 50,
@@ -368,11 +396,11 @@ class AudioPage extends Component {
             position: 'absolute',
             top: 262 + 104,
             left: 220
-          }}> isNear: {JSON.stringify(this.state.isNear)} </Text>}
+          }}> isNear: {JSON.stringify(this.state.isNear)} </Text>} */}
 
           {true &&
             <View style={{alignItems: 'center', justifyContent: 'center', width: d_window.width}}>
-              <View style={{height: 300}}/>
+              <View style={{height: 270}}/>
               <Text allowFontScaling = {false} style = {debuggerStyles.title}>
                 DEBUGGER
               </Text><Text/>
@@ -393,6 +421,7 @@ class AudioPage extends Component {
               <Text> Latitude: {this.state.nextTargetPos.latitude}</Text>
               <Text/>
               <Text> distToNext: {JSON.stringify(Math.round(this.state.distToNext))} FT</Text>
+              <Text> nextRadius: {JSON.stringify(Math.round(this.state.nextRadius))} FT</Text>
               <Text> isNear: {JSON.stringify(this.state.isNear)} </Text>
 
               <Text allowFontScaling = {false} style = {debuggerStyles.subtitle}>
@@ -400,6 +429,7 @@ class AudioPage extends Component {
               </Text>
               <Text> Longitude: {this.state.lastPos.longitude}</Text>
               <Text> Latitude: {this.state.lastPos.latitude}</Text>
+              <Text> Accuracy: {JSON.stringify(Math.round(this.state.lastPos.accuracy))} FT</Text>
               <Text/>
             </View>
           }
@@ -464,54 +494,7 @@ class AudioPage extends Component {
     }
     this.update();
   }
-
-  //////////////////  
- //// Outdated ////
-//////////////////
-  /* update(){
-    this.geolocation({ coords: this.state.lastPos });
-  } */
-
-  /* startGeolocation2(){
-
-    // LISTENERS
-    BackgroundGeolocation.onLocation(
-      (location) => this.geolocation(location),
-      (error) => console.log("***** WATCH POSITION FAILED *****:    ", error));
-
-    // READY
-    BackgroundGeolocation.ready(
-    {
-      // Geolocation Config
-      reset: true,
-      desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_LOWEST,
-      stationaryRadius: 25,
-      //distanceFilter: 10,
-      locationUpdateInterval: 500,
-      disableElasticity: true,
-      locationAuthorizationRequest: 'WhenInUse',
-      // Activity Recognition
-      disableStopDetection: true,
-      // Application config
-      debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
-      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE, //BackgroundGeolocation.LOG_LEVEL_VERBOSE, //OFF
-      logMaxDays: 1,
-    },
-
-    //START
-    (state) => {
-      console.log("BackgroundGeolocation is configured and ready:   ", state.enabled);
-      if (!state.enabled){
-         BackgroundGeolocation.start();
-         console.log("GEOLOCATION STARTED");
-       }
-      BackgroundGeolocation.changePace(true);
-    },
-    () => console.log("***** GEOLOCATION READY FAILED *****")
-    );
-  } */
 }
-
 
   /////////////////////
  //// MAIN STYLES ////
@@ -522,77 +505,72 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    // marginBottom: 10 * (d_window.width/375), //height
+    // marginBottom: 10 * (d_window.width/scale), //height
   },
-
-  // banner:{
-  //   width: d_window.width,
-  //   height: 64 + (d_window.height === 812? 20:0), //NOTE: not scalable
-  // },
 
   titleBox:{
     width: d_window.width,
-    height: 100 * Math.pow((d_window.height/667), 1.25), //height
+    height: 100 * Math.pow((d_window.height/scaleH), 1.25), //height
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   title:{
-    fontSize: 30 * (d_window.width/375),
+    fontSize: 30 * (d_window.width/scale),
     textAlign: 'center',
     color: 'black',
     fontWeight: '300',
-    paddingTop: 5 * Math.pow((d_window.height/667), 2), //height
-    paddingHorizontal: 45 * (d_window.width/375),
+    paddingTop: 5 * Math.pow((d_window.height/scaleH), 2), //height
+    paddingHorizontal: 45 * (d_window.width/scale),
   },
 
   line:{
     backgroundColor: 'black',
-    height: .74 * (d_window.width/375), //height
-    width: 150 * (d_window.width/375),
+    height: .74 * (d_window.width/scale), //height
+    width: 150 * (d_window.width/scale),
   },
 
   directionBox:{
-    width: 325 * (d_window.width/375),
-    height: 107 * Math.pow((d_window.height/667), 1.25), //height
+    width: 325 * (d_window.width/scale),
+    height: 107 * Math.pow((d_window.height/scaleH), 1.25), //height
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10 * Math.pow((d_window.height/667), 2) - (d_window.height === 812? 10:0), //height
+    marginTop: 10 * Math.pow((d_window.height/scaleH), 2) - (d_window.height === 812? 10:0), //height
   },
 
   directions:{
-    fontSize: 18 * (d_window.width/375),
+    fontSize: 18 * (d_window.width/scale),
     color: 'gray',
     fontWeight: '300',
     textAlign: 'center',
   },
 
   dist:{
-    fontSize: 15 * (d_window.width/375),
+    fontSize: 15 * (d_window.width/scale),
     color: 'dimgray',
     fontWeight: '500',
     textAlign: 'center',
-    marginTop: 3 * Math.pow((d_window.height/667), 2) - (d_window.height === 812? 4.44:0), //height
+    marginTop: 3 * Math.pow((d_window.height/scaleH), 2) - (d_window.height === 812? 4.44:0), //height
   },
 
   imageBox:{
     position: 'absolute',
-    top: 310 * (d_window.width/375) + (d_window.height === 812? 77:0),
-    height: 250 * (d_window.width/375),
+    top: 310 * (d_window.width/scale),
+    height: 250 * (d_window.width/scale),
     width: d_window.width,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   image:{
-    height: 250 * (d_window.width/375),
+    height: 250 * (d_window.width/scale),
     width: d_window.width,
     alignSelf: 'center',
   },
 
   button:{
     width: d_window.width/1.5,
-    height: 36 * (d_window.width/375),
+    height: 36 * (d_window.width/scale),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
@@ -600,7 +578,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText:{
-    fontSize: 15 * (d_window.width/375),
+    fontSize: 15 * (d_window.width/scale),
     color: 'white',
     fontWeight: '100',
     textAlign: 'center',
@@ -616,78 +594,53 @@ const debuggerStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275 * (d_window.width/375) + (d_window.height === 812? 75:0),
-    left: 15 * (d_window.width/375),
+    top: 235 * (d_window.width/scale),
+    left: 15 * (d_window.width/scale),
     backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
-    height: 30 * (d_window.width/375),
-    width: 30 * (d_window.width/375),
-    borderRadius: 15 * (d_window.width/375),
+    height: 30 * (d_window.width/scale),
+    width: 30 * (d_window.width/scale),
+    borderRadius: 15 * (d_window.width/scale),
   },
 
   lastTurnButton: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275 * (d_window.width/375) + (d_window.height === 812? 75:0),
-    left: 55 * (d_window.width/375),
+    top: 235 * (d_window.width/scale),
+    left: 55 * (d_window.width/scale),
     backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
-    height: 30 * (d_window.width/375),
-    width: 30 * (d_window.width/375),
-    borderRadius: 15 * (d_window.width/375),
+    height: 30 * (d_window.width/scale),
+    width: 30 * (d_window.width/scale),
+    borderRadius: 15 * (d_window.width/scale),
   },
 
   nextTurnButton: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 275 * (d_window.width/375) + (d_window.height === 812? 75:0),
-    left: 95 * (d_window.width/375),
+    top: 235 * (d_window.width/scale),
+    left: 95 * (d_window.width/scale),
     backgroundColor: ((mode === 'demo'||mode === 'tester2') ? 'white' : 'gray'),
-    height: 30 * (d_window.width/375),
-    width: 30 * (d_window.width/375),
-    borderRadius: 15 * (d_window.width/375),
+    height: 30 * (d_window.width/scale),
+    width: 30 * (d_window.width/scale),
+    borderRadius: 15 * (d_window.width/scale),
   },
 
   title:{
-    fontSize: 50 * (d_window.width/375),
+    fontSize: 50 * (d_window.width/scale),
     color: 'black',
     fontWeight: '100',
     textAlign: 'center',
-    marginTop: 30 * (d_window.width/375),
+    marginTop: 30 * (d_window.width/scale),
   },
 
   subtitle:{
-    fontSize: 20 * (d_window.width/375),
+    fontSize: 20 * (d_window.width/scale),
     color: 'black',
     fontWeight: '500',
     textAlign: 'center',
-    paddingTop: 20 * (d_window.width/375),
+    paddingTop: 20 * (d_window.width/scale),
   },
-});
-
-  //////////////////  
- //// Outdated ////
-//////////////////
-const outdatedStyles = StyleSheet.create({
-  // halfButton:{
-  //   width: d_window.width/1.5/2 - 5,
-  //   height: 36 * (d_window.width/375),
-  //   backgroundColor: 'gray',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   alignSelf: 'center',
-  // },
-
-  // halfButtonView:{
-  //   flex: 2,
-  //   flexDirection: 'row',
-  //   width: d_window.width/1.5,
-  //   height: 36 * (d_window.width/375),
-  //   backgroundColor: 'gray',
-  //   justifyContent: 'center',
-  //   alignSelf: 'center',
-  //   margin: 5 * (d_window.width/375),
-  // },
 });
 
 module.exports = AudioPage;

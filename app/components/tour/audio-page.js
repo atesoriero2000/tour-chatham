@@ -87,28 +87,37 @@ class AudioPage extends Component {
 
   startGeolocation(){
 
-    //requestTemporaryFullAccuracy
-
-    //WhenInUse in ready() then Always with setConfig()
-    // locationAuthorizationRequest
-    //upgradeToAlwaysAllow() {
-    // Simply update `locationAuthorizationRequest` to "Always" -- the SDK will cause iOS to immediately show the authorization upgrade dialog for "Change to Always Allow":
-    // BackgroundGeolocation.setConfig({ locationAuthorizationRequest: 'Always' });
-    // }
-    // try {
-    //   int status = await BackgroundGeolocation.requestPermission();
-    //   console.log('[requestPermission] success: ', status);
-    // } catch(status) {
-    //   console.warn('[requestPermission] FAILURE: ', status);
-    // }
-
-
-    //onLocation: give rapid and all location updates
-        //needs to be accompanied by getCurrPos or watch___
-    //watchPosition: interval desiredAccuracy, timeout 
+    //NOTE: requestTemporaryFullAccuracy
     //getCurrentPosition
     //all Returns https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html#sample
     
+    BackgroundGeolocation.logger.destroyLog();
+    BackgroundGeolocation.ready({
+      reset: true,
+      persistMode: false,
+      showsBackgroundLocationIndicator: true,
+      debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
+      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE, //VERBOSE, OFF
+      maxRecordsToPersist: 0,
+      locationAuthorizationRequest: 'WhenInUse',
+      
+      desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION,
+      stationaryRadius: 5, //meters but usually takes ~200m at default 25
+      distanceFilter: 1, ///meters, OR you can set locationUpdateInterval
+      // locationUpdateInterval: 1000, //ANDROID ONLY
+      // preventSuspend: true, //watchPosition already does this
+      isMoving: true, //ensures immediate location updates
+      disableElasticity: true, //Very Important, or else updates lessen with speed
+      elasticityMultiplier: 0, //0=redundant to disableElasticity
+      disableStopDetection: true, //TODO: disable accelerometer use and defaults to apples 15mins times
+      // stopTimeout: 5, //mins => default 5, disableStopDetection overrites this
+
+    }, (state) => { console.log("BackgroundGeolocation is configured and ready:   ", state.enabled);
+                    if (!state.enabled){
+                        BackgroundGeolocation.start();
+                        console.log("GEOLOCATION STARTED");
+                      } 
+    }, () => console.log("***** GEOLOCATION READY FAILED *****"));
 
     BackgroundGeolocation.onLocation(
       (location) => {
@@ -116,26 +125,18 @@ class AudioPage extends Component {
         this.setState({lastPos: location.coords});
         this.update();
       },  (error) => console.log("***** onLocation FAILED *****:    ", error));
-    BackgroundGeolocation.logger.destroyLog();
-    BackgroundGeolocation.ready({
-      reset: true,
-      desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_LOWEST,
-      stationaryRadius: 25,
-      //distanceFilter: 10,
-      locationUpdateInterval: 1000, //was 500
-      disableElasticity: true,
-      locationAuthorizationRequest: 'WhenInUse',
-      disableStopDetection: true, // Activity Recognition
-      debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
-      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE, //VERBOSE, OFF
-      logMaxDays: 1,
-    }, (state) => { console.log("BackgroundGeolocation is configured and ready:   ", state.enabled);
-                    if (!state.enabled){
-                        BackgroundGeolocation.start();
-                        console.log("GEOLOCATION STARTED");
-                      } 
-                      // BackgroundGeolocation.changePace(true); //TODO: OLD What does this do
-    }, () => console.log("***** GEOLOCATION READY FAILED *****"));
+
+    BackgroundGeolocation.setConfig({ locationAuthorizationRequest: 'Always' });
+    BackgroundGeolocation.requestPermission(); // NOTE: might need await NOT NEEDED
+    BackgroundGeolocation.requestTemporaryFullAccuracy("Driving").then( 
+      (accuracyAuthorization) => console.log('[requestTemporaryFullAccuracy] STATUS:', accuracyAuthorization) 
+      ).catch( (error) => console.warn("[requestTemporaryFullAccuracy] FAILED TO SHOW DIALOG: ", error) );
+    BackgroundGeolocation.watchPosition(
+      (location) => console.log("[watchPosition] success: ", location),
+      (error) => console.log("***** watchPosition FAILED *****:    ", error), {
+        interval: 1000, //in ms 
+        desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION, timeout: 60000 });
+    BackgroundGeolocation.changePace(true); //IMPORTANT!! Instantly starts sending location updates
   }
 
 
@@ -150,8 +151,10 @@ class AudioPage extends Component {
       /*------------------------*/
       // if its the last stage and we've played the atAudio and it is finished playing
       // removed this is already caught with clickable state && !this.state.audioIsPlaying){
-      if(Turns.stage === 14 && doneAtAudio) this.showEndScreen();
-
+      if(Turns.stage === 14 && doneAtAudio){
+        this.showEndScreen();
+        return; //Needed to stop tour
+      }
       /*------------------*/
       /* ! Play atAudio ! */
       /*------------------*/
@@ -169,6 +172,7 @@ class AudioPage extends Component {
       /* ! Handle Next Marker ! */
       /*------------------------*/
       }else{ // has done at location audio or doesnt have any
+        BackgroundGeolocation.changePace(true); //IMPORTANT!! Instantly starts sending location updates
         Turns.turn = 0;
         Turns.stage++;
         doneAtAudio = false;
@@ -262,7 +266,8 @@ class AudioPage extends Component {
 ///////////////////////////
   showEndScreen(){
     //Kill location services for unessecary tracking (reduntant to componentWillUnmount())
-    BackgroundGeolocation.stopWatchPosition(); //TODO: check if nessecary
+    BackgroundGeolocation.stopWatchPosition(); //VERY nessecary
+    BackgroundGeolocation.removeAllListeners();
     BackgroundGeolocation.stop();
 
     this.setState({
@@ -298,8 +303,8 @@ class AudioPage extends Component {
     Sound.setActive(false);
     doneAtAudio = false;
     // isNearLastTurn = true;
+    BackgroundGeolocation.stopWatchPosition(); // VERY nessecary
     BackgroundGeolocation.removeListeners();
-    BackgroundGeolocation.stopWatchPosition(); //TODO: check if nessecary
     BackgroundGeolocation.stop();
     deactivateKeepAwake();
   }

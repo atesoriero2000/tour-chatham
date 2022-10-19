@@ -37,14 +37,21 @@
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
+				<true/>
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This needs to be enabled so you can use Apple Maps without interrupting the tour </string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>Driving</key>
+		<string>To ensure highest quality for your tour</string>
+	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app tracks location to continuously navigate through roadways to historic sites</string>
+	<string>This app tracks location to reliably navigate you through historic sites and roadways</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Accelerometer use increases battery efficiency by intelligently toggling location-tracking</string>
+	<string>Uses accelerometer to increase battery efficiency by intelligently toggling location-tracking</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>
@@ -53,7 +60,6 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
-		<string>fetch</string>
 		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

@@ -14,10 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-scout_project-scout_projectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-scout_project-scout_projectTests.a */; };
 		DEB9A14EDC0AE0D748F88D35 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3249C2FC42585C536B2E4B /* ExpoModulesProvider.swift */; };
-		E0D0878E4D06401FE26AAAAC /* libPods-scout_project.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F592396728FD033C00840D5F /* libPods-scout_project.a */; };
 		F592392728FCDDB900840D5F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F592392628FCDDB900840D5F /* LaunchScreen.xib */; };
-		F592396A28FD035300840D5F /* hermes.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F592396928FD035300840D5F /* hermes.xcframework */; };
-		F592396C28FD035900840D5F /* libReact-hermes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F592396B28FD035900840D5F /* libReact-hermes.a */; };
 		F5A24C3528FDD52E00557D10 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5A24C1D28FDCD8500557D10 /* Ionicons.ttf */; };
 		F5A24C3728FDE80400557D10 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5A24C3628FDE80400557D10 /* EvilIcons.ttf */; };
 		F5A24D6B28FECB8300557D10 /* page_17_owen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5A24D5228FECB8300557D10 /* page_17_owen.mp3 */; };
@@ -123,10 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F592396C28FD035900840D5F /* libReact-hermes.a in Frameworks */,
-				F592396A28FD035300840D5F /* hermes.xcframework in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-scout_project.a in Frameworks */,
-				E0D0878E4D06401FE26AAAAC /* libPods-scout_project.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,7 +651,7 @@
 				INFOPLIST_FILE = scout_project/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tour Chatham Township";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -689,7 +683,7 @@
 				INFOPLIST_FILE = scout_project/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tour Chatham Township";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,7 +735,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -813,7 +807,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

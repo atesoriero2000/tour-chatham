@@ -41,6 +41,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app tracks location to reliably navigate you through historic sites and roadways</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This needs to be enabled so you can use Apple Maps without interrupting the tour </string>
 	<key>NSLocationTemporaryUsageDescriptionDictionary</key>

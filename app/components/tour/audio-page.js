@@ -254,9 +254,9 @@ class AudioPage extends Component {
   triggerAudio(audioFile, shouldUpdate){
     audioFile.play(() => {
       this.setState({ audioIsPlaying: false });
-      if(shouldUpdate) this.update(); else Sound.setActive(false); //finished callback
+      if(shouldUpdate) this.update(); else Sound.setActive(false); //TODO: i dont think this is right (finished callback)
     });
-    audioFile.setVolume(1); //TODO: Not ideal
+    // audioFile.setVolume(1); //TODO: ADD FOR FINAL
     this.setState({ audioFile, audioIsPlaying: true, clickable: false }); // clickable set so button immediatly changes
   }
 
@@ -295,7 +295,7 @@ class AudioPage extends Component {
     //TODO: Figure out better functionality
     Alert.alert( 'Direction Back to Start', '\nThese next directions take approx 9 minutes to travel and 4.5 miles\n\n Line2 \n\n Line3 \n\n Would you like to go?',
       [{ text: 'Close', style: 'default' },
-       { text: 'Go', onPress: () => { this.linkUrl("http://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
+       { text: 'Go', onPress: () => { this.linkUrl("http://maps.apple.com/?daddr=Chatham%20Township%20Historical%20Society,+Chatham,+NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
   }
 
   componentWillUnmount(){
@@ -507,7 +507,7 @@ class AudioPage extends Component {
 
   DEBUG_toggleIsNearOverride(){
     this.setState({ isNearOverride: !this.state.isNearOverride });
-    this.update();
+    // this.update(); //this breaks the end tour page
   }
 }
 

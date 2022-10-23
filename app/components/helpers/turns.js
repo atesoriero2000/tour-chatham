@@ -431,8 +431,12 @@ const loc14 = [
 ];
 
 
-var Sound = require('react-native-sound');
-
+/*------------------*/
+/* ! Load At Pics ! */
+/*------------------*/
+// These are the pretty pics of each marker location
+// Comes in OG size and square
+// Used in start.js and audio-tour.js
 const atPic0 = require('../../images/atPics/at0.jpg');
 const atPic1 = require('../../images/atPics/at1.jpg');
 const atPic1_2 = require('../../images/atPics/at1_2.jpg');
@@ -459,6 +463,8 @@ const atPic14 = require('../../images/atPics/at14.jpg');
 const atPic14_2 = require('../../images/atPics/at14_2.jpg');
 const atPic14_3 = require('../../images/atPics/at14_3.jpg');
 
+// Square atPics 
+// Used in selection-page.js and passed to info-page.js
 const sAtPic0 = require('../../images/atPics/s_at0.jpg');
 const sAtPic1 = require('../../images/atPics/s_at1.jpg');
 const sAtPic1_2 = require('../../images/atPics/s_at1_2.jpg');
@@ -485,46 +491,85 @@ const sAtPic14 = require('../../images/atPics/s_at14.jpg');
 const sAtPic14_2 = require('../../images/atPics/s_at14_2.jpg');
 const sAtPic14_3 = require('../../images/atPics/s_at14_3.jpg');
 
-var to1 = new Sound('page_3.4_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to2 = new Sound('page_6_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to3 = new Sound('page_7_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to4 = new Sound('page_9_kimberly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to5 = new Sound('page_11_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to6 = new Sound('page_13_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to7 = new Sound('page_15_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to8 = new Sound('page_17_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to9 = new Sound('page_18_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to10 = new Sound('page_20_kimberly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to11 = new Sound('page_21_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to12 = new Sound('page_22_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to13 = new Sound('page_24_cat.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var to14 = new Sound('page_25_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
 
+/*----------------*/
+/* ! Load Audio ! */
+/*----------------*/
+var to1 = loadSound('page_3.4_lilly.mp3');
+var to2 = loadSound('page_6_eitan.mp3');
+var to3 = loadSound('page_7_tony.mp3');
+var to4 = loadSound('page_9_kimberly.mp3');
+var to5 = loadSound('page_11_owen.mp3');
+var to6 = loadSound('page_13_tony.mp3');
+var to7 = loadSound('page_15_eitan.mp3');
+var to8 = loadSound('page_17_owen.mp3');
+var to9 = loadSound('page_18_eitan.mp3');
+var to10 = loadSound('page_20_kimberly.mp3');
+var to11 = loadSound('page_21_mikey.mp3');
+var to12 = loadSound('page_22_lilly.mp3');
+var to13 = loadSound('page_24_cat.mp3');
+var to14 = loadSound('page_25_mikey.mp3');
 
-var at0 = new Sound('page_2_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var at1 = new Sound('page_5_cat.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
+var at0 = loadSound('page_2_eitan.mp3');
+var at1 = loadSound('page_5_cat.mp3');
+// var at2 = loadSound('NULL');
+var at3 = loadSound('page_8_owen.mp3');
+var at4 = loadSound('page_10_grace.mp3');
+var at5 = loadSound('page_12_mikey.mp3');
+var at6 = loadSound('page_14_lilly.mp3');
+var at7 = loadSound('page_16_cat.mp3');
+// var at8 = loadSound('NULL');
+var at9 = loadSound('page_19_owen.mp3');
+// var at10 = loadSound('NULL');
+// var at11 = loadSound('NULL');
+var at12 = loadSound('page_23_jacob.mp3');
+// var at13 = loadSound('NULL');
+var at14 = loadSound('page_26_eitan.mp3');
 
-var at3 = new Sound('page_8_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var at4 = new Sound('page_10_grace.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var at5 = new Sound('page_12_mikey.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var at6 = new Sound('page_14_lilly.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-var at7 = new Sound('page_16_cat.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-
-var at9 = new Sound('page_19_owen.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-
-
-var at12 = new Sound('page_23_jacob.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-
-var at14 = new Sound('page_26_eitan.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-
-
-function audioLoadError(error){
-  if (error) {
-    console.log('\n\n\n\n\nFAILED TO LOAD SOUND\n\n' + error);
-  }else{
-    console.log('\nAUDIO LOAD SUCCESS');
-  }
+function loadSound(file){
+  var Sound = require('react-native-sound');
+  return new Sound(file, Sound.MAIN_BUNDLE, 
+    (error) => {
+      if (error) console.log('FAILED TO LOAD SOUND' + error);
+      else console.log('AUDIO LOAD SUCCESS');
+    }
+  )
 }
+
+
+// No atAudio:  2, 8, 10, 11, 13
+// 2 atPics:    1, 6, 7, 11, 13
+// 3 atPics:    14
+// 4 atPics:    12 
+// No toAudio:  0
+
+// Used in audio-page.js, selection-page.js, start.js
+// TLDR: CANNOT Subdivide per page
+  // !loc:           audio-page.js
+  // !title:         selection-page.js, audio-page.js
+  // !address:       selection-page.js
+  // !toAudio:       audio-page.js
+  // !atAudio:       audio-page.js
+  // !atPics:        start.js, audio-page.js  (start does swiper of all images, audio-page does swiper if multilple pics availible)
+  // !squareAtPics:  selection-page.js (info-page.js does swiper if multiple pics availible)
+
+const Locations = [
+  { turns: loc0, title: 'The Mount Vernon Schoolhouse', address: '24 Southern Blvd, Chatham Township', time: 90, toAudio: null, atAudio: at0, atPic: [atPic0], squareAtPic: [sAtPic0] },
+  { turns: loc1, title: 'The Johnson House Marker', address: '805 Fairmount Ave, Chatham Township', time: 80, toAudio: to1, atAudio: at1, atPic: [atPic1, atPic1_2], squareAtPic: [sAtPic1, sAtPic1_2] },
+  { turns: loc2, title: 'The Isaac Clark Farmstead Marker', address: '788 River Road, Chatham Township', time: 75, toAudio: to2, atAudio: null, atPic: [atPic2], squareAtPic: [sAtPic2] },
+  { turns: loc3, title: 'The Bey’s Boxing Camp Marker', address: '516 River Road, Chatham Township', time: 70, toAudio: to3, atAudio: at3, atPic: [atPic3], squareAtPic: [sAtPic3] },
+  { turns: loc4, title: 'The Price-Baldwin House Marker', address: '48 Southern Blvd, Chatham Township', time: 60, toAudio: to4, atAudio: at4, atPic: [atPic4], squareAtPic: [sAtPic4] },
+  { turns: loc5, title: 'The Chatham Colony Association', address: '25 Spring Street, Chatham Township', time: 55, toAudio: to5, atAudio: at5, atPic: [atPic5], squareAtPic: [sAtPic5] },
+  { turns: loc6, title: 'The Lewis Noe Farmstead Marker', address: '184 Southern Blvd, Chatham Township', time: 50, toAudio: to6, atAudio: at6, atPic: [atPic6, atPic6_2], squareAtPic: [sAtPic6, sAtPic6_2] },
+  { turns: loc7, title: 'The Noe Pond Marker', address: '395 Southern Blvd, Chatham Township', time: 40, toAudio: to7, atAudio: at7, atPic: [atPic7, atPic7_2], squareAtPic: [sAtPic7, sAtPic7_2] },
+  { turns: loc8, title: 'The Greenhouse Industry Marker', address: '405 Southern Blvd, Chatham Township', time: 35, toAudio: to8, atAudio: null, atPic: [atPic8], squareAtPic: [sAtPic8] },
+  { turns: loc9, title: 'The Elias Boudinot House Marker', address: '461 Green Village Road, Green Village', time: 30, toAudio: to9, atAudio: at9, atPic: [atPic9], squareAtPic: [sAtPic9] },
+  { turns: loc10, title: 'The Cockrem Farm Marker', address: '486 Green Village Road, Green Village', time: 25, toAudio: to10, atAudio: null, atPic: [atPic10], squareAtPic: [sAtPic10] },
+  { turns: loc11, title: 'The Green Village Marker', address: '536 Green Village Road, Green Village', time: 20, toAudio: to11, atAudio: null, atPic: [atPic11, atPic11_2], squareAtPic: [sAtPic11, sAtPic11_2] },
+  { turns: loc12, title: 'The Gibbons Horse Barn Marker', address: '336 Loantaka Way, Madison', time: 15, toAudio: to12, atAudio: at12, atPic: [atPic12, atPic12_2, atPic12_3, atPic12_4], squareAtPic: [sAtPic12, sAtPic12_2, sAtPic12_3, sAtPic12_4] },
+  { turns: loc13, title: 'The Loantaka School Marker', address: '245 Loantaka Way, Madison', time: 10, toAudio: to13, atAudio: null, atPic: [atPic13, atPic13_2], squareAtPic: [sAtPic13, sAtPic13_2] },
+  { turns: loc14, title: 'The Boisaubin House Marker', address: '65 Treadwell Ave, Madison', time: 5, toAudio: to14, atAudio: at14, atPic: [atPic14, atPic14_2], squareAtPic: [sAtPic14, sAtPic14_2] },
+];
 
 // Turns Object
 // L--> Stages Array, endAudio, stage and turn counter
@@ -532,32 +577,15 @@ function audioLoadError(error){
 //                 L-> Location Array, title, address, timeout, toAudio, atAudio, atPic, squareAtPic,
 //                        L-> N# of individual Turn Objects
 //                               L-> direction, picture, logituted, latitude, radius
-class Turns {
 
-  static stages = [
 
-    {loc: loc0, title: 'The Mount Vernon Schoolhouse', address: '24 Southern Blvd, Chatham Township', time: 90, atAudio: at0, atPic: atPic0, squareAtPic: sAtPic0},
-    {loc: loc1, title: 'The Johnson House Marker', address: '805 Fairmount Ave, Chatham Township', time: 80, toAudio: to1, atAudio: at1, atPic: [atPic1, atPic1_2], squareAtPic: [sAtPic1, sAtPic1_2]},
-    {loc: loc2, title: 'The Isaac Clark Farmstead Marker', address: '788 River Road, Chatham Township', time: 75, toAudio: to2, atAudio: null, atPic: atPic2, squareAtPic: sAtPic2},
-    {loc: loc3, title: 'The Bey’s Boxing Camp Marker', address: '516 River Road, Chatham Township', time: 70, toAudio: to3, atAudio: at3, atPic: atPic3, squareAtPic: sAtPic3},
-    {loc: loc4, title: 'The Price-Baldwin House Marker', address: '48 Southern Blvd, Chatham Township', time: 60, toAudio: to4, atAudio: at4, atPic: atPic4, squareAtPic: sAtPic4},
-    {loc: loc5, title: 'The Chatham Colony Association', address: '25 Spring Street, Chatham Township', time: 55, toAudio: to5, atAudio: at5, atPic: atPic5, squareAtPic: sAtPic5},
-    {loc: loc6, title: 'The Lewis Noe Farmstead Marker', address: '184 Southern Blvd, Chatham Township', time: 50, toAudio: to6, atAudio: at6, atPic: [atPic6, atPic6_2], squareAtPic: [sAtPic6, sAtPic6_2]},
-    {loc: loc7, title: 'The Noe Pond Marker', address: '395 Southern Blvd, Chatham Township', time: 40, toAudio: to7, atAudio: at7, atPic: [atPic7, atPic7_2], squareAtPic: [sAtPic7, sAtPic7_2]},
-    {loc: loc8, title: 'The Greenhouse Industry Marker', address: '405 Southern Blvd, Chatham Township', time: 35, toAudio: to8, atAudio: null, atPic: atPic8, squareAtPic: sAtPic8},
-    {loc: loc9, title: 'The Elias Boudinot House Marker', address: '461 Green Village Road, Green Village', time: 30, toAudio: to9, atAudio: at9, atPic: atPic9, squareAtPic: sAtPic9},
-    {loc: loc10, title: 'The Cockrem Farm Marker', address: '486 Green Village Road, Green Village', time: 25, toAudio: to10, atAudio: null, atPic: atPic10, squareAtPic: sAtPic10},
-    {loc: loc11, title: 'The Green Village Marker', address: '536 Green Village Road, Green Village', time: 20, toAudio: to11, atAudio: null, atPic: [atPic11, atPic11_2], squareAtPic: [sAtPic11, sAtPic11_2]},
-    {loc: loc12, title: 'The Gibbons Horse Barn Marker', address: '336 Loantaka Way, Madison', time: 15, toAudio: to12, atAudio: at12, atPic: [atPic12, atPic12_2, atPic12_3, atPic12_4], squareAtPic: [sAtPic12, sAtPic12_2, sAtPic12_3, sAtPic12_4]},
-    {loc: loc13, title: 'The Loantaka School Marker', address: '245 Loantaka Way, Madison', time: 10, toAudio: to13, atAudio: null, atPic: [atPic13, atPic13_2], squareAtPic: [sAtPic13, sAtPic13_2]},
-    {loc: loc14, title: 'The Boisaubin House Marker', address: '65 Treadwell Ave, Madison', time: 5, toAudio: to14, atAudio: at14, atPic: [atPic14, atPic14_2], squareAtPic: [sAtPic14, sAtPic14_2]},
+//TODOOOOO:
+// class Turns {
+//   static stages = stages;
+//   static endAudio = loadSound('page_27_tony.mp3');
+//   static stage = 0;
+//   static turn = 0;
+// }
 
-  ];
-
-  static endAudio = new Sound('page_27_tony.mp3', Sound.MAIN_BUNDLE, (error) => audioLoadError(error));
-
-  static stage = 0;
-  static turn = 0;
-
-}
-module.exports = Turns;
+//export default ?? 
+module.exports = Locations;

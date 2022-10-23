@@ -20,7 +20,7 @@ class Tour extends Component {
 
   render() {
       return (
-      <Stack.Navigator sceneContainerStyle={{backgroundColor: "white"}} screenOptions={{}}>
+      <Stack.Navigator sceneContainerStyle={{backgroundColor: ""}} screenOptions={{}}>
         <Stack.Screen name='Start the Tour!' component={Start} />
         <Stack.Screen name='Select a Start Point' component={SelectionPage} />
         <Stack.Screen name='Drive to Start Point' component={InfoPage} />

@@ -507,7 +507,7 @@ class Swiper extends Component{
 
     if (this.props.loop ||
       this.state.index !== this.state.total - 1) {
-      button = this.props.nextButton || <Text style={styles.buttonText} allowFontScaling = {false}>›</Text>
+      button = this.props.nextButton || <Text style={styles.buttonText}>›</Text>
     }
 
     return (
@@ -523,7 +523,7 @@ class Swiper extends Component{
     let button = null
 
     if (this.props.loop || this.state.index !== 0) {
-      button = this.props.prevButton || <Text style={styles.buttonText} allowFontScaling = {false}>‹</Text>
+      button = this.props.prevButton || <Text style={styles.buttonText}>‹</Text>
     }
 
     return (

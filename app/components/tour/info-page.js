@@ -23,10 +23,7 @@ class InfoPage extends Component{
   constructor(props){
     super(props);
     this.state = {
-      stage: props.route.params.stage,
-      title: props.route.params.title,
-      pic: props.route.params.pic,
-      address: props.route.params.address,
+      loc: props.route.params.loc,
       url: null,
     }
   }
@@ -35,15 +32,14 @@ class InfoPage extends Component{
     this.props.navigation.navigate('Tour', {
       screen: 'Audio Tour',
       params: {
-        stage: this.state.stage,
+        stage: this.props.route.params.stage,
       }
     })
   }
   
   onPress(){
     Alert.alert('SAFETY', '\n1) You must have a passenger to follow and read the directions as the come up on the phone screen.\n\n 2) If you miss a turn, safely navigate through adjacent roads, and proceed back to the instructed route.\n\n 3) Some locations have limited parking. Please be cautious of your surroundings, and pay attention to the specified parking directions.\n\n 4) Some markers are on private property. Be courteous to others, and be mindful of trespassing.\n\n 5) Drive safely. The developer, the Chatham Township Historical Society, and contributors to the app hold no liability for any incidents that may occur while using this app.'
-    ,[
-      { text: 'Ok, I Understand', onPress: () => this.navToAudio()},
+    ,[{ text: 'Ok, I Understand', onPress: () => this.navToAudio()},
     ]);
   }
 
@@ -56,7 +52,7 @@ class InfoPage extends Component{
 
   componentDidMount(){
     let linkStart = "http://maps.apple.com/?daddr=";
-    let address = this.state.address.replace(/\s/g, "+");
+    let address = this.state.loc.address.replace(/\s/g, "+");
     let linkEnd = ",NJ&dirflg=d&t=m";
     this.setState({url: linkStart + address + linkEnd});
   }
@@ -65,22 +61,22 @@ class InfoPage extends Component{
     return(
       <View style = {styles.container}>
 
-        <Text allowFontScaling = {false} style = {styles.text}>{this.state.title}</Text>
+        <Text style = {styles.text}>{this.state.loc.title}</Text>
 
         <View style = {{
           // NOTE: Add padding to view not text or onPress position will be ghosting
           paddingHorizontal: 20 * (d_window.width/375),
           paddingTop: 25 * Math.pow((d_window.height/667), 2),
         }}>
-          <Text allowFontScaling = {false} style = {styles.subtext}>
-            <Text allowFontScaling = {false} > Please navigate to</Text>
-            <Text allowFontScaling = {false} style = {styles.text_bold} onPress={() => this.linkUrl(this.state.url)}> {this.state.address} </Text>
-            <Text allowFontScaling = {false} >then click the button below to start the tour.</Text>
+          <Text style = {styles.subtext}>
+            <Text > Please navigate to</Text>
+            <Text style = {styles.text_bold} onPress={() => this.linkUrl(this.state.url)}> {this.state.loc.address} </Text>
+            <Text >then click the button below to start the tour.</Text>
           </Text>
         </View>
 
 
-        {Array.isArray(this.state.pic)?
+        {this.state.loc.squareAtPic.length>1?
 
           <Swiper
             showsButtons = {false}
@@ -90,15 +86,15 @@ class InfoPage extends Component{
             autoplay={true}
             autoplayTimeout={2.5}
             >
-              {this.state.pic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
+              {this.state.loc.squareAtPic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
 
           </Swiper>:
-          <Image style = {styles.image} source = {this.state.pic}/>
+          <Image style = {styles.image} source = {this.state.loc.squareAtPic[0]}/>
         }
 
 
         <TouchableOpacity style = {styles.button} onPress = {() => this.onPress()}>
-          <Text allowFontScaling = {false} style={styles.buttonText}> Click To Start Tour! </Text>
+          <Text style={styles.buttonText}> Click To Start Tour! </Text>
         </TouchableOpacity>
 
       </View>

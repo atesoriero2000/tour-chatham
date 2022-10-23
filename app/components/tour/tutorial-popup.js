@@ -31,7 +31,7 @@ class TutorialPopup extends Component {
                             <View style={styles.imageBox}>
                                 <Image source={require('../../images/tutorial1.jpg')} style={styles.image} />
                             </View>
-                            <Text allowFontScaling = {false} style = {styles.text}>
+                            <Text style = {styles.text}>
                                 Directions will appear on the screen instructing you exactly
                                 what to do and what turns to make. The bottom of the screen
                                 will indicate the distance until the next turn.
@@ -43,7 +43,7 @@ class TutorialPopup extends Component {
                             <View style={styles.imageBox}>
                                 <Image source={require('../../images/tutorial2.jpg')} style={styles.image} />
                             </View>
-                            <Text allowFontScaling = {false} style = {styles.text}>
+                            <Text style = {styles.text}>
                                 On the next page you will pick your starting location.
                                 You will only visit the locations listed after
                                 (any locations listed before the selected location will not be toured).
@@ -51,7 +51,7 @@ class TutorialPopup extends Component {
                             <TouchableHighlight style = {styles.button}
                                 onPress = {() => this.props.navToSelection()}
                                 underlayColor = '#BBBBBB'>
-                                <Text allowFontScaling = {false} style = {styles.buttonText}>Click to Continue</Text>
+                                <Text style = {styles.buttonText}>Click to Continue</Text>
                             </TouchableHighlight>
                         </View>
 
@@ -60,7 +60,7 @@ class TutorialPopup extends Component {
 
                 {/* Header (absolute Positioning) */}
                 <View style={styles.container}>
-                    <Text allowFontScaling = {false} style={styles.title}>Tutorial</Text>
+                    <Text style={styles.title}>Tutorial</Text>
                     <Icon name={'close'} size={40 * (d_window.width/375)} color={'#157EFB'} style={styles.exitButton}
                         onPress={() => this.props.closePopup()} />
                 </View>

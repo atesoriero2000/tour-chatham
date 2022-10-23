@@ -16,7 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const d_window = Dimensions.get('window');
 
 var Swiper = require('../helpers/Swiper');
-var Turns = require('../helpers/turns');
+var Locations = require('../helpers/turns');
 var TutorialPopup = require('./tutorial-popup')
 
 class Start extends Component {
@@ -44,24 +44,24 @@ class Start extends Component {
     return (
       <SafeAreaView style = {styles.container}>
         <View style = {styles.overviewContainer}>
-          <Text allowFontScaling = {false} style = {styles.overviewText1}>
+          <Text style = {styles.overviewText1}>
             Explore Chatham Township, Madison, and Green Village
             as you drive to different marked historical sites while
             listening to the history behind them!
           </Text>
-          <Text allowFontScaling = {false} style={styles.clickable} onPress = {() =>
+          <Text style={styles.clickable} onPress = {() =>
             this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
             Click here for more info!</Text>
 
           <Swiper showsButtons = {false} loop = {true} autoplay={true} autoplayTimeout={2.5} 
             height={240 * (d_window.width/375)} 
             width={d_window.width}>
-            {[].concat.apply([], Turns.stages.map(pic => pic.atPic)).map( (pic1) => {
+            {[].concat.apply([], Locations.map(pic => pic.atPic)).map( (pic1) => {
                 return( <Image style={styles.image} source={pic1} key={Math.random()}/> )})
             }
           </Swiper>
 
-          <Text allowFontScaling = {false} style = {styles.overviewText2}>
+          <Text style = {styles.overviewText2}>
             It will take approximately 1.5 hours to complete the whole
             tour, but you may stop at any marker and pick up where you
             left off. You will need a passenger to follow the directions
@@ -71,7 +71,7 @@ class Start extends Component {
           <TouchableHighlight style = {styles.button}
             onPress = {() => this.setState({tutorialVisible: true})}
             underlayColor = '#BBBBBB'>
-              <Text allowFontScaling = {false} style = {styles.buttonText}>
+              <Text style = {styles.buttonText}>
                 Click to Continue
               </Text>
           </TouchableHighlight>

@@ -21,7 +21,7 @@ var scale = 450;
 var scaleH = 800;
 
 var Swiper = require('../helpers/Swiper');
-var Turns = require('../helpers/turns');
+var Locations = require('../helpers/turns');
 
 //TODO: Use better conditional formatting
 const d_window = Dimensions.get('window');
@@ -77,8 +77,6 @@ class AudioPage extends Component {
     //####### set turns and stage to passed value in props ############
     Turns.stage = this.props.route.params.stage;
     Turns.turn = Turns.stages[Turns.stage].loc.length-1; //Grab last turn (atAudio)
-    // Turns.stage = 4;
-    // Turns.turn = 3;
     this.buttonPressed();
     // this.update();
 
@@ -320,16 +318,16 @@ class AudioPage extends Component {
         <View style = {styles.container}>
         { /* TODO: add condition for debug mode*/ }
           <View style = {styles.titleBox}>
-            <Text allowFontScaling = {false} style = {styles.title}>{this.state.title}</Text>
+            <Text style = {styles.title}>{this.state.title}</Text>
           </View>
 
           <View style = {styles.line}/>
 
           <View style = {styles.directionBox}>
-            <Text allowFontScaling = {false} style = {styles.directions}>{this.state.directions}</Text>
+            <Text style = {styles.directions}>{this.state.directions}</Text>
           </View>
 
-          <Text allowFontScaling = {false} style = {styles.dist}>
+          <Text style = {styles.dist}>
             {doneAtAudio?'':('In: ' + ( (Turns.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
           </Text>
 
@@ -368,81 +366,10 @@ class AudioPage extends Component {
           }}
           underlayColor = '#BBBBBB'
           onPress = {() => this.buttonPressed()}>
-            <Text allowFontScaling = {false} style={styles.buttonText}>Click to Continue</Text>
+            <Text style={styles.buttonText}>Click to Continue</Text>
           </TouchableHighlight>
 
-          {(mode === 'debug'||mode === 'demo'||mode === 'tester1'||mode === 'tester2') &&
-            <TouchableOpacity style = {[debuggerStyles.button, {left: 15}]} onPress={() => this.DEBUG_stopAudio()}>
-              <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'X'}</Text>
-            </TouchableOpacity>
-          }
-          {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
-            <TouchableOpacity style = {[debuggerStyles.button, {left: 45}]} onPress={() => this.DEBUG_lastTurn()}>
-              <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'<'}</Text>
-            </TouchableOpacity>
-          }
-          {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
-            <TouchableOpacity style = {[debuggerStyles.button, {left: 75}]} onPress={() => this.DEBUG_nextTurn()}>
-              <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'>'}</Text>
-            </TouchableOpacity>
-          }
-          {(mode === 'debug'||mode === 'demo'||mode === 'tester2') &&
-            <TouchableOpacity style = {[debuggerStyles.button, {left: 105, backgroundColor: this.state.isNearOverride?'tomato':'gray'}]} onPress={() => this.DEBUG_toggleIsNearOverride()}>
-              <Text allowFontScaling = {false} style={{color: 'whitesmoke'}}>{'@'}</Text>
-            </TouchableOpacity>
-          }
 
-          {/* {(mode === 'debug') && <Text allowFontScaling = {false} style={{position: 'absolute', top: 285, left: 285}}>{Turns.stage},{Turns.turn}</Text>}
-          {(mode === 'debug') && <Text allowFontScaling = {false} style={{
-            position: 'absolute',
-            top: 262 + 50,
-            left: 220
-          }}> distToNext: {JSON.stringify(Math.round(this.state.distToNext))} FT</Text>}
-          {(mode === 'debug') && <Text allowFontScaling = {false} style={{
-            position: 'absolute',
-            top: 262 + 77,
-            left: 220
-          }}> nextRadius: {JSON.stringify(this.state.nextRadius)} </Text>}
-          {(mode === 'debug') && <Text allowFontScaling = {false} style={{
-            position: 'absolute',
-            top: 262 + 104,
-            left: 220
-          }}> isNear: {JSON.stringify(this.state.isNear)} </Text>} */}
-
-          {true &&
-            <View style={{alignItems: 'center', justifyContent: 'center', width: d_window.width, zIndex: 1, paddingTop: 285}}>
-              <Text allowFontScaling = {false} style = {debuggerStyles.title}>
-                DEBUGGER
-              </Text><Text/>
-
-              <Text> Stage/Turn:   {Turns.stage},{Turns.turn}</Text>
-
-              <Text allowFontScaling = {false} style = {debuggerStyles.subtitle}>
-                CURRENT TARGET
-              </Text>
-              <Text> Longitude: {this.state.currentTargetPos.longitude}</Text>
-              <Text> Latitude: {this.state.currentTargetPos.latitude}</Text>
-              <Text> distToCurrent: {JSON.stringify(Math.round(this.state.distToCurrent))} FT</Text>
-
-              <Text allowFontScaling = {false} style = {debuggerStyles.subtitle}>
-                NEXT TARGET
-              </Text>
-              <Text> Longitude: {this.state.nextTargetPos.longitude}</Text>
-              <Text> Latitude: {this.state.nextTargetPos.latitude}</Text>
-              <Text/>
-              <Text> distToNext: {JSON.stringify(Math.round(this.state.distToNext))} FT</Text>
-              <Text> nextRadius: {JSON.stringify(Math.round(this.state.nextRadius))} FT</Text>
-              <Text> isNear: {JSON.stringify(this.state.isNear)} </Text>
-
-              <Text allowFontScaling = {false} style = {debuggerStyles.subtitle}>
-                LAST
-              </Text>
-              <Text> Longitude: {this.state.lastPos.longitude}</Text>
-              <Text> Latitude: {this.state.lastPos.latitude}</Text>
-              <Text> Accuracy: {JSON.stringify(Math.round(this.state.lastPos.accuracy))} FT</Text>
-              <Text/>
-            </View>
-          }
         </View>
       </ScrollView>
     );

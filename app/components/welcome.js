@@ -14,6 +14,8 @@ import {
 
 import BackgroundGeolocation from "react-native-background-geolocation";
 
+import styles from './helpers/shared_styles';
+
 const d_window = Dimensions.get('window');
 
 class Welcome extends Component {
@@ -31,26 +33,26 @@ class Welcome extends Component {
   render() {
     return (
 
-      <View style = {styles.container}>
+      <View style={styles.container}>
 
-        <Text allowFontScaling = {false} style = {styles.text}>
+        <Text style={styles.text}>
           Chatham Township Historical Society Driving Tour
         </Text>
 
-        <Image style = {styles.border} source = {require('../images/logo_border.png')}  />
-        <Image style = {styles.logo} source = {require('../images/chs_logo.png')}  />
+        <Image style={styles.border} source={require('../images/logo_border.png')} />
+        <Image style={styles.logo} source={require('../images/chs_logo.png')} />
 
         {/* <View style={styles.halfButtonView}>
           <TouchableHighlight style = {styles.halfButton}
             onPress = {() => this.toNews()}
             underlayColor = '#BBBBBB'>
-            <Text allowFontScaling = {false} style = {styles.buttonText}> News </Text>
+            <Text style = {styles.buttonText}> News </Text>
           </TouchableHighlight>
 
           <TouchableHighlight style = {styles.halfButton}
             onPress = {() => this.props.toTour()}
             underlayColor = '#BBBBBB'>
-            <Text allowFontScaling = {false} style = {styles.buttonText}> Tour -> </Text>
+            <Text style = {styles.buttonText}> Tour -> </Text>
           </TouchableHighlight>
 
         </View> */}
@@ -58,7 +60,7 @@ class Welcome extends Component {
         <TouchableHighlight style = {styles.button}
           onPress = {() => this.toNews()}
           underlayColor = '#BBBBBB'>
-          <Text allowFontScaling = {false} style = {styles.buttonText}> Upcoming Events </Text>
+          <Text style = {styles.buttonText}> Upcoming Events </Text>
         </TouchableHighlight>
 
       </View>
@@ -87,70 +89,5 @@ class Welcome extends Component {
 
 }
 
-const styles = StyleSheet.create({
-
-  container:{
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  text:{
-    paddingHorizontal: 25 * (d_window.width/375),
-    paddingTop: 25 * Math.pow((d_window.height/667), 2),
-    paddingBottom: 15 * Math.pow((d_window.height/667), 2),
-    fontSize: 35 * (d_window.width/375),
-    color: 'black',
-    fontWeight: '100',
-    textAlign: 'center',
-    justifyContent: 'center',
-  },
-
-  border:{
-    width: d_window.width,
-    height: 13 * Math.pow((d_window.height/667), 2),
-    marginBottom: 21.5 * Math.pow((d_window.height/667), 2),
-  },
-
-  logo:{
-    width: d_window.width,
-    height: 275 * (d_window.width/375),
-  },
-
-  button:{
-    width: d_window.width,
-    height: 36 * Math.pow((d_window.height/667), 2),
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 21.5 * Math.pow((d_window.height/667), 2) + (d_window.height === 812? 10:0),
-    opacity: 0.5,
-  },
-
-  halfButton:{
-    width: d_window.width/2,
-    height: 36 * Math.pow((d_window.height/667), 2),
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  halfButtonView:{
-    flex: 2,
-    flexDirection: 'row',
-    width: d_window.width,
-    height: 36 * Math.pow((d_window.height/667), 2),
-    justifyContent: 'center',
-    marginTop: 21.5 * Math.pow((d_window.height/667), 2),
-    opacity: 0.5,
-  },
-
-  buttonText:{
-    fontSize: 17 * (d_window.width/375),
-    color: 'white',
-    fontWeight: '100',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 module.exports = Welcome;

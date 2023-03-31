@@ -544,7 +544,7 @@ function loadSound(file){
 // No toAudio:  0
 
 // Used in audio-page.js, selection-page.js, start.js
-// TLDR: CANNOT Subdivide per page
+// TLDR: Ignore/Leave as is. CANNOT group simplify locations array for start and selection page
   // !loc:           audio-page.js
   // !title:         selection-page.js, audio-page.js
   // !address:       selection-page.js
@@ -552,6 +552,18 @@ function loadSound(file){
   // !atAudio:       audio-page.js
   // !atPics:        start.js, audio-page.js  (start does swiper of all images, audio-page does swiper if multilple pics availible)
   // !squareAtPics:  selection-page.js (info-page.js does swiper if multiple pics availible)
+
+//TODOOOOO:
+// Possibly add Locations object as a class
+// Store stage and turn variables in class instead of gloabally
+// Add reset functions
+
+// class Turns {
+//   static stages = stages;
+//   static endAudio = loadSound('page_27_tony.mp3');
+//   static stage = 0;
+//   static turn = 0;
+// }
 
 const Locations = [
   { turns: loc0, title: 'The Mount Vernon Schoolhouse', address: '24 Southern Blvd, Chatham Township', time: 90, toAudio: null, atAudio: at0, atPic: [atPic0], squareAtPic: [sAtPic0] },
@@ -570,22 +582,6 @@ const Locations = [
   { turns: loc13, title: 'The Loantaka School Marker', address: '245 Loantaka Way, Madison', time: 10, toAudio: to13, atAudio: null, atPic: [atPic13, atPic13_2], squareAtPic: [sAtPic13, sAtPic13_2] },
   { turns: loc14, title: 'The Boisaubin House Marker', address: '65 Treadwell Ave, Madison', time: 5, toAudio: to14, atAudio: at14, atPic: [atPic14, atPic14_2], squareAtPic: [sAtPic14, sAtPic14_2] },
 ];
-
-// Turns Object
-// L--> Stages Array, endAudio, stage and turn counter
-//          L-> 15 Site Objects
-//                 L-> Location Array, title, address, timeout, toAudio, atAudio, atPic, squareAtPic,
-//                        L-> N# of individual Turn Objects
-//                               L-> direction, picture, logituted, latitude, radius
-
-
-//TODOOOOO:
-// class Turns {
-//   static stages = stages;
-//   static endAudio = loadSound('page_27_tony.mp3');
-//   static stage = 0;
-//   static turn = 0;
-// }
 
 //export default ?? 
 module.exports = Locations;

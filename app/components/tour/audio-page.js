@@ -527,38 +527,4 @@ const styles = StyleSheet.create({
   },
 });
 
-  //////////////////////////  
- //// DEBUGGING STYLES ////
-//////////////////////////
-const debuggerStyles = StyleSheet.create({
-
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 270 * (d_window.width/scale),
-    left: 15 * (d_window.width/scale),
-    backgroundColor: 'gray',
-    height: 30 * (d_window.width/scale),
-    width: 30 * (d_window.width/scale),
-    borderRadius: 15 * (d_window.width/scale),
-  },
-
-  title:{
-    fontSize: 50 * (d_window.width/scale),
-    color: 'black',
-    fontWeight: '100',
-    textAlign: 'center',
-    marginTop: 30 * (d_window.width/scale),
-  },
-
-  subtitle:{
-    fontSize: 20 * (d_window.width/scale),
-    color: 'black',
-    fontWeight: '500',
-    textAlign: 'center',
-    paddingTop: 20 * (d_window.width/scale),
-  },
-});
-
 module.exports = AudioPage;

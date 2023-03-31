@@ -13,18 +13,10 @@ import {
 } from 'react-native'
 
 import BackgroundGeolocation from "react-native-background-geolocation";
-
 import styles from './helpers/shared_styles';
-
 const d_window = Dimensions.get('window');
 
 class Welcome extends Component {
-
-  constructor(props){
-    super(props);
-    this.state = {
-    };
-  }
 
   componentDidMount(){
     console.log(JSON.stringify(d_window));

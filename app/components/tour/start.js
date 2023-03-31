@@ -71,9 +71,7 @@ class Start extends Component {
           <TouchableHighlight style = {styles.button}
             onPress = {() => this.setState({tutorialVisible: true})}
             underlayColor = '#BBBBBB'>
-              <Text style = {styles.buttonText}>
-                Click to Continue
-              </Text>
+              <Text style = {styles.buttonText}> Click to Continue </Text>
           </TouchableHighlight>
 
         </View>

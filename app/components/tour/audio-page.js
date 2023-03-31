@@ -16,7 +16,9 @@ import {
 import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
+import Debugger from './debugger';
 
+//TODO: remove, what is this?
 var scale = 450;
 var scaleH = 800;
 
@@ -29,6 +31,8 @@ const d_window = Dimensions.get('window');
 //TODO: REMOVEEEEE PLEASEEEE
 var doneAtAudio = false;
 var isNearLastTurn = true;
+// turn
+// stage
 // var firstAudio = true;
 
 const mode = 'debug'; // debug, demo, tester1, tester2, release
@@ -36,8 +40,11 @@ const mode = 'debug'; // debug, demo, tester1, tester2, release
 class AudioPage extends Component {
 
   constructor(props){
+    // console.log(props.route.params.stage)
+    // this.stage = props.route.params.stage //TODO: bad
     super(props);
     this.state = {
+
       lastPos: 'unknown',
       currentTargetPos: 'unknown',//{latitude: 0, longitude: 0},
       distToCurrent: 0,
@@ -48,14 +55,16 @@ class AudioPage extends Component {
 
       audioIsPlaying: false,
 
-      picture: Turns.stages[Turns.stage].startPic,
+      // picture: Turns.stages[Turns.stage].startPic,
+      // TODO: maybe unessecary
+      // picture: Locations[this.stage].atPic,
       directions: 'NONE',
-      title: Turns.stages[Turns.stage].title,
-      // title: Turns.stages[10].title,
-      
+      // title: Locations[this.stage].title,
+      // title: Locations[10].title,
+    
       tourEnded: false,
 
-      isNearOverride: false, //for debugging
+      isNearOverride: true, //for debugging
     };
   }
 
@@ -75,8 +84,8 @@ class AudioPage extends Component {
     Sound.setActive(true); //TODO: Check if should turn off after audio is finished cause it is rn
 
     //####### set turns and stage to passed value in props ############
-    Turns.stage = this.props.route.params.stage;
-    Turns.turn = Turns.stages[Turns.stage].loc.length-1; //Grab last turn (atAudio)
+    this.stage = this.props.route.params.stage;
+    this.turn = Locations[this.stage].turns.length-1; //Grab last turn (atAudio)
     this.buttonPressed();
     // this.update();
 
@@ -149,14 +158,14 @@ class AudioPage extends Component {
       /*------------------------*/
       // if its the last stage and we've played the atAudio and it is finished playing
       // removed this is already caught with clickable state && !this.state.audioIsPlaying){
-      if(Turns.stage === 14 && doneAtAudio){
+      if(this.stage === 14 && doneAtAudio){
         this.showEndScreen();
         return; //Needed to stop tour
       }
       /*------------------*/
       /* ! Play atAudio ! */
       /*------------------*/
-      let currentStage = Turns.stages[Turns.stage];
+      let currentStage = Locations[this.stage];
       if(currentStage.atAudio === null) doneAtAudio = true; // if it doesnt have at audio, act like it has completed atAudio and continue
       if(!doneAtAudio){ // Has not done the at location audio
         this.triggerAudio(currentStage.atAudio, true); //true greys button immediatly
@@ -171,12 +180,12 @@ class AudioPage extends Component {
       /*------------------------*/
       }else{ // has done at location audio or doesnt have any
         BackgroundGeolocation.changePace(true); //IMPORTANT!! Instantly starts sending location updates
-        Turns.turn = 0;
-        Turns.stage++;
+        this.turn = 0;
+        this.stage++;
         doneAtAudio = false;
         isNearLastTurn = false;
-        this.setState({ title: Turns.stages[Turns.stage].title, picture: Turns.stages[Turns.stage].loc[0].picture});
-        this.triggerAudio(Turns.stages[Turns.stage].toAudio, true);
+        this.setState({ title: Locations[this.stage].title, picture: Locations[this.stage].turns[0].picture});
+        this.triggerAudio(Locations[this.stage].toAudio, true);
         this.update();
       }
     }
@@ -184,8 +193,8 @@ class AudioPage extends Component {
 
   update(){
     //TODO: better stage and turn tracker
-    let currentStage = Turns.stages[Turns.stage];
-    let currentTurn = currentStage.loc[Turns.turn];
+    let currentStage = Locations[this.stage];
+    let currentTurn = currentStage.turns[this.turn];
 
     /*---------------------*/
     /* ! LOCATION UPDATE ! */
@@ -199,7 +208,7 @@ class AudioPage extends Component {
     /*-------------------*/
     // checks to see if atPic is being displayed
     // will only overide if atPic is not being displayed or if we are not at the last turn
-    if(this.state.picture !== Turns.stages[Turns.stage].atPic)   // || currentStage.loc.length-1 > Turns.turn){
+    if(this.state.picture !== Locations[this.stage].atPic)   // || currentStage.turns.length-1 > this.turn){
       this.setState({ 
         picture: currentTurn.picture, 
         directions: currentTurn.direction });
@@ -212,10 +221,10 @@ class AudioPage extends Component {
     // deaceases radius on stage change in onPress()
     // radius increases so that thue button doesnt turn of when the driver parks a little far away but will turn off if they drive far past the spot.
     // if audio is not playing and we are close to the last turn
-    let lastTurn = currentStage.loc[currentStage.loc.length-1];
+    let lastTurn = currentStage.turns[currentStage.turns.length-1];
     let radius = (isNearLastTurn ? 1150 : 200);
     isNearLastTurn = (this.state.isNearOverride||this.isNear(lastTurn.latitude, lastTurn.longitude, radius));
-    this.setState({ clickable: (!this.state.audioIsPlaying && (currentStage.loc.length-1 === Turns.turn) && isNearLastTurn )});
+    this.setState({ clickable: (!this.state.audioIsPlaying && (currentStage.turns.length-1 === this.turn) && isNearLastTurn )});
 
     /*----------------------*/
     /* ! UPDATE NEXT TURN ! */
@@ -223,8 +232,8 @@ class AudioPage extends Component {
     // Set our next turn to either the next turn in the array or
     // if we are on the last turn of the array already, the first next turn of the next location
     // this alows us to non restrictivly update state and not leave extrainious states that are not updated
-    // exeption: on last turn of last location cannot look ahead so we use Turns.stage instead of Turns.stage+1
-    let nextTurn = (currentStage.loc.length-1 > Turns.turn) ? currentStage.loc[Turns.turn+1] : Turns.stages[ (Turns.stage===14)?14:Turns.stage+1 ].loc[1];
+    // exeption: on last turn of last location cannot look ahead so we use this.stage instead of this.stage+1
+    let nextTurn = (currentStage.turns.length-1 > this.turn) ? currentStage.turns[this.turn+1] : Locations[ (this.stage===14)?14:this.stage+1 ].turns[1];
 
     /*------------------*/
     /* ! UPDATE STATE ! */
@@ -240,10 +249,10 @@ class AudioPage extends Component {
     /* ! UPDATE CURRENT TURN ! */
     /*-------------------------*/
     //Only will increment turn counter if isNear is true and if not the last turn
-    if(this.state.isNear && (currentStage.loc.length-1 > Turns.turn) ){
+    if(this.state.isNear && (currentStage.turns.length-1 > this.turn) ){
       Vibration.vibrate();
       BackgroundGeolocation.playSound(1300); //default voicemail sound
-      Turns.turn++;
+      this.turn++;
     }
     /* LOGGER */
     console.log("GOT POSITION:     ", this.state.lastPos);
@@ -272,11 +281,13 @@ class AudioPage extends Component {
       clickable: false,
       title: 'Thankyou for taking the Tour!',
       directions: 'To exit this page, click the "End Tour" button in the top left corner. For direction back to the Schoolhouse, click the "Return Home" button in the top right corner.',
-      picture: [].concat.apply([], Turns.stages.map(pic => pic.atPic)),
+      picture: [].concat.apply([], Locations.map(loc => loc.atPic)),
       tourEnded: true,
     });
 
-    this.triggerAudio(Turns.endAudio, false);
+    //TODO: find endAudio
+    let endAudio = loadSound('page_27_tony.mp3');
+    this.triggerAudio(endAudio, false);
   }
   
   endTourButton(){
@@ -328,7 +339,7 @@ class AudioPage extends Component {
           </View>
 
           <Text style = {styles.dist}>
-            {doneAtAudio?'':('In: ' + ( (Turns.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
+            {doneAtAudio?'':('In: ' + ( (this.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
           </Text>
 
 
@@ -360,7 +371,7 @@ class AudioPage extends Component {
             justifyContent: 'center',
             alignItems: 'center',
             position: 'absolute',
-            zIndex: 100000,
+            zIndex: 100000, // TODO
             top: (162 + 310) * (d_window.height/scaleH), //height
             opacity: this.state.clickable?1:.05,
           }}
@@ -371,6 +382,8 @@ class AudioPage extends Component {
 
 
         </View>
+
+        <Debugger/>
       </ScrollView>
     );
   }
@@ -410,11 +423,11 @@ class AudioPage extends Component {
     Vibration.vibrate();
     BackgroundGeolocation.playSound(1300);
 
-    if(Turns.stages[Turns.stage].loc.length-1 <= Turns.turn){
-      Turns.turn = 0;
-      Turns.stage++;
+    if(Locations[this.stage].turns.length-1 <= this.turn){
+      this.turn = 0;
+      this.stage++;
     }else{
-      Turns.turn++;
+      this.turn++;
     }
     this.update();
   }
@@ -423,11 +436,11 @@ class AudioPage extends Component {
     Vibration.vibrate();
     BackgroundGeolocation.playSound(1301);
 
-    if(Turns.turn === 0){
-      Turns.stage--;
-      Turns.turn = Turns.stages[Turns.stage].loc.length-1;
+    if(this.turn === 0){
+      this.stage--;
+      this.turn = Locations[this.stage].turns.length-1;
     }else{
-      Turns.turn--;
+      this.turn--;
     }
     this.update();
   }

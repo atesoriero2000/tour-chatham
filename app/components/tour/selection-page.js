@@ -20,8 +20,7 @@ var Locations = require('../helpers/turns');
 
 class SelectionPage extends Component{
 
-  //TODO: find better way to pass stage# to audio-page
-  // Maybe add it to turns.js
+  // not serialized data warning??
   navToInfo(location, index){
     this.props.navigation.navigate('Tour', {
       screen: 'Drive to Start Point',
@@ -41,10 +40,11 @@ class SelectionPage extends Component{
 
   render() {
     return(
+      // TODO: What is this?
       <View style = {styles_TODO.container}>
         <ScrollView> 
-          { Locations.map( (loc, index) => // List all locations
-              <TouchableOpacity onPress = {() => this.alert(loc, index)}>
+          { Locations.map( (loc, index) => // List all locations TODO Add ID's
+              <TouchableOpacity onPress = {() => this.alert(loc, index)} key={Math.random()}>
                 <View style={styles.container}>
                   <Image style={styles.image} source={loc.squareAtPic[0]}/>
                   <View style={styles.contents}>

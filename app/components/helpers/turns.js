@@ -526,6 +526,7 @@ var at12 = loadSound('page_23_jacob.mp3');
 // var at13 = loadSound('NULL');
 var at14 = loadSound('page_26_eitan.mp3');
 
+
 function loadSound(file){
   var Sound = require('react-native-sound');
   return new Sound(file, Sound.MAIN_BUNDLE, 
@@ -557,6 +558,10 @@ function loadSound(file){
 // Possibly add Locations object as a class
 // Store stage and turn variables in class instead of gloabally
 // Add reset functions
+
+// startPic
+// endAudio
+// 
 
 // class Turns {
 //   static stages = stages;

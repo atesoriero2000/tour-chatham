@@ -4,68 +4,60 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Dimensions
 } from 'react-native'
 
 const d_window = Dimensions.get('window');
+//TODO: remove, what is this?
+var scale = 450;
+var scaleH = 800;
 
 class Debugger extends Component {
 
     constructor(props){
+        super(props);
     }
     
-    return(){
-        <View>
-            {showButtons && 
-            <View>
-                <TouchableOpacity style = {[debuggerStyles.button, {left: 15}]} onPress={() => this.DEBUG_stopAudio()}>
-                    <Text style={{color: 'whitesmoke'}}>{'X'}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style = {[debuggerStyles.button, {left: 45}]} onPress={() => this.DEBUG_lastTurn()}>
-                    <Text style={{color: 'whitesmoke'}}>{'<'}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style = {[debuggerStyles.button, {left: 75}]} onPress={() => this.DEBUG_nextTurn()}>
-                    <Text style={{color: 'whitesmoke'}}>{'>'}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style = {[debuggerStyles.button, {left: 105, backgroundColor: this.state.isNearOverride?'tomato':'gray'}]} onPress={() => this.DEBUG_toggleIsNearOverride()}>
-                    <Text style={{color: 'whitesmoke'}}>{'@'}</Text>
-                </TouchableOpacity>
-            </View>
-            }
-            {true &&
-            <View style={{alignItems: 'center', justifyContent: 'center', width: d_window.width, zIndex: 1, paddingTop: 285}}>
-                <Text style = {debuggerStyles.title}>
-                    DEBUGGER
-                </Text><Text/>
+    render(){
+        return(
+            <View style = {styles.container}>
+                <Text style = {styles.title}>DEBUGGER</Text>
+                
+                <View style = {styles.buttonBar}>
+                    <TouchableOpacity style = {styles.button} onPress={() => this.props.stopAudio()}>
+                        <Text style={styles.buttonText}>{'X'}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style = {styles.button} onPress={() => this.props.lastTurn()}>
+                        <Text style={styles.buttonText}>{'<'}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style = {styles.button} onPress={() => this.props.nextTurn()}>
+                        <Text style={styles.buttonText}>{'>'}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style = {[styles.button, {backgroundColor: this.props.state.isNearOverride?'tomato':'gray'}]} onPress={() => this.props.toggleIsNearOverride()}>
+                        <Text style={styles.buttonText}>{'@'}</Text>
+                    </TouchableOpacity>
+                </View>
 
-                <Text> Stage/Turn:   {Turns.stage},{Turns.turn}</Text>
+                <Text style = {styles.subtitle}>CURRENT TARGET</Text>
+                <Text>Stage: {this.props.stage}, Turn: {this.props.turn}</Text>
+                <Text>Longitude: {this.props.state.currentTargetPos.longitude}</Text>
+                <Text>Latitude: {this.props.state.currentTargetPos.latitude}</Text>
+                <Text>distToCurrent: {JSON.stringify(Math.round(this.props.state.distToCurrent))} FT</Text>
 
-                <Text style = {debuggerStyles.subtitle}>
-                    CURRENT TARGET
-                </Text>
-                <Text> Longitude: {this.state.currentTargetPos.longitude}</Text>
-                <Text> Latitude: {this.state.currentTargetPos.latitude}</Text>
-                <Text> distToCurrent: {JSON.stringify(Math.round(this.state.distToCurrent))} FT</Text>
+                <Text style = {styles.subtitle}>NEXT TARGET</Text>
+                <Text>Longitude: {this.props.state.nextTargetPos.longitude}</Text>
+                <Text>Latitude: {this.props.state.nextTargetPos.latitude}</Text>
+                <Text>distToNext: {JSON.stringify(Math.round(this.props.state.distToNext))} FT</Text>
+                <Text>nextRadius: {JSON.stringify(Math.round(this.props.state.nextRadius))} FT</Text>
+                <Text>isNear: {JSON.stringify(this.props.state.isNear)} </Text>
 
-                <Text style = {debuggerStyles.subtitle}>
-                    NEXT TARGET
-                </Text>
-                <Text> Longitude: {this.state.nextTargetPos.longitude}</Text>
-                <Text> Latitude: {this.state.nextTargetPos.latitude}</Text>
-                <Text/>
-                <Text> distToNext: {JSON.stringify(Math.round(this.state.distToNext))} FT</Text>
-                <Text> nextRadius: {JSON.stringify(Math.round(this.state.nextRadius))} FT</Text>
-                <Text> isNear: {JSON.stringify(this.state.isNear)} </Text>
-
-                <Text style = {debuggerStyles.subtitle}>
-                    LAST
-                </Text>
-                <Text> Longitude: {this.state.lastPos.longitude}</Text>
-                <Text> Latitude: {this.state.lastPos.latitude}</Text>
-                <Text> Accuracy: {JSON.stringify(Math.round(this.state.lastPos.accuracy))} FT</Text>
+                <Text style = {styles.subtitle}>LAST LOCATION</Text>
+                <Text>Longitude: {this.props.state.lastPos.longitude}</Text>
+                <Text>Latitude: {this.props.state.lastPos.latitude}</Text>
+                <Text>Accuracy: {JSON.stringify(Math.round(this.props.state.lastPos.accuracy))} FT</Text>
                 <Text/>
             </View>
-            }
-        </View>
+       )
     }
 }
 
@@ -74,26 +66,44 @@ class Debugger extends Component {
   //////////////////////////  
  //// DEBUGGING STYLES ////
 //////////////////////////
-const debuggerStyles = StyleSheet.create({
+const styles = StyleSheet.create({
+
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: d_window.width,
+        marginTop: 100,
+    },
+
+    title:{
+        fontSize: 50 * (d_window.width/scale),
+        color: 'black',
+        fontWeight: '200',
+        textAlign: 'center',
+      },
+
+    buttonBar: {
+        flex: 10,
+        width: d_window.width,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: "row",
+        marginTop: 10,
+        // backgroundColor: "lightgrey",
+    },
 
     button: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: 'absolute',
-      top: 270 * (d_window.width/scale),
-      left: 15 * (d_window.width/scale),
-      backgroundColor: 'gray',
-      height: 30 * (d_window.width/scale),
-      width: 30 * (d_window.width/scale),
-      borderRadius: 15 * (d_window.width/scale),
+        justifyContent: 'center',   //Vertical
+        alignItems: 'center',       //Horizontal
+        backgroundColor: 'gray',
+        marginHorizontal: 5,
+        height: 30,
+        width: 30,
+        borderRadius: 15,
     },
-  
-    title:{
-      fontSize: 50 * (d_window.width/scale),
-      color: 'black',
-      fontWeight: '100',
-      textAlign: 'center',
-      marginTop: 30 * (d_window.width/scale),
+
+    buttonText: {
+        color: 'whitesmoke'
     },
   
     subtitle:{

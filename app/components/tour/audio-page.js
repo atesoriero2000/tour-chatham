@@ -327,11 +327,11 @@ class AudioPage extends Component {
     return (
       <ScrollView>
         <View style = {styles.container}>
-        { /* TODO: add condition for debug mode*/ }
+
           <View style = {styles.titleBox}>
             <Text style = {styles.title}>{this.state.title}</Text>
           </View>
-
+          
           <View style = {styles.line}/>
 
           <View style = {styles.directionBox}>
@@ -342,39 +342,19 @@ class AudioPage extends Component {
             {doneAtAudio?'':('In: ' + ( (this.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
           </Text>
 
-
-          {Array.isArray(this.state.picture)?
-
-            <View style={styles.imageBox}>
-              <Swiper
-                showsButtons = {false}
-                loop = {true}
-                height={250 * (d_window.width/scale)}
-                width={d_window.width}
-                autoplay={true}
-                autoplayTimeout={2.5}>
-
-                  {this.state.picture.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
-
-              </Swiper>
-            </View>:
-
-            <View style={styles.imageBox}>
-              <Image style = {styles.image} source = {this.state.picture}/>
-            </View>
+{/* Turns / Locations Image */}
+          {Array.isArray(this.state.picture)
+            ?
+            <Swiper showsButtons = {false} loop = {true} height={styles.image.height} width={styles.image.width} autoplay={true} autoplayTimeout={2.5}>
+                {this.state.picture.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
+            </Swiper>
+            :
+            <Image style = {styles.image} source = {this.state.picture}/>
           }
 
-          <TouchableHighlight style = {{
-            width: d_window.width/1.5,
-            height: 36 * Math.pow((d_window.height/scaleH), 2), //height
-            backgroundColor: 'gray',
-            justifyContent: 'center',
-            alignItems: 'center',
-            position: 'absolute',
-            zIndex: 100000, // TODO
-            top: (162 + 310) * (d_window.height/scaleH), //height
-            opacity: this.state.clickable?1:.05,
-          }}
+{/* Continue Button */}
+          <TouchableHighlight style = {[styles.button, {opacity: this.state.clickable?1:.05}]}
+          
           underlayColor = '#BBBBBB'
           onPress = {() => this.buttonPressed()}>
             <Text style={styles.buttonText}>Click to Continue</Text>
@@ -383,7 +363,12 @@ class AudioPage extends Component {
 
         </View>
 
-        <Debugger/>
+{/* Hidden Debugger Component */}
+        <Debugger state={this.state} turn={this.turn} stage={this.stage}
+        stopAudio = {() => this.DEBUG_stopAudio()} 
+        lastTurn = {() => this.DEBUG_lastTurn()} 
+        nextTurn = {() => this.DEBUG_nextTurn()} 
+        toggleIsNearOverride={() => this.DEBUG_toggleIsNearOverride()}/>
       </ScrollView>
     );
   }
@@ -508,28 +493,22 @@ const styles = StyleSheet.create({
     marginTop: 3 * Math.pow((d_window.height/scaleH), 2) - (d_window.height === 812? 4.44:0), //height
   },
 
-  imageBox:{
-    position: 'absolute',
-    top: 310 * (d_window.width/scale),
-    height: 250 * (d_window.width/scale),
-    width: d_window.width,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
   image:{
     height: 250 * (d_window.width/scale),
     width: d_window.width,
     alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   button:{
     width: d_window.width/1.5,
-    height: 36 * (d_window.width/scale),
+    height: 36 * Math.pow((d_window.height/scaleH), 2), //height
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
+    marginVertical: 30,
   },
 
   buttonText:{

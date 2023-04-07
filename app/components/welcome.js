@@ -2,29 +2,18 @@
 
 import React, { Component } from 'react'
 import {
-  StyleSheet,
   View,
   Image,
   Text,
-  Dimensions,
   TouchableHighlight,
-  Button,
   Linking,
 } from 'react-native'
 
 import BackgroundGeolocation from "react-native-background-geolocation";
 import styles from './helpers/shared_styles';
-const d_window = Dimensions.get('window');
-
 class Welcome extends Component {
-
-  componentDidMount(){
-    console.log(JSON.stringify(d_window));
-  }
-
   render() {
     return (
-
       <View style={styles.container}>
 
         <Text style={styles.text}>
@@ -34,24 +23,7 @@ class Welcome extends Component {
         <Image style={styles.border} source={require('../images/logo_border.png')} />
         <Image style={styles.logo} source={require('../images/chs_logo.png')} />
 
-        {/* <View style={styles.halfButtonView}>
-          <TouchableHighlight style = {styles.halfButton}
-            onPress = {() => this.toNews()}
-            underlayColor = '#BBBBBB'>
-            <Text style = {styles.buttonText}> News </Text>
-          </TouchableHighlight>
-
-          <TouchableHighlight style = {styles.halfButton}
-            onPress = {() => this.props.toTour()}
-            underlayColor = '#BBBBBB'>
-            <Text style = {styles.buttonText}> Tour -> </Text>
-          </TouchableHighlight>
-
-        </View> */}
-
-        <TouchableHighlight style = {styles.button}
-          onPress = {() => this.toNews()}
-          underlayColor = '#BBBBBB'>
+        <TouchableHighlight style = {styles.button} onPress = {() => this.toNews()}>
           <Text style = {styles.buttonText}> Upcoming Events </Text>
         </TouchableHighlight>
 
@@ -80,6 +52,5 @@ class Welcome extends Component {
   // }
 
 }
-
 
 module.exports = Welcome;

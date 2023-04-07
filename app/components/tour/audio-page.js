@@ -24,6 +24,7 @@ var scaleH = 800;
 
 var Swiper = require('../helpers/Swiper');
 var Locations = require('../helpers/turns');
+var endAudio = new Sound('page_27_tony.mp3', Sound.MAIN_BUNDLE);
 
 //TODO: Use better conditional formatting
 const d_window = Dimensions.get('window');
@@ -31,17 +32,10 @@ const d_window = Dimensions.get('window');
 //TODO: REMOVEEEEE PLEASEEEE
 var doneAtAudio = false;
 var isNearLastTurn = true;
-// turn
-// stage
-// var firstAudio = true;
-
-const mode = 'debug'; // debug, demo, tester1, tester2, release
 
 class AudioPage extends Component {
 
   constructor(props){
-    // console.log(props.route.params.stage)
-    // this.stage = props.route.params.stage //TODO: bad
     super(props);
     this.state = {
 
@@ -54,17 +48,11 @@ class AudioPage extends Component {
       clickable: true,
 
       audioIsPlaying: false,
-
-      // picture: Turns.stages[Turns.stage].startPic,
-      // TODO: maybe unessecary
-      // picture: Locations[this.stage].atPic,
       directions: 'NONE',
-      // title: Locations[this.stage].title,
-      // title: Locations[10].title,
-    
-      tourEnded: false,
 
-      isNearOverride: true, //for debugging
+      tourEnded: false,
+      isNearOverride: false, //for debugging
+      debugger: false,
     };
   }
 
@@ -285,11 +273,9 @@ class AudioPage extends Component {
       tourEnded: true,
     });
 
-    //TODO: find endAudio
-    let endAudio = loadSound('page_27_tony.mp3');
     this.triggerAudio(endAudio, false);
   }
-  
+
   endTourButton(){
     //TODO: maybe just make a fuction Component and return <Button/>
     if(!this.state.tourEnded)
@@ -331,7 +317,7 @@ class AudioPage extends Component {
           <View style = {styles.titleBox}>
             <Text style = {styles.title}>{this.state.title}</Text>
           </View>
-          
+
           <View style = {styles.line}/>
 
           <View style = {styles.directionBox}>
@@ -343,32 +329,26 @@ class AudioPage extends Component {
           </Text>
 
 {/* Turns / Locations Image */}
-          {Array.isArray(this.state.picture)
-            ?
-            <Swiper showsButtons = {false} loop = {true} height={styles.image.height} width={styles.image.width} autoplay={true} autoplayTimeout={2.5}>
+          {Array.isArray(this.state.picture) ?
+            <Swiper height={styles.image.height} width={styles.image.width}>
                 {this.state.picture.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
-            </Swiper>
-            :
-            <Image style = {styles.image} source = {this.state.picture}/>
+            </Swiper> : <Image style = {styles.image} source = {this.state.picture}/>
           }
 
 {/* Continue Button */}
-          <TouchableHighlight style = {[styles.button, {opacity: this.state.clickable?1:.05}]}
-          
-          underlayColor = '#BBBBBB'
-          onPress = {() => this.buttonPressed()}>
+          <TouchableHighlight style = {[styles.button, {opacity: this.state.clickable?1:.05}]} onPress = {() => this.buttonPressed()}>
             <Text style={styles.buttonText}>Click to Continue</Text>
           </TouchableHighlight>
-
-
         </View>
 
 {/* Hidden Debugger Component */}
+        {this.state.debugger && 
         <Debugger state={this.state} turn={this.turn} stage={this.stage}
-        stopAudio = {() => this.DEBUG_stopAudio()} 
-        lastTurn = {() => this.DEBUG_lastTurn()} 
-        nextTurn = {() => this.DEBUG_nextTurn()} 
-        toggleIsNearOverride={() => this.DEBUG_toggleIsNearOverride()}/>
+            stopAudio = {() => this.DEBUG_stopAudio()} 
+            lastTurn = {() => this.DEBUG_lastTurn()} 
+            nextTurn = {() => this.DEBUG_nextTurn()} 
+            toggleIsNearOverride={() => this.DEBUG_toggleIsNearOverride()}/>}
+        <TouchableOpacity style={[styles.debuggerToggle, {opacity: this.state.debugger?1:0, height: this.state.debugger?30:5}]} onPress={() => this.DEBUG_toggleDebugger()}/>
       </ScrollView>
     );
   }
@@ -398,6 +378,10 @@ class AudioPage extends Component {
   ////////////////////////////  
  //// DEBUGGING FUCTIONS ////
 ////////////////////////////
+  DEBUG_toggleDebugger(){
+    this.setState({ debugger: !this.state.debugger });
+  }
+
   DEBUG_stopAudio(){
     this.state.audioFile.stop();
     this.setState({audioIsPlaying: false});
@@ -445,7 +429,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    // marginBottom: 10 * (d_window.width/scale), //height
   },
 
   titleBox:{
@@ -467,7 +450,7 @@ const styles = StyleSheet.create({
   line:{
     backgroundColor: 'black',
     height: .74 * (d_window.width/scale), //height
-    width: 150 * (d_window.width/scale),
+    width: 300 * (d_window.width/scale),
   },
 
   directionBox:{
@@ -509,6 +492,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     marginVertical: 30,
+    // underlayColor = '#BBBBBB' 
   },
 
   buttonText:{
@@ -517,6 +501,15 @@ const styles = StyleSheet.create({
     fontWeight: '100',
     textAlign: 'center',
   },
+
+  debuggerToggle:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'gray',
+    alignSelf: 'center',
+    width: '100%'
+  }
 });
 
 module.exports = AudioPage;

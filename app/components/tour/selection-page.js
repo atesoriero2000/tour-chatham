@@ -43,7 +43,7 @@ class SelectionPage extends Component{
       // TODO: What is this?
       <View style = {styles_TODO.container}>
         <ScrollView> 
-          { Locations.map( (loc, index) => // List all locations TODO Add ID's
+          { Locations.map( (loc, index) =>
               <TouchableOpacity onPress = {() => this.alert(loc, index)} key={Math.random()}>
                 <View style={styles.container}>
                   <Image style={styles.image} source={loc.squareAtPic[0]}/>
@@ -69,7 +69,6 @@ const styles_TODO = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    // marginBottom: 10 * (d_window.height/667), MAKES TAB BAR BORDER KEEP OFF
   },
 });
 

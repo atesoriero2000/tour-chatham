@@ -10,7 +10,6 @@ import {
 const d_window = Dimensions.get('window');
 //TODO: remove, what is this?
 var scale = 450;
-var scaleH = 800;
 
 class Debugger extends Component {
 
@@ -55,7 +54,7 @@ class Debugger extends Component {
                 <Text>Longitude: {this.props.state.lastPos.longitude}</Text>
                 <Text>Latitude: {this.props.state.lastPos.latitude}</Text>
                 <Text>Accuracy: {JSON.stringify(Math.round(this.props.state.lastPos.accuracy))} FT</Text>
-                <Text/>
+                <Text>{d_window.width}, {d_window.height}</Text>
             </View>
        )
     }
@@ -73,6 +72,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: d_window.width,
         marginTop: 100,
+        paddingBottom: 25
     },
 
     title:{

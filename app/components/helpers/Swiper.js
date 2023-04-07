@@ -148,7 +148,7 @@ class Swiper extends Component{
     loop: true,
     loadMinimal: false,
     loadMinimalSize: 1,
-    autoplay: false,
+    autoplay: true,
     autoplayTimeout: 2.5,
     autoplayDirection: true,
     index: 0

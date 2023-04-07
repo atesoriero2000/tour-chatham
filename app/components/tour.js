@@ -1,13 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react'
-import {
-  Dimensions,
-} from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-// import Icon from 'react-native-vector-icons/Ionicons';
-const d_window = Dimensions.get('window');
 
 var Start = require('./tour/start');
 var SelectionPage = require('./tour/selection-page');
@@ -20,7 +14,7 @@ class Tour extends Component {
 
   render() {
       return (
-      <Stack.Navigator sceneContainerStyle={{backgroundColor: ""}} screenOptions={{}}>
+      <Stack.Navigator sceneContainerStyle={{}} screenOptions={{}}>
         <Stack.Screen name='Start the Tour!' component={Start} />
         <Stack.Screen name='Select a Start Point' component={SelectionPage} />
         <Stack.Screen name='Drive to Start Point' component={InfoPage} />

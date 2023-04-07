@@ -526,7 +526,6 @@ var at12 = loadSound('page_23_jacob.mp3');
 // var at13 = loadSound('NULL');
 var at14 = loadSound('page_26_eitan.mp3');
 
-
 function loadSound(file){
   var Sound = require('react-native-sound');
   return new Sound(file, Sound.MAIN_BUNDLE, 

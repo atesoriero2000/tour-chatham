@@ -76,20 +76,10 @@ class InfoPage extends Component{
         </View>
 
 
-        {this.state.loc.squareAtPic.length>1?
-
-          <Swiper
-            showsButtons = {false}
-            loop = {true}
-            height={d_window.width / 1.5}
-            width={d_window.width / 1.5}
-            autoplay={true}
-            autoplayTimeout={2.5}
-            >
+        {this.state.loc.squareAtPic.length>1 ?
+          <Swiper height={d_window.width / 1.5} width={d_window.width / 1.5} >
               {this.state.loc.squareAtPic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
-
-          </Swiper>:
-          <Image style = {styles.image} source = {this.state.loc.squareAtPic[0]}/>
+          </Swiper> : <Image style = {styles.image} source = {this.state.loc.squareAtPic[0]}/>
         }
 
 

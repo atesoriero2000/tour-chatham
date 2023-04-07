@@ -12,6 +12,7 @@ import {
   Modal
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import sharedStyles from '../helpers/shared_styles';
 
 const d_window = Dimensions.get('window');
 
@@ -42,7 +43,7 @@ class Start extends Component {
 
   render() {
     return (
-      <SafeAreaView style = {styles.container}>
+      <SafeAreaView style = {sharedStyles.container}>
         <View style = {styles.overviewContainer}>
           <Text style = {styles.overviewText1}>
             Explore Chatham Township, Madison, and Green Village
@@ -53,12 +54,9 @@ class Start extends Component {
             this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
             Click here for more info!</Text>
 
-          <Swiper showsButtons = {false} loop = {true} autoplay={true} autoplayTimeout={2.5} 
-            height={240 * (d_window.width/375)} 
-            width={d_window.width}>
+          <Swiper height={240 * (d_window.width/375)} width={d_window.width}>
             {[].concat.apply([], Locations.map(pic => pic.atPic)).map( (pic1) => {
-                return( <Image style={styles.image} source={pic1} key={Math.random()}/> )})
-            }
+                return( <Image style={styles.image} source={pic1} key={Math.random()}/> )}) }
           </Swiper>
 
           <Text style = {styles.overviewText2}>
@@ -68,10 +66,8 @@ class Start extends Component {
             as they pop up.
           </Text>
 
-          <TouchableHighlight style = {styles.button}
-            onPress = {() => this.setState({tutorialVisible: true})}
-            underlayColor = '#BBBBBB'>
-              <Text style = {styles.buttonText}> Click to Continue </Text>
+          <TouchableHighlight style = {sharedStyles.button} onPress = {() => this.setState({tutorialVisible: true})}>
+              <Text style = {sharedStyles.buttonText}> Click to Continue </Text>
           </TouchableHighlight>
 
         </View>
@@ -87,11 +83,11 @@ class Start extends Component {
 
 const styles = StyleSheet.create({
 
-  container:{
-    flex: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  // container:{
+  //   flex: 5,
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
 
   overviewContainer:{
     width: d_window.width,
@@ -133,22 +129,22 @@ const styles = StyleSheet.create({
     marginBottom: 14 * Math.pow((d_window.height/667), 2.5),
   },
 
-  button:{
-    width: d_window.width,
-    height: 36 * Math.pow((d_window.height/667), 2),
-    backgroundColor: 'grey',
-    opacity: .5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
+  // button:{
+  //   width: d_window.width,
+  //   height: 36 * Math.pow((d_window.height/667), 2),
+  //   backgroundColor: 'grey',
+  //   opacity: .5,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   alignSelf: 'center',
+  // },
 
-  buttonText:{
-    fontSize: 17 * (d_window.width/375),
-    color: 'white',
-    fontWeight: '100',
-    textAlign: 'center',
-  },
+  // buttonText:{
+  //   fontSize: 17 * (d_window.width/375),
+  //   color: 'white',
+  //   fontWeight: '100',
+  //   textAlign: 'center',
+  // },
 });
 
 module.exports = Start;

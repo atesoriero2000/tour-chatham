@@ -9,6 +9,7 @@ export default StyleSheet.create({
     container:{
       alignItems: 'center',
       justifyContent: 'center',
+      flex: 5,
     },
   
     text:{
@@ -39,32 +40,15 @@ export default StyleSheet.create({
       backgroundColor: 'gray',
       justifyContent: 'center',
       alignItems: 'center',
-      marginTop: 21.5 * Math.pow((d_window.height/667), 2) + (d_window.height === 812? 10:0),
-      opacity: 0.5,
-    },
-  
-    halfButton:{
-      width: d_window.width/2,
-      height: 36 * Math.pow((d_window.height/667), 2),
-      backgroundColor: 'gray',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-  
-    halfButtonView:{
-      flex: 2,
-      flexDirection: 'row',
-      width: d_window.width,
-      height: 36 * Math.pow((d_window.height/667), 2),
-      justifyContent: 'center',
-      marginTop: 21.5 * Math.pow((d_window.height/667), 2),
-      opacity: 0.5,
+      // marginTop: 21.5 * Math.pow((d_window.height/667), 2) + (d_window.height === 812? 10:0),
+      opacity: 0.75,
+      // underlayColor = '#BBBBBB'
     },
   
     buttonText:{
-      fontSize: 17 * (d_window.width/375),
+      fontSize: 20 * (d_window.width/375),
       color: 'white',
-      fontWeight: '100',
+      fontWeight: '200',
       justifyContent: 'center',
       alignItems: 'center',
     },

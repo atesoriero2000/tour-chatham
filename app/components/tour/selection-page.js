@@ -14,15 +14,13 @@ import {
   Text,
 } from 'react-native'
 
+import { sharedStyles } from '../helpers/shared_styles';
+
 const d_window = Dimensions.get('window');
 var Locations = require('../helpers/turns');
 
-class SelectionPage extends Component{
 
-  componentDidMount(){
-    let tourTab = this.props.navigation.getParent();
-    tourTab.setOptions({headerTitle: this.props.route.name});
-  }
+class SelectionPage extends Component{
 
   //TODO: not serialized data warning??
   // Seems to come from the stack navigatior
@@ -47,8 +45,9 @@ class SelectionPage extends Component{
 
   render() {
     return(
-      // TODO: What is this?
+      // TODO: What is this? ()
       <View style = {styles_TODO.container}>
+        <View style = {sharedStyles.headerBorder}/>
         <ScrollView> 
           { Locations.map( (loc, index) =>
               <TouchableOpacity onPress = {() => this.alert(loc, index)} key={Math.random()}>

@@ -11,14 +11,15 @@ import {
   Image,
   Modal
 } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context';
-import sharedStyles from '../helpers/shared_styles';
+import { SafeAreaView } from 'react-native-safe-area-context'; //TODO: remove? redundant with Stack.Screen component
+import { sharedStyles } from '../helpers/shared_styles';
 
 const d_window = Dimensions.get('window');
 
 var Swiper = require('../helpers/Swiper');
 var Locations = require('../helpers/turns');
 var TutorialPopup = require('./tutorial-popup')
+
 
 class Start extends Component {
 
@@ -29,19 +30,13 @@ class Start extends Component {
     };
   }
 
-  componentDidMount(){
-    let tourTab = this.props.navigation.getParent();
-    tourTab.setOptions({
-      headerTitle: this.props.route.name,
-      // headerLeft: 
-    });
-  }
-
   navToSelection(){
     this.setState({ tutorialVisible: false});
     this.props.navigation.navigate('Tour', {screen: 'Select a Start Point'});
   }
 
+
+  //TODO: make universal function (start, info, welcome, about)
   linkUrl(url){
     Linking.canOpenURL(url).then(supported => {
       if (!supported) console.log('Can\'t handle url: ' + url);
@@ -52,6 +47,7 @@ class Start extends Component {
   render() {
     return (
       <SafeAreaView style = {sharedStyles.container}>
+        <View style = {sharedStyles.headerBorder}/>
         <View style = {styles.overviewContainer}>
           <Text style = {styles.overviewText1}>
             Explore Chatham Township, Madison, and Green Village

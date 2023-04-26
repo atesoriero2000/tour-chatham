@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 
 import BackgroundGeolocation from "react-native-background-geolocation";
-import styles from './helpers/shared_styles';
+import { sharedStyles as styles } from './helpers/shared_styles';
 class Welcome extends Component {
 
   componentDidMount(){

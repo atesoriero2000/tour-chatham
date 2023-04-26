@@ -12,6 +12,7 @@ import {
   Alert,
   Linking,
 } from 'react-native'
+import { sharedStyles } from '../helpers/shared_styles';
 
 const d_window = Dimensions.get('window');
 
@@ -50,9 +51,6 @@ class InfoPage extends Component{
   }
 
   componentDidMount(){
-    let tourTab = this.props.navigation.getParent();
-    tourTab.setOptions({headerTitle: this.props.route.name});
-
     let linkStart = "http://maps.apple.com/?daddr=";
     let address = this.state.loc.address.replace(/\s/g, "+");
     let linkEnd = ",NJ&dirflg=d&t=m";
@@ -62,7 +60,7 @@ class InfoPage extends Component{
   render() {
     return(
       <View style = {styles.container}>
-
+        <View style = {sharedStyles.headerBorder}/>
         <Text style = {styles.text}>{this.state.loc.title}</Text>
 
         <View style = {{

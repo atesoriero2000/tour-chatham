@@ -23,32 +23,18 @@ import BackgroundGeolocation from "react-native-background-geolocation";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { sharedStyles, MyTheme } from './app/components/helpers/shared_styles';
 
 var Welcome = require('./app/components/welcome');
-// var Tour = require('./app/components/tour');
-var About = require('./app/components/about');
-
 var Start = require('./app/components/tour/start');
 var SelectionPage = require('./app/components/tour/selection-page');
 var InfoPage = require('./app/components/tour/info-page');
 var AudioPage = require('./app/components/tour/audio-page');
+var About = require('./app/components/about');
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const MyTheme = {
-  dark: false,
-  colors: {
-    primary: 'rgb(255, 45, 85)',
-    background: 'white',
-    // card: 'white',
-    card: "lightgreen",
-    text: 'rgb(28, 28, 30)',
-    // border: 'rgb(199, 199, 204)',
-    border: 'black',
-    notification: 'rgb(255, 69, 58)',
-  },
-}
 
 class App extends Component {
   constructor(props){
@@ -74,7 +60,6 @@ class App extends Component {
               <Icon name='home' color={color} size={size}/>
             )}}/>
 
-{/* TODO: Clicking tab bar icon destroys stack  */}
           <Tab.Screen name='Tour' listeners={ ({navigation, route}) => ({
               tabPress: (e) => {
                 e.preventDefault(); //Prevents popToTop on tabPress when tabs already focused (kills tour)

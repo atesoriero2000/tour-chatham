@@ -17,6 +17,7 @@ import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
 import Debugger from './debugger';
+import { sharedStyles } from '../helpers/shared_styles';
 
 //TODO: remove, what is this?
 var scale = 450;
@@ -63,9 +64,6 @@ class AudioPage extends Component {
 ///////////////////////
 
   componentDidMount(){
-    //TODO: New header manipulation
-    let tourTab = this.props.navigation.getParent();
-    tourTab.setOptions({headerTitle: this.props.route.name});
     this.props.navigation.setOptions({ 
       headerLeft: () => ( <Button title='End Tour' onPress={() => this.endTourButton()} /> ),
       headerRight: () => ( <Button title='Return Home' onPress={() => this.returnHomeButton()} /> ),
@@ -314,45 +312,48 @@ class AudioPage extends Component {
 
   render() {
     return (
-      <ScrollView>
-        <View style = {styles.container}>
+      <View>
+        <View style = {sharedStyles.headerBorder}/>
+        <ScrollView>
+          <View style = {styles.container}>
 
-          <View style = {styles.titleBox}>
-            <Text style = {styles.title}>{this.state.title}</Text>
+            <View style = {styles.titleBox}>
+              <Text style = {styles.title}>{this.state.title}</Text>
+            </View>
+
+            <View style = {styles.line}/>
+
+            <View style = {styles.directionBox}>
+              <Text style = {styles.directions}>{this.state.directions}</Text>
+            </View>
+
+            <Text style = {styles.dist}>
+              {doneAtAudio?'':('In: ' + ( (this.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
+            </Text>
+
+  {/* Turns / Locations Image */}
+            {Array.isArray(this.state.picture) ?
+              <Swiper height={styles.image.height} width={styles.image.width}>
+                  {this.state.picture.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
+              </Swiper> : <Image style = {styles.image} source = {this.state.picture}/>
+            }
+
+  {/* Continue Button */}
+            <TouchableHighlight style = {[styles.button, {opacity: this.state.clickable?1:.05}]} onPress = {() => this.buttonPressed()}>
+              <Text style={styles.buttonText}>Click to Continue</Text>
+            </TouchableHighlight>
           </View>
 
-          <View style = {styles.line}/>
-
-          <View style = {styles.directionBox}>
-            <Text style = {styles.directions}>{this.state.directions}</Text>
-          </View>
-
-          <Text style = {styles.dist}>
-            {doneAtAudio?'':('In: ' + ( (this.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
-          </Text>
-
-{/* Turns / Locations Image */}
-          {Array.isArray(this.state.picture) ?
-            <Swiper height={styles.image.height} width={styles.image.width}>
-                {this.state.picture.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
-            </Swiper> : <Image style = {styles.image} source = {this.state.picture}/>
-          }
-
-{/* Continue Button */}
-          <TouchableHighlight style = {[styles.button, {opacity: this.state.clickable?1:.05}]} onPress = {() => this.buttonPressed()}>
-            <Text style={styles.buttonText}>Click to Continue</Text>
-          </TouchableHighlight>
-        </View>
-
-{/* Hidden Debugger Component */}
-        {this.state.debugger && 
-        <Debugger state={this.state} turn={this.turn} stage={this.stage}
-            stopAudio = {() => this.DEBUG_stopAudio()} 
-            lastTurn = {() => this.DEBUG_lastTurn()} 
-            nextTurn = {() => this.DEBUG_nextTurn()} 
-            toggleIsNearOverride={() => this.DEBUG_toggleIsNearOverride()}/>}
-        <TouchableOpacity style={[styles.debuggerToggle, {opacity: this.state.debugger?1:0, height: this.state.debugger?30:5}]} onPress={() => this.DEBUG_toggleDebugger()}/>
-      </ScrollView>
+  {/* Hidden Debugger Component */}
+          {this.state.debugger && 
+          <Debugger state={this.state} turn={this.turn} stage={this.stage}
+              stopAudio = {() => this.DEBUG_stopAudio()} 
+              lastTurn = {() => this.DEBUG_lastTurn()} 
+              nextTurn = {() => this.DEBUG_nextTurn()} 
+              toggleIsNearOverride={() => this.DEBUG_toggleIsNearOverride()}/>}
+          <TouchableOpacity style={[styles.debuggerToggle, {opacity: this.state.debugger?1:0, height: this.state.debugger?30:5}]} onPress={() => this.DEBUG_toggleDebugger()}/>
+        </ScrollView>
+      </View>
     );
   }
 

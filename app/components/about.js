@@ -11,7 +11,7 @@ import {
   Linking,
   SafeAreaView
 } from 'react-native'
-import sharedStyles from './helpers/shared_styles';
+import { sharedStyles } from './helpers/shared_styles';
 
 const d_window = Dimensions.get('window');
 

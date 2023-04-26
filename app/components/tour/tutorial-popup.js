@@ -13,6 +13,7 @@ import {
 import { BlurView, VibrancyView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/EvilIcons';
 Icon.loadFont(); //TODO: fix idk why its only needed once
+//TODO: react-navigation offers modal views in Stack.Group
 
 const d_window = Dimensions.get('window');
 var Swiper = require('../helpers/Swiper');

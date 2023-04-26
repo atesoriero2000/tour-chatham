@@ -63,6 +63,9 @@ class AudioPage extends Component {
 ///////////////////////
 
   componentDidMount(){
+    //TODO: New header manipulation
+    let tourTab = this.props.navigation.getParent();
+    tourTab.setOptions({headerTitle: this.props.route.name});
     this.props.navigation.setOptions({ 
       headerLeft: () => ( <Button title='End Tour' onPress={() => this.endTourButton()} /> ),
       headerRight: () => ( <Button title='Return Home' onPress={() => this.returnHomeButton()} /> ),
@@ -122,7 +125,7 @@ class AudioPage extends Component {
       },  (error) => console.log("***** onLocation FAILED *****:    ", error));
 
     BackgroundGeolocation.setConfig({ locationAuthorizationRequest: 'Always' });
-    BackgroundGeolocation.requestPermission(); // NOTE: might need await NOT NEEDED
+    BackgroundGeolocation.requestPermission(); // TODO NOTE: might need to wait NOT NEEDED
     BackgroundGeolocation.requestTemporaryFullAccuracy("Driving").then( 
       (accuracyAuthorization) => console.log('[requestTemporaryFullAccuracy] STATUS:', accuracyAuthorization) 
       ).catch( (error) => console.warn("[requestTemporaryFullAccuracy] FAILED TO SHOW DIALOG: ", error) );

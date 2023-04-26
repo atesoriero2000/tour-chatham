@@ -29,6 +29,14 @@ class Start extends Component {
     };
   }
 
+  componentDidMount(){
+    let tourTab = this.props.navigation.getParent();
+    tourTab.setOptions({
+      headerTitle: this.props.route.name,
+      // headerLeft: 
+    });
+  }
+
   navToSelection(){
     this.setState({ tutorialVisible: false});
     this.props.navigation.navigate('Tour', {screen: 'Select a Start Point'});

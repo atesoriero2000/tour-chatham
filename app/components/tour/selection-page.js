@@ -1,7 +1,6 @@
-//comes from tour page
-//here there will be a scroll view of all locations
-//each button passes props to an onClick() handler which nvigates to info page and passes props to it
-// props include title, stage, turn, picture, address
+// comes from tour page
+// scroll view of 12 locations
+// passes selected "loc" and index to info page
 
 import React, { Component } from 'react'
 import {
@@ -20,7 +19,15 @@ var Locations = require('../helpers/turns');
 
 class SelectionPage extends Component{
 
-  // not serialized data warning??
+  componentDidMount(){
+    let tourTab = this.props.navigation.getParent();
+    tourTab.setOptions({headerTitle: this.props.route.name});
+  }
+
+  //TODO: not serialized data warning??
+  // Seems to come from the stack navigatior
+  // params.loc.toAudio.registerOnPlay (function)
+  // cant send functions???
   navToInfo(location, index){
     this.props.navigation.navigate('Tour', {
       screen: 'Drive to Start Point',

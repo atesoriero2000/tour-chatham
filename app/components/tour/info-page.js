@@ -1,7 +1,6 @@
-// comes from selection page or tour page
-// has a picture of the location, title and address saying to nav to this and click button to startPic
-// button click hander onClick() navs to audio page and passes turn and stage props
-
+// comes from selection page
+// TODO: add geolocation or merge with audio page
+//       check location before making continue button clickable 
 import React, { Component } from 'react'
 import {
   StyleSheet,
@@ -51,6 +50,9 @@ class InfoPage extends Component{
   }
 
   componentDidMount(){
+    let tourTab = this.props.navigation.getParent();
+    tourTab.setOptions({headerTitle: this.props.route.name});
+
     let linkStart = "http://maps.apple.com/?daddr=";
     let address = this.state.loc.address.replace(/\s/g, "+");
     let linkEnd = ",NJ&dirflg=d&t=m";

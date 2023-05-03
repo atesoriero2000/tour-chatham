@@ -14,31 +14,34 @@ const MyTheme = {
     card: 'whitesmoke',
     text: 'rgb(28, 28, 30)',
     border: 'rgb(199, 199, 204)',
-    // border: 'black',
     notification: 'rgb(255, 69, 58)',
+  },
+
+  text: {
+    defaultColor: 'grey',
+    weight: '100',
+    clickableColor: '#9090FF',
+    paddingHorizontal: 35,
+    titleFontSize: 35,
   },
 }
 
+
 const sharedStyles = StyleSheet.create({
   
-    container:{
-  
+    container:{ //flex direction column by default
       flex: 1,
-      alignItems: 'center', //center vertically
-      // justifyContent: 'center',
-      // alignContent: 'space-around',
-
+      alignItems: 'center',
       width: '100%',
       height: '100%',
-      // backgroundColor: 'yellow', //TODO
-
+      // backgroundColor: 'yellow',
     },
     
     button:{
       position: 'absolute',
       bottom: 35,
       width: '100%',
-      height: 36 * Math.pow((d_window.height/667), 2),
+      height: 35 * Math.pow((d_window.height/667), 2), // TODO
       backgroundColor: 'gray',
       justifyContent: 'center',
       alignItems: 'center',
@@ -46,9 +49,9 @@ const sharedStyles = StyleSheet.create({
     },
   
     buttonText:{
-      fontSize: 20 * (d_window.width/375),
+      fontSize: 20,
       color: 'white',
-      fontWeight: '200',
+      fontWeight: '100',
       justifyContent: 'center',
       alignItems: 'center',
     },

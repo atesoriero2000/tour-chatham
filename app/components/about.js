@@ -10,7 +10,7 @@ import {
   Linking,
   SafeAreaView
 } from 'react-native'
-import { sharedStyles, d_window } from './helpers/shared_styles';
+import { sharedStyles, MyTheme, d_window } from './helpers/shared_styles';
 
 class About extends Component {
 
@@ -114,15 +114,15 @@ const styles = StyleSheet.create({
   textHeader:{
     fontSize: 50 * (d_window.width/375),
     color: 'black',
-    fontWeight: '100',
+    fontWeight: MyTheme.text.weight,
     textAlign: 'center',
     paddingVertical: 30 * (d_window.height/667),
   },
 
   text:{
     fontSize: 15 * (d_window.width/375),
-    color: 'grey',
-    fontWeight: '100',
+    color: MyTheme.text.defaultColor,
+    fontWeight: MyTheme.text.weight,
     textAlign: 'center',
     paddingHorizontal: 40 * (d_window.width/375),
   },
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   titles:{
     fontSize: 30 * (d_window.width/375),
     color: 'black',
-    fontWeight: '100',
+    fontWeight: MyTheme.text.weight,
     textAlign: 'center',
     paddingTop: 50 * (d_window.height/667),
   },
@@ -149,8 +149,8 @@ const styles = StyleSheet.create({
 
   fineText:{
     fontSize: 13 * (d_window.width/375),
-    color: 'grey',
-    fontWeight: '100',
+    color: MyTheme.text.weight,
+    fontWeight: MyTheme.text.weight,
     textAlign: 'center',
     padding: .5 * (d_window.width/375),
   },

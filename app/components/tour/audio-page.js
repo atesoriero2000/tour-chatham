@@ -61,8 +61,8 @@ class AudioPage extends Component {
 
   componentDidMount(){
     this.props.navigation.setOptions({ 
-      headerLeft: () => ( <Button title='End Tour' onPress={() => this.endTourButton()} /> ),
-      headerRight: () => ( <Button title='Return Home' onPress={() => this.returnHomeButton()} /> ),
+      headerLeft: () => ( <Button title='End Tour' color={'red'} onPress={() => this.endTourButton()} /> ),
+      headerRight: () => ( <Button title='Return Home' onPress={() => this.returnHomeButton()}/> ),
     })
     activateKeepAwake();
     Sound.setCategory('Playback', false);

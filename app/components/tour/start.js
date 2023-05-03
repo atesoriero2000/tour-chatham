@@ -8,9 +8,10 @@ import {
   Text,
   Linking,
   Image,
-  Modal
+  Modal,
+  Dimensions
 } from 'react-native'
-import { sharedStyles, d_window } from '../helpers/shared_styles';
+import { sharedStyles, MyTheme } from '../helpers/shared_styles';
 
 var Swiper = require('../helpers/Swiper');
 var Locations = require('../helpers/turns');
@@ -35,33 +36,43 @@ class Start extends Component {
     return (
       <View style = {sharedStyles.container}>
         <View style = {sharedStyles.headerBorder}/>
-        <View style = {styles.overviewContainer}>
-          <Text style = {styles.overviewText1}>
+
+        {/* <View style = {styles.overviewContainer}> */}
+        <View style={styles.topTextBox}>
+          <Text style = {styles.text}>
             Explore Chatham Township, Madison, and Green Village
             as you drive to different marked historical sites while
             listening to the history behind them!
           </Text>
           <Text style={styles.clickable} onPress = {() =>
             Linking.openURL("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
-            Click here for more info!</Text>
+            Click here for more info!
+          </Text>
+        </View>
 
-          <Swiper height={240 * (d_window.width/375)} width={d_window.width}>
+        <View style={styles.swiper}>
+          <Swiper height={styles.swiper.height} width={styles.swiper.width}>
             {[].concat.apply([], Locations.map(pic => pic.atPic)).map( (pic1) => {
-                return( <Image style={styles.image} source={pic1} key={Math.random()}/> )}) }
+                return( <Image style={styles.swiper} source={pic1} key={Math.random()}/> )}) }
           </Swiper>
+        </View>
 
-          <Text style = {styles.overviewText2}>
+
+        <View style = {styles.bottomTextBox}>
+          {/* TODO fontSize shared */}
+          <Text style = {[styles.text, {fontSize: 17}]}>
             It will take approximately 1.5 hours to complete the whole
             tour, but you may stop at any marker and pick up where you
             left off. You will need a passenger to follow the directions
             as they pop up.
           </Text>
+        </View>
 
           <TouchableHighlight style = {sharedStyles.button} onPress = {() => this.setState({tutorialVisible: true})}>
               <Text style = {sharedStyles.buttonText}> Click to Continue </Text>
           </TouchableHighlight>
 
-        </View>
+        {/* </View> */}
 
         <Modal animationType={'fade'} transparent={true} visible={this.state.tutorialVisible}>
           <TutorialPopup closePopup={() => this.setState({tutorialVisible: false})} navToSelection={() => this.navToSelection()}/>
@@ -74,68 +85,47 @@ class Start extends Component {
 
 const styles = StyleSheet.create({
 
-  // container:{
-  //   flex: 5,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
-
-  overviewContainer:{
+  topTextBox: {
+    flex: 7,
     width: '100%',
-    height: '100%',
+    // backgroundColor: 'pink',
     alignItems: 'center',
-    // justifyContent: 'center',
+    justifyContent: 'center'
   },
-
-  overviewText1:{
+  
+  text: {
     textAlign: 'center',
-    fontSize: 17 * (d_window.width/375),
-    fontWeight: '100',
-    color: 'grey',
-    marginHorizontal: 30 * (d_window.width/375),
-    marginTop: 65 + (21) * Math.pow((d_window.height/667), 2.5) + (d_window.height === 812? 27:0),
+    fontSize: 19, // TODO: shared
+    // fontWeight: MyTheme.text.weight,
+    fontWeight: '200', // TODO: shared
+    color: MyTheme.text.defaultColor,
+    paddingHorizontal: MyTheme.text.paddingHorizontal,
   },
 
-  clickable:{
-    fontSize: 14 * (d_window.width/375),
-    fontWeight: '100',
-    color: '#9090FF',
+  clickable: {
+    fontSize: 15, //TODO: shared
+    fontWeight: MyTheme.text.weight,
+    color: MyTheme.text.clickableColor,
     textDecorationLine: 'underline',
-    marginTop: 2 * Math.pow((d_window.height/667), 2.5),
-    marginBottom: 16 * Math.pow((d_window.height/667), 2.5),
   },
 
-  image:{
-    width: d_window.width,
-    height: 240 * (d_window.width/375),
+  swiper: {
+    flex: 11,
+    height: 250, //TODO make responsive?
+    width: Dimensions.get('window').width, // cant use '100%'
+    // backgroundColor: 'lightblue',
+    justifyContent: 'flex-start',
   },
 
-  overviewText2:{
-    textAlign: 'center',
-    fontSize: 15 * (d_window.width/375),
-    fontWeight: '100',
-    color: 'grey',
-    marginHorizontal: 35 * (d_window.width/375),
-    marginTop: 15 * Math.pow((d_window.height/667), 2.5) + (d_window.height === 812? 10:0),
-    marginBottom: 14 * Math.pow((d_window.height/667), 2.5),
+  bottomTextBox: {
+    flex: 9,
+    width: '100%',
+    // backgroundColor: 'lightgreen',
+    alignItems: 'center',
+    justifyContent: 'flex-start' 
   },
 
-  // button:{
-  //   width: d_window.width,
-  //   height: 36 * Math.pow((d_window.height/667), 2),
-  //   backgroundColor: 'grey',
-  //   opacity: .5,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   alignSelf: 'center',
-  // },
-
-  // buttonText:{
-  //   fontSize: 17 * (d_window.width/375),
-  //   color: 'white',
-  //   fontWeight: '100',
-  //   textAlign: 'center',
-  // },
 });
+
 
 module.exports = Start;

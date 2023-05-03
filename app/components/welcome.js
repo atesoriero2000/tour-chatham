@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 
 import BackgroundGeolocation from "react-native-background-geolocation";
-import { sharedStyles, d_window } from './helpers/shared_styles';
+import { sharedStyles, MyTheme } from './helpers/shared_styles';
 
 class Welcome extends Component {
 
@@ -78,15 +78,15 @@ const styles = StyleSheet.create({
   },
   
   titleText:{
-    fontSize: 35,
-    paddingHorizontal: 35,
+    fontSize: MyTheme.text.titleFontSize,
+    paddingHorizontal: MyTheme.text.paddingHorizontal,
     color: 'black',
-    fontWeight: '100',
+    fontWeight: MyTheme.text.weight,
     textAlign: 'center',
   },
 
   borderBox: {
-    flex: 1,
+    flex: 2,
     // backgroundColor: 'blue',
     width: '100%',
     justifyContent: 'flex-start',
@@ -94,21 +94,19 @@ const styles = StyleSheet.create({
   },
 
   border:{
-    width: '120%',
+    width: '120%', //TODO
   },
 
   logoBox: {
-    flex: 19,
+    flex: 18,
     // backgroundColor: 'green',
     width: '100%',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-
   },
 
   logo:{
     width: '100%',
-    marginBottom: 100, //TODO: for button space, reference code for button
   },
   
 })

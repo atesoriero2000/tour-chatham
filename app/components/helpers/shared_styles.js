@@ -3,8 +3,6 @@ import {
     Dimensions,
 } from 'react-native'
 
-import { useTheme } from '@react-navigation/native';
-
 const d_window = Dimensions.get('window');
 
 
@@ -24,42 +22,27 @@ const MyTheme = {
 const sharedStyles = StyleSheet.create({
   
     container:{
-      alignItems: 'center',
-      justifyContent: 'center',
-      flex: 5,
-    },
   
-    text:{
-      paddingHorizontal: 25 * (d_window.width/375),
-      paddingTop: 25 * Math.pow((d_window.height/667), 2),
-      paddingBottom: 15 * Math.pow((d_window.height/667), 2),
-      fontSize: 35 * (d_window.width/375),
-      color: 'black',
-      fontWeight: '100',
-      textAlign: 'center',
-      justifyContent: 'center',
+      flex: 1,
+      alignItems: 'center', //center vertically
+      // justifyContent: 'center',
+      // alignContent: 'space-around',
+
+      width: '100%',
+      height: '100%',
+      // backgroundColor: 'yellow', //TODO
+
     },
-  
-    border:{
-      width: d_window.width,
-      height: 13 * Math.pow((d_window.height/667), 2),
-      marginBottom: 21.5 * Math.pow((d_window.height/667), 2),
-    },
-  
-    logo:{
-      width: d_window.width,
-      height: 275 * (d_window.width/375),
-    },
-  
+    
     button:{
-      width: d_window.width,
+      position: 'absolute',
+      bottom: 35,
+      width: '100%',
       height: 36 * Math.pow((d_window.height/667), 2),
       backgroundColor: 'gray',
       justifyContent: 'center',
       alignItems: 'center',
-      // marginTop: 21.5 * Math.pow((d_window.height/667), 2) + (d_window.height === 812? 10:0),
-      opacity: 0.75,
-      // underlayColor = '#BBBBBB'
+      opacity: 1,
     },
   
     buttonText:{
@@ -81,4 +64,4 @@ const sharedStyles = StyleSheet.create({
     },
   });
 
-  export {sharedStyles, MyTheme};
+  export {sharedStyles, MyTheme, d_window};

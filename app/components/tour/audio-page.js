@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
   TouchableOpacity,
   TouchableHighlight,
   Vibration,
@@ -17,7 +16,7 @@ import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
 import Debugger from './debugger';
-import { sharedStyles } from '../helpers/shared_styles';
+import { sharedStyles, d_window } from '../helpers/shared_styles';
 
 //TODO: remove, what is this?
 var scale = 450;
@@ -26,9 +25,6 @@ var scaleH = 800;
 var Swiper = require('../helpers/Swiper');
 var Locations = require('../helpers/turns');
 var endAudio = new Sound('page_27_tony.mp3', Sound.MAIN_BUNDLE);
-
-//TODO: Use better conditional formatting
-const d_window = Dimensions.get('window');
 
 //TODO: REMOVEEEEE PLEASEEEE
 var doneAtAudio = false;
@@ -291,7 +287,7 @@ class AudioPage extends Component {
     //TODO: Figure out better functionality
     Alert.alert( 'Direction Back to Start', '\nThese next directions take approx 9 minutes to travel and 4.5 miles\n\n Line2 \n\n Line3 \n\n Would you like to go?',
       [{ text: 'Close', style: 'default' },
-       { text: 'Go', onPress: () => { this.linkUrl("http://maps.apple.com/?daddr=Chatham%20Township%20Historical%20Society,+Chatham,+NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
+       { text: 'Go', onPress: () => { Linking.openURL("http://maps.apple.com/?daddr=Chatham%20Township%20Historical%20Society,+Chatham,+NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
   }
 
   componentWillUnmount(){
@@ -339,7 +335,7 @@ class AudioPage extends Component {
             }
 
   {/* Continue Button */}
-            <TouchableHighlight style = {[styles.button, {opacity: this.state.clickable?1:.05}]} onPress = {() => this.buttonPressed()}>
+            <TouchableHighlight style = {[styles.button, {opacity: this.state.clickable?1:.5}]} onLongPress = {() => this.buttonPressed()}>
               <Text style={styles.buttonText}>Click to Continue</Text>
             </TouchableHighlight>
           </View>
@@ -372,12 +368,6 @@ class AudioPage extends Component {
     return( Math.acos( Math.sin(φ1)*Math.sin(φ2) + Math.cos(φ1)*Math.cos(φ2) * Math.cos(Δλ) ) * R ); //Old dist*364537.777
   }
 
-  linkUrl(url){
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) console.log('Can\'t handle url: ' + url);
-      else return Linking.openURL(url);
-    }).catch(err => console.log('An error occurred', err));
-  }
 
   ////////////////////////////  
  //// DEBUGGING FUCTIONS ////

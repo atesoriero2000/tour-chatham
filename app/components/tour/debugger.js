@@ -4,10 +4,10 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Dimensions
 } from 'react-native'
 
-const d_window = Dimensions.get('window');
+import { sharedStyles, d_window } from '../helpers/shared_styles';
+
 //TODO: remove, what is this?
 var scale = 450;
 

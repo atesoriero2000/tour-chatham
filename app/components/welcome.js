@@ -7,10 +7,12 @@ import {
   Text,
   TouchableHighlight,
   Linking,
+  StyleSheet,
 } from 'react-native'
 
 import BackgroundGeolocation from "react-native-background-geolocation";
-import { sharedStyles as styles } from './helpers/shared_styles';
+import { sharedStyles, d_window } from './helpers/shared_styles';
+
 class Welcome extends Component {
 
   componentDidMount(){
@@ -19,29 +21,29 @@ class Welcome extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={sharedStyles.container}>
+        
 
-        <Text style={styles.text}>
-          Chatham Township Historical Society Driving Tour
-        </Text>
+        <View style={styles.titleBox}>
+          <Text style={styles.titleText}>
+            Chatham Township Historical Society Driving Tour
+          </Text>
+        </View>
 
-        <Image style={styles.border} source={require('../images/logo_border.png')} />
-        <Image style={styles.logo} source={require('../images/chs_logo.png')} />
+        <View style={styles.borderBox}>
+          <Image style={styles.border} source={require('../images/logo_border.png')} />
+        </View>
 
-        <TouchableHighlight style = {styles.button} onPress = {() => this.toNews()}>
-          <Text style = {styles.buttonText}> Upcoming Events </Text>
+        <View style={styles.logoBox}>
+          <Image style={styles.logo} source={require('../images/chs_logo.png')} />
+        </View>
+
+        <TouchableHighlight style = {sharedStyles.button} onPress = {() => Linking.openURL("http://www.chathamtownshiphistoricalsociety.org/programsmeetings.html")}>
+          <Text style = {sharedStyles.buttonText}> Upcoming Events </Text>
         </TouchableHighlight>
 
       </View>
     )
-  }
-
-  toNews(){
-    let url = "http://www.chathamtownshiphistoricalsociety.org/programsmeetings.html";
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) console.log('Can\'t handle url: ' + url);
-      else return Linking.openURL(url);
-    }).catch(err => console.log('An error occurred', err));
   }
 
   permissionsPopup(){
@@ -63,5 +65,52 @@ class Welcome extends Component {
       ).catch( (error) => console.warn("[requestTemporaryFullAccuracy] FAILED TO SHOW DIALOG: ", error) ); // uses message 2
   }
 }
+
+
+const styles = StyleSheet.create({
+
+  titleBox: {
+    flex: 9,
+    // backgroundColor: 'pink',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  
+  titleText:{
+    fontSize: 35,
+    paddingHorizontal: 35,
+    color: 'black',
+    fontWeight: '100',
+    textAlign: 'center',
+  },
+
+  borderBox: {
+    flex: 1,
+    // backgroundColor: 'blue',
+    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+
+  border:{
+    width: '120%',
+  },
+
+  logoBox: {
+    flex: 19,
+    // backgroundColor: 'green',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+
+  logo:{
+    width: '100%',
+    marginBottom: 100, //TODO: for button space, reference code for button
+  },
+  
+})
 
 module.exports = Welcome;

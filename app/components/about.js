@@ -5,22 +5,19 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
   Image,
   ScrollView,
   Linking,
   SafeAreaView
 } from 'react-native'
-import { sharedStyles } from './helpers/shared_styles';
-
-const d_window = Dimensions.get('window');
+import { sharedStyles, d_window } from './helpers/shared_styles';
 
 class About extends Component {
 
   render() {
     return (
         <ScrollView>
-          {/* <SafeAreaView/> */}
+          {/* TODO: <SafeAreaView/> */}
           <View style={styles.safeArea}/>
           <View style={styles.container}>
             <Text style = {styles.textHeader}>
@@ -72,16 +69,16 @@ class About extends Component {
                 Name: Anthony Tesoriero
               </Text>
               <Text style = {styles.fineText}>
-                Email: <Text selectable = {true} onPress={() => this.linkUrl("mailto:atesoriero2000@gmail.com?subject=Chatham%20Township%20Historical%20Society%20Driving%20Tour")}>atesoriero2000@gmail.com</Text>
+                Email: <Text selectable = {true} onPress={() => Linking.openURL("mailto:atesoriero2000@gmail.com?subject=Chatham%20Township%20Historical%20Society%20Driving%20Tour")}>atesoriero2000@gmail.com</Text>
               </Text>
 
-              <Text style = {styles.labels} onPress={() => this.linkUrl("http://www.chathamtownshiphistoricalsociety.org")}>
+              <Text style = {styles.labels} onPress={() => Linking.openURL("http://www.chathamtownshiphistoricalsociety.org")}>
                 Chatham Township Historical Society
               </Text>
               <Text style = {styles.fineText}>
-                <Text selectable={true} onPress={() => this.linkUrl("https://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m")}>
+                <Text selectable={true} onPress={() => Linking.openURL("https://maps.apple.com/?daddr=24+Southern+Blvd,+Chatham,+NJ&dirflg=d&t=m")}>
                   24 Southern Blvd, Chatham, NJ
-                </Text>   •   <Text selectable={true} onPress={() => this.linkUrl("tel:973-635-4911")}>973-635-4911</Text>
+                </Text>   •   <Text selectable={true} onPress={() => Linking.openURL("tel:973-635-4911")}>973-635-4911</Text>
               </Text>
 
               <Text style = {styles.fineText}>
@@ -91,12 +88,6 @@ class About extends Component {
           </View>
         </ScrollView>
     );
-  }
-  linkUrl(url){
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) console.log('Can\'t handle url: ' + url);
-      else return Linking.openURL(url);
-    }).catch(err => console.log('An error occurred', err));
   }
 }
 

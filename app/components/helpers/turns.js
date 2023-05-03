@@ -553,10 +553,6 @@ function loadSound(file){
   // !atPics:        start.js, audio-page.js  (start does swiper of all images, audio-page does swiper if multilple pics availible)
   // !squareAtPics:  selection-page.js (info-page.js does swiper if multiple pics availible)
 
-//TODOOOOO:
-// Possibly add Locations object as a class
-// Store stage and turn variables in class instead of gloabally
-// Add reset functions
 
 // startPic
 // endAudio

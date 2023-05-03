@@ -7,18 +7,15 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  Dimensions,
   Alert,
   TouchableOpacity,
   Image,
   Text,
 } from 'react-native'
 
-import { sharedStyles } from '../helpers/shared_styles';
+import { sharedStyles, d_window } from '../helpers/shared_styles';
 
-const d_window = Dimensions.get('window');
 var Locations = require('../helpers/turns');
-
 
 class SelectionPage extends Component{
 
@@ -45,13 +42,12 @@ class SelectionPage extends Component{
 
   render() {
     return(
-      // TODO: What is this? ()
-      <View style = {styles_TODO.container}>
+      <View style = {styles.container}>
         <View style = {sharedStyles.headerBorder}/>
         <ScrollView> 
           { Locations.map( (loc, index) =>
               <TouchableOpacity onPress = {() => this.alert(loc, index)} key={Math.random()}>
-                <View style={styles.container}>
+                <View style={styles.locationContainer}>
                   <Image style={styles.image} source={loc.squareAtPic[0]}/>
                   <View style={styles.contents}>
                     <Text style={styles.text}> {loc.title} <Text style={styles.time}> ({loc.time} mins) </Text></Text>
@@ -60,7 +56,8 @@ class SelectionPage extends Component{
                 </View>
               </TouchableOpacity>
             )
-          } 
+          }
+          <View style={styles.bottomMargin}/> 
         </ScrollView>
       </View>
     );
@@ -68,18 +65,15 @@ class SelectionPage extends Component{
 }
 
 
-
-const styles_TODO = StyleSheet.create({
+const styles = StyleSheet.create({
   container:{
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
   },
-});
 
-const styles = StyleSheet.create({
-  container:{
+  locationContainer:{
     alignItems: 'center',
     justifyContent: 'flex-start',
     flexDirection: 'row',
@@ -131,6 +125,11 @@ const styles = StyleSheet.create({
     height: 50 * (d_window.width/375),
     width: 50 * (d_window.width/375),
     backgroundColor: 'transparent',
+  },
+
+  bottomMargin:{
+    width: '100%',
+    height: 10 * (d_window.height/667),
   },
 
 });

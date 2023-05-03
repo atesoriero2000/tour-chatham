@@ -9,13 +9,6 @@
  */
 
 import React, { Component } from 'react'
-import {
-  View,
-  Image,
-  Text,
-  TouchableHighlight,
-  Linking,
-} from 'react-native'
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import BackgroundGeolocation from "react-native-background-geolocation";
@@ -23,7 +16,7 @@ import BackgroundGeolocation from "react-native-background-geolocation";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { sharedStyles, MyTheme } from './app/components/helpers/shared_styles';
+import { MyTheme } from './app/components/helpers/shared_styles';
 
 var Welcome = require('./app/components/welcome');
 var Start = require('./app/components/tour/start');
@@ -36,12 +29,16 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 
+import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';//TODO
+
 class App extends Component {
   constructor(props){
     super(props);
   }
 
   render() {
+
+    activateKeepAwake(); //TODO
 
     //TODO: Tab Icon Sizes
 
@@ -72,14 +69,7 @@ class App extends Component {
               )}}>
               
               {() =>
-              <Stack.Navigator screenOptions={{
-                // header: ({ navigation, route, options, back }) => { .... }
-                headerShown: true, 
-                headerShadowVisible: true, 
-                headerLargeTitleShadowVisible: true,
-                headerTransparent: false,
-                translucent: false,
-                }}>
+              <Stack.Navigator screenOptions={{headerShown: true }}>
                 <Stack.Screen name='Start the Tour!' component={Start} />
                 <Stack.Screen name='Select a Start Point' component={SelectionPage} />
                 <Stack.Screen name='Drive to Start Point' component={InfoPage} />

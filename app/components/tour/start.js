@@ -6,15 +6,11 @@ import {
   TouchableHighlight,
   View,
   Text,
-  Dimensions,
   Linking,
   Image,
   Modal
 } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'; //TODO: remove? redundant with Stack.Screen component
-import { sharedStyles } from '../helpers/shared_styles';
-
-const d_window = Dimensions.get('window');
+import { sharedStyles, d_window } from '../helpers/shared_styles';
 
 var Swiper = require('../helpers/Swiper');
 var Locations = require('../helpers/turns');
@@ -35,18 +31,9 @@ class Start extends Component {
     this.props.navigation.navigate('Tour', {screen: 'Select a Start Point'});
   }
 
-
-  //TODO: make universal function (start, info, welcome, about)
-  linkUrl(url){
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) console.log('Can\'t handle url: ' + url);
-      else return Linking.openURL(url);
-    }).catch(err => console.log('An error occurred', err));
-  }
-
   render() {
     return (
-      <SafeAreaView style = {sharedStyles.container}>
+      <View style = {sharedStyles.container}>
         <View style = {sharedStyles.headerBorder}/>
         <View style = {styles.overviewContainer}>
           <Text style = {styles.overviewText1}>
@@ -55,7 +42,7 @@ class Start extends Component {
             listening to the history behind them!
           </Text>
           <Text style={styles.clickable} onPress = {() =>
-            this.linkUrl("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
+            Linking.openURL("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
             Click here for more info!</Text>
 
           <Swiper height={240 * (d_window.width/375)} width={d_window.width}>
@@ -80,7 +67,7 @@ class Start extends Component {
           <TutorialPopup closePopup={() => this.setState({tutorialVisible: false})} navToSelection={() => this.navToSelection()}/>
         </Modal>
 
-      </SafeAreaView>
+      </View>
     );
   }
 }
@@ -94,8 +81,8 @@ const styles = StyleSheet.create({
   // },
 
   overviewContainer:{
-    width: d_window.width,
-    height: d_window.height,
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     // justifyContent: 'center',
   },

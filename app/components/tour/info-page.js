@@ -6,15 +6,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
   TouchableOpacity,
   Image,
   Alert,
   Linking,
 } from 'react-native'
-import { sharedStyles } from '../helpers/shared_styles';
+import { sharedStyles, d_window } from '../helpers/shared_styles';
 
-const d_window = Dimensions.get('window');
 
 var Swiper = require('../helpers/Swiper');
 
@@ -43,13 +41,6 @@ class InfoPage extends Component{
     ]);
   }
 
-  linkUrl(url){
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) console.log('Can\'t handle url: ' + url);
-      else return Linking.openURL(url);
-    }).catch(err => console.log('An error occurred', err));
-  }
-
   componentDidMount(){
     let linkStart = "http://maps.apple.com/?daddr=";
     let address = this.state.loc.address.replace(/\s/g, "+");
@@ -64,13 +55,13 @@ class InfoPage extends Component{
         <Text style = {styles.text}>{this.state.loc.title}</Text>
 
         <View style = {{
-          // NOTE: Add padding to view not text or onPress position will be ghosting
+          // TODO: Note: Add padding to view not text or onPress position will be ghosting
           paddingHorizontal: 20 * (d_window.width/375),
           paddingTop: 25 * Math.pow((d_window.height/667), 2),
         }}>
           <Text style = {styles.subtext}>
             <Text > Please navigate to</Text>
-            <Text style = {styles.text_bold} onPress={() => this.linkUrl(this.state.url)}> {this.state.loc.address} </Text>
+            <Text style = {styles.text_bold} onPress={() => Linking.openURL(this.state.url)}> {this.state.loc.address} </Text>
             <Text >then click the button below to start the tour.</Text>
           </Text>
         </View>

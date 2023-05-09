@@ -88,9 +88,10 @@ const styles = {
   },
 
   buttonText: {
-    fontSize: 50,
+    fontSize: 70,
     color: '#007aff',
-    fontFamily: 'Arial'
+    // fontFamily: '',
+    fontWeight: '300',
   }
 }
 
@@ -126,7 +127,8 @@ class Swiper extends Component{
     dotStyle: PropTypes.object,
     activeDotStyle: PropTypes.object,
     dotColor: PropTypes.string,
-    activeDotColor: PropTypes.string
+    activeDotColor: PropTypes.string,
+    activeColor: PropTypes.string
   }
 
   /**
@@ -461,7 +463,7 @@ class Swiper extends Component{
 
     let dots = []
     const ActiveDot = this.props.activeDot || <View style={[{
-      backgroundColor: this.props.activeDotColor || '#007aff',
+      backgroundColor: this.props.activeColor || this.props.activeDotColor || '#007aff',
       width: 8,
       height: 8,
       borderRadius: 4,
@@ -507,7 +509,7 @@ class Swiper extends Component{
 
     if (this.props.loop ||
       this.state.index !== this.state.total - 1) {
-      button = this.props.nextButton || <Text style={styles.buttonText}>›</Text>
+      button = this.props.nextButton || <Text style={[styles.buttonText, {color: this.props.activeColor}]}>›</Text>
     }
 
     return (
@@ -523,7 +525,7 @@ class Swiper extends Component{
     let button = null
 
     if (this.props.loop || this.state.index !== 0) {
-      button = this.props.prevButton || <Text style={styles.buttonText}>‹</Text>
+      button = this.props.prevButton || <Text style={[styles.buttonText, {color: this.props.activeColor}]}>‹</Text>
     }
 
     return (

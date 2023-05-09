@@ -37,7 +37,6 @@ class Start extends Component {
       <View style = {sharedStyles.container}>
         <View style = {sharedStyles.headerBorder}/>
 
-        {/* <View style = {styles.overviewContainer}> */}
         <View style={styles.topTextBox}>
           <Text style = {styles.text}>
             Explore Chatham Township, Madison, and Green Village
@@ -51,7 +50,7 @@ class Start extends Component {
         </View>
 
         <View style={styles.swiper}>
-          <Swiper height={styles.swiper.height} width={styles.swiper.width}>
+          <Swiper height={styles.swiper.height} width={styles.swiper.width} activeColor={MyTheme.colors.swiper} >
             {[].concat.apply([], Locations.map(pic => pic.atPic)).map( (pic1) => {
                 return( <Image style={styles.swiper} source={pic1} key={Math.random()}/> )}) }
           </Swiper>
@@ -68,11 +67,11 @@ class Start extends Component {
           </Text>
         </View>
 
-          <TouchableHighlight style = {sharedStyles.button} onPress = {() => this.setState({tutorialVisible: true})}>
+          <TouchableHighlight style = {sharedStyles.button} 
+              underlayColor = {sharedStyles.button.underlayColor}
+              onPress = {() => this.setState({tutorialVisible: true})}>
               <Text style = {sharedStyles.buttonText}> Click to Continue </Text>
           </TouchableHighlight>
-
-        {/* </View> */}
 
         <Modal animationType={'fade'} transparent={true} visible={this.state.tutorialVisible}>
           <TutorialPopup closePopup={() => this.setState({tutorialVisible: false})} navToSelection={() => this.navToSelection()}/>
@@ -103,13 +102,14 @@ const styles = StyleSheet.create({
   },
 
   clickable: {
+    paddingTop: 10, //TODO: scaling
     fontSize: 15, //TODO: shared
     fontWeight: MyTheme.text.weight,
     color: MyTheme.text.clickableColor,
     textDecorationLine: 'underline',
   },
 
-  swiper: {
+  swiper: { //TODO MOVE TO SHARED FOR AUDIO PAGE
     flex: 11,
     height: 250, //TODO make responsive?
     width: Dimensions.get('window').width, // cant use '100%'

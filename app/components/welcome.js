@@ -38,7 +38,9 @@ class Welcome extends Component {
           <Image style={styles.logo} source={require('../images/chs_logo.png')} />
         </View>
 
-        <TouchableHighlight style = {sharedStyles.button} onPress = {() => Linking.openURL("http://www.chathamtownshiphistoricalsociety.org/programsmeetings.html")}>
+        <TouchableHighlight style = {sharedStyles.button} 
+          underlayColor={sharedStyles.button.underlayColor}
+          onPress = {() => Linking.openURL("http://www.chathamtownshiphistoricalsociety.org/programsmeetings.html")}>
           <Text style = {sharedStyles.buttonText}> Upcoming Events </Text>
         </TouchableHighlight>
 
@@ -94,11 +96,11 @@ const styles = StyleSheet.create({
   },
 
   border:{
-    width: '120%', //TODO
+    width: '135%', //TODO
   },
 
   logoBox: {
-    flex: 18,
+    flex: 17,
     // backgroundColor: 'green',
     width: '100%',
     justifyContent: 'flex-start',

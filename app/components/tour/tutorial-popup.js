@@ -7,164 +7,175 @@ import {
   View,
   Text,
   Dimensions,
-  SafeAreaView,
+  SafeAreaView, //needed
   Image,
 } from 'react-native'
-import { BlurView, VibrancyView } from '@react-native-community/blur';
+import { BlurView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/EvilIcons';
-Icon.loadFont(); //TODO: fix idk why its only needed once
-//TODO: react-navigation offers modal views in Stack.Group
+import { sharedStyles, MyTheme, d_window } from '../helpers/shared_styles';
+import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
+Icon.loadFont(); //needed
 
-const d_window = Dimensions.get('window');
+const { width, height } = d_window; //TODO remove
+
 var Swiper = require('../helpers/Swiper');
 
 class TutorialPopup extends Component {
 
     render() {
         return (
-            <BlurView blurType="dark" blurAmount={10} style={styles.overlay}>
-                <SafeAreaView/>
+            <BlurView blurType="dark" blurAmount={10} style={styles.underlay}>
+                <SafeAreaView/> 
                 <View style={styles.modal}>
-                    <View style={styles.headerBar}>
-                        <Icon name={'close'} size={40 * (d_window.width/375)} color={'#157EFB'} style={styles.exitButton} onPress={() => this.props.closePopup()} />
-                        <Text style={styles.title}>Tutorial</Text>
+                    
+                    <View style={headerStyles.box}>
+                        {/* TODO icon size */}
+                        <Icon name={'close'} size={40} color={MyTheme.colors.swiper} style={headerStyles.x} onPress={this.props.closePopup}/>
+                        <Text style={headerStyles.title}>Tutorial</Text>
                     </View>
 
-
-                    <Swiper style={styles.swiper} autoplay={false} showsButtons={true} loop={false} height={600} width={d_window.width/1.25}>
-
-                        {/* Page 1 */}
-                        <View style={styles.page}>
-                            <View style={styles.imageBox}>
-                                <Image source={require('../../images/tutorial1.jpg')} style={styles.image} />
-                            </View>
-                            <Text style = {styles.text}>
-                                Directions will appear on the screen instructing you exactly
-                                what to do and what turns to make. The bottom of the screen
-                                will indicate the distance until the next turn.
-                            </Text>
-                        </View>
-
-                        {/* Page 2 */}
-                        <View style = {styles.page}>
-                            <View style={styles.imageBox}>
-                                <Image source={require('../../images/tutorial2.jpg')} style={styles.image} />
-                            </View>
-                            <Text style = {styles.text}>
-                                On the next page you will pick your starting location.
-                                You will only visit the locations listed after
-                                (any locations listed before the selected location will not be toured).
-                            </Text>
-                            <TouchableHighlight style = {styles.button}
-                                onPress = {() => this.props.navToSelection()}
-                                underlayColor = '#BBBBBB'>
-                                <Text style = {styles.buttonText}>Click to Continue</Text>
-                            </TouchableHighlight>
-                        </View>
-
+{/* TODO swiper height */}
+                    <Swiper autoplay={false} showsButtons={true} loop={false} height={height * (parseFloat(styles.modal.height)/100)-headerStyles.box.height} width={width * parseFloat(styles.modal.width)/100} activeColor={MyTheme.colors.swiper}>
+                        <Page1/>
+                        <Page2 navToSelection={this.props.navToSelection}/>
                     </Swiper>
+
                 </View>                
             </BlurView>
         )
     }
 }
 
+const Page1 = (props) => {
+    return(
+        <View style={pageStyles.page}>
+            <View style={pageStyles.imageBox}>
+                <Image source={require('../../images/tutorial1.jpg')} style={[pageStyles.image, {aspectRatio: 750/1234}]}/>
+            </View>
+            <Text style = {pageStyles.text}>
+                Directions will appear on the screen instructing you exactly
+                what to do and what turns to make. The bottom of the screen
+                will indicate the distance until the next turn.
+            </Text>
+        </View>
+    )
+}
+
+const Page2 = (props) => {
+    return(
+        <View style = {pageStyles.page}>
+            <View style={pageStyles.imageBox}>
+                <Image source={require('../../images/tutorial2.jpg')} style={[pageStyles.image, {aspectRatio: 750/996}]} />
+            </View>
+            <Text style = {pageStyles.text}>
+                On the next page you will pick your starting location.
+                You will only visit the locations listed after
+                (any locations listed before the selected location will not be toured).
+            </Text>
+            {/* TODO button styling scalable  */}
+            <TouchableHighlight style = {[sharedStyles.button, {bottom: 60}]}
+                onPress = {props.navToSelection}
+                underlayColor = {sharedStyles.button.underlayColor}>
+                <Text style = {sharedStyles.buttonText}>Click to Continue</Text>
+            </TouchableHighlight>
+        </View>
+    )
+}
+
+
 
 const styles = StyleSheet.create({
 
-    overlay:{
-        flex: 1,
-        // flexDirection: 'column',
+    underlay:{
+        width: '100%',
+        height: '100%',
         alignItems: 'center',
-        // justifyContent: 'center',
+        justifyContent: 'center',
     },
 
     modal:{
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent:""
+        justifyContent: 'flex-end',
         flexDirection: 'column',
-        flex: 2,
-        width: d_window.width/1.25,
-        // height: d_window.height/1.13 - (d_window.height === 812 ? 95:0),
-        // height: 1000000,
-        borderRadius: 30 * (d_window.width/375),
+        width: '85%',
+        height: '80%',
+        borderRadius: 25, //TODO scaling proportioned with box.height and x.left
         backgroundColor: 'whitesmoke',
-        marginTop: 20,
-        marginBottom: 100,
     },
+})
 
-    headerBar: {
-        flex: -1, //TODO: Swiper doesnt repect style props or flex value
-        flexDirection: 'row',
-        alignItems: 'center',
+const headerStyles = StyleSheet.create({
+    box: {
+        position: 'absolute',
+        top: 0,
         justifyContent: 'center',
-        // backgroundColor: 'lightblue',
-        // paddingTop: ,
-        height: 75,
-        width: d_window.width/1.25,        
+        backgroundColor: '#E0E0E0',
+        borderTopLeftRadius: styles.modal.borderRadius,
+        borderTopRightRadius: styles.modal.borderRadius,
+        height: 60, //TODO scalling?
+        borderColor: 'slategray',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        width: '100%',
     },
-
     title:{
-        flex: 2,
-        fontSize: 30 * (d_window.width/375),
+        fontSize: 30, //TODO font size
         fontWeight: '100',
+        textAlign: 'center',
+
+        // backgroundColor: 'blue',
+        
     },
-    
-    exitButton:{
-        flex: 1,
-
-        // margin: 10,
+    x:{
+        position: 'absolute',
+        zIndex: 1,
+        left: 5, //TODO Scalling? needs to be in propotion with border radius and box.height
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: 'red',
     },
+})
 
-    // swiper: {
-    //     flex: -1,
-    // },
 
+//TODO XXX redo imagebox, text, and button formatting with flexbox, gap
+
+const pageStyles = StyleSheet.create({
+ 
     page:{
-        // alignItems: 'center',
-        // backgroundColor: 'lightgray',
-        height: 500,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        // backgroundColor: 'lightgreen',
+        height: '100%',
+        width: '100%',
     },
 
     imageBox:{
+        // flex: 2,
         alignItems: 'center',
         justifyContent: 'center',
-        // marginTop: 57 * (d_window.height/667) + (d_window.height === 812 ? 0:0),
         backgroundColor: 'lightgrey',
-        borderRadius: 10 * (d_window.width/375),
+        width: '75%',
+        marginVertical: 27, //TODO scalabe,
+        padding: 10, //TODO scalable?
+        borderRadius: 10,//TODO scalable?
     },
 
     image:{
-        width: (d_window.width/1.25)/1.3, //TODO: preserve orrigial aspect ratios of pictures 
-        height: (d_window.width/.7597)/1.3,
-        margin: 10 * (d_window.width/375),
-        borderRadius: 5 * (d_window.width/375),
+        height: undefined, //needed
+        width: '100%',
+        borderRadius: 5, //TODO scalable?
     },
+
 
     text:{
         textAlign: 'center',
-        fontSize: 15 * (d_window.width/375),
+        fontSize: 16, //TODO font size
         fontWeight: '500',
         color: 'black',
-        paddingHorizontal: 20 * (d_window.width/375),
-        paddingVertical: 20,
+        paddingHorizontal: MyTheme.text.paddingHorizontal-5, //TODO paddingHorizontal
+        // backgroundColor: 'pink'
+        // paddingVertical: 20,
     },
-
-    button:{
-        width: d_window.width/1.25,
-        height: 35 * Math.pow((d_window.height/667), 1.5),
-        backgroundColor: 'gray',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    
-    buttonText:{
-        fontSize: 16 * (d_window.width/375),
-        color: 'white',
-        fontWeight: '100',
-        textAlign: 'center',
-    },
-
   
 });
 

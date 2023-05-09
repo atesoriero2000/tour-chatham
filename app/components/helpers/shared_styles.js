@@ -15,6 +15,7 @@ const MyTheme = {
     text: 'rgb(28, 28, 30)',
     border: 'rgb(199, 199, 204)',
     notification: 'rgb(255, 69, 58)',
+    swiper: '#007aff',
   },
 
   text: {
@@ -26,12 +27,37 @@ const MyTheme = {
   },
 }
 
+//Scalable:
+/*
+font size
+paddingHorizontal
+icon size (tab bar and tutorial)
+tutorial popup border radius?
+font wieght? 
+*/
+
+//Color:
+/*
+
+Swiper: #007aff
+Tutorial popup: #157EFB
+Start page clickable: #9090FF
+Info page: #6565FF
+
+*/
+
+//Fonts:
+/*
+
+
+*/
 
 const sharedStyles = StyleSheet.create({
   
     container:{ //flex direction column by default
       flex: 1,
       alignItems: 'center',
+      justifyContent: 'center',
       width: '100%',
       height: '100%',
       // backgroundColor: 'yellow',
@@ -39,13 +65,14 @@ const sharedStyles = StyleSheet.create({
     
     button:{
       position: 'absolute',
-      bottom: 35,
+      bottom: 35, //TODO
       width: '100%',
       height: 35 * Math.pow((d_window.height/667), 2), // TODO
       backgroundColor: 'gray',
       justifyContent: 'center',
       alignItems: 'center',
       opacity: 1,
+      underlayColor: '#BBBBBB',
     },
   
     buttonText:{

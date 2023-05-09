@@ -16,7 +16,8 @@ import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
 import Debugger from './debugger';
-import { sharedStyles, d_window } from '../helpers/shared_styles';
+import { sharedStyles, MyTheme, d_window } from '../helpers/shared_styles';
+import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 //TODO: remove, what is this?
 var scale = 450;
@@ -308,7 +309,7 @@ class AudioPage extends Component {
 
   render() {
     return (
-      <View>
+      <View style = {styles.container}>
         <View style = {sharedStyles.headerBorder}/>
         <ScrollView>
           <View style = {styles.container}>
@@ -329,25 +330,29 @@ class AudioPage extends Component {
 
   {/* Turns / Locations Image */}
             {Array.isArray(this.state.picture) ?
-              <Swiper height={styles.image.height} width={styles.image.width}>
+              <Swiper height={styles.image.height} width={styles.image.width} activeColor={MyTheme.colors.swiper}>
                   {this.state.picture.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
               </Swiper> : <Image style = {styles.image} source = {this.state.picture}/>
             }
 
   {/* Continue Button */}
-            <TouchableHighlight style = {[styles.button, {opacity: this.state.clickable?1:.5}]} onLongPress = {() => this.buttonPressed()}>
+            <TouchableHighlight style = {[styles.button, {opacity: this.state.clickable?1:.5}]}
+              underlayColor={sharedStyles.button.underlayColor}
+              onPress={() => this.buttonPressed()}>
               <Text style={styles.buttonText}>Click to Continue</Text>
             </TouchableHighlight>
-          </View>
 
   {/* Hidden Debugger Component */}
-          {this.state.debugger && 
-          <Debugger state={this.state} turn={this.turn} stage={this.stage}
-              stopAudio = {() => this.DEBUG_stopAudio()} 
-              lastTurn = {() => this.DEBUG_lastTurn()} 
-              nextTurn = {() => this.DEBUG_nextTurn()} 
-              toggleIsNearOverride={() => this.DEBUG_toggleIsNearOverride()}/>}
-          <TouchableOpacity style={[styles.debuggerToggle, {opacity: this.state.debugger?1:0, height: this.state.debugger?30:5}]} onPress={() => this.DEBUG_toggleDebugger()}/>
+            {this.state.debugger && 
+            <Debugger state={this.state} turn={this.turn} stage={this.stage}
+                stopAudio = {() => this.DEBUG_stopAudio()} 
+                lastTurn = {() => this.DEBUG_lastTurn()} 
+                nextTurn = {() => this.DEBUG_nextTurn()} 
+                toggleIsNearOverride={() => this.DEBUG_toggleIsNearOverride()}/>}
+            <TouchableHighlight style={[styles.debuggerToggle, {opacity: this.state.debugger?1:.5, height: this.state.debugger?30:5}]} onLongPress={() => this.DEBUG_toggleDebugger()}>
+              <Text>Close Debugger</Text>  
+            </TouchableHighlight>     
+          </View>
         </ScrollView>
       </View>
     );
@@ -420,9 +425,12 @@ class AudioPage extends Component {
 const styles = StyleSheet.create({
 
   container:{
-    flex: 1,
+    // flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
+    height: '100%',
+    // backgroundColor: 'grey'
+    // width: '100%'
   },
 
   titleBox:{
@@ -499,10 +507,10 @@ const styles = StyleSheet.create({
   debuggerToggle:{
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center',
     backgroundColor: 'gray',
-    alignSelf: 'center',
-    width: '100%'
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
   }
 });
 

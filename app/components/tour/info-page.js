@@ -10,8 +10,9 @@ import {
   Image,
   Alert,
   Linking,
+  TouchableHighlight,
 } from 'react-native'
-import { sharedStyles, d_window } from '../helpers/shared_styles';
+import { sharedStyles, MyTheme, d_window } from '../helpers/shared_styles';
 
 
 var Swiper = require('../helpers/Swiper');
@@ -68,15 +69,17 @@ class InfoPage extends Component{
 
 
         {this.state.loc.squareAtPic.length>1 ?
-          <Swiper height={d_window.width / 1.5} width={d_window.width / 1.5} >
+          <Swiper height={d_window.width / 1.5} width={d_window.width / 1.5} activeColor={MyTheme.colors.swiper}>
               {this.state.loc.squareAtPic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
           </Swiper> : <Image style = {styles.image} source = {this.state.loc.squareAtPic[0]}/>
         }
 
 
-        <TouchableOpacity style = {styles.button} onPress = {() => this.onPress()}>
+        <TouchableHighlight style = {styles.button} 
+          underlayColor = {sharedStyles.button.underlayColor} 
+          onPress = {() => this.onPress()}>
           <Text style={styles.buttonText}> Click To Start Tour! </Text>
-        </TouchableOpacity>
+        </TouchableHighlight>
 
       </View>
     );

@@ -554,16 +554,6 @@ function loadSound(file){
   // !squareAtPics:  selection-page.js (info-page.js does swiper if multiple pics availible)
 
 
-// startPic
-// endAudio
-// 
-
-// class Turns {
-//   static stages = stages;
-//   static endAudio = loadSound('page_27_tony.mp3');
-//   static stage = 0;
-//   static turn = 0;
-// }
 
 const Locations = [
   { turns: loc0, title: 'The Mount Vernon Schoolhouse', address: '24 Southern Blvd, Chatham Township', time: 90, toAudio: null, atAudio: at0, atPic: [atPic0], squareAtPic: [sAtPic0] },
@@ -583,5 +573,4 @@ const Locations = [
   { turns: loc14, title: 'The Boisaubin House Marker', address: '65 Treadwell Ave, Madison', time: 5, toAudio: to14, atAudio: at14, atPic: [atPic14, atPic14_2], squareAtPic: [sAtPic14, sAtPic14_2] },
 ];
 
-//export default ?? 
 module.exports = Locations;

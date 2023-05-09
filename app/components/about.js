@@ -65,13 +65,11 @@ class About extends Component {
               <Text style = {styles.labels}>
                 Developer
               </Text>
-              <Text style = {styles.fineText}>
-                Name: Anthony Tesoriero
-              </Text>
-              <Text style = {styles.fineText}>
-                Email: <Text selectable = {true} onPress={() => Linking.openURL("mailto:atesoriero2000@gmail.com?subject=Chatham%20Township%20Historical%20Society%20Driving%20Tour")}>atesoriero2000@gmail.com</Text>
-              </Text>
+              <Text style = {styles.fineText}>Anthony Tesoriero</Text>
+              <Text style = {styles.fineText} selectable = {true} onPress={() => Linking.openURL("https://www.aptesoriero.com")}>www.aptesoriero.com</Text>
+              <Text style = {styles.fineText} selectable = {true} onPress={() => Linking.openURL("mailto:atesoriero2000@gmail.com?subject=Chatham%20Township%20Historical%20Society%20Driving%20Tour")}>atesoriero2000@gmail.com</Text>
 
+{/* TODO use the clickable color? */}
               <Text style = {styles.labels} onPress={() => Linking.openURL("http://www.chathamtownshiphistoricalsociety.org")}>
                 Chatham Township Historical Society
               </Text>

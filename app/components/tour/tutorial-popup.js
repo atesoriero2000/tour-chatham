@@ -27,10 +27,10 @@ class TutorialPopup extends Component {
             <BlurView blurType="dark" blurAmount={10} style={styles.underlay}>
                 <SafeAreaView/> 
                 <View style={styles.modal}>
-                    
+
+                    {/* TODO icon size */}
+                    <Icon name={'close'} size={xSize} color={MyTheme.colors.swiper} style={headerStyles2.x} onPress={this.props.closePopup}/>
                     <View style={headerStyles.box}>
-                        {/* TODO icon size */}
-                        <Icon name={'close'} size={40} color={MyTheme.colors.swiper} style={headerStyles.x} onPress={this.props.closePopup}/>
                         <Text style={headerStyles.title}>Tutorial</Text>
                     </View>
 
@@ -95,12 +95,11 @@ const styles = StyleSheet.create({
 
     modal:{
         alignItems: 'center',
-        // justifyContent:""
         justifyContent: 'flex-end',
         flexDirection: 'column',
         width: '85%',
         height: '80%',
-        borderRadius: 25, //TODO scaling proportioned with box.height and x.left
+        borderRadius: 30, //TODO scaling proportioned with box.height and x.left
         backgroundColor: 'whitesmoke',
     },
 })
@@ -110,11 +109,13 @@ const headerStyles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         justifyContent: 'center',
+        // alignItems: 'center',
         backgroundColor: '#E0E0E0',
         borderTopLeftRadius: styles.modal.borderRadius,
         borderTopRightRadius: styles.modal.borderRadius,
-        height: 60, //TODO scalling?
-        borderColor: 'slategray',
+        height: styles.modal.borderRadius*2, //TODO remember to change back
+        // height: 30,
+        borderColor: 'slategrey',
         borderBottomWidth: StyleSheet.hairlineWidth,
         width: '100%',
     },
@@ -126,10 +127,18 @@ const headerStyles = StyleSheet.create({
         // backgroundColor: 'blue',
         
     },
+})
+
+const xSize = headerStyles.box.height*1.83/3; //TODO
+// const xSize = 40;
+
+const headerStyles2 = StyleSheet.create({
     x:{
         position: 'absolute',
         zIndex: 1,
-        left: 5, //TODO Scalling? needs to be in propotion with border radius and box.height
+        // left: styles.modal.borderRadius headerStyles.box.height, //TODO Scalling? needs to be in propotion with border radius and box.height
+        top: -(62*xSize/500) + (headerStyles.box.height - xSize/1.83)/2,
+        left: -(113*xSize/500) + (headerStyles.box.height - xSize/1.83)/2,
         justifyContent: 'center',
         alignItems: 'center',
         // backgroundColor: 'red',

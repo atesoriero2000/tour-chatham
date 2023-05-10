@@ -88,10 +88,11 @@ const styles = {
   },
 
   buttonText: {
-    fontSize: 70,
+    fontSize: 120,
     color: '#007aff',
-    // fontFamily: '',
-    fontWeight: '300',
+    // fontFamily: 'san francisco',
+    fontFamily: 'AvenirNextCondensed-Heavy',
+    fontWeight: '200',
   }
 }
 

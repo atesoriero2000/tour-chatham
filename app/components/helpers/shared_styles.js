@@ -25,6 +25,11 @@ const MyTheme = {
     paddingHorizontal: 35,
     titleFontSize: 35,
   },
+  tutorialFont: {
+    titleSize: 30, //TODO Scaling
+    textSize: 16,
+    paddingHorizontal: 30,
+  },
 }
 
 //Scalable:
@@ -65,9 +70,9 @@ const sharedStyles = StyleSheet.create({
     
     button:{
       position: 'absolute',
-      bottom: 35, //TODO
+      bottom: 35, // TODO  scalable
       width: '100%',
-      height: 35 * Math.pow((d_window.height/667), 2), // TODO
+      height: 35 * Math.pow((d_window.height/667), 2), // TODO scalable
       backgroundColor: 'gray',
       justifyContent: 'center',
       alignItems: 'center',

@@ -49,7 +49,7 @@ class Welcome extends Component {
   }
 
   permissionsPopup(){
-    
+    //TODO
     // BackgroundGeolocation.configure({ // NOTE: needed to force permissions popup on startup
     //   locationAuthorizationRequest: 'WhenInUse',
     //   debug: false,
@@ -80,10 +80,10 @@ const styles = StyleSheet.create({
   },
   
   titleText:{
-    fontSize: MyTheme.text.titleFontSize,
-    paddingHorizontal: MyTheme.text.paddingHorizontal,
+    fontSize: MyTheme.defaultText.titleFontSize,
+    paddingHorizontal: MyTheme.defaultText.paddingHorizontal,
     color: 'black',
-    fontWeight: MyTheme.text.weight,
+    fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
   },
 

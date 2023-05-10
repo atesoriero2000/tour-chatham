@@ -58,8 +58,7 @@ class Start extends Component {
 
 
         <View style = {styles.bottomTextBox}>
-          {/* TODO fontSize shared */}
-          <Text style = {[styles.text, {fontSize: 17}]}>
+          <Text style = {[styles.text, {fontSize: MyTheme.start.bottomTextSize}]}>
             It will take approximately 1.5 hours to complete the whole
             tour, but you may stop at any marker and pick up where you
             left off. You will need a passenger to follow the directions
@@ -85,7 +84,7 @@ class Start extends Component {
 const styles = StyleSheet.create({
 
   topTextBox: {
-    flex: 7,
+    flex: 22,
     width: '100%',
     // backgroundColor: 'pink',
     alignItems: 'center',
@@ -94,23 +93,23 @@ const styles = StyleSheet.create({
   
   text: {
     textAlign: 'center',
-    fontSize: 19, // TODO: shared
-    // fontWeight: MyTheme.text.weight,
-    fontWeight: '200', // TODO: shared
-    color: MyTheme.text.defaultColor,
-    paddingHorizontal: MyTheme.text.paddingHorizontal,
+    fontSize: MyTheme.start.topTextSize,
+    fontWeight: MyTheme.defaultText.weight,
+    // fontWeight: '200', // TODO: shared
+    color: MyTheme.defaultText.color,
+    paddingHorizontal: MyTheme.defaultText.paddingHorizontal,
   },
 
   clickable: {
     paddingTop: 10, //TODO: scaling
-    fontSize: 15, //TODO: shared
-    fontWeight: MyTheme.text.weight,
-    color: MyTheme.text.clickableColor,
+    fontSize: MyTheme.start.clickableTextSize,
+    fontWeight: MyTheme.defaultText.weight,
+    color: MyTheme.defaultText.clickableColor,
     textDecorationLine: 'underline',
   },
 
   swiper: { //TODO MOVE TO SHARED FOR AUDIO PAGE
-    flex: 11,
+    flex: 32,
     height: 250, //TODO make responsive?
     width: Dimensions.get('window').width, // cant use '100%'
     // backgroundColor: 'lightblue',
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
   },
 
   bottomTextBox: {
-    flex: 9,
+    flex: 25,
     width: '100%',
     // backgroundColor: 'lightgreen',
     alignItems: 'center',

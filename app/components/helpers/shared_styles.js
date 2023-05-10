@@ -18,17 +18,32 @@ const MyTheme = {
     swiper: '#007aff',
   },
 
-  text: {
-    defaultColor: 'grey',
+  defaultText: {
+    color: 'grey',
     weight: '100',
     clickableColor: '#9090FF',
     paddingHorizontal: 35,
     titleFontSize: 35,
   },
+
+  about: {
+    headerSize: 57,
+    textSize: 17,
+    titleSize: 35,
+    labelSize: 16,
+    fineTextSize: 14,
+  },
+
   tutorialFont: {
-    titleSize: 30, //TODO Scaling
+    titleSize: 30,
     textSize: 16,
     paddingHorizontal: 30,
+  },
+
+  start: {
+    topTextSize: 19,
+    bottomTextSize: 17,
+    clickableTextSize: 15,
   },
 }
 

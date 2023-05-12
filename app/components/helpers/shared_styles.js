@@ -5,55 +5,22 @@ import {
 
 const d_window = Dimensions.get('window');
 
+// console.log(35*1.6011544452661226)
 
-const MyTheme = {
-  dark: false,
-  colors: {
-    primary: 'rgb(255, 45, 85)',
-    background: 'white',
-    card: 'whitesmoke',
-    text: 'rgb(28, 28, 30)',
-    border: 'rgb(199, 199, 204)',
-    notification: 'rgb(255, 69, 58)',
-    swiper: '#007aff',
-  },
+//1.6011544452661226
+//884 /667 = 1.265367316341829 ^2 = 1.6011544452661226
 
-  defaultText: {
-    color: 'grey',
-    weight: '100',
-    clickableColor: '#9090FF',
-    paddingHorizontal: 35,
-    titleFontSize: 35,
-  },
-
-  about: {
-    headerSize: 57,
-    textSize: 17,
-    titleSize: 35,
-    labelSize: 16,
-    fineTextSize: 14,
-  },
-
-  tutorialFont: {
-    titleSize: 30,
-    textSize: 16,
-    paddingHorizontal: 30,
-  },
-
-  start: {
-    topTextSize: 19,
-    bottomTextSize: 17,
-    clickableTextSize: 15,
-  },
-}
+// LOG  {"fontScale": 1, "height": 844, "scale": 3, "width": 390}
 
 //Scalable:
 /*
 font size
-paddingHorizontal
 icon size (tab bar and tutorial)
-tutorial popup border radius?
-font wieght? 
+*/
+
+/* Test:
+border radius
+font weight
 */
 
 //Color:
@@ -72,10 +39,60 @@ Info page: #6565FF
 
 */
 
+
+const MyTheme = {
+  dark: false,
+  colors: {
+    primary: 'rgb(255, 45, 85)',
+    background: 'white',
+    card: 'whitesmoke',
+    text: 'rgb(28, 28, 30)',
+    border: 'rgb(199, 199, 204)',
+    notification: 'rgb(255, 69, 58)',
+    swiper: '#007aff',
+  },
+
+  scrollView: {
+    marginBottom: '5%', //TODO 
+  },
+
+  defaultText: {
+    color: 'grey',
+    weight: '200',
+    clickableColor: '#9090FF',
+  },
+
+  start: {
+    topTextSize: 19,
+    bottomTextSize: 17,
+    clickableTextSize: 15,
+  },
+
+  welcome: {
+    titleFontSize: 35,
+    titleFontWeight: '100',//TODO combine
+  },
+
+  tutorial: {
+    titleSize: 30,
+    textSize: 16,
+  },
+
+  about: {
+    headerSize: 57,
+    textSize: 16.5,
+    titleSize: 35,
+    labelSize: 16,
+    fineTextSize: 14,
+    headerWeight: '100',//TODO combine
+  },
+}
+
+
 const sharedStyles = StyleSheet.create({
   
     container:{ //flex direction column by default
-      flex: 1,
+      // flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
       width: '100%',
@@ -84,10 +101,10 @@ const sharedStyles = StyleSheet.create({
     },
     
     button:{
-      position: 'absolute',
-      bottom: 35, // TODO  scalable
+      bottom: 0, 
+      marginBottom: '7.69%',
       width: '100%',
-      height: 35 * Math.pow((d_window.height/667), 2), // TODO scalable
+      height: 55, // TODO scalable (dependant on text size?)
       backgroundColor: 'gray',
       justifyContent: 'center',
       alignItems: 'center',
@@ -98,7 +115,7 @@ const sharedStyles = StyleSheet.create({
     buttonText:{
       fontSize: 20,
       color: 'white',
-      fontWeight: '100',
+      fontWeight: MyTheme.defaultText.weight,
       justifyContent: 'center',
       alignItems: 'center',
     },
@@ -111,6 +128,11 @@ const sharedStyles = StyleSheet.create({
       height: StyleSheet.hairlineWidth,
       backgroundColor: MyTheme.colors.border,
       top: 0,
+    },
+
+    clickable:{
+      // color: MyTheme.defaultText.clickableColor,
+      // textDecorationLine: 'underline',
     },
   });
 

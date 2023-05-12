@@ -11,7 +11,7 @@ import {
   Modal,
   Dimensions
 } from 'react-native'
-import { sharedStyles, MyTheme } from '../helpers/shared_styles';
+import { sharedStyles, MyTheme, d_window } from '../helpers/shared_styles';
 
 var Swiper = require('../helpers/Swiper');
 var Locations = require('../helpers/turns');
@@ -50,7 +50,7 @@ class Start extends Component {
         </View>
 
         <View style={styles.swiper}>
-          <Swiper height={styles.swiper.height} width={styles.swiper.width} activeColor={MyTheme.colors.swiper} >
+          <Swiper height={styles.swiper.minHeight} width={styles.swiper.width} activeColor={MyTheme.colors.swiper} >
             {[].concat.apply([], Locations.map(pic => pic.atPic)).map( (pic1) => {
                 return( <Image style={styles.swiper} source={pic1} key={Math.random()}/> )}) }
           </Swiper>
@@ -80,11 +80,10 @@ class Start extends Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
 
   topTextBox: {
-    flex: 22,
+    flex: 24,
     width: '100%',
     // backgroundColor: 'pink',
     alignItems: 'center',
@@ -95,13 +94,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: MyTheme.start.topTextSize,
     fontWeight: MyTheme.defaultText.weight,
-    // fontWeight: '200', // TODO: shared
     color: MyTheme.defaultText.color,
-    paddingHorizontal: MyTheme.defaultText.paddingHorizontal,
+    paddingHorizontal: '9%',
   },
 
   clickable: {
-    paddingTop: 10, //TODO: scaling
+    paddingTop: 5, //TODO: scaling (fixed?)
     fontSize: MyTheme.start.clickableTextSize,
     fontWeight: MyTheme.defaultText.weight,
     color: MyTheme.defaultText.clickableColor,
@@ -109,19 +107,21 @@ const styles = StyleSheet.create({
   },
 
   swiper: { //TODO MOVE TO SHARED FOR AUDIO PAGE
-    flex: 32,
-    height: 250, //TODO make responsive?
+    flex: 1,
+    minHeight: 250, //TODO scaling
     width: Dimensions.get('window').width, // cant use '100%'
     // backgroundColor: 'lightblue',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   bottomTextBox: {
-    flex: 25,
+    flex: 21,
+    bottom: 5, //TODO 
     width: '100%',
     // backgroundColor: 'lightgreen',
     alignItems: 'center',
-    justifyContent: 'flex-start' 
+    justifyContent: 'center',
   },
 
 });

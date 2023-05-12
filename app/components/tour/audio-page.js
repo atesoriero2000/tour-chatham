@@ -484,6 +484,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
+        // aspectRatio: 1400/1051, //TODO add to audio page for full aspec ratio
+
   },
 
   button:{

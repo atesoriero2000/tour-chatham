@@ -36,6 +36,29 @@ class App extends Component {
     super(props);
   }
 
+  componentDidMount(){
+    this.permissionsPopup();
+  }
+
+  permissionsPopup(){
+    //TODO
+    // BackgroundGeolocation.configure({ // NOTE: needed to force permissions popup on startup
+    //   locationAuthorizationRequest: 'WhenInUse',
+    //   debug: false,
+    //   logLevel: BackgroundGeolocation.LOG_LEVEL_OFF,
+    // }, (state) => {
+    //   console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
+    //   if (!state.enabled) BackgroundGeolocation.start();
+    // });
+    // BackgroundGeolocation.stop();
+
+
+    BackgroundGeolocation.requestPermission(); // uses message 1
+    BackgroundGeolocation.requestTemporaryFullAccuracy("Driving").then( 
+      (accuracyAuthorization) => console.log('[requestTemporaryFullAccuracy] STATUS:', accuracyAuthorization) 
+      ).catch( (error) => console.warn("[requestTemporaryFullAccuracy] FAILED TO SHOW DIALOG: ", error) ); // uses message 2
+  }
+
   render() {
 
     activateKeepAwake(); //TODO

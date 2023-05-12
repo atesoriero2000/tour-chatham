@@ -9,21 +9,20 @@ import {
   Linking,
   StyleSheet,
 } from 'react-native'
+import { sharedStyles, MyTheme, d_window } from './helpers/shared_styles';
 
-import BackgroundGeolocation from "react-native-background-geolocation";
-import { sharedStyles, MyTheme } from './helpers/shared_styles';
+// import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+// import { useHeaderHeight } from '@react-navigation/elements';
 
-class Welcome extends Component {
+// const tabBarHeight = useBottomTabBarHeight();
+// const headerHeight = useHeaderHeight();
 
-  componentDidMount(){
-    this.permissionsPopup();
-  }
 
-  render() {
-    return (
-      <View style={sharedStyles.container}>
-        
+const Welcome = () => {
 
+
+  return (
+    <View style = {sharedStyles.container}>
         <View style={styles.titleBox}>
           <Text style={styles.titleText}>
             Chatham Township Historical Society Driving Tour
@@ -39,40 +38,20 @@ class Welcome extends Component {
         </View>
 
         <TouchableHighlight style = {sharedStyles.button} 
-          underlayColor={sharedStyles.button.underlayColor}
-          onPress = {() => Linking.openURL("http://www.chathamtownshiphistoricalsociety.org/programsmeetings.html")}>
+        underlayColor={sharedStyles.button.underlayColor}
+        onPress = {() => Linking.openURL("http://www.chathamtownshiphistoricalsociety.org/programsmeetings.html")}>
           <Text style = {sharedStyles.buttonText}> Upcoming Events </Text>
         </TouchableHighlight>
-
-      </View>
-    )
-  }
-
-  permissionsPopup(){
-    //TODO
-    // BackgroundGeolocation.configure({ // NOTE: needed to force permissions popup on startup
-    //   locationAuthorizationRequest: 'WhenInUse',
-    //   debug: false,
-    //   logLevel: BackgroundGeolocation.LOG_LEVEL_OFF,
-    // }, (state) => {
-    //   console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
-    //   if (!state.enabled) BackgroundGeolocation.start();
-    // });
-    // BackgroundGeolocation.stop();
-
-
-    BackgroundGeolocation.requestPermission(); // uses message 1
-    BackgroundGeolocation.requestTemporaryFullAccuracy("Driving").then( 
-      (accuracyAuthorization) => console.log('[requestTemporaryFullAccuracy] STATUS:', accuracyAuthorization) 
-      ).catch( (error) => console.warn("[requestTemporaryFullAccuracy] FAILED TO SHOW DIALOG: ", error) ); // uses message 2
-  }
+    </View>
+  )
 }
+
 
 
 const styles = StyleSheet.create({
 
   titleBox: {
-    flex: 9,
+    flex: 18,
     // backgroundColor: 'pink',
     width: '100%',
     justifyContent: 'center',
@@ -80,18 +59,18 @@ const styles = StyleSheet.create({
   },
   
   titleText:{
-    fontSize: MyTheme.defaultText.titleFontSize,
-    paddingHorizontal: MyTheme.defaultText.paddingHorizontal,
+    fontSize: MyTheme.welcome.titleFontSize,
+    paddingHorizontal: '10%',
     color: 'black',
-    fontWeight: MyTheme.defaultText.weight,
+    fontWeight: MyTheme.welcome.titleFontWeight,
     textAlign: 'center',
   },
 
   borderBox: {
-    flex: 2,
+    flex: 1,
     // backgroundColor: 'blue',
     width: '100%',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 
@@ -100,10 +79,10 @@ const styles = StyleSheet.create({
   },
 
   logoBox: {
-    flex: 17,
+    flex: 29,
     // backgroundColor: 'green',
     width: '100%',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 

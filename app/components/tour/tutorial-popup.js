@@ -107,19 +107,19 @@ const headerStyles = StyleSheet.create({
         backgroundColor: '#E0E0E0',
         borderTopLeftRadius: styles.modal.borderRadius,
         borderTopRightRadius: styles.modal.borderRadius,
-        height: MyTheme.tutorialFont.titleSize*2,
+        height: MyTheme.tutorial.titleSize*2,
         borderColor: 'slategrey',
         borderBottomWidth: StyleSheet.hairlineWidth,
         width: '100%',
     },
     title:{
-        fontSize: MyTheme.tutorialFont.titleSize,
+        fontSize: MyTheme.tutorial.titleSize,
         fontWeight: '100',
         textAlign: 'center',
     },
 })
 
-const xSize = MyTheme.tutorialFont.titleSize*4/3;
+const xSize = MyTheme.tutorial.titleSize*4/3;
 const headerStyles2 = StyleSheet.create({
     x:{
         position: 'absolute',
@@ -140,9 +140,9 @@ const pageStyles = StyleSheet.create({
     border:{
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'lightgray', // or MyTheme.colors.border
+        backgroundColor: 'lightgray',
         width: '75%',
-        padding: 10, //fixed
+        padding: '3%',
         borderRadius: 10, //fixed
     },
 
@@ -155,10 +155,10 @@ const pageStyles = StyleSheet.create({
     text:{
         flex: 5,
         textAlign: 'center',
-        fontSize: MyTheme.tutorialFont.textSize,
+        fontSize: MyTheme.tutorial.textSize,
         fontWeight: '500',
         color: 'black',
-        paddingHorizontal: MyTheme.tutorialFont.paddingHorizontal,
+        paddingHorizontal: '9%',
         width: '100%'
     },
 

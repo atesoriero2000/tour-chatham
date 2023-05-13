@@ -19,14 +19,11 @@ var Locations = require('../helpers/turns');
 
 class SelectionPage extends Component{
 
-  //TODO: not serialized data warning??
-  // Seems to come from the stack navigatior
-  // params.loc.toAudio.registerOnPlay (function)
-  // cant send functions???
   navToInfo(location, index){
+    let {atAudio, toAudio, ...functionlessLoc} = location;
     this.props.navigation.navigate('Tour', {
       screen: 'Drive to Start Point',
-      params: { loc: location, stage: index} });
+      params: { loc: functionlessLoc, stage: index} });
   }
 
   alert(location, index){

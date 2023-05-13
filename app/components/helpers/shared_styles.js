@@ -22,6 +22,8 @@ const Scales = {
   scale: scale,
   fScale: fontScale,
 }
+
+console.log(Scales);
 // const fontScale = height / 844;
 
 

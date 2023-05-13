@@ -16,7 +16,7 @@ import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
 import Debugger from './debugger';
-import { sharedStyles, MyTheme, d_window } from '../helpers/shared_styles';
+import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
 import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 
 //TODO: remove, what is this?
@@ -434,53 +434,53 @@ const styles = StyleSheet.create({
   },
 
   titleBox:{
-    width: d_window.width,
-    height: 100 * Math.pow((d_window.height/scaleH), 1.25), //height
+    width: Scales.width,
+    height: 100 * Math.pow((Scales.height/scaleH), 1.25), //height
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   title:{
-    fontSize: 30 * (d_window.width/scale),
+    fontSize: 30 * (Scales.width/scale),
     textAlign: 'center',
     color: 'black',
     fontWeight: '300',
-    paddingTop: 5 * Math.pow((d_window.height/scaleH), 2), //height
-    paddingHorizontal: 45 * (d_window.width/scale),
+    paddingTop: 5 * Math.pow((Scales.height/scaleH), 2), //height
+    paddingHorizontal: 45 * (Scales.width/scale),
   },
 
   line:{
     backgroundColor: 'black',
-    height: .74 * (d_window.width/scale), //height
-    width: 300 * (d_window.width/scale),
+    height: .74 * (Scales.width/scale), //height
+    width: 300 * (Scales.width/scale),
   },
 
   directionBox:{
-    width: 325 * (d_window.width/scale),
-    height: 107 * Math.pow((d_window.height/scaleH), 1.25), //height
+    width: 325 * (Scales.width/scale),
+    height: 107 * Math.pow((Scales.height/scaleH), 1.25), //height
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10 * Math.pow((d_window.height/scaleH), 2) - (d_window.height === 812? 10:0), //height
+    marginTop: 10 * Math.pow((Scales.height/scaleH), 2) - (Scales.height === 812? 10:0), //height
   },
 
   directions:{
-    fontSize: 18 * (d_window.width/scale),
+    fontSize: 18 * (Scales.width/scale),
     color: 'gray',
     fontWeight: '300',
     textAlign: 'center',
   },
 
   dist:{
-    fontSize: 15 * (d_window.width/scale),
+    fontSize: 15 * (Scales.width/scale),
     color: 'dimgray',
     fontWeight: '500',
     textAlign: 'center',
-    marginTop: 3 * Math.pow((d_window.height/scaleH), 2) - (d_window.height === 812? 4.44:0), //height
+    marginTop: 3 * Math.pow((Scales.height/scaleH), 2) - (Scales.height === 812? 4.44:0), //height
   },
 
   image:{
-    height: 250 * (d_window.width/scale),
-    width: d_window.width,
+    height: 250 * (Scales.width/scale),
+    width: Scales.width,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
@@ -489,8 +489,8 @@ const styles = StyleSheet.create({
   },
 
   button:{
-    width: d_window.width/1.5,
-    height: 36 * Math.pow((d_window.height/scaleH), 2), //height
+    width: Scales.width/1.5,
+    height: 36 * Math.pow((Scales.height/scaleH), 2), //height
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
@@ -500,7 +500,7 @@ const styles = StyleSheet.create({
   },
 
   buttonText:{
-    fontSize: 15 * (d_window.width/scale),
+    fontSize: 15 * (Scales.width/scale),
     color: 'white',
     fontWeight: '100',
     textAlign: 'center',

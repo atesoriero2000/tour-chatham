@@ -29,7 +29,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 
-import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';//TODO
+import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';//TODO remove
 
 class App extends Component {
   constructor(props){
@@ -61,7 +61,7 @@ class App extends Component {
 
   render() {
 
-    activateKeepAwake(); //TODO
+    activateKeepAwake(); //TODO remove
 
     //TODO: Tab Icon Sizes
 
@@ -71,7 +71,7 @@ class App extends Component {
           lazy: false, 
           headerShown: true,
           tabBarActiveTintColor: 'tomato',
-          tabBarStyle: {paddingTop: 8} //done
+          tabBarStyle: {paddingTop: '2.5%'} //done
         }}>
 
           <Tab.Screen name='Home' component={Welcome} options={{

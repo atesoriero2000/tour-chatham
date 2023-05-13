@@ -11,10 +11,10 @@ import {
 } from 'react-native'
 import { BlurView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/EvilIcons';
-import { sharedStyles, MyTheme, d_window } from '../helpers/shared_styles';
-const { width, height } = d_window; // needed for swiper
-Icon.loadFont(); //needed
+import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
 
+Icon.loadFont(); //needed
+const xSize = 40 * Scales.icon; 
 var Swiper = require('../helpers/Swiper');
 
 class TutorialPopup extends Component {
@@ -23,12 +23,12 @@ class TutorialPopup extends Component {
             <BlurView blurType="dark" blurAmount={10} style={styles.underlay}>
                 <SafeAreaView/> 
                 <View style={styles.modal}>
-                    <Icon name={'close'} size={xSize} color={MyTheme.colors.swiper} style={headerStyles2.x} onPress={this.props.closePopup}/>
+                    <Icon name={'close'} size={xSize} color={sharedStyles.swiper.activeColor} style={xStyle.x} onPress={this.props.closePopup}/>
                     <View style={headerStyles.box}>
                         <Text style={headerStyles.title}>Tutorial</Text>
                     </View>
 
-                    <Swiper autoplay={false} showsButtons={true} loop={false} height={height * (parseFloat(styles.modal.height)/100)-headerStyles.box.height} width={width * parseFloat(styles.modal.width)/100} activeColor={MyTheme.colors.swiper}>
+                    <Swiper autoplay={false} showsButtons={true} loop={false} height={Scales.height * (parseFloat(styles.modal.height)/100)-headerStyles.box.height} width={Scales.width * parseFloat(styles.modal.width)/100} activeColor={sharedStyles.swiper.activeColor}>
                         <Page1/>
                         <Page2 navToSelection={this.props.navToSelection}/>
                     </Swiper>
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         flexDirection: 'column',
         width: '85%',
-        height: '80%',
-        borderRadius: 25, //fixed
+        height: Scales.hasNotch ? '80%' : '90%',
+        borderRadius: 25 * Scales.radius,
         backgroundColor: 'whitesmoke',
     },
 })
@@ -107,20 +107,19 @@ const headerStyles = StyleSheet.create({
         backgroundColor: '#E0E0E0',
         borderTopLeftRadius: styles.modal.borderRadius,
         borderTopRightRadius: styles.modal.borderRadius,
-        height: MyTheme.tutorial.titleSize*2,
+        height: 60 * Scales.horizontal,
         borderColor: 'slategrey',
         borderBottomWidth: StyleSheet.hairlineWidth,
         width: '100%',
     },
     title:{
-        fontSize: MyTheme.tutorial.titleSize,
-        fontWeight: '100',
+        fontSize: 30 * Scales.font,
+        fontWeight: MyTheme.defaultText.titleWeight,
         textAlign: 'center',
     },
 })
 
-const xSize = MyTheme.tutorial.titleSize*4/3;
-const headerStyles2 = StyleSheet.create({
+const xStyle = StyleSheet.create({
     x:{
         position: 'absolute',
         zIndex: 1,
@@ -141,21 +140,23 @@ const pageStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'lightgray',
-        width: '75%',
+        // width: '75%',
+        height: '90%', //TODO new check notched phones
         padding: '3%',
-        borderRadius: 10, //fixed
+        borderRadius: 10 * Scales.radius,
     },
 
     image:{
-        height: undefined, //needed
-        width: '100%',
-        borderRadius: 5, //fixed
+        height: '100%',
+        // height: undefined, //needed
+        // width: '100%',
+        borderRadius: 5 * Scales.radius,
     },
 
     text:{
         flex: 5,
         textAlign: 'center',
-        fontSize: MyTheme.tutorial.textSize,
+        fontSize: 16 * Scales.font,
         fontWeight: '500',
         color: 'black',
         paddingHorizontal: '9%',
@@ -163,7 +164,7 @@ const pageStyles = StyleSheet.create({
     },
 
     buttonBox:{
-        flex: 5,
+        flex: 1,
         width: '100%',
         alignItems: 'center',
         justifyContent: 'flex-start',

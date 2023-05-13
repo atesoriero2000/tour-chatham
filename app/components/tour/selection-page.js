@@ -13,7 +13,7 @@ import {
   Text,
 } from 'react-native'
 
-import { sharedStyles, d_window } from '../helpers/shared_styles';
+import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
 
 var Locations = require('../helpers/turns');
 
@@ -42,14 +42,14 @@ class SelectionPage extends Component{
 
   render() {
     return(
-      <View style = {styles.container}>
+      <View style = {sharedStyles.container}>
         <View style = {sharedStyles.headerBorder}/>
         <ScrollView> 
           { Locations.map( (loc, index) =>
               <TouchableOpacity onPress = {() => this.alert(loc, index)} key={Math.random()}>
                 <View style={styles.locationContainer}>
                   <Image style={styles.image} source={loc.squareAtPic[0]}/>
-                  <View style={styles.contents}>
+                  <View style={{}}>
                     <Text style={styles.text}> {loc.title} <Text style={styles.time}> ({loc.time} mins) </Text></Text>
                     <Text style={styles.buttonText}> {loc.address} </Text>
                   </View>
@@ -57,7 +57,7 @@ class SelectionPage extends Component{
               </TouchableOpacity>
             )
           }
-          <View style={styles.bottomMargin}/> 
+          <View style={{marginBottom: styles.locationContainer.marginTop}}/> 
         </ScrollView>
       </View>
     );
@@ -66,72 +66,45 @@ class SelectionPage extends Component{
 
 
 const styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-  },
 
   locationContainer:{
     alignItems: 'center',
-    justifyContent: 'flex-start',
     flexDirection: 'row',
-    width: d_window.width,
-    height: 75 * (d_window.height/667) - (d_window.height === 812? 10:0),
-    marginTop: 10 * (d_window.height/667),
+    width: Scales.width, //int value needed 
+    marginTop: 15 * Scales.horizontal,
     backgroundColor: 'gainsboro', //#e6e6e6
   },
 
-  contents:{
-
-  }, //TODO \/ breaks formatting but was a typo
-
-  content:{
-    flex: 2,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
-    height: 50 * (d_window.height/667),
-  },
-
   text:{
-    fontSize: 16.3 * (d_window.width/375),
+    fontSize: 17 * Scales.font,
     color: 'black',
-    fontWeight: '300',
+    fontWeight: MyTheme.selection.titleWeight,
     textAlign: 'left',
-    letterSpacing: -.5 * (d_window.width/375),
+    letterSpacing: -.5 * Scales.font,
   },
 
   time:{
-    fontSize: 12.25 * (d_window.width/375),
+    fontSize: 12 * Scales.font,
     color: 'black',
-    fontWeight: '300',
+    fontWeight: MyTheme.selection.titleWeight,
     textAlign: 'left',
-    letterSpacing: -.65 * (d_window.width/375),
+    letterSpacing: -.7 * Scales.font,
   },
 
   buttonText:{
-    fontSize: 14 * (d_window.width/375),
+    fontSize: 14.5 * Scales.font,
     color: 'grey',
-    fontWeight: '100',
+    fontWeight: MyTheme.defaultText.weight,
     textAlign: 'left',
-    marginTop: 2 * (d_window.height/667),
-    letterSpacing: -.5  * (d_window.width/375),
+    marginTop: 3 * Scales.horizontal,
+    letterSpacing: -.5 * Scales.font,
   },
 
   image:{
-    margin: 25/2 * (d_window.width/375),
-    height: 50 * (d_window.width/375),
-    width: 50 * (d_window.width/375),
-    backgroundColor: 'transparent',
+    margin: 13 * Scales.horizontal,
+    aspectRatio: 1,
+    width: 55 * Scales.horizontal,
   },
-
-  bottomMargin:{
-    width: '100%',
-    height: 10 * (d_window.height/667),
-  },
-
 });
 
 module.exports = SelectionPage;

@@ -10,7 +10,7 @@ import {
   Linking,
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { sharedStyles, MyTheme, d_window } from './helpers/shared_styles';
+import { sharedStyles, MyTheme, Scales } from './helpers/shared_styles';
 
 const About = (props) => {
 
@@ -110,14 +110,13 @@ const About = (props) => {
   );
 }
 
-
 const styles = StyleSheet.create({
 
   container:{
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    height: d_window.height*1.475, //'147%' doesnt work
+    height: 1245 * Scales.horizontal,
     marginBottom: '3%',
   },
 
@@ -164,15 +163,15 @@ const styles = StyleSheet.create({
 const textStyles = StyleSheet.create({
 
   textHeader:{
-    fontSize: MyTheme.about.headerSize,
+    fontSize: 57 * Scales.font,
     color: 'black',
-    fontWeight: MyTheme.about.headerWeight,
+    fontWeight: MyTheme.defaultText.titleWeight,
     textAlign: 'center',
     paddingVertical: '8%',
   },
 
   text:{
-    fontSize: MyTheme.about.textSize,
+    fontSize: 16.5 * Scales.font,
     color: MyTheme.defaultText.color,
     fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
@@ -181,14 +180,14 @@ const textStyles = StyleSheet.create({
 
   titles:{
     flex: 1,
-    fontSize: MyTheme.about.titleSize,
+    fontSize: 35 * Scales.font,
     color: 'black',
-    fontWeight: MyTheme.about.headerWeight,
+    fontWeight: MyTheme.defaultText.titleWeight,
     textAlign: 'center',
   },
 
   fineText:{
-    fontSize: MyTheme.about.fineTextSize,
+    fontSize: 14 * Scales.font,
     color: MyTheme.defaultText.color,
     fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
@@ -196,9 +195,9 @@ const textStyles = StyleSheet.create({
   },
 
   labels:{
-    fontSize: MyTheme.about.labelSize,
+    fontSize: 16 * Scales.font,
     color: 'dimgrey',
-    fontWeight: '500',
+    fontWeight: MyTheme.about.labelWeight,
     textAlign: 'center',
     paddingBottom: '1%',
     paddingTop: '6%',

@@ -1,9 +1,29 @@
+import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 import { 
     StyleSheet,
     Dimensions,
+    // PixelRatio,
 } from 'react-native'
 
-const d_window = Dimensions.get('window');
+const {width, height, scale, fontScale} = Dimensions.get('window');
+
+const Scales = {
+  font: width/390,
+  vertical: height / 844, //TODO remove??
+
+  radius: width / 390,
+  horizontal: width / 390,
+  icon: width / 390,
+
+  hasNotch: true, //TODO use platform
+
+  width: width, 
+  height: height,
+  scale: scale,
+  fScale: fontScale,
+}
+// const fontScale = height / 844;
+
 
 // console.log(35*1.6011544452661226)
 
@@ -14,12 +34,10 @@ const d_window = Dimensions.get('window');
 
 //Scalable:
 /*
-font size
-icon size (tab bar and tutorial)
+icon size (tab bar)
 */
 
 /* Test:
-border radius
 font weight
 */
 
@@ -38,6 +56,12 @@ Info page: #6565FF
 
 
 */
+// import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+// import { useHeaderHeight } from '@react-navigation/elements';
+
+// const tabBarHeight = useBottomTabBarHeight();
+// const headerHeight = useHeaderHeight();
+
 
 
 const MyTheme = {
@@ -49,42 +73,20 @@ const MyTheme = {
     text: 'rgb(28, 28, 30)',
     border: 'rgb(199, 199, 204)',
     notification: 'rgb(255, 69, 58)',
-    swiper: '#007aff',
-  },
-
-  scrollView: {
-    marginBottom: '5%', //TODO 
   },
 
   defaultText: {
     color: 'grey',
-    weight: '200',
-    clickableColor: '#9090FF',
+    weight: (Scales.scale == 3) ? '200' : '100',
+    titleWeight: '100',
+    clickableColor: '#9090FF', //TODO move to styles
   },
 
-  start: {
-    topTextSize: 19,
-    bottomTextSize: 17,
-    clickableTextSize: 15,
+  about:{
+    labelWeight: '500'
   },
-
-  welcome: {
-    titleFontSize: 35,
-    titleFontWeight: '100',//TODO combine
-  },
-
-  tutorial: {
-    titleSize: 30,
-    textSize: 16,
-  },
-
-  about: {
-    headerSize: 57,
-    textSize: 16.5,
-    titleSize: 35,
-    labelSize: 16,
-    fineTextSize: 14,
-    headerWeight: '100',//TODO combine
+  selection:{
+    titleWeight: '300'
   },
 }
 
@@ -100,11 +102,23 @@ const sharedStyles = StyleSheet.create({
       // backgroundColor: 'yellow',
     },
     
+    // button:{
+    //   bottom: 0, 
+    //   marginBottom: '7.69%',
+    //   width: '100%',
+    //   height: 55 * fontScale, // TODO scalable (dependant on text size?)
+    //   backgroundColor: 'gray',
+    //   justifyContent: 'center',
+    //   alignItems: 'center',
+    //   opacity: 1,
+    //   underlayColor: '#BBBBBB',
+    // },
+
     button:{
-      bottom: 0, 
-      marginBottom: '7.69%',
+      // bottom: 0, 
+      // marginBottom: 10,
       width: '100%',
-      height: 55, // TODO scalable (dependant on text size?)
+      height: 55 * Scales.horizontal,
       backgroundColor: 'gray',
       justifyContent: 'center',
       alignItems: 'center',
@@ -113,7 +127,7 @@ const sharedStyles = StyleSheet.create({
     },
   
     buttonText:{
-      fontSize: 20,
+      fontSize: 20 * Scales.font,
       color: 'white',
       fontWeight: MyTheme.defaultText.weight,
       justifyContent: 'center',
@@ -125,15 +139,38 @@ const sharedStyles = StyleSheet.create({
       width: '100%',
       opacity: 1,
       zIndex: 1,
-      height: StyleSheet.hairlineWidth,
+      height: Scales.hasNotch ? StyleSheet.hairlineWidth : 0,
       backgroundColor: MyTheme.colors.border,
       top: 0,
     },
 
-    clickable:{
+    clickable:{ //TODO
       // color: MyTheme.defaultText.clickableColor,
       // textDecorationLine: 'underline',
     },
+
+    swiper: {
+      // aspectRatio: 1400/1051,
+      height:.395 * width*14/10.51,
+      width: width,
+      // backgroundColor: 'lightblue',
+      justifyContent: 'center',
+      alignItems: 'center',
+      activeColor: '#007aff',
+    },
+
+    // swiperImage: {
+    //   width: 100%
+    // },
+
+    box: {
+    flex: 1,
+    // backgroundColor: 'blue',
+
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   });
 
-  export {sharedStyles, MyTheme, d_window};
+  export {sharedStyles, MyTheme, Scales};

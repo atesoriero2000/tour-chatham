@@ -9,39 +9,27 @@ import {
   Linking,
   StyleSheet,
 } from 'react-native'
-import { sharedStyles, MyTheme, d_window } from './helpers/shared_styles';
-
-// import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-// import { useHeaderHeight } from '@react-navigation/elements';
-
-// const tabBarHeight = useBottomTabBarHeight();
-// const headerHeight = useHeaderHeight();
-
+import { sharedStyles, MyTheme, Scales } from './helpers/shared_styles';
 
 const Welcome = () => {
 
 
   return (
-    <View style = {sharedStyles.container}>
-        <View style={styles.titleBox}>
-          <Text style={styles.titleText}>
-            Chatham Township Historical Society Driving Tour
-          </Text>
-        </View>
+    <View style = {[sharedStyles.container, {justifyContent: 'space-evenly'}]}>
+       
+        <Text style={styles.titleText}>
+          Chatham Township Historical Society Driving Tour
+        </Text>
 
-        <View style={styles.borderBox}>
-          <Image style={styles.border} source={require('../images/logo_border.png')} />
-        </View>
-
-        <View style={styles.logoBox}>
-          <Image style={styles.logo} source={require('../images/chs_logo.png')} />
-        </View>
+        <Image style={styles.border} source={require('../images/logo_border.png')} />
+        <Image style={styles.logo} source={require('../images/chs_logo.png')} />
 
         <TouchableHighlight style = {sharedStyles.button} 
         underlayColor={sharedStyles.button.underlayColor}
         onPress = {() => Linking.openURL("http://www.chathamtownshiphistoricalsociety.org/programsmeetings.html")}>
           <Text style = {sharedStyles.buttonText}> Upcoming Events </Text>
         </TouchableHighlight>
+        
     </View>
   )
 }
@@ -49,45 +37,23 @@ const Welcome = () => {
 
 
 const styles = StyleSheet.create({
-
-  titleBox: {
-    flex: 18,
-    // backgroundColor: 'pink',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   
   titleText:{
-    fontSize: MyTheme.welcome.titleFontSize,
+    fontSize: 35 * Scales.font,
     paddingHorizontal: '10%',
     color: 'black',
-    fontWeight: MyTheme.welcome.titleFontWeight,
+    fontWeight: MyTheme.defaultText.titleWeight,
     textAlign: 'center',
   },
 
-  borderBox: {
-    flex: 1,
-    // backgroundColor: 'blue',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
   border:{
-    width: '135%', //TODO
-  },
-
-  logoBox: {
-    flex: 29,
-    // backgroundColor: 'green',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: '135%',
   },
 
   logo:{
+    height: undefined,
     width: '100%',
+    aspectRatio: 400/289,
   },
   
 })

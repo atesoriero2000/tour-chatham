@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
-import { sharedStyles, d_window } from '../helpers/shared_styles';
+import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
 
 //TODO: remove, what is this?
 var scale = 450;
@@ -54,7 +54,7 @@ class Debugger extends Component {
                 <Text>Longitude: {this.props.state.lastPos.longitude}</Text>
                 <Text>Latitude: {this.props.state.lastPos.latitude}</Text>
                 <Text>Accuracy: {JSON.stringify(Math.round(this.props.state.lastPos.accuracy))} FT</Text>
-                <Text>{d_window.width}, {d_window.height}</Text>
+                <Text>{Scales.width}, {Scales.height}</Text>
             </View>
        )
     }
@@ -70,13 +70,13 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: d_window.width,
+        width: Scales.width,
         marginTop: 100,
         paddingBottom: 25
     },
 
     title:{
-        fontSize: 50 * (d_window.width/scale),
+        fontSize: 50 * (Scales.width/scale),
         color: 'black',
         fontWeight: '200',
         textAlign: 'center',
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 
     buttonBar: {
         flex: 10,
-        width: d_window.width,
+        width: Scales.width,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: "row",
@@ -107,11 +107,11 @@ const styles = StyleSheet.create({
     },
   
     subtitle:{
-      fontSize: 20 * (d_window.width/scale),
+      fontSize: 20 * (Scales.width/scale),
       color: 'black',
       fontWeight: '500',
       textAlign: 'center',
-      paddingTop: 20 * (d_window.width/scale),
+      paddingTop: 20 * (Scales.width/scale),
     },
   });
 

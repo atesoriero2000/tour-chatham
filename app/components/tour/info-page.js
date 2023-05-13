@@ -12,7 +12,7 @@ import {
   Linking,
   TouchableHighlight,
 } from 'react-native'
-import { sharedStyles, MyTheme, d_window } from '../helpers/shared_styles';
+import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
 
 
 var Swiper = require('../helpers/Swiper');
@@ -57,8 +57,8 @@ class InfoPage extends Component{
 
         <View style = {{
           // TODO: Note: Add padding to view not text or onPress position will be ghosting
-          paddingHorizontal: 20 * (d_window.width/375),
-          paddingTop: 25 * Math.pow((d_window.height/667), 2),
+          paddingHorizontal: 20 * (Scales.width/375),
+          paddingTop: 25 * Math.pow((Scales.height/667), 2),
         }}>
           <Text style = {styles.subtext}>
             <Text > Please navigate to</Text>
@@ -69,7 +69,7 @@ class InfoPage extends Component{
 
 
         {this.state.loc.squareAtPic.length>1 ?
-          <Swiper height={d_window.width / 1.5} width={d_window.width / 1.5} activeColor={MyTheme.colors.swiper}>
+          <Swiper height={Scales.width / 1.5} width={Scales.width / 1.5} activeColor={MyTheme.colors.swiper}>
               {this.state.loc.squareAtPic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
           </Swiper> : <Image style = {styles.image} source = {this.state.loc.squareAtPic[0]}/>
         }
@@ -96,48 +96,48 @@ const styles = StyleSheet.create({
   },
 
   text:{
-    fontSize: 30 * (d_window.width/375),
+    fontSize: 30 * (Scales.width/375),
     color: 'black',
     fontWeight: '300',
     textAlign: 'center',
-    paddingHorizontal: 25 * (d_window.width/375),
-    paddingTop: 20 * Math.pow((d_window.height/667), 2),
+    paddingHorizontal: 25 * (Scales.width/375),
+    paddingTop: 20 * Math.pow((Scales.height/667), 2),
   },
 
   text_bold:{
-    fontSize: 20 * (d_window.width/375),
+    fontSize: 20 * (Scales.width/375),
     color: '#6565FF',
     fontWeight: '300',
     textAlign: 'center',
   },
 
   subtext:{
-    fontSize: 20 * (d_window.width/375),
+    fontSize: 20 * (Scales.width/375),
     color: 'black',
     fontWeight: '200',
     textAlign: 'center',
-    marginBottom: 25 * (d_window.width/375),
+    marginBottom: 25 * (Scales.width/375),
   },
 
   button:{
-    marginTop: 25 * (d_window.width/375),
-    width: d_window.width/1.5,
-    height: 36 * Math.pow((d_window.height/667), 2),
+    marginTop: 25 * (Scales.width/375),
+    width: Scales.width/1.5,
+    height: 36 * Math.pow((Scales.height/667), 2),
     backgroundColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center',
   },
 
   buttonText:{
-    fontSize: 15 * (d_window.width/375),
+    fontSize: 15 * (Scales.width/375),
     color: 'white',
     fontWeight: '100',
     textAlign: 'center',
   },
 
   image:{
-    height: d_window.width / 1.5,
-    width: d_window.width / 1.5,
+    height: Scales.width / 1.5,
+    width: Scales.width / 1.5,
     backgroundColor: 'transparent',
     alignSelf: 'center',
   },

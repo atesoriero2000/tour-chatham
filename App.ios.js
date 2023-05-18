@@ -16,7 +16,7 @@ import BackgroundGeolocation from "react-native-background-geolocation";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { MyTheme } from './app/components/helpers/shared_styles';
+import { MyTheme, Scales } from './app/components/helpers/shared_styles';
 
 var Welcome = require('./app/components/welcome');
 var Start = require('./app/components/tour/start');
@@ -28,6 +28,7 @@ var About = require('./app/components/about');
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+// Icon.loadFont().catch(e => console.log(e)); //TODO needed?
 
 import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';//TODO remove
 
@@ -63,21 +64,19 @@ class App extends Component {
 
     activateKeepAwake(); //TODO remove
 
-    //TODO: Tab Icon Sizes
-
     return(
       <NavigationContainer theme={MyTheme}>
         <Tab.Navigator initialRouteName='Home' screenOptions={{
-          lazy: false, 
+          lazy: true, //needed
           headerShown: true,
           tabBarActiveTintColor: 'tomato',
-          tabBarStyle: {paddingTop: '2.5%'} //done
+          tabBarStyle: {paddingTop: '2%'} //done
         }}>
 
           <Tab.Screen name='Home' component={Welcome} options={{
             headerTitle: 'Welcome!',
             tabBarIcon: ({ focused, color, size }) => (
-              <Icon name='home' color={color} size={size}/>
+              <Icon name='home' color={color} size={size * Scales.icon}/>
             )}}/>
 
           <Tab.Screen name='Tour' listeners={ ({navigation, route}) => ({
@@ -88,7 +87,7 @@ class App extends Component {
             options={{
               headerShown: false,
               tabBarIcon: ({ focused, color, size }) => (
-                <Icon name='car' color={color} size={size+6}/>
+                <Icon name='car' color={color} size={(size+6) * Scales.icon}/>
               )}}>
               
               {() =>
@@ -103,7 +102,7 @@ class App extends Component {
           <Tab.Screen name='About' component={About} options={{
             headerShown: false,
             tabBarIcon: ({ focused, color, size }) => (
-              <Icon name='information-circle' color={color} size={size+2}/>
+              <Icon name='information-circle' color={color} size={(size+2) * Scales.icon}/>
             )}}/>
   
         </Tab.Navigator>           

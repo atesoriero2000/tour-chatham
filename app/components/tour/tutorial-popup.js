@@ -13,7 +13,7 @@ import { BlurView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
 
-Icon.loadFont(); //needed
+// Icon.loadFont().catch(e => console.log(e)); //TODO needed?
 const xSize = 40 * Scales.icon; 
 var Swiper = require('../helpers/Swiper');
 
@@ -28,7 +28,7 @@ class TutorialPopup extends Component {
                         <Text style={headerStyles.title}>Tutorial</Text>
                     </View>
 
-                    <Swiper autoplay={false} showsButtons={true} loop={false} height={Scales.height * (parseFloat(styles.modal.height)/100)-headerStyles.box.height} width={Scales.width * parseFloat(styles.modal.width)/100} activeColor={sharedStyles.swiper.activeColor}>
+                    <Swiper autoplay={false} showsButtons={true} loop={false} height={Scales.height * (parseFloat(styles.modal.height)/100)-headerStyles.box.height} width={Scales.width * parseFloat(styles.modal.width)/100}>
                         <Page1/>
                         <Page2 navToSelection={this.props.navToSelection}/>
                     </Swiper>
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         flexDirection: 'column',
         width: '85%',
-        height: Scales.hasNotch ? '80%' : '90%',
+        height: Scales.hasNotch ? '80%' : '91%',
         borderRadius: 25 * Scales.radius,
         backgroundColor: 'whitesmoke',
     },
@@ -134,22 +134,23 @@ const pageStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
+        // backgroundColor: 'green',
+
     },
 
     border:{
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'lightgray',
-        // width: '75%',
-        height: '90%', //TODO new check notched phones
+        width: '75%',
         padding: '3%',
         borderRadius: 10 * Scales.radius,
     },
 
     image:{
-        height: '100%',
-        // height: undefined, //needed
-        // width: '100%',
+        // height: '100%',
+        height: undefined, //needed
+        width: '100%',
         borderRadius: 5 * Scales.radius,
     },
 
@@ -160,14 +161,16 @@ const pageStyles = StyleSheet.create({
         fontWeight: '500',
         color: 'black',
         paddingHorizontal: '9%',
-        width: '100%'
+        width: '100%',
+        // backgroundColor: 'blue',
     },
 
     buttonBox:{
-        flex: 1,
+        flex: 5,
         width: '100%',
         alignItems: 'center',
         justifyContent: 'flex-start',
+        // backgroundColor: 'green',
     },
 
     button:{

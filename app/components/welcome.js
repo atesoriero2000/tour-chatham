@@ -11,8 +11,17 @@ import {
 } from 'react-native'
 import { sharedStyles, MyTheme, Scales } from './helpers/shared_styles';
 
-const Welcome = () => {
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useHeaderHeight } from '@react-navigation/elements';
 
+const Welcome = () => {
+  //Doesnt work in App.ios.js 
+  Scales.insets = useSafeAreaInsets(); //Needed for formatting
+  Scales.hasNotch = Scales.insets.top>20; //Needed for formatting
+  Scales.tabBarHeight = useBottomTabBarHeight(); //TODO remove later (Not Needed)
+  Scales.headerHeight = useHeaderHeight(); //TODO remove later (Not Needed)
+  console.log(Scales);
 
   return (
     <View style = {[sharedStyles.container, {justifyContent: 'space-evenly'}]}>
@@ -33,7 +42,6 @@ const Welcome = () => {
     </View>
   )
 }
-
 
 
 const styles = StyleSheet.create({

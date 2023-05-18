@@ -330,7 +330,7 @@ class AudioPage extends Component {
 
   {/* Turns / Locations Image */}
             {Array.isArray(this.state.picture) ?
-              <Swiper height={styles.image.height} width={styles.image.width} activeColor={MyTheme.colors.swiper}>
+              <Swiper height={styles.image.height} width={styles.image.width}>
                   {this.state.picture.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
               </Swiper> : <Image style = {styles.image} source = {this.state.picture}/>
             }

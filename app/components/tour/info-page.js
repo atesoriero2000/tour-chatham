@@ -69,7 +69,7 @@ class InfoPage extends Component{
 
 
         {this.state.loc.squareAtPic.length>1 ?
-          <Swiper height={Scales.width / 1.5} width={Scales.width / 1.5} activeColor={MyTheme.colors.swiper}>
+          <Swiper height={Scales.width / 1.5} width={Scales.width / 1.5}>
               {this.state.loc.squareAtPic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
           </Swiper> : <Image style = {styles.image} source = {this.state.loc.squareAtPic[0]}/>
         }

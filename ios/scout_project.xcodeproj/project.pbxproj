@@ -14,6 +14,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-scout_project-scout_projectTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-scout_project-scout_projectTests.a */; };
 		DEB9A14EDC0AE0D748F88D35 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3249C2FC42585C536B2E4B /* ExpoModulesProvider.swift */; };
+		F548B51F2A16888D009D747E /* LaunchScreen2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F548B51E2A16888C009D747E /* LaunchScreen2.xib */; };
 		F592392728FCDDB900840D5F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F592392628FCDDB900840D5F /* LaunchScreen.xib */; };
 		F5A24C3528FDD52E00557D10 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5A24C1D28FDCD8500557D10 /* Ionicons.ttf */; };
 		F5A24C3728FDE80400557D10 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5A24C3628FDE80400557D10 /* EvilIcons.ttf */; };
@@ -74,6 +75,7 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-scout_project-scout_projectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scout_project-scout_projectTests.release.xcconfig"; path = "Target Support Files/Pods-scout_project-scout_projectTests/Pods-scout_project-scout_projectTests.release.xcconfig"; sourceTree = "<group>"; };
 		C84D353BA5CC15E95CFD233B /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-scout_project/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F548B51E2A16888C009D747E /* LaunchScreen2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen2.xib; path = scout_project/LaunchScreen2.xib; sourceTree = "<group>"; };
 		F592392628FCDDB900840D5F /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = scout_project/LaunchScreen.xib; sourceTree = "<group>"; };
 		F592396728FD033C00840D5F /* libPods-scout_project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-scout_project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F592396928FD035300840D5F /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				F592392628FCDDB900840D5F /* LaunchScreen.xib */,
+				F548B51E2A16888C009D747E /* LaunchScreen2.xib */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -371,6 +374,7 @@
 				F5A24D7D28FECB8300557D10 /* page_26_eitan.mp3 in Resources */,
 				F5A24D7128FECB8300557D10 /* page_9_kimberly.mp3 in Resources */,
 				F5A24D7828FECB8300557D10 /* page_15_eitan.mp3 in Resources */,
+				F548B51F2A16888D009D747E /* LaunchScreen2.xib in Resources */,
 				F5A24D8128FECB8300557D10 /* page_19_owen.mp3 in Resources */,
 				F5A24D7A28FECB8300557D10 /* page_3.4_lilly.mp3 in Resources */,
 				F5A24D6F28FECB8300557D10 /* page_6_eitan.mp3 in Resources */,

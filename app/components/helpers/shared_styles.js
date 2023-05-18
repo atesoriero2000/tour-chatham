@@ -1,21 +1,19 @@
-import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
+import { capInsets, style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
 import { 
     StyleSheet,
     Dimensions,
-    // PixelRatio,
 } from 'react-native'
 
 const {width, height, scale, fontScale} = Dimensions.get('window');
 
-const Scales = {
+  // insets and hasNotch set in welcome.js
+var Scales = {
   font: width/390,
-  vertical: height / 844, //TODO remove??
+  vertical: height / 844,
 
   radius: width / 390,
   horizontal: width / 390,
   icon: width / 390,
-
-  hasNotch: true, //TODO use platform
 
   width: width, 
   height: height,
@@ -23,20 +21,8 @@ const Scales = {
   fScale: fontScale,
 }
 
-console.log(Scales);
-// const fontScale = height / 844;
-
-
-// console.log(35*1.6011544452661226)
-
-//1.6011544452661226
-//884 /667 = 1.265367316341829 ^2 = 1.6011544452661226
-
-// LOG  {"fontScale": 1, "height": 844, "scale": 3, "width": 390}
-
 //Scalable:
 /*
-icon size (tab bar)
 */
 
 /* Test:
@@ -53,16 +39,6 @@ Info page: #6565FF
 
 */
 
-//Fonts:
-/*
-
-
-*/
-// import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-// import { useHeaderHeight } from '@react-navigation/elements';
-
-// const tabBarHeight = useBottomTabBarHeight();
-// const headerHeight = useHeaderHeight();
 
 
 
@@ -79,7 +55,7 @@ const MyTheme = {
 
   defaultText: {
     color: 'grey',
-    weight: (Scales.scale == 3) ? '200' : '100',
+    weight: '200', //(Scales.scale == 2) ? '200' : '100', //TODO DPI or something (5s to thick, SE 3rd not)
     titleWeight: '100',
     clickableColor: '#9090FF', //TODO move to styles
   },
@@ -103,24 +79,10 @@ const sharedStyles = StyleSheet.create({
       height: '100%',
       // backgroundColor: 'yellow',
     },
-    
-    // button:{
-    //   bottom: 0, 
-    //   marginBottom: '7.69%',
-    //   width: '100%',
-    //   height: 55 * fontScale, // TODO scalable (dependant on text size?)
-    //   backgroundColor: 'gray',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   opacity: 1,
-    //   underlayColor: '#BBBBBB',
-    // },
 
     button:{
-      // bottom: 0, 
-      // marginBottom: 10,
       width: '100%',
-      height: 55 * Scales.horizontal,
+      height: 60 * Scales.horizontal,
       backgroundColor: 'gray',
       justifyContent: 'center',
       alignItems: 'center',
@@ -153,12 +115,15 @@ const sharedStyles = StyleSheet.create({
 
     swiper: {
       // aspectRatio: 1400/1051,
-      height:.395 * width*14/10.51,
+      // height:.395 * width*14/10.51,
+      // height: Math.pow(height,1/2)*7.1,
+      height: 285 * Scales.vertical, //TODO maybe check??
       width: width,
       // backgroundColor: 'lightblue',
       justifyContent: 'center',
       alignItems: 'center',
       activeColor: '#007aff',
+      // activeColor: 'green',
     },
 
     // swiperImage: {

@@ -528,12 +528,7 @@ var at14 = loadSound('page_26_eitan.mp3');
 
 function loadSound(file){
   var Sound = require('react-native-sound');
-  return new Sound(file, Sound.MAIN_BUNDLE, 
-    (error) => {
-      if (error) console.log('FAILED TO LOAD SOUND' + error);
-      else console.log('AUDIO LOAD SUCCESS');
-    }
-  )
+  return new Sound(file, Sound.MAIN_BUNDLE, error => (error) && console.log('FAILED TO LOAD SOUND' + error))
 }
 
 

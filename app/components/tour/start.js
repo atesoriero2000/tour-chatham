@@ -49,7 +49,7 @@ class Start extends Component {
         </View>
 
         <View style={sharedStyles.swiper}>
-          <Swiper height={sharedStyles.swiper.height} width={sharedStyles.swiper.width} activeColor={sharedStyles.swiper.activeColor} >
+          <Swiper paginationStyle={{bottom: 20 * Scales.horizontal}}>
             {[].concat.apply([], Locations.map(pic => pic.atPic)).map( (pic1) => {
                 return( <Image style={[sharedStyles.swiper, {flex: 1}]} source={pic1} key={Math.random()}/> )}) }
           </Swiper>

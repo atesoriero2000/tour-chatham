@@ -9,16 +9,14 @@ import {
   ScrollView,
   Linking,
 } from 'react-native'
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { sharedStyles, MyTheme, Scales } from './helpers/shared_styles';
 
 const About = (props) => {
 
-    const insets = useSafeAreaInsets();
-
   return (
       <ScrollView>
-        <View style={{height: insets.top}}/> 
+        <View style={{height: Scales.insets.top}}/> 
         <View style={styles.container}>
 
 {/* Header Block */}
@@ -116,7 +114,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    height: 1245 * Scales.horizontal,
+    height: 1200 * Scales.horizontal,
     marginBottom: '3%',
   },
 
@@ -136,6 +134,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
+    padding: '2%'
   },
 
   contributors:{
@@ -168,14 +167,15 @@ const textStyles = StyleSheet.create({
     fontWeight: MyTheme.defaultText.titleWeight,
     textAlign: 'center',
     paddingVertical: '8%',
-  },
+ },
 
   text:{
     fontSize: 16.5 * Scales.font,
     color: MyTheme.defaultText.color,
     fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
-    paddingHorizontal: '10%',
+    // paddingHorizontal: '10%',
+    paddingHorizontal: 40 * Scales.horizontal,
   },
 
   titles:{

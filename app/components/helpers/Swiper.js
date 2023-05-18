@@ -9,7 +9,6 @@ import {
   Text,
   View,
   ScrollView,
-  Dimensions,
   TouchableOpacity,
   ViewPagerAndroid,
   Platform,
@@ -17,8 +16,8 @@ import {
 } from 'react-native'
 
 import { ViewPropTypes } from 'deprecated-react-native-prop-types'
-
-const { width, height } = Dimensions.get('window')
+import { MyTheme, Scales, sharedStyles} from './shared_styles';
+const { width, height } = Scales;
 
 /**
  * Default styles
@@ -40,7 +39,7 @@ const styles = {
 
   pagination_x: {
     position: 'absolute',
-    bottom: 25,
+    bottom: 25 * Scales.horizontal,
     left: 0,
     right: 0,
     flexDirection: 'row',
@@ -88,8 +87,8 @@ const styles = {
   },
 
   buttonText: {
-    fontSize: 120,
-    color: '#007aff',
+    fontSize: 120 * Scales.icon,
+    color: sharedStyles.swiper.activeColor,
     // fontFamily: 'san francisco',
     fontFamily: 'AvenirNextCondensed-Heavy',
     fontWeight: '200',
@@ -129,7 +128,8 @@ class Swiper extends Component{
     activeDotStyle: PropTypes.object,
     dotColor: PropTypes.string,
     activeDotColor: PropTypes.string,
-    activeColor: PropTypes.string
+    // activeColor: PropTypes.string,
+    iconScale: PropTypes.number,
   }
 
   /**
@@ -154,7 +154,8 @@ class Swiper extends Component{
     autoplay: true,
     autoplayTimeout: 2.5,
     autoplayDirection: true,
-    index: 0
+    index: 0,
+    iconScale: 1,
   }
 
   /**
@@ -213,8 +214,8 @@ class Swiper extends Component{
 
     // Default: horizontal
     initState.dir = props.horizontal === false ? 'y' : 'x'
-    initState.width = props.width || width
-    initState.height = props.height || height
+    initState.width = props.width || sharedStyles.swiper.width
+    initState.height = props.height || sharedStyles.swiper.height
     newInternals.offset = {}
 
     if (initState.total > 1) {
@@ -464,22 +465,22 @@ class Swiper extends Component{
 
     let dots = []
     const ActiveDot = this.props.activeDot || <View style={[{
-      backgroundColor: this.props.activeColor || this.props.activeDotColor || '#007aff',
-      width: 8,
-      height: 8,
-      borderRadius: 4,
-      marginHorizontal: (this.state.total*14+6>width) ? (this.state.total*10+16>width?1:(((width-16)/this.state.total)-8)/2) : 3,
-      marginTop: 3,
-      marginBottom: 3
+      backgroundColor: sharedStyles.swiper.activeColor || this.props.activeDotColor || '#007aff',
+      width: 8 * Scales.icon,
+      height: 8 * Scales.icon,
+      borderRadius: 4 * Scales.icon,
+      marginHorizontal: (this.state.total*14+6>width) ? (this.state.total*10+16>width?1:(((width-16)/this.state.total)-8)/2) : 3, //TODO
+      marginTop: 3 * Scales.icon,
+      marginBottom: 3 * Scales.icon
     }, this.props.activeDotStyle]} />
     const Dot = this.props.dot || <View style={[{
       backgroundColor: this.props.dotColor || 'rgba(0,0,0,.2)',
-      width: 8,
-      height: 8,
-      borderRadius: 4,
-      marginHorizontal: (this.state.total*14+6>width) ? (this.state.total*10+16>width?1:(((width-16)/this.state.total)-8)/2) : 3,
-      marginTop: 3,
-      marginBottom: 3
+      width: 8 * Scales.icon,
+      height: 8 * Scales.icon,
+      borderRadius: 4 * Scales.icon,
+      marginHorizontal: (this.state.total*14+6>width) ? (this.state.total*10+16>width?1:(((width-16)/this.state.total)-8)/2) : 3, //TODO
+      marginTop: 3 * Scales.icon,
+      marginBottom: 3 * Scales.icon
     }, this.props.dotStyle ]} />
     for (let i = 0; i < this.state.total; i++) {
       dots.push(i === this.state.index
@@ -510,7 +511,7 @@ class Swiper extends Component{
 
     if (this.props.loop ||
       this.state.index !== this.state.total - 1) {
-      button = this.props.nextButton || <Text style={[styles.buttonText, {color: this.props.activeColor}]}>›</Text>
+      button = this.props.nextButton || <Text style={[styles.buttonText, {color: sharedStyles.swiper.activeColor}]}>›</Text>
     }
 
     return (
@@ -526,7 +527,7 @@ class Swiper extends Component{
     let button = null
 
     if (this.props.loop || this.state.index !== 0) {
-      button = this.props.prevButton || <Text style={[styles.buttonText, {color: this.props.activeColor}]}>‹</Text>
+      button = this.props.prevButton || <Text style={[styles.buttonText, {color: sharedStyles.swiper.activeColor}]}>‹</Text>
     }
 
     return (

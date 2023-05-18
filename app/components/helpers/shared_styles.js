@@ -6,7 +6,7 @@ import {
 
 const {width, height, scale, fontScale} = Dimensions.get('window');
 
-  // insets and hasNotch set in welcome.js
+// insets and hasNotch set in welcome.js
 var Scales = {
   font: width/390,
   vertical: height / 844,
@@ -23,25 +23,9 @@ var Scales = {
 
 //Scalable:
 /*
+better button height??
+font weight wrt pixel density?? dpi
 */
-
-/* Test:
-font weight
-*/
-
-//Color:
-/*
-
-Swiper: #007aff
-Tutorial popup: #157EFB
-Start page clickable: #9090FF
-Info page: #6565FF
-
-*/
-
-
-
-
 const MyTheme = {
   dark: false,
   colors: {
@@ -58,6 +42,9 @@ const MyTheme = {
     weight: '200', //(Scales.scale == 2) ? '200' : '100', //TODO DPI or something (5s to thick, SE 3rd not)
     titleWeight: '100',
     clickableColor: '#9090FF', //TODO move to styles
+    clickableColor2: '#6565FF', //TODO move to styles
+    swiperColor: '#007aff',
+    oldTutorialColor: '#157EFB'
   },
 
   about:{
@@ -65,6 +52,11 @@ const MyTheme = {
   },
   selection:{
     titleWeight: '300'
+  },
+  info: {
+    titleWeight: '300',
+    bold: '300',
+    paddingHorizontal: '15%', //TODO For audio page too?
   },
 }
 
@@ -74,7 +66,7 @@ const sharedStyles = StyleSheet.create({
     container:{ //flex direction column by default
       // flex: 1,
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'space-evenly',
       width: '100%',
       height: '100%',
       // backgroundColor: 'yellow',
@@ -123,7 +115,6 @@ const sharedStyles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       activeColor: '#007aff',
-      // activeColor: 'green',
     },
 
     // swiperImage: {

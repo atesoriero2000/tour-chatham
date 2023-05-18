@@ -41,20 +41,21 @@ class SelectionPage extends Component{
     return(
       <View style = {sharedStyles.container}>
         <View style = {sharedStyles.headerBorder}/>
-        <ScrollView> 
-          { Locations.map( (loc, index) =>
-              <TouchableOpacity onPress = {() => this.alert(loc, index)} key={Math.random()}>
-                <View style={styles.locationContainer}>
-                  <Image style={styles.image} source={loc.squareAtPic[0]}/>
-                  <View style={{}}>
-                    <Text style={styles.text}> {loc.title} <Text style={styles.time}> ({loc.time} mins) </Text></Text>
-                    <Text style={styles.buttonText}> {loc.address} </Text>
+        <ScrollView>
+          <View style = {[sharedStyles.container, {height: 1635 * Scales.horizontal}]}> 
+            { Locations.map( (loc, index) =>
+                <TouchableOpacity onPress = {() => this.alert(loc, index)} key={Math.random()}>
+                  <View style={styles.locationContainer}>
+                    <Image style={styles.image} source={loc.squareAtPic[0]}/>
+                    <View style={{}}>
+                      <Text style={styles.text}> {loc.title}<Text style={styles.time}>  ({loc.time} mins)</Text></Text>
+                      <Text style={styles.addrText}> {loc.address} </Text>
+                    </View>
                   </View>
-                </View>
-              </TouchableOpacity>
-            )
-          }
-          <View style={{marginBottom: styles.locationContainer.marginTop}}/> 
+                </TouchableOpacity>
+              )
+            }
+          </View>
         </ScrollView>
       </View>
     );
@@ -68,7 +69,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     width: Scales.width, //int value needed 
-    marginTop: 15 * Scales.horizontal,
     backgroundColor: 'gainsboro', //#e6e6e6
   },
 
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     letterSpacing: -.7 * Scales.font,
   },
 
-  buttonText:{
+  addrText:{
     fontSize: 14.5 * Scales.font,
     color: 'grey',
     fontWeight: MyTheme.defaultText.weight,
@@ -97,10 +97,13 @@ const styles = StyleSheet.create({
     letterSpacing: -.5 * Scales.font,
   },
 
-  image:{
-    margin: 13 * Scales.horizontal,
+  image:{ //TODO Controls container size and text pos
+    marginLeft: 13 * Scales.horizontal,
+    marginRight: 10 * Scales.horizontal,
+    marginVertical: 18 * Scales.horizontal,
+    alignSelf: 'center',
     aspectRatio: 1,
-    width: 55 * Scales.horizontal,
+    width: 57 * Scales.horizontal,
   },
 });
 

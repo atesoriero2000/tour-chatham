@@ -34,7 +34,9 @@ class Start extends Component {
 
   render() {
     return (
-    <View style = {[sharedStyles.container, {justifyContent: 'space-evenly'}]}>
+    <View style = {sharedStyles.container}>
+    {/* <View style = {[sharedStyles.container, {justifyContent: 'space-between', paddingVertical: 20 * Scales.horizontal}]}> */}
+
         <View style = {sharedStyles.headerBorder}/>
         <View style={styles.topTextBox}>
           <Text style = {styles.text}>
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
     paddingTop: 5 * Scales.vertical, //TODO: scaling (fixed?)
     fontSize: 15 * Scales.font,
     fontWeight: MyTheme.defaultText.weight,
-    color: MyTheme.defaultText.clickableColor,
+    color: MyTheme.defaultText.clickableColor2,
     textDecorationLine: 'underline',
   },
 

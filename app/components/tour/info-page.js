@@ -14,7 +14,6 @@ import {
 } from 'react-native'
 import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
 
-
 var Swiper = require('../helpers/Swiper');
 
 class InfoPage extends Component{
@@ -51,34 +50,27 @@ class InfoPage extends Component{
 
   render() {
     return(
-      <View style = {styles.container}>
+      // <View style = {[sharedStyles.container, {justifyContent: 'space-between', paddingVertical: 50}]}>
+      <View style = {sharedStyles.container}>
         <View style = {sharedStyles.headerBorder}/>
-        <Text style = {styles.text}>{this.state.loc.title}</Text>
+        <Text style = {styles.titleText}>{this.state.loc.title}</Text>
 
-        <View style = {{
-          // TODO: Note: Add padding to view not text or onPress position will be ghosting
-          paddingHorizontal: 20 * (Scales.width/375),
-          paddingTop: 25 * Math.pow((Scales.height/667), 2),
-        }}>
-          <Text style = {styles.subtext}>
-            <Text > Please navigate to</Text>
-            <Text style = {styles.text_bold} onPress={() => Linking.openURL(this.state.url)}> {this.state.loc.address} </Text>
-            <Text >then click the button below to start the tour.</Text>
-          </Text>
-        </View>
-
+        <Text style = {styles.subtext}>
+          <Text > Please navigate to</Text>
+          <Text style = {styles.textBold} onPress={() => Linking.openURL(this.state.url)}> {this.state.loc.address} </Text>
+          <Text >then click the button below to start the tour.</Text>
+        </Text>
 
         {this.state.loc.squareAtPic.length>1 ?
-          <Swiper height={Scales.width / 1.5} width={Scales.width / 1.5}>
+          <Swiper width={styles.image.width} height={styles.image.width}>
               {this.state.loc.squareAtPic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
           </Swiper> : <Image style = {styles.image} source = {this.state.loc.squareAtPic[0]}/>
         }
 
-
-        <TouchableHighlight style = {styles.button} 
+        <TouchableHighlight style = {sharedStyles.button}
           underlayColor = {sharedStyles.button.underlayColor} 
           onPress = {() => this.onPress()}>
-          <Text style={styles.buttonText}> Click To Start Tour! </Text>
+          <Text style={sharedStyles.buttonText}> Click To Start Tour! </Text>
         </TouchableHighlight>
 
       </View>
@@ -87,59 +79,32 @@ class InfoPage extends Component{
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    //backgroundColor: '#424ac1',
-  },
 
-  text:{
-    fontSize: 30 * (Scales.width/375),
+  titleText:{
+    textAlign: 'center',
     color: 'black',
-    fontWeight: '300',
-    textAlign: 'center',
-    paddingHorizontal: 25 * (Scales.width/375),
-    paddingTop: 20 * Math.pow((Scales.height/667), 2),
-  },
-
-  text_bold:{
-    fontSize: 20 * (Scales.width/375),
-    color: '#6565FF',
-    fontWeight: '300',
-    textAlign: 'center',
+    fontWeight: MyTheme.info.titleWeight,
+    fontSize: 32 * Scales.font,
+    paddingHorizontal: MyTheme.info.paddingHorizontal,
   },
 
   subtext:{
-    fontSize: 20 * (Scales.width/375),
+    fontSize: 21 * Scales.font,
     color: 'black',
-    fontWeight: '200',
+    fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
-    marginBottom: 25 * (Scales.width/375),
+    paddingHorizontal: '7%',
   },
 
-  button:{
-    marginTop: 25 * (Scales.width/375),
-    width: Scales.width/1.5,
-    height: 36 * Math.pow((Scales.height/667), 2),
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  buttonText:{
-    fontSize: 15 * (Scales.width/375),
-    color: 'white',
-    fontWeight: '100',
-    textAlign: 'center',
+  textBold:{
+    color: MyTheme.defaultText.clickableColor2,
+    fontWeight: MyTheme.info.bold,
   },
 
   image:{
-    height: Scales.width / 1.5,
-    width: Scales.width / 1.5,
-    backgroundColor: 'transparent',
-    alignSelf: 'center',
+    width: .7 * Scales.width,
+    height: undefined,
+    aspectRatio: 1,
   },
 
 });

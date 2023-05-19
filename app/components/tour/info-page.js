@@ -50,7 +50,7 @@ class InfoPage extends Component{
 
   render() {
     return(
-      // <View style = {[sharedStyles.container, {justifyContent: 'space-between', paddingVertical: 50}]}>
+      // TODO <View style = {[sharedStyles.container, {justifyContent: 'space-between', paddingVertical: 50}]}>
       <View style = {sharedStyles.container}>
         <View style = {sharedStyles.headerBorder}/>
         <Text style = {styles.titleText}>{this.state.loc.title}</Text>
@@ -62,7 +62,8 @@ class InfoPage extends Component{
         </Text>
 
         {this.state.loc.squareAtPic.length>1 ?
-          <Swiper width={styles.image.width} height={styles.image.width}>
+          <Swiper width={styles.image.width} height={styles.image.width} >
+            {/* TODO paginationStyle={{bottom: 20 * Scales.horizontal}} */}
               {this.state.loc.squareAtPic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
           </Swiper> : <Image style = {styles.image} source = {this.state.loc.squareAtPic[0]}/>
         }
@@ -70,7 +71,8 @@ class InfoPage extends Component{
         <TouchableHighlight style = {sharedStyles.button}
           underlayColor = {sharedStyles.button.underlayColor} 
           onPress = {() => this.onPress()}>
-          <Text style={sharedStyles.buttonText}> Click To Start Tour! </Text>
+            {/* TODO finalize button text */}
+          <Text style={sharedStyles.buttonText}> Click to Start the Tour! </Text> 
         </TouchableHighlight>
 
       </View>
@@ -84,16 +86,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'black',
     fontWeight: MyTheme.info.titleWeight,
-    fontSize: 32 * Scales.font,
+    fontSize: MyTheme.info.titleSize,
     paddingHorizontal: MyTheme.info.paddingHorizontal,
   },
 
   subtext:{
-    fontSize: 21 * Scales.font,
+    fontSize: MyTheme.info.subtext,
     color: 'black',
     fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
-    paddingHorizontal: '7%',
+    paddingHorizontal: MyTheme.info.paddingHorizontal2,
   },
 
   textBold:{

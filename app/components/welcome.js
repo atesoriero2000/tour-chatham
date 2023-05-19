@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     width: '100%',
     // backgroundColor: 'lightblue',
     flexGrow: .1, //.3 for no noctch . 4 for notch 
+    //TODO NOTE flex grow does not keep text centered
   },
   
   titleText:{

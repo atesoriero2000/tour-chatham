@@ -56,7 +56,19 @@ const MyTheme = {
   info: {
     titleWeight: '300',
     bold: '300',
-    paddingHorizontal: '15%', //TODO For audio page too?
+    paddingHorizontal: '15%', //TODO For audio page too? 10
+    paddingHorizontal2: '7%',
+    titleSize: 32 * Scales.font, //32
+    subtext: 20 * Scales.font, //21
+  },
+
+  audio: {
+    titleSize: 26 * Scales.font, //32
+    titleWeight: '300',
+    directionSize: 15.6 * Scales.font, //21
+    directionWeight: '300',
+    paddingHorizontal: '15%',
+    paddingHorizontal2: '7%',
   },
 }
 
@@ -107,28 +119,13 @@ const sharedStyles = StyleSheet.create({
 
     swiper: {
       // aspectRatio: 1400/1051,
-      // height:.395 * width*14/10.51,
-      // height: Math.pow(height,1/2)*7.1,
       height: 285 * Scales.vertical, //TODO maybe check??
       width: width,
-      // backgroundColor: 'lightblue',
       justifyContent: 'center',
       alignItems: 'center',
       activeColor: '#007aff',
     },
 
-    // swiperImage: {
-    //   width: 100%
-    // },
-
-    box: {
-    flex: 1,
-    // backgroundColor: 'blue',
-
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   });
 
   export {sharedStyles, MyTheme, Scales};

@@ -12,8 +12,8 @@ import {
 import { BlurView } from '@react-native-community/blur';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
+Icon.loadFont().catch(e => console.log(e)); //needed
 
-// Icon.loadFont().catch(e => console.log(e)); //TODO needed?
 const xSize = 40 * Scales.icon; 
 var Swiper = require('../helpers/Swiper');
 

@@ -17,11 +17,6 @@ import BackgroundGeolocation from "react-native-background-geolocation";
 import Sound from 'react-native-sound';
 import Debugger from './debugger';
 import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
-import { style } from 'deprecated-react-native-prop-types/DeprecatedImagePropType';
-
-//TODO: remove, what is this?
-var scale = 450;
-var scaleH = 800;
 
 var Swiper = require('../helpers/Swiper');
 var Locations = require('../helpers/turns');
@@ -50,7 +45,6 @@ class AudioPage extends Component {
 
       tourEnded: false,
       isNearOverride: false, //for debugging
-      debugger: false,
     };
   }
 
@@ -309,50 +303,35 @@ class AudioPage extends Component {
 
   render() {
     return (
-      <View style = {styles.container}>
+      <View style = {sharedStyles.container}>
         <View style = {sharedStyles.headerBorder}/>
         <ScrollView>
-          <View style = {styles.container}>
+          <View style = {styles.tourContainer}>
 
-            <View style = {styles.titleBox}>
-              <Text style = {styles.title}>{this.state.title}</Text>
-            </View>
-
+            <Text style = {styles.title}>{this.state.title}</Text>
             <View style = {styles.line}/>
-
-            <View style = {styles.directionBox}>
-              <Text style = {styles.directions}>{this.state.directions}</Text>
-            </View>
-
+            <Text style = {styles.directions}>{this.state.directions}</Text>
             <Text style = {styles.dist}>
               {doneAtAudio?'':('In: ' + ( (this.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
             </Text>
 
   {/* Turns / Locations Image */}
             {Array.isArray(this.state.picture) ?
-              <Swiper height={styles.image.height} width={styles.image.width}>
-                  {this.state.picture.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
-              </Swiper> : <Image style = {styles.image} source = {this.state.picture}/>
+              <Swiper paginationStyle={{bottom: 20 * Scales.horizontal}}>
+                  {this.state.picture.map( onePic => <Image style={sharedStyles.swiper} source={onePic} key={Math.random()}/> )}
+              </Swiper> : <Image style = {sharedStyles.swiper} source = {this.state.picture}/>
             }
 
   {/* Continue Button */}
-            <TouchableHighlight style = {[styles.button, {opacity: this.state.clickable?1:.5}]}
+            <TouchableHighlight style = {[sharedStyles.button, {opacity: this.state.clickable?1:.5}, styles.button]}
               underlayColor={sharedStyles.button.underlayColor}
               onPress={() => this.buttonPressed()}>
-              <Text style={styles.buttonText}>Click to Continue</Text>
+              <Text style={sharedStyles.buttonText}>Click to Continue</Text>
             </TouchableHighlight>
+          </View>
 
   {/* Hidden Debugger Component */}
-            {this.state.debugger && 
-            <Debugger state={this.state} turn={this.turn} stage={this.stage}
-                stopAudio = {() => this.DEBUG_stopAudio()} 
-                lastTurn = {() => this.DEBUG_lastTurn()} 
-                nextTurn = {() => this.DEBUG_nextTurn()} 
-                toggleIsNearOverride={() => this.DEBUG_toggleIsNearOverride()}/>}
-            <TouchableHighlight style={[styles.debuggerToggle, {opacity: this.state.debugger?1:.5, height: this.state.debugger?30:5}]} onLongPress={() => this.DEBUG_toggleDebugger()}>
-              <Text>Close Debugger</Text>  
-            </TouchableHighlight>     
-          </View>
+          <Debugger state={this.state} turn={this.turn} stage={this.stage} stopAudio = {()=>this.DEBUG_stopAudio()} lastTurn = {()=>this.DEBUG_lastTurn()} nextTurn = {()=>this.DEBUG_nextTurn()} toggleIsNearOverride={()=>this.DEBUG_toggleIsNearOverride()}/>
         </ScrollView>
       </View>
     );
@@ -377,9 +356,6 @@ class AudioPage extends Component {
   ////////////////////////////  
  //// DEBUGGING FUCTIONS ////
 ////////////////////////////
-  DEBUG_toggleDebugger(){
-    this.setState({ debugger: !this.state.debugger });
-  }
 
   DEBUG_stopAudio(){
     this.state.audioFile.stop();
@@ -424,96 +400,80 @@ class AudioPage extends Component {
 /////////////////////
 const styles = StyleSheet.create({
 
-  container:{
-    // flex: 1,
-    flexDirection: 'column',
+  tourContainer:{
+    width: Scales.width, //int value needed 
+    height: Scales.height - Scales.headerHeight - Scales.tabBarHeight, //needed
+    // height: Scales.height, 
+    // height: '100%',
     alignItems: 'center',
-    height: '100%',
-    // backgroundColor: 'grey'
-    // width: '100%'
-  },
-
-  titleBox:{
-    width: Scales.width,
-    height: 100 * Math.pow((Scales.height/scaleH), 1.25), //height
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    // backgroundColor: 'beige'
   },
 
   title:{
-    fontSize: 30 * (Scales.width/scale),
+    // fontSize: MyTheme.info.titleSize,
+    // fontSize: MyTheme.audio.titleSize,
+    fontSize: 30,
     textAlign: 'center',
     color: 'black',
-    fontWeight: '300',
-    paddingTop: 5 * Math.pow((Scales.height/scaleH), 2), //height
-    paddingHorizontal: 45 * (Scales.width/scale),
+    fontWeight: MyTheme.audio.titleWeight,
+    paddingHorizontal: '7%',
+    // paddingHorizontal: MyTheme.info.paddingHorizontal, //TODO
+    // paddingHorizontal: MyTheme.audio.paddingHorizontal, //TODO
+
+    // backgroundColor: 'lightgreen',
+    width: '100%',
   },
 
   line:{
     backgroundColor: 'black',
-    height: .74 * (Scales.width/scale), //height
-    width: 300 * (Scales.width/scale),
-  },
-
-  directionBox:{
-    width: 325 * (Scales.width/scale),
-    height: 107 * Math.pow((Scales.height/scaleH), 1.25), //height
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10 * Math.pow((Scales.height/scaleH), 2) - (Scales.height === 812? 10:0), //height
+    height: .64 * Scales.horizontal, //TODO
+    width: '66%',
   },
 
   directions:{
-    fontSize: 18 * (Scales.width/scale),
-    color: 'gray',
-    fontWeight: '300',
+    fontSize: MyTheme.audio.directionSize,
+    color: MyTheme.defaultText.color,
+    fontWeight: MyTheme.audio.directionWeight,
     textAlign: 'center',
+    paddingHorizontal: MyTheme.audio.paddingHorizontal2,
+
+    // backgroundColor: 'pink',
+    width: '100%',
   },
 
   dist:{
-    fontSize: 15 * (Scales.width/scale),
+    fontSize: 13 * Scales.font,
     color: 'dimgray',
-    fontWeight: '500',
+    fontWeight: '500', //TODO
     textAlign: 'center',
-    marginTop: 3 * Math.pow((Scales.height/scaleH), 2) - (Scales.height === 812? 4.44:0), //height
+
+    // backgroundColor: 'lightblue',
+    width: '100%',
   },
 
-  image:{
-    height: 250 * (Scales.width/scale),
-    width: Scales.width,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-        // aspectRatio: 1400/1051, //TODO add to audio page for full aspec ratio
+  // image:{
+  //   height: undefined,
+  //   width: '100%',
+  //   aspectRatio: 1400/1051, // 1200 900
 
-  },
+  //   // alignSelf: 'center',
+  //   // alignItems: 'center',
+  //   // justifyContent: 'center',
+
+  // },
 
   button:{
-    width: Scales.width/1.5,
-    height: 36 * Math.pow((Scales.height/scaleH), 2), //height
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    marginVertical: 30,
+    width: '66%',
+    // height: 36 * Math.pow((Scales.height/scaleH), 2), //height
+    // backgroundColor: 'gray',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // alignSelf: 'center',
+    // marginVertical: 30,
     // underlayColor = '#BBBBBB' 
   },
 
-  buttonText:{
-    fontSize: 15 * (Scales.width/scale),
-    color: 'white',
-    fontWeight: '100',
-    textAlign: 'center',
-  },
-
-  debuggerToggle:{
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'gray',
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
-  }
 });
 
 module.exports = AudioPage;

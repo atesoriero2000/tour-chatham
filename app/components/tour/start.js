@@ -28,7 +28,7 @@ class Start extends Component {
   }
 
   navToSelection(){
-    this.setState({ tutorialVisible: false});
+    this.setState({tutorialVisible: false});
     this.props.navigation.navigate('Tour', {screen: 'Select a Start Point'});
   }
 
@@ -53,7 +53,7 @@ class Start extends Component {
         <View style={sharedStyles.swiper}>
           <Swiper paginationStyle={{bottom: 20 * Scales.horizontal}}>
             {[].concat.apply([], Locations.map(pic => pic.atPic)).map( (pic1) => {
-                return( <Image style={[sharedStyles.swiper, {flex: 1}]} source={pic1} key={Math.random()}/> )}) }
+                return( <Image style={sharedStyles.swiper} source={pic1} key={Math.random()}/> )}) }
           </Swiper>
         </View>
 
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
 
   clickable: {
-    paddingTop: 5 * Scales.vertical, //TODO: scaling (fixed?)
+    paddingTop: 7 * Scales.vertical, //TODO: scaling (fixed?) was 5
     fontSize: 15 * Scales.font,
     fontWeight: MyTheme.defaultText.weight,
     color: MyTheme.defaultText.clickableColor2,

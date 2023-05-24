@@ -91,7 +91,7 @@ const styles = {
     color: sharedStyles.swiper.activeColor,
     // fontFamily: 'san francisco',
     fontFamily: 'AvenirNextCondensed-Heavy',
-    fontWeight: '200',
+    fontWeight: Scales.fontWeight('200'),
   }
 }
 
@@ -469,7 +469,7 @@ class Swiper extends Component{
       width: 8 * Scales.icon,
       height: 8 * Scales.icon,
       borderRadius: 4 * Scales.icon,
-      marginHorizontal: (this.state.total*14+6>width) ? (this.state.total*10+16>width?1:(((width-16)/this.state.total)-8)/2) : 3, //TODO
+      marginHorizontal: (this.state.total*14+6>width) ? (this.state.total*10+16>width?1:(((width-16)/this.state.total)-8)/2) : 3,
       marginTop: 3 * Scales.icon,
       marginBottom: 3 * Scales.icon
     }, this.props.activeDotStyle]} />
@@ -478,7 +478,7 @@ class Swiper extends Component{
       width: 8 * Scales.icon,
       height: 8 * Scales.icon,
       borderRadius: 4 * Scales.icon,
-      marginHorizontal: (this.state.total*14+6>width) ? (this.state.total*10+16>width?1:(((width-16)/this.state.total)-8)/2) : 3, //TODO
+      marginHorizontal: (this.state.total*14+6>width) ? (this.state.total*10+16>width?1:(((width-16)/this.state.total)-8)/2) : 3,
       marginTop: 3 * Scales.icon,
       marginBottom: 3 * Scales.icon
     }, this.props.dotStyle ]} />

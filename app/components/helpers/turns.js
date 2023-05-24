@@ -110,7 +110,7 @@ const loc2 = [
    radius: 500,
  },
  {
-   direction: 'Turn left and park in the Passaic River County Park entrance. The marker is located to your left across River Road (if you reach Mountain Ave youve gone too far)',
+   direction: 'Turn left and park in the Passaic River County Park entrance. The marker is located to your left across River Road (if you reach Mountain Ave, you have gone too far)',
    picture: b2,
    latitude: 40.697119,
    longitude: -74.435379,
@@ -195,7 +195,7 @@ const loc5 = [
     radius: 2166 - RADIUS_DELAY,
   },
   {
-    direction: 'Take the first left onto Spring St (approx 0.2 miles)',
+    direction: 'Take the first left onto Spring St (approximately 0.2 miles)',
     picture: f2,
     latitude: 40.729022,
     longitude: -74.407241,
@@ -214,7 +214,7 @@ const loc5 = [
 //LEWIS NOE FARMSTEAD
 const loc6 = [
   {
-    direction: 'Drive 0.2 miles and take the first right onto School Ave (If you reach Dale Drive you have gone too far)',
+    direction: 'Drive 0.2 miles and take the first right onto School Ave (If you reach Dale Drive, you have gone too far)',
     picture: g1,
     latitude: null,
     longitude: null,
@@ -254,14 +254,14 @@ const loc6 = [
 //NOE POND
 const loc7 = [
   {
-    direction: 'Turn right onto Southern Blvd towards Jay Road and travel for approx 0.8 miles',
+    direction: 'Turn right onto Southern Blvd towards Jay Road and travel for approximately 0.8 miles',
     picture: h1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'Turn left and park in 395 Southern Blvd (Noe Pond Club). The marker is 100 ft before the entrance of Noe pond, you may walk to the marker', // (If you reach Hickory Pl you have gone too far)
+    direction: 'Turn left and park in 395 Southern Blvd (Noe Pond Club). The marker is 100 ft before the entrance of Noe pond. You may walk to the marker', // (If you reach Hickory Pl you have gone too far)
     picture: h2,
     latitude: 40.737275,
     longitude: -74.425151,
@@ -292,7 +292,7 @@ const loc8 = [
 //ELIAS BOUDINOT HOUSE
 const loc9 = [
   {
-    direction: 'Continue along Southern Blvd (northwest) and quickly take a left onto Hickory Pl (if you reach Shunpike Road you have gone too far)',
+    direction: 'Continue along Southern Blvd (northwest) and quickly take a left onto Hickory Pl (if you reach Shunpike Road, you have gone too far)',
     picture: j1,
     latitude: null,
     longitude: null,
@@ -337,7 +337,7 @@ const loc10 = [
 //GREEN VILLAGE
 const loc11 = [
   {
-    direction: 'Proceed along Green Village Road (west) toward Fawcett Lane for approx 0.9 miles',
+    direction: 'Proceed along Green Village Road (west) toward Fawcett Lane for approximately 0.9 miles',
     picture: l1,
     latitude: null,
     longitude: null,
@@ -356,7 +356,7 @@ const loc11 = [
 //GIBBONS HORSE BARN
 const loc12 = [
   {
-    direction: 'Proceed right along Green Village Road (toward Meyersville Road) for approx 0.3 miles and keep right to go onto Spring Valley Road',
+    direction: 'Proceed right along Green Village Road (toward Meyersville Road) for approximately 0.3 miles then keep right to go onto Spring Valley Road',
     picture: m1,
     latitude: null,
     longitude: null,
@@ -415,14 +415,14 @@ const loc14 = [
     radius: 500,
   },
   {
-    direction: 'Turn right onto Treadwell Ave (If you reach Nordling Lane you have gone too far)',
+    direction: 'Turn right onto Treadwell Ave (If you reach Nordling Lane, you have gone too far)',
     picture: o2,
     latitude: 40.765623,
     longitude: -74.445828,
     radius: 4786 - RADIUS_DELAY, // from 40.755507, -74.434803
   },
   {
-    direction: 'Park along fence in an outcrop to the right once you see the marker on the left',
+    direction: 'Once you see the marker on the left, park along fence in an outcrop to the right',
     picture: o3,
     latitude: 40.768086,
     longitude: -74.442928,

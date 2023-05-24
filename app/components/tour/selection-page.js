@@ -40,16 +40,16 @@ class SelectionPage extends Component{
   render() {
     return(
       <View style = {sharedStyles.container}>
-        <View style = {sharedStyles.headerBorder}/>
+        {Scales.hasNotch && <View style = {sharedStyles.headerBorder}/>}
         <ScrollView>
-          <View style = {[sharedStyles.container, {height: 1635 * Scales.horizontal}]}> 
+          <View style = {[sharedStyles.container, {height: 1525 * Scales.horizontal}]}> 
             { Locations.map( (loc, index) =>
                 <TouchableOpacity onPress = {() => this.alert(loc, index)} key={Math.random()}>
                   <View style={styles.locationContainer}>
                     <Image style={styles.image} source={loc.squareAtPic[0]}/>
                     <View style={{}}>
-                      <Text style={styles.text}> {loc.title}<Text style={styles.time}>  ({loc.time} mins)</Text></Text>
-                      <Text style={styles.addrText}> {loc.address} </Text>
+                      <Text style={styles.text}>{loc.title}<Text style={styles.time}>  ({loc.time} mins)</Text></Text>
+                      <Text style={styles.addrText}>{loc.address}</Text>
                     </View>
                   </View>
                 </TouchableOpacity>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   text:{
     fontSize: 17 * Scales.font,
     color: 'black',
-    fontWeight: MyTheme.selection.titleWeight,
+    fontWeight: Scales.fontWeight('300'),
     textAlign: 'left',
     letterSpacing: -.5 * Scales.font,
   },
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
   time:{
     fontSize: 12 * Scales.font,
     color: 'black',
-    fontWeight: MyTheme.selection.titleWeight,
     textAlign: 'left',
     letterSpacing: -.7 * Scales.font,
   },
@@ -91,19 +90,19 @@ const styles = StyleSheet.create({
   addrText:{
     fontSize: 14.5 * Scales.font,
     color: 'grey',
-    fontWeight: MyTheme.defaultText.weight,
+    fontWeight: Scales.fontWeight('300'),
     textAlign: 'left',
     marginTop: 3 * Scales.horizontal,
     letterSpacing: -.5 * Scales.font,
+    fontStyle: 'italic',
   },
 
-  image:{ //TODO Controls container size and text pos
-    marginLeft: 13 * Scales.horizontal,
-    marginRight: 10 * Scales.horizontal,
-    marginVertical: 18 * Scales.horizontal,
+  image:{ 
+    margin: 15 * Scales.horizontal,
     alignSelf: 'center',
     aspectRatio: 1,
-    width: 57 * Scales.horizontal,
+    width: 56 * Scales.horizontal,
+    borderRadius: 5 * Scales.horizontal,
   },
 });
 

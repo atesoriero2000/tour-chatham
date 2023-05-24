@@ -1,5 +1,4 @@
-// comes from selection page
-// TODO: add geolocation or merge with audio page
+// LATER: add geolocation or merge with audio page
 //       check location before making continue button clickable 
 import React, { Component } from 'react'
 import {
@@ -50,9 +49,8 @@ class InfoPage extends Component{
 
   render() {
     return(
-      // TODO <View style = {[sharedStyles.container, {justifyContent: 'space-between', paddingVertical: 50}]}>
       <View style = {sharedStyles.container}>
-        <View style = {sharedStyles.headerBorder}/>
+        {Scales.hasNotch && <View style = {sharedStyles.headerBorder}/>}
         <Text style = {styles.titleText}>{this.state.loc.title}</Text>
 
         <Text style = {styles.subtext}>
@@ -63,15 +61,13 @@ class InfoPage extends Component{
 
         {this.state.loc.squareAtPic.length>1 ?
           <Swiper width={styles.image.width} height={styles.image.width} >
-            {/* TODO paginationStyle={{bottom: 20 * Scales.horizontal}} */}
-              {this.state.loc.squareAtPic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
+            {this.state.loc.squareAtPic.map( onePic => <Image style={styles.image} source={onePic} key={Math.random()}/> )}
           </Swiper> : <Image style = {styles.image} source = {this.state.loc.squareAtPic[0]}/>
         }
 
         <TouchableHighlight style = {sharedStyles.button}
           underlayColor = {sharedStyles.button.underlayColor} 
           onPress = {() => this.onPress()}>
-            {/* TODO finalize button text */}
           <Text style={sharedStyles.buttonText}> Click to Start the Tour! </Text> 
         </TouchableHighlight>
 
@@ -85,26 +81,26 @@ const styles = StyleSheet.create({
   titleText:{
     textAlign: 'center',
     color: 'black',
-    fontWeight: MyTheme.info.titleWeight,
-    fontSize: MyTheme.info.titleSize,
-    paddingHorizontal: MyTheme.info.paddingHorizontal,
+    fontWeight: MyTheme.titleFont.weight,
+    fontSize: MyTheme.titleFont.size,
+    paddingHorizontal: MyTheme.titleFont.paddingHorizontal,
   },
 
   subtext:{
-    fontSize: MyTheme.info.subtext,
+    fontSize: 20 * Scales.font,
     color: 'black',
     fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
-    paddingHorizontal: MyTheme.info.paddingHorizontal2,
+    paddingHorizontal: '8.5%', //Done //>9% @ 20 makes a fourth line
   },
 
   textBold:{
-    color: MyTheme.defaultText.clickableColor2,
-    fontWeight: MyTheme.info.bold,
+    color: sharedStyles.clickable.color,
+    fontWeight: Scales.fontWeight('300'),
   },
 
   image:{
-    width: .7 * Scales.width,
+    width: .33 * Scales.height,
     height: undefined,
     aspectRatio: 1,
   },

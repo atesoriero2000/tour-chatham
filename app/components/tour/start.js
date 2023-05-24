@@ -37,14 +37,14 @@ class Start extends Component {
     <View style = {sharedStyles.container}>
     {/* <View style = {[sharedStyles.container, {justifyContent: 'space-between', paddingVertical: 20 * Scales.horizontal}]}> */}
 
-        <View style = {sharedStyles.headerBorder}/>
+        {Scales.hasNotch && <View style = {sharedStyles.headerBorder}/>}
         <View style={styles.topTextBox}>
           <Text style = {styles.text}>
             Explore Chatham Township, Madison, and Green Village
             as you drive to different marked historical sites while
             listening to the history behind them!
           </Text>
-          <Text style={styles.clickable} onPress = {() =>
+          <Text style={[styles.clickable, sharedStyles.clickable]} onPress = {() =>
             Linking.openURL("http://www.chathamtownshiphistoricalsociety.org/ongoing-projects.html")}>
             Click here for more info!
           </Text>
@@ -59,7 +59,7 @@ class Start extends Component {
 
 
         <View style = {styles.bottomTextBox}>
-          <Text style = {[styles.text, {fontSize: 17 * Scales.font}]}>
+          <Text style = {[styles.text, {fontSize: 16 * Scales.font}]}>
             It will take approximately 1.5 hours to complete the whole
             tour, but you may stop at any marker and pick up where you
             left off. You will need a passenger to follow the directions
@@ -92,17 +92,15 @@ const styles = StyleSheet.create({
   
   text: {
     textAlign: 'center',
-    fontSize: 19 * Scales.font,
-    fontWeight: MyTheme.defaultText.weight,
+    fontSize: 18.5 * Scales.font,
+    fontWeight: Scales.fontWeight('300'),
     color: MyTheme.defaultText.color,
-    paddingHorizontal: '9%',
+    paddingHorizontal: '10%',
   },
 
   clickable: {
-    paddingTop: 7 * Scales.vertical, //TODO: scaling (fixed?) was 5
+    paddingTop: 6 * Scales.vertical,
     fontSize: 15 * Scales.font,
-    fontWeight: MyTheme.defaultText.weight,
-    color: MyTheme.defaultText.clickableColor2,
     textDecorationLine: 'underline',
   },
 

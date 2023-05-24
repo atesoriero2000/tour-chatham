@@ -74,11 +74,28 @@ class AudioPage extends Component {
 
   startGeolocation(){
 
+    // ###### 1. SUBSCRIBE TO EVENTS ######
+    BackgroundGeolocation.logger.destroyLog();
+    BackgroundGeolocation.onLocation(
+      (location) => {
+        console.log("[onLocation] success: ", location);
+        this.setState({lastPos: location.coords});
+        this.update();
+      },  (error) => console.log("***** onLocation FAILED *****:    ", error));
+
+
+
+    // ###### 2. READY PLUGIN ######
+
     //NOTE: requestTemporaryFullAccuracy
+    //TODO: request haults audio page and crashes
+    // Maybe have a loop to continuusly restart BackgroundGeolocation if failed
     //getCurrentPosition
     //all Returns https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html#sample
     
-    BackgroundGeolocation.logger.destroyLog();
+    // preventSuspend: true,
+    // heartbeatInterval: 60 //for onHeartbeat event
+    //NOTE getCurrentPosition, start, watchPosition only after ready resolves
     BackgroundGeolocation.ready({
       reset: true,
       persistMode: false,
@@ -86,7 +103,7 @@ class AudioPage extends Component {
       debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
       logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE, //VERBOSE, OFF
       maxRecordsToPersist: 0,
-      locationAuthorizationRequest: 'WhenInUse',
+      locationAuthorizationRequest: 'WhenInUse', //Maybe Always
       
       desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION,
       stationaryRadius: 5, //meters but usually takes ~200m at default 25
@@ -96,8 +113,18 @@ class AudioPage extends Component {
       isMoving: true, //ensures immediate location updates
       disableElasticity: true, //Very Important, or else updates lessen with speed
       elasticityMultiplier: 0, //0=redundant to disableElasticity
-      disableStopDetection: true, //TODO: disable accelerometer use and defaults to apples 15mins times
+      disableStopDetection: true, // disable accelerometer use and defaults to apples 15mins times
+      pausesLocationUpdatesAutomatically: false, // needed 
       // stopTimeout: 5, //mins => default 5, disableStopDetection overrites this
+
+      // TODO disableLocationAuthorizationAlert: true, //Disables \/\/\/
+      locationAuthorizationAlert: { //Only works with Always
+        titleWhenNotEnabled: "Yo, location-services not enabled",
+        titleWhenOff: "Yo, location-services OFF",
+        instructions: "You must enable 'Always' in location-services, buddy",
+        cancelButton: "Cancel",
+        settingsButton: "Settings"
+      }
 
     }, (state) => { console.log("BackgroundGeolocation is configured and ready:   ", state.enabled);
                     if (!state.enabled){
@@ -106,23 +133,21 @@ class AudioPage extends Component {
                       } 
     }, () => console.log("***** GEOLOCATION READY FAILED *****"));
 
-    BackgroundGeolocation.onLocation(
-      (location) => {
-        console.log("[onLocation] success: ", location);
-        this.setState({lastPos: location.coords});
-        this.update();
-      },  (error) => console.log("***** onLocation FAILED *****:    ", error));
-
     BackgroundGeolocation.setConfig({ locationAuthorizationRequest: 'Always' });
     BackgroundGeolocation.requestPermission(); // TODO NOTE: might need to wait NOT NEEDED
     BackgroundGeolocation.requestTemporaryFullAccuracy("Driving").then( 
       (accuracyAuthorization) => console.log('[requestTemporaryFullAccuracy] STATUS:', accuracyAuthorization) 
       ).catch( (error) => console.warn("[requestTemporaryFullAccuracy] FAILED TO SHOW DIALOG: ", error) );
+
+      
+
+    // ###### 3. START / STOP ######
     BackgroundGeolocation.watchPosition(
       (location) => console.log("[watchPosition] success: ", location),
       (error) => console.log("***** watchPosition FAILED *****:    ", error), {
         interval: 1000, //in ms 
         desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION, timeout: 60000 });
+        
     BackgroundGeolocation.changePace(true); //IMPORTANT!! Instantly starts sending location updates
   }
 
@@ -304,13 +329,21 @@ class AudioPage extends Component {
   render() {
     return (
       <View style = {sharedStyles.container}>
-        <View style = {sharedStyles.headerBorder}/>
+        {Scales.hasNotch && <View style = {sharedStyles.headerBorder}/>}
         <ScrollView>
           <View style = {styles.tourContainer}>
 
-            <Text style = {styles.title}>{this.state.title}</Text>
+            <View style = {styles.titleBox}>
+              <Text style = {styles.title}>{this.state.title}</Text>
+            </View>
+
             <View style = {styles.line}/>
-            <Text style = {styles.directions}>{this.state.directions}</Text>
+
+            <View style = {styles.directionsBox}>
+              <Text style = {styles.directions}>{this.state.directions}</Text>
+            </View>
+
+
             <Text style = {styles.dist}>
               {doneAtAudio?'':('In: ' + ( (this.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
             </Text>
@@ -398,80 +431,72 @@ class AudioPage extends Component {
   /////////////////////
  //// MAIN STYLES ////
 /////////////////////
+
 const styles = StyleSheet.create({
 
   tourContainer:{
     width: Scales.width, //int value needed 
     height: Scales.height - Scales.headerHeight - Scales.tabBarHeight, //needed
-    // height: Scales.height, 
-    // height: '100%',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    // backgroundColor: 'beige'
+  },
+
+  titleBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: 120 * Scales.horizontal, //needed fixed val or
+    // backgroundColor: 'lightgreen',
+    flexGrow: (Scales.hasNotch?.2:0),  
   },
 
   title:{
-    // fontSize: MyTheme.info.titleSize,
-    // fontSize: MyTheme.audio.titleSize,
-    fontSize: 30,
+    fontSize: MyTheme.titleFont.size,
     textAlign: 'center',
     color: 'black',
-    fontWeight: MyTheme.audio.titleWeight,
-    paddingHorizontal: '7%',
-    // paddingHorizontal: MyTheme.info.paddingHorizontal, //TODO
-    // paddingHorizontal: MyTheme.audio.paddingHorizontal, //TODO
-
-    // backgroundColor: 'lightgreen',
-    width: '100%',
+    fontWeight: MyTheme.titleFont.weight,
+    paddingHorizontal: MyTheme.titleFont.paddingHorizontal,
+    // backgroundColor: 'pink',
   },
 
   line:{
     backgroundColor: 'black',
-    height: .64 * Scales.horizontal, //TODO
+    height: StyleSheet.hairlineWidth,
     width: '66%',
   },
 
-  directions:{
-    fontSize: MyTheme.audio.directionSize,
-    color: MyTheme.defaultText.color,
-    fontWeight: MyTheme.audio.directionWeight,
-    textAlign: 'center',
-    paddingHorizontal: MyTheme.audio.paddingHorizontal2,
+  directionsBox: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '83%', //TODO <85
+    height: 100 * Scales.horizontal, //Done needed fixed val
 
     // backgroundColor: 'pink',
+  },
+
+  directions:{
+    fontSize: 15.6 * Scales.font,
+    color: MyTheme.defaultText.color,
+    fontWeight: Scales.fontWeight('300'),
+    textAlign: 'center',
+
+    // backgroundColor: 'lightgreen',
     width: '100%',
   },
 
   dist:{
     fontSize: 13 * Scales.font,
     color: 'dimgray',
-    fontWeight: '500', //TODO
+    fontWeight: Scales.fontWeight('500'),
     textAlign: 'center',
 
     // backgroundColor: 'lightblue',
-    width: '100%',
+    // width: '100%',
   },
-
-  // image:{
-  //   height: undefined,
-  //   width: '100%',
-  //   aspectRatio: 1400/1051, // 1200 900
-
-  //   // alignSelf: 'center',
-  //   // alignItems: 'center',
-  //   // justifyContent: 'center',
-
-  // },
 
   button:{
     width: '66%',
-    // height: 36 * Math.pow((Scales.height/scaleH), 2), //height
-    // backgroundColor: 'gray',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // alignSelf: 'center',
-    // marginVertical: 30,
-    // underlayColor = '#BBBBBB' 
+    marginVertical: (Scales.hasNotch?15:0) * Scales.horizontal, //LATER maybe make buttonBox and do flexGrow?
   },
 
 });

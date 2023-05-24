@@ -148,7 +148,6 @@ const pageStyles = StyleSheet.create({
     },
 
     image:{
-        // height: '100%',
         height: undefined, //needed
         width: '100%',
         borderRadius: 5 * Scales.radius,
@@ -158,7 +157,7 @@ const pageStyles = StyleSheet.create({
         flex: 5,
         textAlign: 'center',
         fontSize: 16 * Scales.font,
-        fontWeight: '500',
+        fontWeight: Scales.fontWeight('500'),
         color: 'black',
         paddingHorizontal: '9%',
         width: '100%',

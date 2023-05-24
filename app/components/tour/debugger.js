@@ -46,27 +46,27 @@ class Debugger extends Component {
 
                     <View style ={styles.group}>
                         <Text style = {styles.subtitle}>CURRENT TARGET</Text>
-                        <Text>Stage: {this.props.stage}, Turn: {this.props.turn}</Text>
-                        <Text>Longitude: {this.props.state.currentTargetPos.longitude}</Text>
-                        <Text>Latitude: {this.props.state.currentTargetPos.latitude}</Text>
-                        <Text>distToCurrent: {JSON.stringify(Math.round(this.props.state.distToCurrent))} FT</Text>
+                        <Text style = {styles.text}>Stage: {this.props.stage}, Turn: {this.props.turn}</Text>
+                        <Text style = {styles.text}>Longitude: {this.props.state.currentTargetPos.longitude}</Text>
+                        <Text style = {styles.text}>Latitude: {this.props.state.currentTargetPos.latitude}</Text>
+                        <Text style = {styles.text}>distToCurrent: {JSON.stringify(Math.round(this.props.state.distToCurrent))} FT</Text>
                     </View>
 
                     <View style ={styles.group}>
                         <Text style = {styles.subtitle}>NEXT TARGET</Text>
-                        <Text>Longitude: {this.props.state.nextTargetPos.longitude}</Text>
-                        <Text>Latitude: {this.props.state.nextTargetPos.latitude}</Text>
-                        <Text>distToNext: {JSON.stringify(Math.round(this.props.state.distToNext))} FT</Text>
-                        <Text>nextRadius: {JSON.stringify(Math.round(this.props.state.nextRadius))} FT</Text>
-                        <Text>isNear: {JSON.stringify(this.props.state.isNear)} </Text>
+                        <Text style = {styles.text}>Longitude: {this.props.state.nextTargetPos.longitude}</Text>
+                        <Text style = {styles.text}>Latitude: {this.props.state.nextTargetPos.latitude}</Text>
+                        <Text style = {styles.text}>distToNext: {JSON.stringify(Math.round(this.props.state.distToNext))} FT</Text>
+                        <Text style = {styles.text}>nextRadius: {JSON.stringify(Math.round(this.props.state.nextRadius))} FT</Text>
+                        <Text style = {styles.text}>isNear: {JSON.stringify(this.props.state.isNear)} </Text>
                     </View>
 
                     <View style ={styles.group}>
                         <Text style = {styles.subtitle}>LAST LOCATION</Text>
-                        <Text>Longitude: {this.props.state.lastPos.longitude}</Text>
-                        <Text>Latitude: {this.props.state.lastPos.latitude}</Text>
-                        <Text>Accuracy: {JSON.stringify(Math.round(this.props.state.lastPos.accuracy))} FT</Text>
-                        <Text>{Scales.width}, {Scales.height}</Text>
+                        <Text style = {styles.text}>Longitude: {this.props.state.lastPos.longitude}</Text>
+                        <Text style = {styles.text}>Latitude: {this.props.state.lastPos.latitude}</Text>
+                        <Text style = {styles.text}>Accuracy: {JSON.stringify(Math.round(this.props.state.lastPos.accuracy))} FT</Text>
+                        <Text style = {styles.text}>{Scales.width}, {Scales.height}</Text>
                     </View>
 
                 </View>}
@@ -91,13 +91,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         width: '100%',
         height: 500 * Scales.horizontal,
+        paddingVertical: '3%',
         // backgroundColor: 'rgb(50,50,50)',
     },
 
     title:{
         fontSize: 50 * Scales.font,
         color: 'black',
-        fontWeight: '200',
+        fontWeight: Scales.fontWeight('200'),
         textAlign: 'center',
       },
 
@@ -120,20 +121,27 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'whitesmoke',
         fontSize: 15 * Scales.font,
-        fontWeight: '500',
+        fontWeight: Scales.fontWeight('500'),
     },
 
     group: {
         alignItems: 'center',
         justifyContent: 'center',
     },
+    
+    text: {
+        fontSize: 14 * Scales.font,
+        color: 'black',
+        fontWeight: Scales.fontWeight('400'),
+    },
   
     subtitle:{
       fontSize: 20 * Scales.font,
       color: 'black',
-      fontWeight: '500',
+      fontWeight: Scales.fontWeight('500'),
       textAlign: 'center',
       paddingTop: '3%',
+      paddingBottom: '1%'
     },
 
     debuggerToggle:{

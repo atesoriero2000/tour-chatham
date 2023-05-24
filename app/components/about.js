@@ -13,7 +13,6 @@ import {
 import { sharedStyles, MyTheme, Scales } from './helpers/shared_styles';
 
 const About = (props) => {
-
   return (
       <ScrollView>
         <View style={{height: Scales.insets.top}}/> 
@@ -87,8 +86,7 @@ const About = (props) => {
               <Text style = {[textStyles.fineText, sharedStyles.clickable]} selectable = {true} onPress={() => Linking.openURL("https://www.aptesoriero.com")}>www.aptesoriero.com</Text>
               <Text style = {[textStyles.fineText, sharedStyles.clickable]} selectable = {true} onPress={() => Linking.openURL("mailto:atesoriero2000@gmail.com?subject=Chatham%20Township%20Historical%20Society%20Driving%20Tour")}>atesoriero2000@gmail.com</Text>
 
-                    {/* TODO use the clickable color? */}
-              <Text style = {[textStyles.labels, sharedStyles.clickable]} onPress={() => Linking.openURL("http://www.chathamtownshiphistoricalsociety.org")}>
+              <Text style = {textStyles.labels} onPress={() => Linking.openURL("http://www.chathamtownshiphistoricalsociety.org")}>
                 Chatham Township Historical Society
               </Text>
               <Text style = {textStyles.fineText}>
@@ -114,7 +112,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    height: 1200 * Scales.horizontal,
+    height: (Scales.hasNotch?1250:1200) * Scales.horizontal,
     marginBottom: '3%',
   },
 
@@ -197,7 +195,7 @@ const textStyles = StyleSheet.create({
   labels:{
     fontSize: 16 * Scales.font,
     color: 'dimgrey',
-    fontWeight: MyTheme.about.labelWeight,
+    fontWeight: Scales.fontWeight('500'),
     textAlign: 'center',
     paddingBottom: '1%',
     paddingTop: '6%',

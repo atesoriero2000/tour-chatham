@@ -26,11 +26,7 @@ var AudioPage = require('./app/components/tour/audio-page');
 var About = require('./app/components/about');
 
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-
-// Icon.loadFont().catch(e => console.log(e)); //TODO needed?
-
-import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';//TODO remove
+const Tab = createBottomTabNavigator(); 
 
 class App extends Component {
   constructor(props){
@@ -61,9 +57,6 @@ class App extends Component {
   }
 
   render() {
-
-    activateKeepAwake(); //TODO remove
-
     return(
       <NavigationContainer theme={MyTheme}>
         <Tab.Navigator initialRouteName='Home' screenOptions={{
@@ -86,6 +79,7 @@ class App extends Component {
               }})}
             options={{
               headerShown: false,
+              // headerTitleShadowVisible: false,
               tabBarIcon: ({ focused, color, size }) => (
                 <Icon name='car' color={color} size={(size+6) * Scales.icon}/>
               )}}>

@@ -21,8 +21,7 @@ var Scales = {
 
   fontWeight: (weight) => {   
     let w = parseInt(weight) + (scale-3)*100;
-    if(w==0) w=100;
-    return w.toString();
+    return ((w==0) ? '100' : w.toString())
   },
 }
 
@@ -42,11 +41,6 @@ const MyTheme = {
     color: 'grey',
     weight: Scales.fontWeight('200'),
     titleWeight: Scales.fontWeight('100'),
-  },
-  titleFont: {
-    size: 36 * Scales.font,
-    weight: Scales.fontWeight('300'),
-    paddingHorizontal: '11%',
   },
 }
 
@@ -102,6 +96,14 @@ const sharedStyles = StyleSheet.create({
       activeColor: '#007aff',
     },
 
+    //Shared with info and audio page
+    locationTitleText:{
+      textAlign: 'center',
+      color: 'black',
+      fontWeight: Scales.fontWeight('300'),
+      fontSize: 36 * Scales.font,
+      paddingHorizontal: '11%',
+    },
   });
 
   export {sharedStyles, MyTheme, Scales};

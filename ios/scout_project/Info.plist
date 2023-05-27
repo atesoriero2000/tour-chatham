@@ -45,19 +45,17 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app uses your location to reliably navigate you through historic sites and roadways 2</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This needs to be enabled so you can use Apple Maps without interrupting the tour 3</string>
 	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
 	<dict>
 		<key>Driving</key>
-		<string>To ensure highest quality for your tour 5</string>
+		<string>This is needed temporarily to navigate you safely through roadways</string>
+		<key>New item</key>
+		<string></string>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app uses your location to reliably navigate you through historic sites and roadways 1</string>
+	<string>This app uses your location to reliably navigate you through historic sites and roadways</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Uses accelerometer to increase battery efficiency by intelligently toggling location-tracking 4</string>
+	<string>Uses motion tracking to increase battery efficiency during the tour</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ionicons.ttf</string>

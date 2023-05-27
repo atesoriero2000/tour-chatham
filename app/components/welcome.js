@@ -21,12 +21,10 @@ const Welcome = () => {
   Scales.hasNotch = Scales.insets.top>20; 
   Scales.tabBarHeight = useBottomTabBarHeight();
   Scales.headerHeight = useHeaderHeight();
-  console.log(Scales); //TODO remove
 
   return (
     <View style = {sharedStyles.container}>
-    {/* <View style = {[sharedStyles.container, {justifyContent: 'space-between', paddingVertical: 20 * Scales.horizontal}]}> */}
-
+      
         <View style={[styles.titleBox, {flexGrow: Scales.hasNotch?.3:.2}]}>
           <Text style={styles.titleText}>
             Chatham Township Historical Society Driving Tour

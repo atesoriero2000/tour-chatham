@@ -7,6 +7,7 @@ import {
 } from 'react-native'
 
 import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
+const sigFigs = 4;
 
 class Debugger extends Component {
 
@@ -65,8 +66,23 @@ class Debugger extends Component {
                         <Text style = {styles.subtitle}>LAST LOCATION</Text>
                         <Text style = {styles.text}>Longitude: {this.props.state.lastPos.longitude}</Text>
                         <Text style = {styles.text}>Latitude: {this.props.state.lastPos.latitude}</Text>
-                        <Text style = {styles.text}>Accuracy: {JSON.stringify(Math.round(this.props.state.lastPos.accuracy))} FT</Text>
-                        <Text style = {styles.text}>{Scales.width}, {Scales.height}</Text>
+                        <Text style = {styles.text}>Accuracy: {JSON.stringify(Math.round(this.props.state.lastPos.accuracy*3.28084))} FT</Text>
+                        <Text style = {styles.text}>Heading: {this.props.state.lastPos.heading} ± {this.props.state.lastPos.heading_accuracy}°</Text>
+                        <Text style = {styles.text}>Speed: {(this.props.state.lastPos.speed*(this.props.state.lastPos.speed>0?2.23694:1)).toFixed(2)} ± {(this.props.state.lastPos.speed_accuracy*(this.props.state.lastPos.speed>0?2.23694:1)).toFixed(2)} MPH</Text>
+                        <Text style = {styles.text}>Altitude: {(this.props.state.lastPos.altitude*3.28084).toFixed(2)} ± {(this.props.state.lastPos.altitude_accuracy*(this.props.state.lastPos.altitude_accuracy>0?3.28084:1)).toFixed()} FT</Text>
+                        <Text style = {styles.text}>Activity: {this.props.state.lastLocation.activity.type} @ {this.props.state.lastLocation.activity.confidence}%</Text>
+                        <Text style = {styles.text}>is_moving: {JSON.stringify(this.props.state.lastLocation.is_moving)}</Text>
+                        <Text style = {styles.text}>odometer: {(this.props.state.lastLocation.odometer*3.28084).toFixed()} FT</Text>
+                    </View>
+
+                    <View style ={styles.group}>
+                        <Text style = {styles.subtitle}>SCALES</Text>
+                        <Text style = {styles.text}>Width: {Scales.width}, Height: {Scales.height}</Text>
+                        <Text style = {styles.text}>Horizontal: {Scales.horizontal.toFixed(sigFigs)}, Vertical: {Scales.vertical.toFixed(sigFigs)}</Text>
+                        <Text style = {styles.text}>Font: {Scales.font.toFixed(sigFigs)}, Icon: {Scales.icon.toFixed(sigFigs)}, Radius: {Scales.radius.toFixed(sigFigs)}</Text>
+                        <Text style = {styles.text}>hasNotch: {JSON.stringify(Scales.hasNotch)}, pixel: {Scales.scale}, fScale: {Scales.fScale}</Text>
+                        <Text style = {styles.text}>tabBarHeight: {Scales.tabBarHeight}, headerHeight: {Scales.headerHeight}</Text>
+                        <Text style = {styles.text}>insets: {JSON.stringify(Scales.insets)}</Text>
                     </View>
 
                 </View>}
@@ -90,7 +106,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-evenly',
         width: '100%',
-        height: 500 * Scales.horizontal,
+        height: 750 * Scales.horizontal,
         paddingVertical: '3%',
         // backgroundColor: 'rgb(50,50,50)',
     },
@@ -132,6 +148,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 14 * Scales.font,
         color: 'black',
+        textAlign: 'center',
         fontWeight: Scales.fontWeight('400'),
     },
   

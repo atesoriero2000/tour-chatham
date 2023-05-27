@@ -38,22 +38,47 @@ class App extends Component {
   }
 
   permissionsPopup(){
-    //TODO
-    // BackgroundGeolocation.configure({ // NOTE: needed to force permissions popup on startup
-    //   locationAuthorizationRequest: 'WhenInUse',
-    //   debug: false,
-    //   logLevel: BackgroundGeolocation.LOG_LEVEL_OFF,
-    // }, (state) => {
-    //   console.log("- BackgroundGeolocation is configured and ready: ", state.enabled);
-    //   if (!state.enabled) BackgroundGeolocation.start();
-    // });
-    // BackgroundGeolocation.stop();
+    BackgroundGeolocation.ready({
+      reset: true,
+      persistMode: false,
+      showsBackgroundLocationIndicator: true,
+      debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
+      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE, //VERBOSE, OFF
+      maxRecordsToPersist: 0,
+      locationAuthorizationRequest: 'WhenInUse', //Always assumes we did proper permissions in info and App.ios.js
+      
+      desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION,
+      stationaryRadius: 5, //meters but usually takes ~200m at default 25
+      distanceFilter: 1, ///meters, OR you can set locationUpdateInterval
+      // locationUpdateInterval: 1000, //ANDROID ONLY
+      // preventSuspend: true, //watchPosition already does this
+      isMoving: true, //ensures immediate location updates
+      disableElasticity: true, //Very Important, or else updates lessen with speed
+      elasticityMultiplier: 0, //0=redundant to disableElasticity
+      disableStopDetection: true, // disable accelerometer use and defaults to apples 15mins times
+      pausesLocationUpdatesAutomatically: false, // needed 
+      // stopTimeout: 5, //mins => default 5, disableStopDetection overrites this
+
+      locationAuthorizationAlert: { 
+        titleWhenNotEnabled: "Location Services are not enabled",
+        titleWhenOff: "Location Services are off",
+        instructions: "Location Services must be set to 'While Using the App' in settings",
+        cancelButton: "Cancel",
+        settingsButton: "Settings"
+      }
+    }).then((status) => {
+      console.log("GEOLOCATION READY: ", status);
+      BackgroundGeolocation.stop();
+    }).catch( (error) => { console.error("***** GEOLOCATION READY FAILED *****", error) });
+
+    BackgroundGeolocation.requestPermission()
+    .then( (status) => console.log("[requestPermission] STATUS: ", status))
+    .catch( (error) => {
+      console.error("[requestPermission] ERROR: ", error)
+      BackgroundGeolocation.requestPermission(); //forces locationAuthorizationAlert if request fails
+    })
 
 
-    BackgroundGeolocation.requestPermission(); // uses message 1
-    BackgroundGeolocation.requestTemporaryFullAccuracy("Driving").then( 
-      (accuracyAuthorization) => console.log('[requestTemporaryFullAccuracy] STATUS:', accuracyAuthorization) 
-      ).catch( (error) => console.warn("[requestTemporaryFullAccuracy] FAILED TO SHOW DIALOG: ", error) ); // uses message 2
   }
 
   render() {
@@ -85,7 +110,8 @@ class App extends Component {
               )}}>
               
               {() =>
-              <Stack.Navigator screenOptions={{headerShown: true }}>
+              //LATER animation value, and presentation
+              <Stack.Navigator screenOptions={{headerShown: true, gestureEnabled: false}}>
                 <Stack.Screen name='Start the Tour!' component={Start} />
                 <Stack.Screen name='Select a Start Point' component={SelectionPage} />
                 <Stack.Screen name='Drive to Start Point' component={InfoPage} />

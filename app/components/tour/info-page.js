@@ -1,17 +1,18 @@
-// LATER: add geolocation or merge with audio page
-//       check location before making continue button clickable 
+// LATER: add geolocation check location if near specified location
+//        add alert if pressed and not near
+//        or merge with audio page
 import React, { Component } from 'react'
 import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   Image,
   Alert,
   Linking,
   TouchableHighlight,
 } from 'react-native'
 import { sharedStyles, MyTheme, Scales } from '../helpers/shared_styles';
+import BackgroundGeolocation from "react-native-background-geolocation";
 
 var Swiper = require('../helpers/Swiper');
 
@@ -25,6 +26,34 @@ class InfoPage extends Component{
     }
   }
 
+
+  // Will show locationAuthorizationAlert if location set to never
+  async permissionsPopup(){
+
+    try{ //Shows locationAuthorizationAlert if not set to locationAuthorizationRequest
+      const status = await BackgroundGeolocation.requestPermission(); 
+      console.log("[requestPermission] STATUS: ", status);
+    } catch (error) {
+      console.error("[requestPermission] ERROR: ", error)
+      return;
+    };
+
+    try { // Fails if permission set to never
+      const status = await BackgroundGeolocation.requestTemporaryFullAccuracy("Driving")
+      console.log('[requestTemporaryFullAccuracy] STATUS:', status)
+      if (status) {
+        Alert.alert('Precise Location is off', 'Precise location is needed to start the tour', //TODO finalize
+        [{ text: 'Ok, I Understand', onPress: () => this.permissionsPopup()}, ]);
+        return;
+      }
+    } catch (error) {
+      console.error("[requestTemporaryFullAccuracy] ERROR: ", error) //Always undefined
+      return;
+    };
+
+    this.navToAudio();
+  }
+
   navToAudio(){
     this.props.navigation.navigate('Tour', {
       screen: 'Audio Tour',
@@ -36,7 +65,7 @@ class InfoPage extends Component{
   
   onPress(){
     Alert.alert('SAFETY', '\n1) You must have a passenger to follow and read the directions as the come up on the phone screen.\n\n 2) If you miss a turn, safely navigate through adjacent roads, and proceed back to the instructed route.\n\n 3) Some locations have limited parking. Please be cautious of your surroundings, and pay attention to the specified parking directions.\n\n 4) Some markers are on private property. Be courteous to others, and be mindful of trespassing.\n\n 5) Drive safely. The developer, the Chatham Township Historical Society, and contributors to the app hold no liability for any incidents that may occur while using this app.'
-    ,[{ text: 'Ok, I Understand', onPress: () => this.navToAudio()},
+    ,[{ text: 'Ok, I Understand', onPress: () => this.permissionsPopup()},
     ]);
   }
 
@@ -51,7 +80,7 @@ class InfoPage extends Component{
     return(
       <View style = {sharedStyles.container}>
         {Scales.hasNotch && <View style = {sharedStyles.headerBorder}/>}
-        <Text style = {styles.titleText}>{this.state.loc.title}</Text>
+        <Text style = {sharedStyles.locationTitleText}>{this.state.loc.title}</Text>
 
         <Text style = {styles.subtext}>
           <Text > Please navigate to</Text>
@@ -77,14 +106,6 @@ class InfoPage extends Component{
 }
 
 const styles = StyleSheet.create({
-
-  titleText:{
-    textAlign: 'center',
-    color: 'black',
-    fontWeight: MyTheme.titleFont.weight,
-    fontSize: MyTheme.titleFont.size,
-    paddingHorizontal: MyTheme.titleFont.paddingHorizontal,
-  },
 
   subtext:{
     fontSize: 20 * Scales.font,

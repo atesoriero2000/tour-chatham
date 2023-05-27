@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   TouchableHighlight,
   Vibration,
   Image,
@@ -22,10 +21,6 @@ var Swiper = require('../helpers/Swiper');
 var Locations = require('../helpers/turns');
 var endAudio = new Sound('page_27_tony.mp3', Sound.MAIN_BUNDLE);
 
-//TODO: REMOVEEEEE PLEASEEEE
-var doneAtAudio = false;
-var isNearLastTurn = true;
-
 class AudioPage extends Component {
 
   constructor(props){
@@ -33,7 +28,8 @@ class AudioPage extends Component {
     this.state = {
 
       lastPos: 'unknown',
-      currentTargetPos: 'unknown',//{latitude: 0, longitude: 0},
+      lastLocation: {activity: {type: 'unknown', confidence: 'unknown'}},
+      currentTargetPos: 'unknown',
       distToCurrent: 0,
       nextTargetPos: 'unknown',
       distToNext: 0,
@@ -41,9 +37,11 @@ class AudioPage extends Component {
       clickable: true,
 
       audioIsPlaying: false,
+      doneAtAudio: false,
       directions: 'NONE',
 
       tourEnded: false,
+      isNearLastTurn: false,
       isNearOverride: false, //for debugging
     };
   }
@@ -57,98 +55,44 @@ class AudioPage extends Component {
   componentDidMount(){
     this.props.navigation.setOptions({ 
       headerLeft: () => ( <Button title='End Tour' color={'red'} onPress={() => this.endTourButton()} /> ),
-      headerRight: () => ( <Button title='Return Home' onPress={() => this.returnHomeButton()}/> ),
+      headerRight: () => ( <Button title='Return Home' onPress={() => this.returnHomeButton()}/> ), //TODO
     })
     activateKeepAwake();
-    Sound.setCategory('Playback', false);
-    Sound.setActive(true); //TODO: Check if should turn off after audio is finished cause it is rn
+    Sound.setCategory('Playback', true);//NOTE bug patch neeeded with https://github.com/zmxv/react-native-sound/issues/788
+    Sound.setActive(true); // Only once per session, set to false only when you dont want any more background audio
 
     //####### set turns and stage to passed value in props ############
+    // LATER: move to state instead of class var
     this.stage = this.props.route.params.stage;
-    this.turn = Locations[this.stage].turns.length-1; //Grab last turn (atAudio)
-    this.buttonPressed();
-    // this.update();
-
+    this.turn = Locations[this.stage].turns.length-1; // Grab last turn (atAudio)
     this.startGeolocation();
+    this.buttonPressed(); // Starts tour (triggers atAudio)
   }
 
-  startGeolocation(){
 
-    // ###### 1. SUBSCRIBE TO EVENTS ######
+  //TODO check if you can get while in use to turn of location while the app is running
+  startGeolocation(){
     BackgroundGeolocation.logger.destroyLog();
+    BackgroundGeolocation.start().then((state) => console.log('[start] STATUS:', state)).catch( (error) => console.error("[start] ERROR: ", error)) //LATER restart or prevent tour to continue
     BackgroundGeolocation.onLocation(
       (location) => {
         console.log("[onLocation] success: ", location);
-        this.setState({lastPos: location.coords});
+        this.setState({lastPos: location.coords, lastLocation: location});
         this.update();
-      },  (error) => console.log("***** onLocation FAILED *****:    ", error));
+      }, (error) => console.error("***** onLocation FAILED *****:    ", error));
 
-
-
-    // ###### 2. READY PLUGIN ######
-
-    //NOTE: requestTemporaryFullAccuracy
-    //TODO: request haults audio page and crashes
-    // Maybe have a loop to continuusly restart BackgroundGeolocation if failed
-    //getCurrentPosition
-    //all Returns https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html#sample
-    
-    // preventSuspend: true,
-    // heartbeatInterval: 60 //for onHeartbeat event
-    //NOTE getCurrentPosition, start, watchPosition only after ready resolves
-    BackgroundGeolocation.ready({
-      reset: true,
-      persistMode: false,
-      showsBackgroundLocationIndicator: true,
-      debug: false, // <-- enable this hear sounds for background-geolocation life-cycle.
-      logLevel: BackgroundGeolocation.LOG_LEVEL_VERBOSE, //VERBOSE, OFF
-      maxRecordsToPersist: 0,
-      locationAuthorizationRequest: 'WhenInUse', //Maybe Always
-      
-      desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION,
-      stationaryRadius: 5, //meters but usually takes ~200m at default 25
-      distanceFilter: 1, ///meters, OR you can set locationUpdateInterval
-      // locationUpdateInterval: 1000, //ANDROID ONLY
-      // preventSuspend: true, //watchPosition already does this
-      isMoving: true, //ensures immediate location updates
-      disableElasticity: true, //Very Important, or else updates lessen with speed
-      elasticityMultiplier: 0, //0=redundant to disableElasticity
-      disableStopDetection: true, // disable accelerometer use and defaults to apples 15mins times
-      pausesLocationUpdatesAutomatically: false, // needed 
-      // stopTimeout: 5, //mins => default 5, disableStopDetection overrites this
-
-      // TODO disableLocationAuthorizationAlert: true, //Disables \/\/\/
-      locationAuthorizationAlert: { //Only works with Always
-        titleWhenNotEnabled: "Yo, location-services not enabled",
-        titleWhenOff: "Yo, location-services OFF",
-        instructions: "You must enable 'Always' in location-services, buddy",
-        cancelButton: "Cancel",
-        settingsButton: "Settings"
-      }
-
-    }, (state) => { console.log("BackgroundGeolocation is configured and ready:   ", state.enabled);
-                    if (!state.enabled){
-                        BackgroundGeolocation.start();
-                        console.log("GEOLOCATION STARTED");
-                      } 
-    }, () => console.log("***** GEOLOCATION READY FAILED *****"));
-
-    BackgroundGeolocation.setConfig({ locationAuthorizationRequest: 'Always' });
-    BackgroundGeolocation.requestPermission(); // TODO NOTE: might need to wait NOT NEEDED
-    BackgroundGeolocation.requestTemporaryFullAccuracy("Driving").then( 
-      (accuracyAuthorization) => console.log('[requestTemporaryFullAccuracy] STATUS:', accuracyAuthorization) 
-      ).catch( (error) => console.warn("[requestTemporaryFullAccuracy] FAILED TO SHOW DIALOG: ", error) );
-
-      
-
-    // ###### 3. START / STOP ######
     BackgroundGeolocation.watchPosition(
       (location) => console.log("[watchPosition] success: ", location),
-      (error) => console.log("***** watchPosition FAILED *****:    ", error), {
+      (error) => console.error("***** watchPosition FAILED *****:    ", error), {
         interval: 1000, //in ms 
         desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION, timeout: 60000 });
-        
     BackgroundGeolocation.changePace(true); //IMPORTANT!! Instantly starts sending location updates
+  }
+
+  stopGeolocation(){
+    BackgroundGeolocation.stopWatchPosition(); //VERY nessecary
+    BackgroundGeolocation.removeAllListeners(); //remove onLocation listener
+    BackgroundGeolocation.stop();
   }
 
 
@@ -157,25 +101,25 @@ class AudioPage extends Component {
  //// MAIN FUCTIONS ////
 ///////////////////////
   buttonPressed(){
-    if(this.state.clickable){ // Does nothing if audio is playing or if not at location
+    if(this.state.clickable){ // Button does nothing if audio is playing or if not at location
+      
       /*------------------------*/
       /* ! Handle End of Tour ! */
       /*------------------------*/
       // if its the last stage and we've played the atAudio and it is finished playing
-      // removed this is already caught with clickable state && !this.state.audioIsPlaying){
-      if(this.stage === 14 && doneAtAudio){
+      if(this.stage === 14 && this.state.doneAtAudio){
         this.showEndScreen();
         return; //Needed to stop tour
       }
+
       /*------------------*/
       /* ! Play atAudio ! */
       /*------------------*/
       let currentStage = Locations[this.stage];
-      if(currentStage.atAudio === null) doneAtAudio = true; // if it doesnt have at audio, act like it has completed atAudio and continue
-      if(!doneAtAudio){ // Has not done the at location audio
-        this.triggerAudio(currentStage.atAudio, true); //true greys button immediatly
-        doneAtAudio = true; //Only works if ^ set to true
+      if(!this.state.doneAtAudio && currentStage.atAudio !== null){ // If has not done the at location audio and there is at audio
+        this.triggerAudio(currentStage.atAudio, true); //true highlights button after audio finish
         this.setState({
+          doneAtAudio: true, // hides dist counter immediately
           title: currentStage.title,
           picture: currentStage.atPic,
           directions: 'Remain at the location until the audio is finished, then click the button to continue'});
@@ -187,17 +131,18 @@ class AudioPage extends Component {
         BackgroundGeolocation.changePace(true); //IMPORTANT!! Instantly starts sending location updates
         this.turn = 0;
         this.stage++;
-        doneAtAudio = false;
-        isNearLastTurn = false;
-        this.setState({ title: Locations[this.stage].title, picture: Locations[this.stage].turns[0].picture});
+        this.setState({
+          doneAtAudio: false,
+          isNearLastTurn: false,
+          title: Locations[this.stage].title,
+          picture: Locations[this.stage].turns[0].picture});
         this.triggerAudio(Locations[this.stage].toAudio, true);
-        this.update();
+        this.update(); //update screen immediatly
       }
     }
   }
 
   update(){
-    //TODO: better stage and turn tracker
     let currentStage = Locations[this.stage];
     let currentTurn = currentStage.turns[this.turn];
 
@@ -211,9 +156,9 @@ class AudioPage extends Component {
     /*-------------------*/
     /* ! SCREEN UPDATE ! */
     /*-------------------*/
-    // checks to see if atPic is being displayed
-    // will only overide if atPic is not being displayed or if we are not at the last turn
-    if(this.state.picture !== Locations[this.stage].atPic)   // || currentStage.turns.length-1 > this.turn){
+    // update picture and directions everytime except when atPic and message is being displayed
+    // (atPic gets manually set and cleared in buttonPressed)
+    if(this.state.picture !== Locations[this.stage].atPic)
       this.setState({ 
         picture: currentTurn.picture, 
         directions: currentTurn.direction });
@@ -221,15 +166,15 @@ class AudioPage extends Component {
     /*-------------------*/
     /* ! BUTTON UPDATE ! */
     /*-------------------*/
-    //TODO: Not hardcode isNearLastTurn variable
     // for clickable, when near last turn in location but radius increases when true.
-    // deaceases radius on stage change in onPress()
+    // decreases radius on stage change in onPress() (changes lastTurn)
     // radius increases so that thue button doesnt turn of when the driver parks a little far away but will turn off if they drive far past the spot.
     // if audio is not playing and we are close to the last turn
     let lastTurn = currentStage.turns[currentStage.turns.length-1];
-    let radius = (isNearLastTurn ? 1150 : 200);
-    isNearLastTurn = (this.state.isNearOverride||this.isNear(lastTurn.latitude, lastTurn.longitude, radius));
-    this.setState({ clickable: (!this.state.audioIsPlaying && (currentStage.turns.length-1 === this.turn) && isNearLastTurn )});
+    let radius = (this.state.isNearLastTurn ? 1150 : 200); //hysteresis
+    this.setState({ 
+      isNearLastTurn: (this.state.isNearOverride || this.isNear(lastTurn.latitude, lastTurn.longitude, radius)),
+      clickable: (!this.state.audioIsPlaying && (currentStage.turns.length-1 === this.turn) && this.state.isNearLastTurn) });
 
     /*----------------------*/
     /* ! UPDATE NEXT TURN ! */
@@ -238,7 +183,7 @@ class AudioPage extends Component {
     // if we are on the last turn of the array already, the first next turn of the next location
     // this alows us to non restrictivly update state and not leave extrainious states that are not updated
     // exeption: on last turn of last location cannot look ahead so we use this.stage instead of this.stage+1
-    let nextTurn = (currentStage.turns.length-1 > this.turn) ? currentStage.turns[this.turn+1] : Locations[ (this.stage===14)?14:this.stage+1 ].turns[1];
+    let nextTurn = (currentStage.turns.length-1 > this.turn) ? currentStage.turns[this.turn+1] : Locations[(this.stage===14)?14:this.stage+1].turns[1];
 
     /*------------------*/
     /* ! UPDATE STATE ! */
@@ -246,30 +191,28 @@ class AudioPage extends Component {
     this.setState({
       nextTargetPos: {latitude: nextTurn.latitude, longitude: nextTurn.longitude},
       distToNext: this.distTo(nextTurn.latitude, nextTurn.longitude),
-      isNear: this.state.isNearOverride||this.isNear(nextTurn.latitude, nextTurn.longitude, nextTurn.radius),
+      isNear: this.state.isNearOverride || this.isNear(nextTurn.latitude, nextTurn.longitude, nextTurn.radius),
       nextRadius: nextTurn.radius, // NOTE: FOR DEBUGGING
     });
 
     /*-------------------------*/
     /* ! UPDATE CURRENT TURN ! */
     /*-------------------------*/
-    //Only will increment turn counter if isNear is true and if not the last turn
+    // Only will increment turn counter if isNear is true and if not the last turn
     if(this.state.isNear && (currentStage.turns.length-1 > this.turn) ){
       Vibration.vibrate();
       BackgroundGeolocation.playSound(1300); //default voicemail sound
       this.turn++;
     }
-    /* LOGGER */
-    console.log("GOT POSITION:     ", this.state.lastPos);
   }
 
-  triggerAudio(audioFile, shouldUpdate){
-    audioFile.play(() => {
+
+  triggerAudio(audioFile, updateOnFinish){
+    audioFile.setVolume(1).play(() => {
       this.setState({ audioIsPlaying: false });
-      if(shouldUpdate) this.update(); else Sound.setActive(false); //TODO: i dont think this is right (finished callback)
+      if(updateOnFinish) this.update(); // This updates button immediatly after audio finishes
     });
-    // audioFile.setVolume(1); //TODO: ADD FOR FINAL
-    this.setState({ audioFile, audioIsPlaying: true, clickable: false }); // clickable set so button immediatly changes
+    this.setState({ audioFile, audioIsPlaying: true, clickable: false }); // clickable set so button greys immediatly changes
   }
 
 
@@ -277,11 +220,7 @@ class AudioPage extends Component {
  //// END TOUR FUCTIONS ////
 ///////////////////////////
   showEndScreen(){
-    //Kill location services for unessecary tracking (reduntant to componentWillUnmount())
-    BackgroundGeolocation.stopWatchPosition(); //VERY nessecary
-    BackgroundGeolocation.removeAllListeners();
-    BackgroundGeolocation.stop();
-
+    this.stopGeolocation(); //needed to stop update() from running
     this.setState({
       clickable: false,
       title: 'Thankyou for taking the Tour!',
@@ -289,12 +228,11 @@ class AudioPage extends Component {
       picture: [].concat.apply([], Locations.map(loc => loc.atPic)),
       tourEnded: true,
     });
-
-    this.triggerAudio(endAudio, false);
+    this.triggerAudio(endAudio, false); //false prevents update on audio finish
   }
 
   endTourButton(){
-    //TODO: maybe just make a fuction Component and return <Button/>
+    //TODO showEndScreen??
     if(!this.state.tourEnded)
       Alert.alert( 'End Tour Warning', 'Are you sure you want to end the tour?',
         [{ text: 'Cancel', style: 'cancel' },
@@ -303,8 +241,8 @@ class AudioPage extends Component {
   }
 
   returnHomeButton(){
-    //TODO: maybe just make a fuction Component and return <Button/>
     //TODO: Figure out better functionality
+    //maybe add show end screen
     Alert.alert( 'Direction Back to Start', '\nThese next directions take approx 9 minutes to travel and 4.5 miles\n\n Line2 \n\n Line3 \n\n Would you like to go?',
       [{ text: 'Close', style: 'default' },
        { text: 'Go', onPress: () => { Linking.openURL("http://maps.apple.com/?daddr=Chatham%20Township%20Historical%20Society,+Chatham,+NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
@@ -313,11 +251,7 @@ class AudioPage extends Component {
   componentWillUnmount(){
     this.state.audioFile.stop();
     Sound.setActive(false);
-    doneAtAudio = false;
-    // isNearLastTurn = true;
-    BackgroundGeolocation.stopWatchPosition(); // VERY nessecary
-    BackgroundGeolocation.removeListeners();
-    BackgroundGeolocation.stop();
+    this.stopGeolocation();
     deactivateKeepAwake();
   }
 
@@ -334,7 +268,7 @@ class AudioPage extends Component {
           <View style = {styles.tourContainer}>
 
             <View style = {styles.titleBox}>
-              <Text style = {styles.title}>{this.state.title}</Text>
+              <Text style = {sharedStyles.locationTitleText}>{this.state.title}</Text>
             </View>
 
             <View style = {styles.line}/>
@@ -345,7 +279,7 @@ class AudioPage extends Component {
 
 
             <Text style = {styles.dist}>
-              {doneAtAudio?'':('In: ' + ( (this.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
+              {this.state.doneAtAudio?'':('In: ' + ( (this.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}
             </Text>
 
   {/* Turns / Locations Image */}
@@ -397,6 +331,7 @@ class AudioPage extends Component {
   }
 
   DEBUG_nextTurn(){
+    // LATER prevent overflow and play through at audio
     Vibration.vibrate();
     BackgroundGeolocation.playSound(1300);
 
@@ -410,6 +345,7 @@ class AudioPage extends Component {
   }
 
   DEBUG_lastTurn(){
+    // LATER prevent overflow and play through at audio
     Vibration.vibrate();
     BackgroundGeolocation.playSound(1301);
 
@@ -450,15 +386,6 @@ const styles = StyleSheet.create({
     flexGrow: (Scales.hasNotch?.2:0),  
   },
 
-  title:{
-    fontSize: MyTheme.titleFont.size,
-    textAlign: 'center',
-    color: 'black',
-    fontWeight: MyTheme.titleFont.weight,
-    paddingHorizontal: MyTheme.titleFont.paddingHorizontal,
-    // backgroundColor: 'pink',
-  },
-
   line:{
     backgroundColor: 'black',
     height: StyleSheet.hairlineWidth,
@@ -481,7 +408,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
 
     // backgroundColor: 'lightgreen',
-    width: '100%',
+    // width: '100%',
   },
 
   dist:{

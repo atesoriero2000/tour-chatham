@@ -15,8 +15,8 @@ import { sharedStyles, MyTheme, Scales } from './helpers/shared_styles';
 const About = (props) => {
   return (
       <ScrollView>
-        <View style={{height: Scales.insets.top}}/> 
-        <View style={styles.container}>
+        <View style={{height: Scales.insets.top}}/>
+        <View style={[styles.container, {height: (Scales.hasNotch?1250:1200) * Scales.horizontal}]}>
 
 {/* Header Block */}
           <View style = {styles.block}>
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    height: (Scales.hasNotch?1250:1200) * Scales.horizontal,
     marginBottom: '3%',
   },
 

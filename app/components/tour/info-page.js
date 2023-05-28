@@ -26,7 +26,6 @@ class InfoPage extends Component{
     }
   }
 
-
   // Will show locationAuthorizationAlert if location set to never
   async permissionsPopup(){
 

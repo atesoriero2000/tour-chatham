@@ -28,7 +28,7 @@ class AudioPage extends Component {
     this.state = {
 
       lastPos: 'unknown',
-      lastLocation: {activity: {type: 'unknown', confidence: 'unknown'}},
+      lastLocation: {activity: {type: 'unknown', confidence: 'unknown'}}, //for debugger
       currentTargetPos: 'unknown',
       distToCurrent: 0,
       nextTargetPos: 'unknown',

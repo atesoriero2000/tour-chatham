@@ -57,7 +57,7 @@ class App extends Component {
       elasticityMultiplier: 0, //0=redundant to disableElasticity
       disableStopDetection: true, // disable accelerometer use and defaults to apples 15mins times
       pausesLocationUpdatesAutomatically: false, // needed 
-      // stopTimeout: 5, //mins => default 5, disableStopDetection overrites this
+      // stopTimeout: 5, //mins => default 5, disableStopDetection overrides this
 
       locationAuthorizationAlert: { 
         titleWhenNotEnabled: "Location Services are not enabled",

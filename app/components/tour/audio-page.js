@@ -49,7 +49,7 @@ class AudioPage extends Component {
 
 
   ///////////////////////
- //// INIT FUCTIONS ////
+ //// INIT FUNCTIONS ////
 ///////////////////////
 
   componentDidMount(){
@@ -58,8 +58,8 @@ class AudioPage extends Component {
       headerRight: () => ( <Button title='Return Home' onPress={() => this.returnHomeButton()}/> ), //TODO
     })
     activateKeepAwake();
-    Sound.setCategory('Playback', true);//NOTE bug patch neeeded with https://github.com/zmxv/react-native-sound/issues/788
-    Sound.setActive(true); // Only once per session, set to false only when you dont want any more background audio
+    Sound.setCategory('Playback', true);//NOTE bug patch needed with https://github.com/zmxv/react-native-sound/issues/788
+    Sound.setActive(true); // Only once per session, set to false only when you don't want any more background audio
 
     //####### set turns and stage to passed value in props ############
     // LATER: move to state instead of class var
@@ -90,7 +90,7 @@ class AudioPage extends Component {
   }
 
   stopGeolocation(){
-    BackgroundGeolocation.stopWatchPosition(); //VERY nessecary
+    BackgroundGeolocation.stopWatchPosition(); //VERY necessary
     BackgroundGeolocation.removeAllListeners(); //remove onLocation listener
     BackgroundGeolocation.stop();
   }
@@ -98,7 +98,7 @@ class AudioPage extends Component {
 
 
   ///////////////////////
- //// MAIN FUCTIONS ////
+ //// MAIN FUNCTIONS ////
 ///////////////////////
   buttonPressed(){
     if(this.state.clickable){ // Button does nothing if audio is playing or if not at location
@@ -127,7 +127,7 @@ class AudioPage extends Component {
       /*------------------------*/
       /* ! Handle Next Marker ! */
       /*------------------------*/
-      }else{ // has done at location audio or doesnt have any
+      }else{ // has done at location audio or doesn't have any
         BackgroundGeolocation.changePace(true); //IMPORTANT!! Instantly starts sending location updates
         this.turn = 0;
         this.stage++;
@@ -137,7 +137,7 @@ class AudioPage extends Component {
           title: Locations[this.stage].title,
           picture: Locations[this.stage].turns[0].picture});
         this.triggerAudio(Locations[this.stage].toAudio, true);
-        this.update(); //update screen immediatly
+        this.update(); //update screen immediately
       }
     }
   }
@@ -156,7 +156,7 @@ class AudioPage extends Component {
     /*-------------------*/
     /* ! SCREEN UPDATE ! */
     /*-------------------*/
-    // update picture and directions everytime except when atPic and message is being displayed
+    // update picture and directions every time except when atPic and message is being displayed
     // (atPic gets manually set and cleared in buttonPressed)
     if(this.state.picture !== Locations[this.stage].atPic)
       this.setState({ 
@@ -168,7 +168,7 @@ class AudioPage extends Component {
     /*-------------------*/
     // for clickable, when near last turn in location but radius increases when true.
     // decreases radius on stage change in onPress() (changes lastTurn)
-    // radius increases so that thue button doesnt turn of when the driver parks a little far away but will turn off if they drive far past the spot.
+    // radius increases so that the button doesn't turn of when the driver parks a little far away but will turn off if they drive far past the spot.
     // if audio is not playing and we are close to the last turn
     let lastTurn = currentStage.turns[currentStage.turns.length-1];
     let radius = (this.state.isNearLastTurn ? 1150 : 200); //hysteresis
@@ -181,8 +181,8 @@ class AudioPage extends Component {
     /*----------------------*/
     // Set our next turn to either the next turn in the array or
     // if we are on the last turn of the array already, the first next turn of the next location
-    // this alows us to non restrictivly update state and not leave extrainious states that are not updated
-    // exeption: on last turn of last location cannot look ahead so we use this.stage instead of this.stage+1
+    // this allows us to non restrictively update state and not leave extraneous states that are not updated
+    // exception: on last turn of last location cannot look ahead so we use this.stage instead of this.stage+1
     let nextTurn = (currentStage.turns.length-1 > this.turn) ? currentStage.turns[this.turn+1] : Locations[(this.stage===14)?14:this.stage+1].turns[1];
 
     /*------------------*/
@@ -210,14 +210,14 @@ class AudioPage extends Component {
   triggerAudio(audioFile, updateOnFinish){
     audioFile.setVolume(1).play(() => {
       this.setState({ audioIsPlaying: false });
-      if(updateOnFinish) this.update(); // This updates button immediatly after audio finishes
+      if(updateOnFinish) this.update(); // This updates button immediately after audio finishes
     });
-    this.setState({ audioFile, audioIsPlaying: true, clickable: false }); // clickable set so button greys immediatly changes
+    this.setState({ audioFile, audioIsPlaying: true, clickable: false }); // clickable set so button greys immediately changes
   }
 
 
   ///////////////////////////
- //// END TOUR FUCTIONS ////
+ //// END TOUR FUNCTIONS ////
 ///////////////////////////
   showEndScreen(){
     this.stopGeolocation(); //needed to stop update() from running
@@ -306,7 +306,7 @@ class AudioPage extends Component {
 
 
   /////////////////////////
- //// HELPER FUCTIONS ////
+ //// HELPER FUNCTIONS ////
 /////////////////////////
   isNear(targetLat, targetLong, radius){
     return ( this.distTo(targetLat, targetLong) <= radius);
@@ -321,7 +321,7 @@ class AudioPage extends Component {
 
 
   ////////////////////////////  
- //// DEBUGGING FUCTIONS ////
+ //// DEBUGGING FUNCTIONS ////
 ////////////////////////////
 
   DEBUG_stopAudio(){

@@ -148,7 +148,7 @@ const loc3 = [
 //PRINCE BALDWIN HOUSE
 const loc4 = [
   {
-    direction: 'Continue travelling northeast (right) on River Road',
+    direction: 'Continue traveling northeast (right) on River Road',
     picture: e0,
     latitude: null,
     longitude: null,
@@ -389,14 +389,14 @@ const loc12 = [
 //LOANTAKA SCHOOL
 const loc13 = [
   {
-    direction: 'Proceed right, along Loantaka Way (east for 0.1 miles) and the destination is on the left (a grey/white hosue)',
+    direction: 'Proceed right, along Loantaka Way (east for 0.1 miles) and the destination is on the left (a grey/white house)',
     picture: n1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'The destination is on the left (a grey/white hosue). You may park along the wooden fence in the outcrop to the right',
+    direction: 'The destination is on the left (a grey/white house). You may park along the wooden fence in the outcrop to the right',
     picture: n2,
     latitude: 40.753724,
     longitude: -74.440480,
@@ -545,8 +545,8 @@ function loadSound(file){
   // !address:       selection-page.js
   // !toAudio:       audio-page.js
   // !atAudio:       audio-page.js
-  // !atPics:        start.js, audio-page.js  (start does swiper of all images, audio-page does swiper if multilple pics availible)
-  // !squareAtPics:  selection-page.js (info-page.js does swiper if multiple pics availible)
+  // !atPics:        start.js, audio-page.js  (start does swiper of all images, audio-page does swiper if multiple pics available)
+  // !squareAtPics:  selection-page.js (info-page.js does swiper if multiple pics available)
 
 
 

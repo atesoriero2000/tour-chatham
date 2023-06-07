@@ -83,7 +83,7 @@ const sharedStyles = StyleSheet.create({
       top: 0,
     },
 
-    clickable:{ // concatnated in about.js and start.js
+    clickable:{ // concatenated in about.js and start.js
       fontWeight: Scales.fontWeight('200'),
       color: '#6565FF',
     },

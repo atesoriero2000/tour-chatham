@@ -48,9 +48,9 @@ class AudioPage extends Component {
 
 
 
-  ///////////////////////
+  ////////////////////////
  //// INIT FUNCTIONS ////
-///////////////////////
+////////////////////////
 
   componentDidMount(){
     this.props.navigation.setOptions({ 
@@ -69,8 +69,6 @@ class AudioPage extends Component {
     this.buttonPressed(); // Starts tour (triggers atAudio)
   }
 
-
-  //TODO check if you can get while in use to turn of location while the app is running
   startGeolocation(){
     BackgroundGeolocation.logger.destroyLog();
     BackgroundGeolocation.start().then((state) => console.log('[start] STATUS:', state)).catch( (error) => console.error("[start] ERROR: ", error)) //LATER restart or prevent tour to continue
@@ -97,9 +95,9 @@ class AudioPage extends Component {
 
 
 
-  ///////////////////////
+  ////////////////////////
  //// MAIN FUNCTIONS ////
-///////////////////////
+////////////////////////
   buttonPressed(){
     if(this.state.clickable){ // Button does nothing if audio is playing or if not at location
       
@@ -192,7 +190,7 @@ class AudioPage extends Component {
       nextTargetPos: {latitude: nextTurn.latitude, longitude: nextTurn.longitude},
       distToNext: this.distTo(nextTurn.latitude, nextTurn.longitude),
       isNear: this.state.isNearOverride || this.isNear(nextTurn.latitude, nextTurn.longitude, nextTurn.radius),
-      nextRadius: nextTurn.radius, // NOTE: FOR DEBUGGING
+      nextRadius: nextTurn.radius, //for debugging only
     });
 
     /*-------------------------*/
@@ -216,9 +214,9 @@ class AudioPage extends Component {
   }
 
 
-  ///////////////////////////
+  ////////////////////////////
  //// END TOUR FUNCTIONS ////
-///////////////////////////
+////////////////////////////
   showEndScreen(){
     this.stopGeolocation(); //needed to stop update() from running
     this.setState({
@@ -228,6 +226,7 @@ class AudioPage extends Component {
       picture: [].concat.apply([], Locations.map(loc => loc.atPic)),
       tourEnded: true,
     });
+    //TODO change End Tour Button to leave
     this.triggerAudio(endAudio, false); //false prevents update on audio finish
   }
 
@@ -305,9 +304,9 @@ class AudioPage extends Component {
   }
 
 
-  /////////////////////////
+  //////////////////////////
  //// HELPER FUNCTIONS ////
-/////////////////////////
+//////////////////////////
   isNear(targetLat, targetLong, radius){
     return ( this.distTo(targetLat, targetLong) <= radius);
   }
@@ -320,9 +319,9 @@ class AudioPage extends Component {
   }
 
 
-  ////////////////////////////  
+  /////////////////////////////
  //// DEBUGGING FUNCTIONS ////
-////////////////////////////
+/////////////////////////////
 
   DEBUG_stopAudio(){
     this.state.audioFile.stop();
@@ -360,7 +359,6 @@ class AudioPage extends Component {
 
   DEBUG_toggleIsNearOverride(){
     this.setState({ isNearOverride: !this.state.isNearOverride });
-    // this.update(); //this breaks the end tour page
   }
 }
 
@@ -381,21 +379,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    height: 120 * Scales.horizontal, //needed fixed val or
+    height: 120 * Scales.horizontal, //needed fixed val   // TODO: make bigger like info page
     // backgroundColor: 'lightgreen',
     flexGrow: (Scales.hasNotch?.2:0),  
   },
 
   line:{
     backgroundColor: 'black',
-    height: StyleSheet.hairlineWidth,
+    height: StyleSheet.hairlineWidth, //TODO line too close to directions on 4,3
     width: '66%',
   },
 
   directionsBox: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '83%', //TODO <85
+    width: '83%', //TODO 4,3 longest direction
     height: 100 * Scales.horizontal, //Done needed fixed val
 
     // backgroundColor: 'pink',

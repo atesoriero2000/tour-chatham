@@ -26,10 +26,13 @@ class InfoPage extends Component{
     }
   }
 
-  // Will show locationAuthorizationAlert if location set to never
   async permissionsPopup(){
-
-    try{ //Shows locationAuthorizationAlert if not set to locationAuthorizationRequest
+     // Force permission request 
+     // Will either: 
+     //       do nothing if permissions are already set,
+     //       show permissions request popup (set in Info.plist),
+     //       or if location is set to never, throw error and show denied popup (set in App.ios.js) 
+    try{
       const status = await BackgroundGeolocation.requestPermission(); 
       console.log("[requestPermission] STATUS: ", status);
     } catch (error) {
@@ -37,11 +40,17 @@ class InfoPage extends Component{
       return;
     };
 
-    try { // Fails if permission set to never
+    // Next request temporary precise location (needed for tour to work)
+    // If iPhone doesn't support precise location, or precise location is defaulted on, request passes successfully and proceeds to navToAudio()
+    // If neither, it will show popup (set in Info.plist)
+    //        if accepted, proceeds to navToAudio()
+    //        if denied, Precise Location is off popup is shown and permissionsPopup() is recursively called until request is accepted
+    try {
       const status = await BackgroundGeolocation.requestTemporaryFullAccuracy("Driving")
       console.log('[requestTemporaryFullAccuracy] STATUS:', status)
       if (status) {
-        Alert.alert('Precise Location is off', 'Precise location is needed to start the tour', //TODO finalize
+        // Alert.alert('Precise Location is off', 'Precise location is needed to start the tour', //TODO finalize
+        Alert.alert('Precise Location is off', 'Turn precise location on to start the tour', //TODO finalize
         [{ text: 'Ok, I Understand', onPress: () => this.permissionsPopup()}, ]);
         return;
       }
@@ -108,7 +117,7 @@ const styles = StyleSheet.create({
 
   subtext:{
     fontSize: 20 * Scales.font,
-    color: 'black',
+    color: 'black', //TODO MyTheme.defaultText.color
     fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
     paddingHorizontal: '8.5%', //Done //>9% @ 20 makes a fourth line

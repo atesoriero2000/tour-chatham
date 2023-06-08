@@ -1,6 +1,6 @@
-// comes from tour page
-// scroll view of 12 locations
-// passes selected "loc" and index to info page
+// comes from tutorial-popup.js
+// is a scroll view of 15 locations
+// passes selected "loc" and index to info-page.js
 
 import React, { Component } from 'react'
 import {

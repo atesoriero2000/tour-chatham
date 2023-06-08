@@ -34,10 +34,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.permissionsPopup();
-  }
-
-  permissionsPopup(){
     BackgroundGeolocation.ready({
       reset: true,
       persistMode: false,
@@ -77,8 +73,6 @@ class App extends Component {
       console.error("[requestPermission] ERROR: ", error)
       BackgroundGeolocation.requestPermission(); //forces locationAuthorizationAlert if request fails
     })
-
-
   }
 
   render() {

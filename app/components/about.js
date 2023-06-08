@@ -169,7 +169,7 @@ const textStyles = StyleSheet.create({
   text:{
     fontSize: 16.5 * Scales.font,
     color: MyTheme.defaultText.color,
-    fontWeight: MyTheme.defaultText.weight,
+    fontWeight: MyTheme.defaultText.weight, //TODO 
     textAlign: 'center',
     // paddingHorizontal: '10%',
     paddingHorizontal: 40 * Scales.horizontal,
@@ -179,14 +179,14 @@ const textStyles = StyleSheet.create({
     flex: 1,
     fontSize: 35 * Scales.font,
     color: 'black',
-    fontWeight: MyTheme.defaultText.titleWeight,
+    fontWeight: MyTheme.defaultText.titleWeight, //TODO
     textAlign: 'center',
   },
 
   fineText:{
     fontSize: 14 * Scales.font,
     color: MyTheme.defaultText.color,
-    fontWeight: MyTheme.defaultText.weight,
+    fontWeight: MyTheme.defaultText.weight, //TODO 
     textAlign: 'center',
     padding: '.08%',
   },

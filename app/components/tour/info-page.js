@@ -49,8 +49,7 @@ class InfoPage extends Component{
       const status = await BackgroundGeolocation.requestTemporaryFullAccuracy("Driving")
       console.log('[requestTemporaryFullAccuracy] STATUS:', status)
       if (status) {
-        // Alert.alert('Precise Location is off', 'Precise location is needed to start the tour', //TODO finalize
-        Alert.alert('Precise Location is off', 'Turn precise location on to start the tour', //TODO finalize
+        Alert.alert('Precise Location is off', 'Allow precise location to start the tour',
         [{ text: 'Ok, I Understand', onPress: () => this.permissionsPopup()}, ]);
         return;
       }
@@ -92,7 +91,7 @@ class InfoPage extends Component{
 
         <Text style = {styles.subtext}>
           <Text > Please navigate to</Text>
-          <Text style = {styles.textBold} onPress={() => Linking.openURL(this.state.url)}> {this.state.loc.address} </Text>
+          <Text style = {sharedStyles.clickable} onPress={() => Linking.openURL(this.state.url)}> {this.state.loc.address} </Text>
           <Text >then click the button below to start the tour.</Text>
         </Text>
 
@@ -117,15 +116,10 @@ const styles = StyleSheet.create({
 
   subtext:{
     fontSize: 20 * Scales.font,
-    color: 'black', //TODO MyTheme.defaultText.color
+    color: MyTheme.defaultText.color,
     fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
     paddingHorizontal: '8.5%', //Done //>9% @ 20 makes a fourth line
-  },
-
-  textBold:{
-    color: sharedStyles.clickable.color,
-    fontWeight: Scales.fontWeight('300'),
   },
 
   image:{

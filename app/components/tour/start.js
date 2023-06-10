@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 18.5 * Scales.font,
-    fontWeight: Scales.fontWeight('300'),
+    fontWeight: MyTheme.defaultText.weight,
     color: MyTheme.defaultText.color,
     paddingHorizontal: '10%',
   },
@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     paddingTop: 6 * Scales.vertical,
     fontSize: 15 * Scales.font,
     textDecorationLine: 'underline',
+    fontWeight: Scales.fontWeight('200'), //NOTE This and buttonText only non-consolidated font weight
   },
 
   bottomTextBox: {

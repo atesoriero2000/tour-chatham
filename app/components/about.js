@@ -169,9 +169,8 @@ const textStyles = StyleSheet.create({
   text:{
     fontSize: 16.5 * Scales.font,
     color: MyTheme.defaultText.color,
-    fontWeight: MyTheme.defaultText.weight, //TODO 
+    fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
-    // paddingHorizontal: '10%',
     paddingHorizontal: 40 * Scales.horizontal,
   },
 
@@ -179,14 +178,14 @@ const textStyles = StyleSheet.create({
     flex: 1,
     fontSize: 35 * Scales.font,
     color: 'black',
-    fontWeight: MyTheme.defaultText.titleWeight, //TODO
+    fontWeight: MyTheme.defaultText.titleWeight,
     textAlign: 'center',
   },
 
   fineText:{
     fontSize: 14 * Scales.font,
     color: MyTheme.defaultText.color,
-    fontWeight: MyTheme.defaultText.weight, //TODO 
+    fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
     padding: '.08%',
   },
@@ -194,7 +193,7 @@ const textStyles = StyleSheet.create({
   labels:{
     fontSize: 16 * Scales.font,
     color: 'dimgrey',
-    fontWeight: Scales.fontWeight('500'),
+    fontWeight: MyTheme.defaultText.boldWeight,
     textAlign: 'center',
     paddingBottom: '1%',
     paddingTop: '6%',

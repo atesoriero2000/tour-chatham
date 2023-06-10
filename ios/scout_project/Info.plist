@@ -41,7 +41,7 @@
 			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
+				<true/>
 			</dict>
 		</dict>
 	</dict>
@@ -53,7 +53,7 @@
 		<string></string>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app uses your location to reliably navigate you through historic sites and roadways</string>
+	<string>This app uses your location to navigate you through historic sites and roadways</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Uses motion tracking to increase battery efficiency during the tour</string>
 	<key>UIAppFonts</key>

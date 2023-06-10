@@ -39,8 +39,10 @@ const MyTheme = {
 
   defaultText: {
     color: 'grey',
-    weight: Scales.fontWeight('200'),
-    titleWeight: Scales.fontWeight('100'),
+    weight: Scales.fontWeight('300'), //Start, Selection, Info, Audio, About
+    titleWeight: Scales.fontWeight('100'), //Welcome, Tutorial, About
+    boldWeight: Scales.fontWeight('500'), //Tutorial, Audio, About
+    //Separate Weight: buttonText, start clickable, swiper arrow, debugger
   },
 }
 
@@ -68,7 +70,8 @@ const sharedStyles = StyleSheet.create({
     buttonText:{
       fontSize: 18 * Scales.font,
       color: 'white',
-      fontWeight: MyTheme.defaultText.weight,
+      fontWeight: Scales.fontWeight('200'), //NOTE: This and start clickable only non-consolidated font weight
+
       justifyContent: 'center',
       alignItems: 'center',
     },
@@ -83,8 +86,7 @@ const sharedStyles = StyleSheet.create({
       top: 0,
     },
 
-    clickable:{ // concatenated in about.js and start.js
-      fontWeight: Scales.fontWeight('200'),
+    clickable:{ // concatenated in about.js, start.js, and info-page.js
       color: '#6565FF',
     },
 
@@ -100,7 +102,7 @@ const sharedStyles = StyleSheet.create({
     locationTitleText:{
       textAlign: 'center',
       color: 'black',
-      fontWeight: Scales.fontWeight('300'),
+      fontWeight: MyTheme.defaultText.weight,
       fontSize: 36 * Scales.font,
       paddingHorizontal: '11%',
     },

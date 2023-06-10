@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   text:{
     fontSize: 17 * Scales.font,
     color: 'black',
-    fontWeight: Scales.fontWeight('300'),
+    fontWeight: MyTheme.defaultText.weight, 
     textAlign: 'left',
     letterSpacing: -.5 * Scales.font,
   },
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   addrText:{
     fontSize: 14.5 * Scales.font,
     color: 'grey',
-    fontWeight: Scales.fontWeight('300'),
+    fontWeight: MyTheme.defaultText.weight, 
     textAlign: 'left',
     marginTop: 3 * Scales.horizontal,
     letterSpacing: -.5 * Scales.font,

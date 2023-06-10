@@ -157,7 +157,7 @@ const pageStyles = StyleSheet.create({
         flex: 5,
         textAlign: 'center',
         fontSize: 16 * Scales.font,
-        fontWeight: Scales.fontWeight('500'),
+        fontWeight: MyTheme.defaultText.boldWeight,
         color: 'black',
         paddingHorizontal: '9%',
         width: '100%',

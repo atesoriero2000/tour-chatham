@@ -40,7 +40,6 @@ class AudioPage extends Component {
       doneAtAudio: false,
       directions: 'NONE',
 
-      tourEnded: false,
       isNearLastTurn: false,
       isNearOverride: false, //for debugging
     };
@@ -55,7 +54,7 @@ class AudioPage extends Component {
   componentDidMount(){
     this.props.navigation.setOptions({ 
       headerLeft: () => ( <Button title='End Tour' color={'red'} onPress={() => this.endTourButton()} /> ),
-      headerRight: () => ( <Button title='Return Home' onPress={() => this.returnHomeButton()}/> ), //TODO
+      headerRight: () => ( <Button title='Directions' onPress={() => this.appleDirections()}/> ), //TODO
     })
     activateKeepAwake();
     Sound.setCategory('Playback', true);//NOTE bug patch needed with https://github.com/zmxv/react-native-sound/issues/788
@@ -205,7 +204,7 @@ class AudioPage extends Component {
   }
 
 
-  triggerAudio(audioFile, updateOnFinish){
+  triggerAudio(audioFile, updateOnFinish){1
     audioFile.setVolume(1).play(() => {
       this.setState({ audioIsPlaying: false });
       if(updateOnFinish) this.update(); // This updates button immediately after audio finishes
@@ -219,33 +218,46 @@ class AudioPage extends Component {
 ////////////////////////////
   showEndScreen(){
     this.stopGeolocation(); //needed to stop update() from running
+    this.state.audioFile.stop();
+    this.props.navigation.setOptions({
+      headerLeft: () => (<Button title='Exit' color={'firebrick'} onPress={() => this.props.navigation.popToTop()}/> ), //LATER remove and use continue button with changed text and onPress
+      headerRight: () => ( <Button title='To Museum' color={sharedStyles.swiper.activeColor} onPress={() => Linking.openURL("http://maps.apple.com/?daddr=Chatham%20Township%20Historical%20Society,+Chatham,+NJ&dirflg=d&t=m")}/> ),
+    });
     this.setState({
       clickable: false,
-      title: 'Thankyou for taking the Tour!',
-      directions: 'To exit this page, click the "End Tour" button in the top left corner. For direction back to the Schoolhouse, click the "Return Home" button in the top right corner.',
-      picture: [].concat.apply([], Locations.map(loc => loc.atPic)),
-      tourEnded: true,
+      title: 'Thank you\nfor taking the tour!',
+      directions: 'To exit this page, click the "Exit" button in the top left corner. For directions to the Red Brick Schoolhouse Museum, click the "To Museum" button in the top right corner.',
+      picture: [].concat.apply([], Locations.map(loc => loc.atPic)), //BUG: Screen doesn't update when this is set during atAudio
+      doneAtAudio: true, //needed to hide distance counter
     });
-    //TODO change End Tour Button to leave
-    this.triggerAudio(endAudio, false); //false prevents update on audio finish
+    this.triggerAudio(endAudio, false); //false prevents update on audio finish callback 
+    //LATER use different audios for completing vs endTour button
+    // (this.stage == 14) ? endAudio1 : endAudio2
+    // Say: "Thank you for taking the Chatham Township Historical Society Marker Tour"
+    // Old: "Congratulations, you have completed the Chatham Township Historical Society Marker Tour"
   }
 
   endTourButton(){
-    //TODO showEndScreen??
-    if(!this.state.tourEnded)
-      Alert.alert( 'End Tour Warning', 'Are you sure you want to end the tour?',
+    Alert.alert( 'End Tour Warning', 'Are you sure you want to end the tour?',
         [{ text: 'Cancel', style: 'cancel' },
-         { text: 'End Tour', onPress: () => { this.props.navigation.popToTop() }, style: 'destructive'} ] );
-     else this.props.navigation.popToTop();
+         { text: 'End Tour', onPress: () => { this.showEndScreen() }, style: 'destructive'} ] );
   }
 
-  returnHomeButton(){
-    //TODO: Figure out better functionality
-    //maybe add show end screen
-    Alert.alert( 'Direction Back to Start', '\nThese next directions take approx 9 minutes to travel and 4.5 miles\n\n Line2 \n\n Line3 \n\n Would you like to go?',
-      [{ text: 'Close', style: 'default' },
-       { text: 'Go', onPress: () => { Linking.openURL("http://maps.apple.com/?daddr=Chatham%20Township%20Historical%20Society,+Chatham,+NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
+  appleDirections(){
+    let address = Locations[this.stage].address.replace(/\s/g, "+");
+    if (this.state.doneAtAudio) Alert.alert('TODO', '\nYou can request directions to the next marker once the tour continues') //TODO
+    else 
+      // Alert.alert( 'Apple Maps Directions', 'These directions will take you to the next marker', //TODO
+      Alert.alert( 'Apple Maps Directions', '\nWould you like to use Apple Maps *instead* of the onscreen directions to navigate to the next marker?', //TODO
+        [{ text: 'Close', style: 'default' },
+         { text: 'Go', onPress: () => { Linking.openURL("http://maps.apple.com/?daddr=" + address + ",NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
   }
+
+  // returnHomeButton(){
+  //   Alert.alert( 'TODO', '\nTODO',
+  //     [{ text: 'Close', style: 'default' },
+  //      { text: 'Go', onPress: () => { Linking.openURL("http://maps.apple.com/?daddr=Chatham%20Township%20Historical%20Society,+Chatham,+NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
+  // }
 
   componentWillUnmount(){
     this.state.audioFile.stop();
@@ -402,7 +414,7 @@ const styles = StyleSheet.create({
   directions:{
     fontSize: 15.6 * Scales.font,
     color: MyTheme.defaultText.color,
-    fontWeight: Scales.fontWeight('300'),
+    fontWeight: MyTheme.defaultText.weight,
     textAlign: 'center',
 
     // backgroundColor: 'lightgreen',
@@ -412,7 +424,7 @@ const styles = StyleSheet.create({
   dist:{
     fontSize: 13 * Scales.font,
     color: 'dimgray',
-    fontWeight: Scales.fontWeight('500'),
+    fontWeight: MyTheme.defaultText.boldWeight,
     textAlign: 'center',
 
     // backgroundColor: 'lightblue',

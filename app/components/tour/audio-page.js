@@ -34,7 +34,7 @@ class AudioPage extends Component {
       nextTargetPos: 'unknown',
       distToNext: 0,
       isNear: false, //next turn
-      clickable: true,
+      clickable: true, //TODO check
 
       audioIsPlaying: false,
       doneAtAudio: false,
@@ -76,7 +76,7 @@ class AudioPage extends Component {
         console.log("[onLocation] success: ", location);
         this.setState({lastPos: location.coords, lastLocation: location});
         this.update();
-      }, (error) => console.error("***** onLocation FAILED *****:    ", error));
+      }, (error) => console.error("***** onLocation FAILED *****:    ", error)); //LATER if onLocation fails multiple times (restart location?, or stop tour with alert? return to home page)
 
     BackgroundGeolocation.watchPosition(
       (location) => console.log("[watchPosition] success: ", location),
@@ -104,8 +104,8 @@ class AudioPage extends Component {
       /* ! Handle End of Tour ! */
       /*------------------------*/
       // if its the last stage and we've played the atAudio and it is finished playing
-      if(this.stage === 14 && this.state.doneAtAudio){
-        this.showEndScreen();
+      if(this.stage === 14 && this.state.doneAtAudio){ 
+        this.showEndScreen(); //TODO check that clickable remains false on last marker 
         return; //Needed to stop tour
       }
 
@@ -220,17 +220,17 @@ class AudioPage extends Component {
     this.stopGeolocation(); //needed to stop update() from running
     this.state.audioFile.stop();
     this.props.navigation.setOptions({
-      headerLeft: () => (<Button title='Exit' color={'firebrick'} onPress={() => this.props.navigation.popToTop()}/> ), //LATER remove and use continue button with changed text and onPress
+      headerLeft: () => (<Button title='Exit' color={'rgb(75,75,75)'} onPress={() => this.props.navigation.popToTop()}/> ), //LATER remove and use continue button with changed text "Click to Exit/Finish" and onPress
       headerRight: () => ( <Button title='To Museum' color={sharedStyles.swiper.activeColor} onPress={() => Linking.openURL("http://maps.apple.com/?daddr=Chatham%20Township%20Historical%20Society,+Chatham,+NJ&dirflg=d&t=m")}/> ),
     });
-    this.setState({
-      clickable: false,
-      title: 'Thank you\nfor taking the tour!',
-      directions: 'To exit this page, click the "Exit" button in the top left corner. For directions to the Red Brick Schoolhouse Museum, click the "To Museum" button in the top right corner.',
-      picture: [].concat.apply([], Locations.map(loc => loc.atPic)), //BUG: Screen doesn't update when this is set during atAudio
-      doneAtAudio: true, //needed to hide distance counter
-    });
     this.triggerAudio(endAudio, false); //false prevents update on audio finish callback 
+    this.update();
+    this.setState({
+      doneAtAudio: true, //needed to hide distance counter
+      title: 'Thank You\nfor taking the tour!',
+      directions: 'To exit this page, click the "Exit" button in the top left corner. For directions to the Red Brick Schoolhouse Museum, click the "To Museum" button in the top right corner.',
+      picture: [].concat.apply([], Locations.map(loc => loc.atPic)),
+    });
     //LATER use different audios for completing vs endTour button
     // (this.stage == 14) ? endAudio1 : endAudio2
     // Say: "Thank you for taking the Chatham Township Historical Society Marker Tour"
@@ -287,7 +287,6 @@ class AudioPage extends Component {
             <View style = {styles.directionsBox}>
               <Text style = {styles.directions}>{this.state.directions}</Text>
             </View>
-
 
             <Text style = {styles.dist}>
               {this.state.doneAtAudio?'':('In: ' + ( (this.turn === 0)?'0':JSON.stringify(Math.round(this.state.distToCurrent)) ) + ' FT')}

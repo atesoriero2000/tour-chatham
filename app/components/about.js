@@ -47,7 +47,7 @@ const About = (props) => {
               <View style = {styles.columnBox}>
                 <Text style = {textStyles.labels}>Development</Text>
                 <Text style = {textStyles.fineText}>
-                  {'Cat DeMatos\nEitan Miller\nFlora Aktins\nCarson Storm\nKismet Seekond\nPhil Rauch'}
+                  {'Cat DeMatos\nEitan Miller\nFlorence Aktins\nCarson Storm\nKismet Seekond\nPhil Rauch'}
                 </Text>
               </View>
 

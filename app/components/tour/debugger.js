@@ -14,7 +14,7 @@ class Debugger extends Component {
     constructor(props){
         super(props);
         this.state = { 
-            debugger: true,
+            debugger: false,
         }
     }
 

@@ -26,25 +26,22 @@ class AudioPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-
       lastPos: 'unknown',
-      lastLocation: {activity: {type: 'unknown', confidence: 'unknown'}}, //for debugger
       currentTargetPos: 'unknown',
       distToCurrent: 0,
-      nextTargetPos: 'unknown',
-      distToNext: 0,
       isNear: false, //next turn
-      clickable: true, //TODO check
-
+      clickable: true, //needed (componentDidMount manually calls buttonPressed to start the tour)
       audioIsPlaying: false,
-      doneAtAudio: false,
+      doneAtAudio: false, //needed to trigger at audio first
       directions: 'NONE',
+      isNearLastTurn: false, //used for setting clickable
 
-      isNearLastTurn: false,
       isNearOverride: false, //for debugging
+      distToNext: 0, //for debugger
+      nextTargetPos: 'unknown', //for debugger
+      lastLocation: {activity: {type: 'unknown', confidence: 'unknown'}}, //for debugger
     };
   }
-
 
 
   ////////////////////////
@@ -52,11 +49,8 @@ class AudioPage extends Component {
 ////////////////////////
 
   componentDidMount(){
-    this.props.navigation.setOptions({ 
-      headerLeft: () => ( <Button title='End Tour' color={'red'} onPress={() => this.endTourButton()} /> ),
-      headerRight: () => ( <Button title='Directions' onPress={() => this.appleDirections()}/> ), //TODO
-    })
     activateKeepAwake();
+    this.props.navigation.setOptions({ headerLeft: () => ( <Button title='End Tour' color={'red'} onPress={() => this.endTourButton()} /> )})
     Sound.setCategory('Playback', true);//NOTE bug patch needed with https://github.com/zmxv/react-native-sound/issues/788
     Sound.setActive(true); // Only once per session, set to false only when you don't want any more background audio
 
@@ -65,7 +59,7 @@ class AudioPage extends Component {
     this.stage = this.props.route.params.stage;
     this.turn = Locations[this.stage].turns.length-1; // Grab last turn (atAudio)
     this.startGeolocation();
-    this.buttonPressed(); // Starts tour (triggers atAudio)
+    this.buttonPressed(); // Starts the tour (triggers atAudio)
   }
 
   startGeolocation(){
@@ -105,7 +99,7 @@ class AudioPage extends Component {
       /*------------------------*/
       // if its the last stage and we've played the atAudio and it is finished playing
       if(this.stage === 14 && this.state.doneAtAudio){ 
-        this.showEndScreen(); //TODO check that clickable remains false on last marker 
+        this.showEndScreen();
         return; //Needed to stop tour
       }
 
@@ -120,6 +114,8 @@ class AudioPage extends Component {
           title: currentStage.title,
           picture: currentStage.atPic,
           directions: 'Remain at the location until the audio is finished, then click the button to continue'});
+       this.props.navigation.setOptions({ headerRight: () => {} });
+
 
       /*------------------------*/
       /* ! Handle Next Marker ! */
@@ -134,6 +130,9 @@ class AudioPage extends Component {
           title: Locations[this.stage].title,
           picture: Locations[this.stage].turns[0].picture});
         this.triggerAudio(Locations[this.stage].toAudio, true);
+        this.props.navigation.setOptions({ headerRight: () => ( <Button title='Directions' onPress={() => this.appleDirections()}/> ) });
+
+        console.log(this.state.isNear, this.state.isNearOverride, this.state.isNearLastTurn)
         this.update(); //update screen immediately
       }
     }
@@ -176,11 +175,11 @@ class AudioPage extends Component {
     /*----------------------*/
     /* ! UPDATE NEXT TURN ! */
     /*----------------------*/
-    // Set our next turn to either the next turn in the array or
-    // if we are on the last turn of the array already, the first next turn of the next location
-    // this allows us to non restrictively update state and not leave extraneous states that are not updated
-    // exception: on last turn of last location cannot look ahead so we use this.stage instead of this.stage+1
-    let nextTurn = (currentStage.turns.length-1 > this.turn) ? currentStage.turns[this.turn+1] : Locations[(this.stage===14)?14:this.stage+1].turns[1];
+    // Sets the next turn to look ahead to.
+    // When a user is within the specified radius of this next turn, the turn counter increments
+    // if we are at the last turn of the stage, it uses the first turn of the next stage
+    // if we are at the last turn of the last stage, it uses the first turn of the last stage as a placeholder as nextTurn is not needed anymore
+    let nextTurn = (currentStage.turns.length-1 > this.turn) ? currentStage.turns[this.turn+1] : Locations[(this.stage===14)?14:this.stage+1].turns[0];
 
     /*------------------*/
     /* ! UPDATE STATE ! */
@@ -197,12 +196,12 @@ class AudioPage extends Component {
     /*-------------------------*/
     // Only will increment turn counter if isNear is true and if not the last turn
     if(this.state.isNear && (currentStage.turns.length-1 > this.turn) ){
+      console.log(this.state.isNear)
       Vibration.vibrate();
       BackgroundGeolocation.playSound(1300); //default voicemail sound
       this.turn++;
     }
   }
-
 
   triggerAudio(audioFile, updateOnFinish){1
     audioFile.setVolume(1).play(() => {
@@ -219,45 +218,27 @@ class AudioPage extends Component {
   showEndScreen(){
     this.stopGeolocation(); //needed to stop update() from running
     this.state.audioFile.stop();
+    this.triggerAudio(endAudio, false); //false prevents update on audio finish callback 
+    // this.triggerAudio( (this.stage == 14) ? endAudio1 : endAudio2, false); // LATER
+    // Say: "Thank you for taking the Chatham Township Historical Society Marker Tour"
+    // Old: "Congratulations, you have completed the Chatham Township Historical Society Marker Tour"
     this.props.navigation.setOptions({
       headerLeft: () => (<Button title='Exit' color={'rgb(75,75,75)'} onPress={() => this.props.navigation.popToTop()}/> ), //LATER remove and use continue button with changed text "Click to Exit/Finish" and onPress
       headerRight: () => ( <Button title='To Museum' color={sharedStyles.swiper.activeColor} onPress={() => Linking.openURL("http://maps.apple.com/?daddr=Chatham%20Township%20Historical%20Society,+Chatham,+NJ&dirflg=d&t=m")}/> ),
     });
-    this.triggerAudio(endAudio, false); //false prevents update on audio finish callback 
-    this.update();
     this.setState({
       doneAtAudio: true, //needed to hide distance counter
       title: 'Thank You\nfor taking the tour!',
       directions: 'To exit this page, click the "Exit" button in the top left corner. For directions to the Red Brick Schoolhouse Museum, click the "To Museum" button in the top right corner.',
       picture: [].concat.apply([], Locations.map(loc => loc.atPic)),
     });
-    //LATER use different audios for completing vs endTour button
-    // (this.stage == 14) ? endAudio1 : endAudio2
-    // Say: "Thank you for taking the Chatham Township Historical Society Marker Tour"
-    // Old: "Congratulations, you have completed the Chatham Township Historical Society Marker Tour"
   }
 
   endTourButton(){
     Alert.alert( 'End Tour Warning', 'Are you sure you want to end the tour?',
         [{ text: 'Cancel', style: 'cancel' },
-         { text: 'End Tour', onPress: () => { this.showEndScreen() }, style: 'destructive'} ] );
+         { text: 'End Tour', onPress: () => { this.showEndScreen() }, style: 'destructive'}, ] );
   }
-
-  appleDirections(){
-    let address = Locations[this.stage].address.replace(/\s/g, "+");
-    if (this.state.doneAtAudio) Alert.alert('TODO', '\nYou can request directions to the next marker once the tour continues') //TODO
-    else 
-      // Alert.alert( 'Apple Maps Directions', 'These directions will take you to the next marker', //TODO
-      Alert.alert( 'Apple Maps Directions', '\nWould you like to use Apple Maps *instead* of the onscreen directions to navigate to the next marker?', //TODO
-        [{ text: 'Close', style: 'default' },
-         { text: 'Go', onPress: () => { Linking.openURL("http://maps.apple.com/?daddr=" + address + ",NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
-  }
-
-  // returnHomeButton(){
-  //   Alert.alert( 'TODO', '\nTODO',
-  //     [{ text: 'Close', style: 'default' },
-  //      { text: 'Go', onPress: () => { Linking.openURL("http://maps.apple.com/?daddr=Chatham%20Township%20Historical%20Society,+Chatham,+NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
-  // }
 
   componentWillUnmount(){
     this.state.audioFile.stop();
@@ -319,14 +300,22 @@ class AudioPage extends Component {
  //// HELPER FUNCTIONS ////
 //////////////////////////
   isNear(targetLat, targetLong, radius){
-    return ( this.distTo(targetLat, targetLong) <= radius);
+    //return false if any input is null, if not return isNear
+    return (!(!targetLat||!targetLong||!radius) && (this.distTo(targetLat, targetLong) <= radius));
   }
 
-  distTo(targetLat, targetLong){
+  distTo(targetLat, targetLong){ //LATER handle null values
     let lastLat = this.state.lastPos.latitude;
     let lastLong =  this.state.lastPos.longitude;
     let φ1 = lastLat/180 * Math.PI, φ2 = targetLat/180 * Math.PI, Δλ = (targetLong-lastLong)/180 * Math.PI, R = 3959 * 5280;
     return( Math.acos( Math.sin(φ1)*Math.sin(φ2) + Math.cos(φ1)*Math.cos(φ2) * Math.cos(Δλ) ) * R ); //Old dist*364537.777
+  }
+
+  appleDirections(){
+    let address = Locations[this.stage].address.replace(/\s/g, "+");
+    Alert.alert( 'Apple Maps Directions', '\nUse Apple Maps to navigate to ' + this.state.title + ' as the tour continues in the background?',
+      [{ text: 'Cancel', style: 'default' },
+       { text: 'Go', onPress: () => { Linking.openURL("http://maps.apple.com/?daddr=" + address + ",NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
   }
 
 
@@ -390,22 +379,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    height: 120 * Scales.horizontal, //needed fixed val   // TODO: make bigger like info page
+    height: 130 * Scales.horizontal, //needed fixed val
     // backgroundColor: 'lightgreen',
     flexGrow: (Scales.hasNotch?.2:0),  
   },
 
   line:{
     backgroundColor: 'black',
-    height: StyleSheet.hairlineWidth, //TODO line too close to directions on 4,3
+    height: StyleSheet.hairlineWidth,
     width: '66%',
   },
 
   directionsBox: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '83%', //TODO 4,3 longest direction
+    width: '80%', // 4,3 longest direction (2,1 is also long)
     height: 100 * Scales.horizontal, //Done needed fixed val
+    marginTop: 5 * Scales.horizontal, //LATER
 
     // backgroundColor: 'pink',
   },

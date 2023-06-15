@@ -49,21 +49,8 @@ What's New in This Version:
 App Review Message:
     https://youtu.be/WpMm-CWTAmI
     Here are demo clips of the app being used. It is an interactive historical driving tour used to share the unique history of the town Chatham NJ.
+    Background audio permissions are requested so that users can listen to the tour uninterrupted while on their phones or using external apps for directions (like Apple Maps).
 
-    Audio will 
-    
-    while users drive past historical sites. 
-    Audio will while 
-
-    The app relies on GPS to give live directions to each location and uses audio permissions to play the voice recordings presenting the history. 
-    Background location and audio permissions are requested so that users can listen to the tour uninterrupted while either on their phone or using external apps for directions. 
-    Without this, the tour audio would stop and a driver or passenger would have to intervene to proceed.
-
-
-
-
-    NOTE: Because this app relies on GPS to progress users through the tour, this app when run on a simulator will not seem fully functional.
+    NOTE: Because this app relies on GPS to progress users through the tour, when run on a simulator this app will not seem fully functional.
     You will be able to select different starting locations to test a variety of the audio but navigation will be impaired.
     For the tour to work properly, users have to be located in Chatham NJ and follow the waypoints directed by the app.
-
-

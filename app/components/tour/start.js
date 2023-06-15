@@ -70,7 +70,7 @@ class Start extends Component {
         <TouchableHighlight style = {sharedStyles.button} 
             underlayColor = {sharedStyles.button.underlayColor}
             onPress = {() => this.setState({tutorialVisible: true})}>
-            <Text style = {sharedStyles.buttonText}> Click to Continue </Text>
+            <Text style = {sharedStyles.buttonText}> Start the Tour! </Text>
         </TouchableHighlight>
 
         <Modal animationType={'fade'} transparent={true} visible={this.state.tutorialVisible}>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     paddingTop: 6 * Scales.vertical,
     fontSize: 15 * Scales.font,
     textDecorationLine: 'underline',
-    fontWeight: Scales.fontWeight('200'), //NOTE This and buttonText only non-consolidated font weight
+    fontWeight: Scales.fontWeight('200'), //NOTE This only non-consolidated font weight except swiper and debugger
   },
 
   bottomTextBox: {

@@ -62,6 +62,8 @@ const o1 = require('../../images/edited/O1_00000.jpg');
 const o2 = require('../../images/edited/O2_00000.jpg');
 const o3 = require('../../images/edited/O3_00000.jpg');
 
+//LATER turn right to travel
+//LATER take a right onto
 
 //THE MOUNT VERNON SCHOOLHOUSE
 const loc0 = [
@@ -77,21 +79,21 @@ const loc0 = [
 //THE JOHNSON HOUSE
 const loc1 = [
   {
-    direction: 'Turn left out of the Schoolhouse parking lot and travel along Fairmount Ave',
+    direction: 'Turn left out of the Schoolhouse parking lot. Then, travel along Fairmount Ave.',
     picture: a1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'Travel straight 2.03 miles past the Fairmount Country Store Deli',
+    direction: 'Travel straight 2.03 miles past the Fairmount Country Store Deli.',
     picture: a2,
     latitude: 40.703046,
     longitude: -74.428045,
     radius: 9639 - RADIUS_DELAY, // straight 9244
   },
   {
-    direction: 'Follow past the Marker and Turn left and park in Esternay Field. You may walk back up Fairmount to the marker.',
+    direction: 'Drive past the marker on the left. Then, turn left to park in Esternay Field. You may walk back up Fairmount to the marker.',
     picture: a3,
     latitude: 40.703046,
     longitude: -74.428045, // from 40.705910, -74.429376
@@ -103,14 +105,14 @@ const loc1 = [
 //ISAAC CLARK FARMSTEAD
 const loc2 = [
  {
-   direction: 'Turn around and make a left out of Esternay Field. Shortly after take a right onto River Road and follow for .6 miles',
+   direction: 'Turn around and make a left onto Fairmount Ave. Shortly after, take a right onto River Road and follow for .6 miles.',
    picture: b1,
    latitude: null,
    longitude: null,
    radius: 500,
  },
  {
-   direction: 'Turn left and park in the Passaic River County Park entrance. The marker is located to your left across River Road (if you reach Mountain Ave, you have gone too far)',
+   direction: 'Drive past the marker on the right, then turn left to park in the Passaic River County Park entrance. (if you reach Mountain Ave, you have gone too far)',
    picture: b2,
    latitude: 40.697119,
    longitude: -74.435379,
@@ -122,21 +124,21 @@ const loc2 = [
 //BEY'S BOXING CAMP
 const loc3 = [
  {
-   direction: 'Turn around in the Passaic River County Park entrance and turn right back onto River Road (northeast)',
+   direction: 'Turn around in the Passaic River County Park entrance. Then, turn right to travel back onto River Road (northeast).',
    picture: d1,
    latitude: null,
    longitude: null,
    radius: 500,
  },
  {
-   direction: 'Follow River Road for 1.30 miles (the marker is 0.7 miles past Fairmount Ave)',
+   direction: 'Follow River Road for 1.3 miles. The marker is 0.7 miles past Fairmount Ave.',
    picture: d2,
    latitude: 40.708721,
    longitude: -74.416936,
    radius: 2863 + 3770 - RADIUS_DELAY, // straight
  },
  {
-   direction: 'Park along River Road to the right in the gravel outcrop',
+   direction: 'Park along River Road to the right in the gravel outcrop. The marker is across the street at 516 River Road.',
    picture: d3,
    latitude: 40.708721,
    longitude: -74.416936,
@@ -148,28 +150,27 @@ const loc3 = [
 //PRINCE BALDWIN HOUSE
 const loc4 = [
   {
-    direction: 'Continue traveling northeast (right) on River Road',
-    picture: e0,
+    direction: 'Continue traveling along River Road (right).',
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'Make a left to continue on River Road',
+    direction: 'Make a left to continue on River Road.',
     picture: e1,
     latitude: 40.714512,
     longitude: -74.407812,
     radius: 3291 - RADIUS_DELAY,
   },
   {
-    direction: 'Turn Left onto Southern Blvd and travel up "Snake Hill"',
+    direction: 'Turn Left onto Southern Blvd and travel up "Snake Hill".',
     picture: e2,
     latitude: 40.720305,
     longitude: -74.401989,
     radius: 2657 - RADIUS_DELAY,
   },
   {
-    direction: 'Continue straight along Southern Blvd just past the intersection of Fairmount Ave until you reach the marker. You may park in the gravel driveway to the right or along Southern Boulevard',
+    direction: 'Continue straight along Southern Blvd until you reach the marker (right). You may park in the gravel driveway to the right or along Southern Blvd.', //just past the intersection of Fairmount Ave
     picture: e3,
     latitude: 40.722827,
     longitude: -74.405053,
@@ -188,21 +189,21 @@ const loc5 = [
     radius: 500,
   },
   {
-    direction: 'Take the 3rd right onto Lafayette Ave. (0.4 miles)',
+    direction: 'Take the 3rd right onto Lafayette Ave.', // (approximately 0.4 miles).',
     picture: f1,
     latitude: 40.727589,
     longitude: -74.409730,
     radius: 2166 - RADIUS_DELAY,
   },
   {
-    direction: 'Take the first left onto Spring St (approximately 0.2 miles)',
+    direction: 'Take the first left onto Spring St.', // (approximately 0.2 miles).',
     picture: f2,
     latitude: 40.729022,
     longitude: -74.407241,
     radius: 864 - 150, // from 40.727589, -74.409730
   },
   {
-    direction: 'Continue until you see the marker. You may park along the right side of Spring Street',
+    direction: 'Continue until you see the marker. You may park along the right side of Spring Street.',
     picture: f3,
     latitude: 40.730427,
     longitude: -74.408672,
@@ -214,35 +215,34 @@ const loc5 = [
 //LEWIS NOE FARMSTEAD
 const loc6 = [
   {
-    direction: 'Drive 0.2 miles and take the first right onto School Ave (If you reach Dale Drive, you have gone too far)',
-    picture: g1,
+    direction: 'Drive 0.2 miles and take the first right onto School Ave. (if you reach Dale Drive, you have gone too far)',
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'Drive to the end of School Ave and turn right onto Maple St',
+    direction: 'Drive to the end of School Ave and turn right onto Maple St.', //LATER right, 
     picture: g2,
     latitude: 40.733880,
     longitude: -74.403967,
     radius: 1785 - 150, // from 40.730896, -74.409085
   },
   {
-    direction: 'Take another right onto Lafayette Ave and drive 0.4 miles',
+    direction: 'Take another right onto Lafayette Ave and drive 0.4 miles.',
     picture: g3,
     latitude: 40.732065,
     longitude: -74.402097,
     radius: 840 - 140,
   },
   {
-    direction: 'Turn right onto Southern Blvd (0.2 miles)',
+    direction: 'Turn right onto Southern Blvd (0.2 miles).', //LATER right,
     picture: g4,
     latitude: 40.727553,
     longitude: -74.409742,
     radius: 2679 - 250,
   },
   {
-    direction: 'The marker at 184 Southern Blvd is on the right. Park in Southern Boulevard School to the right just past the marker', // (If you reached Jay Road you have gone too far)
+    direction: 'The marker is on the right at 184 Southern Blvd. Park in Southern Boulevard School to the right just past the marker.', // (If you reached Jay Road you have gone too far)
     picture: g5,
     latitude: 40.729440,
     longitude: -74.413286,
@@ -254,14 +254,14 @@ const loc6 = [
 //NOE POND
 const loc7 = [
   {
-    direction: 'Turn right onto Southern Blvd towards Jay Road and travel for approximately 0.8 miles',
+    direction: 'Turn right onto Southern Blvd and travel for 0.8 miles.', // towards Jay Road // approximately //LATER right,
     picture: h1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'Turn left and park in 395 Southern Blvd (Noe Pond Club). The marker is 100 ft before the entrance of Noe pond. You may walk to the marker', // (If you reach Hickory Pl you have gone too far)
+    direction: 'Drive past the marker on the left. Then turn left to park in The Noe Pond Club (395 Southern Blvd). You may walk to the marker.', //The marker is 100 ft before the entrance of Noe pond. (If you reach Hickory Pl you have gone too far)
     picture: h2,
     latitude: 40.737275,
     longitude: -74.425151,
@@ -273,14 +273,14 @@ const loc7 = [
 //GREENHOUSE INDUSTRY
 const loc8 = [
   {
-    direction: 'Turn left out of Noe Pond and Continue along Southern Blvd',
+    direction: 'Turn left out of Noe Pond and continue along Southern Blvd.',
     picture: i1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: '405 Southern Blvd (Nash Field) is on the left. You may turn into and park in Nash Field.',
+    direction: 'Turn left into Nash Field (405 Southern Blvd). You may park in Nash Field.',
     picture: i2,
     latitude: 40.741458,
     longitude: -74.430853,
@@ -292,21 +292,22 @@ const loc8 = [
 //ELIAS BOUDINOT HOUSE
 const loc9 = [
   {
-    direction: 'Continue along Southern Blvd (northwest) and quickly take a left onto Hickory Pl (if you reach Shunpike Road, you have gone too far)',
+    // direction: 'Continue along Southern Blvd (left) and shortly after take a left onto Hickory Pl (if you reach Shunpike Road, you have gone too far)',
+    direction: 'Turn left onto Southern Blvd then turn left onto Hickory Pl shortly after. (if you reach Shunpike Road, you have gone too far)',
     picture: j1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'Turn left onto Green Village Road and drive about 0.8 miles',
+    direction: 'Turn left onto Green Village Road and drive approximately 0.8 miles.',
     picture: j2,
     latitude: 40.744404,
     longitude: -74.434543,
     radius: 1350 - 250, // from 40.742026, -74.430803
   },
   {
-    direction: 'The destination is on the left at 461 Green Village Road. You may park in the driveway to the left',
+    direction: 'The destination is on the left at 461 Green Village Road. You may park in the driveway to the left.',
     picture: j3,
     latitude: 40.738649,
     longitude: -74.446364,
@@ -318,14 +319,14 @@ const loc9 = [
 //COCKREM FARM
 const loc10 = [
   {
-    direction: 'Turn left back onto Green Village Road going west to 486 Green Village Road on the right',
+    direction: 'Turn left back onto Green Village Road towards 486 Green Village Road.',
     picture: k1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'You may park along the white fence in the outcrop to the right',
+    direction: 'Follow Green Village Road to 486 Green Village Road. You may park along the white fence in the outcrop to the right.',
     picture: k2,
     latitude: 40.738841,
     longitude: -74.449521,
@@ -337,14 +338,14 @@ const loc10 = [
 //GREEN VILLAGE
 const loc11 = [
   {
-    direction: 'Proceed along Green Village Road (west) toward Fawcett Lane for approximately 0.9 miles',
+    direction: 'Continue along Green Village Road for approximately 0.9 miles.', //(west) //toward Fawcett Lane 
     picture: l1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'Stop at 536 Green Village Road and park in the Green Village Deli to the right',
+    direction: 'Stop at 536 Green Village Road and park in the Green Village Deli to the right.',
     picture: l2,
     latitude: 40.739029,
     longitude: -74.453421,
@@ -356,28 +357,28 @@ const loc11 = [
 //GIBBONS HORSE BARN
 const loc12 = [
   {
-    direction: 'Proceed right along Green Village Road (toward Meyersville Road) for approximately 0.3 miles then keep right to go onto Spring Valley Road',
+    direction: 'Turn right and continue along Green Village Road for approximately 0.3 miles. Then, keep right to travel along Spring Valley Rd.', //(toward Meyersville Road)
     picture: m1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'Keep right to stay on Spring Valley Road (0.9 miles)',
+    direction: 'Keep right to stay on Spring Valley Road.', //(0.9 miles)
     picture: m2,
     latitude: 40.740854,
     longitude: -74.456702,
     radius: 1125 - 150,
   },
   {
-    direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the maroon marker',
+    direction: 'Take the next right and follow Loantaka Way for 0.5 miles until you see the maroon marker on the right.',
     picture: m3,
     latitude: 40.753155,
     longitude: -74.452436,
     radius: 4640 - RADIUS_DELAY,
   },
   {
-    direction: 'The destination is on the left at 340 Loantaka Way. You may park in gravel driveway to the right',
+    direction: 'The destination is on the right at 340 Loantaka Way. You may park in gravel driveway to the right.',
     picture: m4,
     latitude: 40.752534,
     longitude: -74.446877,
@@ -389,14 +390,14 @@ const loc12 = [
 //LOANTAKA SCHOOL
 const loc13 = [
   {
-    direction: 'Proceed right, along Loantaka Way (east for 0.1 miles) and the destination is on the left (a grey/white house)',
+    direction: 'Turn right and continue along Loantaka Way for 0.1 miles. The destination is on the left (a grey/white house).',
     picture: n1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'The destination is on the left (a grey/white house). You may park along the wooden fence in the outcrop to the right',
+    direction: 'The destination is on the left (a grey/white house). You may park in the right shoulder along the wooden fence.',
     picture: n2,
     latitude: 40.753724,
     longitude: -74.440480,
@@ -408,21 +409,21 @@ const loc13 = [
 //BOISAUBIN HOUSE
 const loc14 = [
   {
-    direction: 'Continue straight along Loantaka Way towards Shunpike Road and turn left onto Woodland Road (Woodland Road becomes Woodland Ave)', // LEAVING BAD(jk) 1698
+    direction: 'Continue straight along Loantaka Way past Shunpike Road. Then, turn left onto Woodland Road.', //(Woodland Road becomes Woodland Ave).', // LEAVING BAD(jk) 1698
     picture: o1,
     latitude: null,
     longitude: null,
     radius: 500,
   },
   {
-    direction: 'Turn right onto Treadwell Ave (If you reach Nordling Lane, you have gone too far)',
+    direction: 'Turn right onto Treadwell Ave. (if you reach Nordling Lane, you have gone too far)', //LATER right,
     picture: o2,
     latitude: 40.765623,
     longitude: -74.445828,
     radius: 4786 - RADIUS_DELAY, // from 40.755507, -74.434803
   },
   {
-    direction: 'Once you see the marker on the left, park along fence in an outcrop to the right',
+    direction: 'Once you see the marker on the left, park along fence in an outcrop to the right.',
     picture: o3,
     latitude: 40.768086,
     longitude: -74.442928,

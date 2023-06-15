@@ -82,7 +82,7 @@ class App extends Component {
           lazy: true, //needed
           headerShown: true,
           tabBarActiveTintColor: 'tomato',
-          tabBarStyle: {paddingTop: '2%'} //done
+          tabBarStyle: {paddingTop: '1%'}, //done
         }}>
 
           <Tab.Screen name='Home' component={Welcome} options={{

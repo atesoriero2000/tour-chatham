@@ -70,7 +70,7 @@ const sharedStyles = StyleSheet.create({
     buttonText:{
       fontSize: 18 * Scales.font,
       color: 'white',
-      fontWeight: Scales.fontWeight('200'), //NOTE: This and start clickable only non-consolidated font weight
+      fontWeight: MyTheme.defaultText.weight, //Scales.fontWeight('200'),
 
       justifyContent: 'center',
       alignItems: 'center',

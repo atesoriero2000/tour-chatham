@@ -113,7 +113,7 @@ class AudioPage extends Component {
           doneAtAudio: true, // hides dist counter immediately
           title: currentStage.title,
           picture: currentStage.atPic,
-          directions: 'Remain at the location until the audio is finished, then click the button to continue'});
+          directions: 'Remain at the location until the audio is finished, then click the button to continue.'});
        this.props.navigation.setOptions({ headerRight: () => {} });
 
 
@@ -313,7 +313,7 @@ class AudioPage extends Component {
 
   appleDirections(){
     let address = Locations[this.stage].address.replace(/\s/g, "+");
-    Alert.alert( 'Apple Maps Directions', '\nUse Apple Maps to navigate to ' + this.state.title + ' as the tour continues in the background?',
+    Alert.alert( 'Apple Maps Directions', '\nUse Apple Maps to navigate to ' + this.state.title + '?\n The tour will continue in the background.',
       [{ text: 'Cancel', style: 'default' },
        { text: 'Go', onPress: () => { Linking.openURL("http://maps.apple.com/?daddr=" + address + ",NJ&dirflg=d&t=m") }, style: 'cancel' } ] );
   }
@@ -394,8 +394,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '80%', // 4,3 longest direction (2,1 is also long)
-    height: 100 * Scales.horizontal, //Done needed fixed val
-    marginTop: 5 * Scales.horizontal, //LATER
+    height: 90 * Scales.horizontal, //Done needed fixed val
+    marginTop: 3 * Scales.horizontal, //LATER
 
     // backgroundColor: 'pink',
   },

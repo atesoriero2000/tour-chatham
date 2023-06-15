@@ -47,10 +47,9 @@ const Page1 = (props) => {
                     <Image source={require('../../images/tutorial1.jpg')} style={[pageStyles.image, {aspectRatio: 750/1234}]}/>
                 </View>
             </View>
-            <Text style = {pageStyles.text}>
-                Directions will appear on the screen instructing you exactly
-                what to do and what turns to make. The bottom of the screen
-                will indicate the distance until the next turn.
+            <Text style = {[pageStyles.text, {flex: Scales.hasNotch?4.87:4.75}]}>
+                Directions will appear on the screen instructing you of the upcoming turn. 
+                Your distance from the upcoming turn will be indicated below each direction. 
             </Text>
         </View>
     )
@@ -65,9 +64,10 @@ const Page2 = (props) => {
                 </View>
             </View>
             <Text style = {pageStyles.text}>
-                On the next page you will pick your starting location.
-                You will only visit the locations listed after
-                (any locations listed before the selected location will not be toured).
+                On the next page you will pick your start point. 
+                You will visit locations from your start point onwards. 
+                <Text style = {{fontSize: (Scales.hasNotch?3:2) * Scales.font}}>{'\n\n'}</Text>
+                <Text style = {{fontStyle: 'italic'}}> Locations listed before your start point will not be toured.</Text>
             </Text>
             <View style = {pageStyles.buttonBox}>
                 <TouchableHighlight style = {pageStyles.button}
@@ -165,7 +165,7 @@ const pageStyles = StyleSheet.create({
     },
 
     buttonBox:{
-        flex: 5,
+        flex: 5, //LATER (Scales.hasNotch?5:4.95)
         width: '100%',
         alignItems: 'center',
         justifyContent: 'flex-start',

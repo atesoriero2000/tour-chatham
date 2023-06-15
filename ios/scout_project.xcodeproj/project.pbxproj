@@ -16,6 +16,7 @@
 		DEB9A14EDC0AE0D748F88D35 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3249C2FC42585C536B2E4B /* ExpoModulesProvider.swift */; };
 		F548B51F2A16888D009D747E /* LaunchScreen2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F548B51E2A16888C009D747E /* LaunchScreen2.xib */; };
 		F592392728FCDDB900840D5F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F592392628FCDDB900840D5F /* LaunchScreen.xib */; };
+		F5A093992A3BC0BA004758AA /* LaunchScreen3.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5A093982A3BC0BA004758AA /* LaunchScreen3.xib */; };
 		F5A24C3528FDD52E00557D10 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5A24C1D28FDCD8500557D10 /* Ionicons.ttf */; };
 		F5A24C3728FDE80400557D10 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5A24C3628FDE80400557D10 /* EvilIcons.ttf */; };
 		F5A24D6B28FECB8300557D10 /* page_17_owen.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5A24D5228FECB8300557D10 /* page_17_owen.mp3 */; };
@@ -81,6 +82,7 @@
 		F592396728FD033C00840D5F /* libPods-scout_project.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-scout_project.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F592396928FD035300840D5F /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
 		F592396B28FD035900840D5F /* libReact-hermes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-hermes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5A093982A3BC0BA004758AA /* LaunchScreen3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen3.xib; path = scout_project/LaunchScreen3.xib; sourceTree = "<group>"; };
 		F5A24C1D28FDCD8500557D10 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
 		F5A24C3628FDE80400557D10 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		F5A24D5228FECB8300557D10 /* page_17_owen.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = page_17_owen.mp3; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				F592392628FCDDB900840D5F /* LaunchScreen.xib */,
 				F548B51E2A16888C009D747E /* LaunchScreen2.xib */,
+				F5A093982A3BC0BA004758AA /* LaunchScreen3.xib */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -393,6 +396,7 @@
 				F5A24D8028FECB8300557D10 /* page_25_mikey.mp3 in Resources */,
 				F5A24D7428FECB8300557D10 /* page_12_mikey.mp3 in Resources */,
 				F5A24D6E28FECB8300557D10 /* page_21_mikey.mp3 in Resources */,
+				F5A093992A3BC0BA004758AA /* LaunchScreen3.xib in Resources */,
 				F592392728FCDDB900840D5F /* LaunchScreen.xib in Resources */,
 				F5A24D7328FECB8300557D10 /* page_13_tony.mp3 in Resources */,
 				F5A24D7928FECB8300557D10 /* page_5_cat.mp3 in Resources */,
@@ -656,7 +660,7 @@
 				CODE_SIGN_ENTITLEMENTS = scout_project/scout_project.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = NA43HY9CRA;
 				ENABLE_BITCODE = NO;
@@ -698,7 +702,7 @@
 				CODE_SIGN_ENTITLEMENTS = scout_project/scout_project.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = NA43HY9CRA;
 				INFOPLIST_FILE = scout_project/Info.plist;

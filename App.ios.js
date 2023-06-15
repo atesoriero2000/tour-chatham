@@ -105,6 +105,7 @@ class App extends Component {
               
               {() =>
               //LATER animation value, and presentation
+              // LATER: it uses a different animation style for different phones?? (fade for 14 and 8+, swipe for 6)
               <Stack.Navigator screenOptions={{headerShown: true, gestureEnabled: false}}>
                 <Stack.Screen name='Start the Tour!' component={Start} />
                 <Stack.Screen name='Select a Start Point' component={SelectionPage} />

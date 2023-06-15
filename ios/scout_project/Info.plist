@@ -21,11 +21,11 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>5</string>
+	<string>7</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
-	<string></string>
+	<string>public.app-category.education</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>tel</string>
@@ -37,20 +37,14 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
-		<dict>
-			<key>localhost</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-			</dict>
-		</dict>
+		<dict/>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app uses your location to navigate you through historic sites and roadways</string>
 	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
 	<dict>
 		<key>Driving</key>
 		<string>This is needed temporarily to navigate you safely through roadways</string>
-		<key>New item</key>
-		<string></string>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app uses your location to navigate you through historic sites and roadways</string>
@@ -67,7 +61,7 @@
 		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen.xib</string>
+	<string>LaunchScreen2.xib</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>telephony</string>

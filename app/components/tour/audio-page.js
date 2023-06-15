@@ -330,7 +330,6 @@ class AudioPage extends Component {
   }
 
   DEBUG_nextTurn(){
-    // LATER prevent overflow and play through at audio
     Vibration.vibrate();
     BackgroundGeolocation.playSound(1300);
 
@@ -344,7 +343,6 @@ class AudioPage extends Component {
   }
 
   DEBUG_lastTurn(){
-    // LATER prevent overflow and play through at audio
     Vibration.vibrate();
     BackgroundGeolocation.playSound(1301);
 

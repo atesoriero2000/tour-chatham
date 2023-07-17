@@ -16,14 +16,16 @@
     Explore the historic sites and roadways of Chatham Township, Madison, and Green Village, NJ, while listening to the history behind them with the Chatham Township Historical Society’s driving tour! As you drive through 15 marked historic sites, you will uncover the hidden tales of the past while discovering the charm of your local town on this unforgettable audio-guided driving tour.
   </p>
 </p>
-
 <p align="center">
 <!-- <img src= "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2k5cW5wcm83NmdwOHZmbmRtcHAyZm9hM21uZmNwbTV0NGk2d2V4NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rsNSW6sB9RYONFTIxC/giphy.gif" width="300" > -->
 <!-- <img src= "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnFyOXB3aHprYjJnZjhoaTZyaWRxenpkcjJheGRkNXVsMXc0aHJ0MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/o50R0TuU1bRYoM0srU/giphy.gif" width="300" > -->
-<img src= "https://i.imgur.com/wrucoP8.jpg" width="300" >
+<!-- <img src= "https://i.imgur.com/wrucoP8.jpg" width="300" > -->
+
 <!-- <iframe class="imgur-embed" width="100%" height="1280" frameborder="0" src="https://i.imgur.com/wrucoP8.gifv#embed"></iframe> -->
-<!-- <img src= "" width="300" >
-<img src= "" width="300" > -->
+<!-- <img src= "" width="300" > -->
+<img src= "https://github.com/atesoriero2000/tour-chatham/blob/513dbf83fa24a319b0ee9560d60e94a359dc60f7/app/images/gifs/tour2.gif?raw=true" width="300" >
+<img src= "https://github.com/atesoriero2000/tour-chatham/blob/513dbf83fa24a319b0ee9560d60e94a359dc60f7/app/images/gifs/tour2.gif?raw=true" width="300" >
+<img src= "https://github.com/atesoriero2000/tour-chatham/blob/513dbf83fa24a319b0ee9560d60e94a359dc60f7/app/images/gifs/tour2.gif?raw=true" width="300" >
 </p>
 
 ## Features

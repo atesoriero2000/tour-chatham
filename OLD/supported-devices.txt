@@ -1,0 +1,56 @@
+iPhone:
+5s, 
+6, 6+, 
+6S, 6S+, 
+SE, 7, 7+, 
+8, 8+, X, 
+XS, XS Max, XR, 
+11, 11 Pro, 11 Max 
+12 Pro
+13 Pro
+
+iPad:
+
+iPod??
+
+
+iOS 12 - 16.1 
+
+
+
+#################
+# Apple Connect #
+#################
+
+Name:               Tour Chatham Township
+Subtitle:           Tour Chatham Township! 
+Screenshots:        3 x 6.5" screen (iPhone XS Max, iPhone 11 Pro Max)
+Promotional Text:   Done
+Description:
+    Portfolio:
+        Tour Chatham Township shares rich local history as you explore the scenic lands of Chatham, Madison, and Green Village NJ, accompanied by 15 interactive landmark stops.
+        An iOS  developed for the Chatham Township Historic Society, Tour Chatham Township uses the power of modern technology to preserve and share our local history, easier and more engaging then ever before.
+    1.2: 
+        Immerse yourself with the rich history of Chatham Township, Madison, and Green Village while the enjoying scenic views. Tour Chatham Township is an audio-guided driving tour thanks to the Chatham Township Historical Society.
+    1.1: 
+        Learn the history of your local town in a new innovative way! Explore Chatham Township, Madison, and Green Village as you drive to different marked historical sights while listening to the history behind them with the Chatham Township Historical Society’s Driving Tour app!
+        Hook up your iPhone to your car's sound system and with a partner follow as it navigates you through 15 different historical sites!
+
+What's New in This Version:
+    Tour Chatham is back featuring support for iOS 12+, with added support for 
+    It's back! The Chatham Township Historical Society's ____Driving tour is back,
+    with new support for iOS 16+ and the iPhone ___
+    with added suport for _____
+    iOS 12 - 16.1 (current 16.5)
+    iPhone 5s - current
+    iPad 5-10 gen
+    5c, 5s, 6, 6+, 6S, 6S+, 
+
+App Review Message:
+    https://youtu.be/WpMm-CWTAmI
+    Here are demo clips of the app being used. It is an interactive historical driving tour used to share the unique history of the town Chatham NJ.
+    Background audio permissions are requested so that users can listen to the tour uninterrupted while on their phones or using external apps for directions (like Apple Maps).
+
+    NOTE: Because this app relies on GPS to progress users through the tour, when run on a simulator this app will not seem fully functional.
+    You will be able to select different starting locations to test a variety of the audio but navigation will be impaired.
+    For the tour to work properly, users have to be located in Chatham NJ and follow the waypoints directed by the app.

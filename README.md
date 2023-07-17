@@ -4,8 +4,6 @@
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](https://apps.apple.com/us/app/tour-chatham-township/id1329535225)
 [![codebeat badge](https://codebeat.co/badges/00c3011a-0a64-4536-ad48-ef539a59a197)](https://codebeat.co/projects/github-com-atesoriero2000-tour-chatham-master)
 
-
-
 # Tour Chatham Township
 <br />
 <p align="center">
@@ -20,8 +18,12 @@
 </p>
 
 <p align="center">
-<img src= "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2k5cW5wcm83NmdwOHZmbmRtcHAyZm9hM21uZmNwbTV0NGk2d2V4NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rsNSW6sB9RYONFTIxC/giphy.gif" width="300" >
-<img src= "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnFyOXB3aHprYjJnZjhoaTZyaWRxenpkcjJheGRkNXVsMXc0aHJ0MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/o50R0TuU1bRYoM0srU/giphy.gif" width="300" >
+<!-- <img src= "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2k5cW5wcm83NmdwOHZmbmRtcHAyZm9hM21uZmNwbTV0NGk2d2V4NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rsNSW6sB9RYONFTIxC/giphy.gif" width="300" > -->
+<!-- <img src= "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnFyOXB3aHprYjJnZjhoaTZyaWRxenpkcjJheGRkNXVsMXc0aHJ0MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/o50R0TuU1bRYoM0srU/giphy.gif" width="300" > -->
+<img src= "https://i.imgur.com/wrucoP8.jpg" width="300" >
+<!-- <iframe class="imgur-embed" width="100%" height="1280" frameborder="0" src="https://i.imgur.com/wrucoP8.gifv#embed"></iframe> -->
+<!-- <img src= "" width="300" >
+<img src= "" width="300" > -->
 </p>
 
 ## Features
@@ -34,28 +36,15 @@
 ## Requirements
 - Xcode 14.1
 - A device running iOS 12.0+
-  
+
 ## Installation
 #### For Use
 1. [Download from the Apple App Store on any device iOS 12+](https://apps.apple.com/us/app/tour-chatham-township/id1329535225)
 
 #### For Development
-1. shde
-2. ecvrhfoij3dok
-3. ewcoh
-
-## Contribute
-
-We would love you for the contribution to the Chatham Township Historical Society's **Tour Chatham Township**, check the ``LICENSE`` file for more info.
+1. Please contact the developer for assistance setting up your development environment 
 
 ## Contact 
+Anthony Tesoriero – atesoriero2000@gmail.com - www.aptesoriero.com - [GitHub](https://github.com/atesoriero2000/)
 
-Anthony Tesoriero – atesoriero2000@gmail.com - www.aptesoriero.com
-
-Distributed under the Apache 2.0 license. See ``LICENSE`` for more information.
-
-[GitHub](https://github.com/atesoriero2000/)
-[Portfolio](https://www.aptesoriero.com)
-
-[codebeat-image]: https://codebeat.co/badges/c19b47ea-2f9d-45df-8458-b2d952fe9dad
-[codebeat-url]: https://codebeat.co/projects/github-com-vsouza-awesomeios-com
+Distributed under the Apache 2.0 license. See [``LICENSE``](LICENSE) for more information.

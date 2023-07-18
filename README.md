@@ -3,17 +3,15 @@
 [![Apple App Store](https://img.shields.io/itunes/v/1329535225?style=flat&logo=apple&label=App%20Store&color)](https://apple.co/3DhnHgv)
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](https://apple.co/3DhnHgv)
 [![codebeat badge](https://codebeat.co/badges/00c3011a-0a64-4536-ad48-ef539a59a197)](https://codebeat.co/projects/github-com-atesoriero2000-tour-chatham-master)
-<a href="https://apps.apple.com/us/app/tour-chatham-township/id1329535225?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 130px; width: 250px; height: 83px;">
-  <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1514592000" alt="Download on the App Store" width="7%">
-</a>
 
-# Tour Chatham Township
+
+# Tour Chatham Township [![download](https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1514592000)](https://apple.co/3DhnHgv)
 <br />
 <p align="center">
 <!--   <a href="https://apps.apple.com/us/app/tour-chatham-township/id1329535225"> -->
   <a href="https://apple.co/3DhnHgv">
 <!--     <img src="./app/images/chs_logo.png" alt="Logo" width="80" height="80"> -->
-    <img src="https://chathamtownshiphistoricalsociety.org/uploads/3/4/5/6/34564920/1372886807.png" alt="Logo" width="50%">
+    <img src="https://chathamtownshiphistoricalsociety.org/uploads/3/4/5/6/34564920/1372886807.png" alt="Logo" height="80">
   </a>
   <p align="center">
     Tour Chatham Township is an iOS app developed for the Chatham Township Historical Society in order to use modern technology to help preserve and share the history of the local towns.

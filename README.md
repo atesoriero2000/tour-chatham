@@ -14,8 +14,11 @@
     <img src="https://chathamtownshiphistoricalsociety.org/uploads/3/4/5/6/34564920/1372886807.png" alt="Logo" height="80">
   </a>
   <p align="center">
-    Tour Chatham Township is an iOS app developed for the Chatham Township Historical Society in order to use modern technology to help preserve and share the history of the local towns.
-    Explore the historic sites and roadways of Chatham Township, Madison, and Green Village, NJ, while listening to the history behind them with the Chatham Township Historical Society’s driving tour! As you drive through 15 marked historic sites, you will uncover the hidden tales of the past while discovering the charm of your local town on this unforgettable audio-guided driving tour.
+    Tour Chatham Township is an iOS app developed for the Chatham Township Historical Society.
+    It is an audio-guided historical driving tour designed to preserve the local history of Chatham Township, Madison, and Green Village, NJ, in a new interactive way using modern technology.
+    Users are guided through 15 marked historic sites and roadways while narrators uncover the hidden history behind them.
+    <br /> To learn more about the Chatham Township Historical Society's Historic Marker Project:   <a href="https://chathamtownshiphistoricalsociety.org/ongoing-projects.html"><i>Click Here!</i></a>
+    <br /> To download the iOS App:   <a href="https://apple.co/3DhnHgv"><i>Click Here!</i></a>
   </p>
 </p>
 
@@ -30,11 +33,10 @@
 </p>
 
 ## Features
-- [x] Feature 1
-- [x] Feature 2
-- [x] Feature 3
-- [x] Feature 4
-- [x] Feature 5
+- [X] 15 interactive historic landmark stops
+- [X] Live historical narration 
+- [X] Real-time GPS directions
+- [X] Start and stop the tour as you wish. Pick up where you left off anytime!
 
 ## Requirements
 - Xcode 14.1

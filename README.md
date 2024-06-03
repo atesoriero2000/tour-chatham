@@ -33,10 +33,10 @@
 </p>
 
 ## Features
-- [X] 15 interactive historic landmark stops
-- [X] Live historical narration 
-- [X] Real-time GPS directions
-- [X] Start and stop the tour as you wish. Pick up where you left off anytime!
+&nbsp;&nbsp; :white_check_mark: 15 interactive historic landmark stops </br>
+&nbsp;&nbsp; :white_check_mark: Live historical narration </br>
+&nbsp;&nbsp; :white_check_mark: Real-time GPS directions </br>
+&nbsp;&nbsp; :white_check_mark: Start and stop the tour as you wish. Pick up where you left off anytime! </br>
 
 ## Requirements
 - Xcode 14.1

@@ -5,7 +5,7 @@
 [![codebeat badge](https://codebeat.co/badges/00c3011a-0a64-4536-ad48-ef539a59a197)](https://codebeat.co/projects/github-com-atesoriero2000-tour-chatham-master)
 
 
-# Tour Chatham Township &nbsp; &nbsp; [![download](https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1514592000)](https://apple.co/3DhnHgv)
+# Tour Chatham Township &nbsp; &nbsp; [![download](https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?size=246x82&amp;releaseDate=1514592000)](https://apple.co/3DhnHgv)    
 <br />
 <p align="center">
 <!--   <a href="https://apps.apple.com/us/app/tour-chatham-township/id1329535225"> -->
